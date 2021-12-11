@@ -2,6 +2,7 @@
 Grid
 -------------------------------------------------------------------------------- */
 
+/* todo video recommends you ultimately delete this whole grid setup (~19:30 https://vimeo.com/453297124) */
 .grid {
   display: flex;
   flex: 0 1 auto;
