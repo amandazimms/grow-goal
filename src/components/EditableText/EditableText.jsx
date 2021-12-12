@@ -21,25 +21,26 @@ function EditableText() {
     setEditingMode(false);
   }
 
-  const setEditingTrue = () => {
-    setEditingMode(true);
-    setDisplayIcons(false);
-    console.log('editing mode:', editingMode);
-    console.log('display icons:', displayIcons);
-  }
-
   const setDisplayIconsTrue = () => {
     setDisplayIcons(true);
-    console.log('display icons:', displayIcons);
+  }
+
+  const setDisplayIconsFalse = () => {
+    setDisplayIcons(true);
   }
 
   const editButton = () => {
     setEditingMode(true);
-
+    setDisplayIcons(false);
   }
 
   const deleteButton = () => {
-    //todo delete this whole component, after prompt
+    if (confirm("delete this task/goal?")){
+      // delete this task/goal from the db, and make sure to re-render (get again)
+      setText('Placeholder (This is deleted)');
+      setDisplayIcons(false);
+      setEditingMode(false);
+    }
   }
 
 
