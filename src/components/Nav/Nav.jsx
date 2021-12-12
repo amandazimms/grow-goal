@@ -9,36 +9,39 @@ function Nav() {
 
   return (
     <div className="nav">
-      <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
-      </Link>
+
+      <img id="logo-nav" class="nav-icon" src="/images/icons/LogoNav.png"/>
+      
       <div>
-        {/* If no user is logged in, show these links */}
-        {user.id === null &&
-          // If there's no user, show login/registration links
-          <Link className="navLink" to="/login">
-            Login / Register
-          </Link>
-        }
-
-        {/* If a user is logged in, show these links */}
-        {user.id && (
-          <>
-            <Link className="navLink" to="/user">
-              Home
-            </Link>
-
-            <Link className="navLink" to="/info">
-              Info Page
-            </Link>
-
-            <LogOutButton className="navLink" />
-          </>
-        )}
-
-        <Link className="navLink" to="/about">
-          About
+      
+        <Link to="/home">
+          <img id="home-nav" class="nav-icon" src="/images/icons/Home.png"/>
         </Link>
+
+        <Link to="/profile">
+          <img id="profile-nav" class="nav-icon" src="/images/icons/Profile.png"/>
+        </Link>
+
+
+          {/* todo leaving these links here as they will be used elsewhere later */}
+          {/* <Link className="navLink" to="/login">
+              Login / Register
+          </Link>
+            <>
+              <Link className="navLink" to="/user">
+                Home
+              </Link>
+
+              <Link className="navLink" to="/info">
+                Info Page
+              </Link>
+
+              <LogOutButton className="navLink" />
+            </>
+
+          <Link className="navLink" to="/about">
+            About
+          </Link> */}
       </div>
     </div>
   );

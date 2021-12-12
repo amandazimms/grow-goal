@@ -34,7 +34,11 @@ function App() {
   return (
     <Router>
       <div>
+
+        {/* If a user is logged in, show nav bar */}
+        {user.id &&
         <Nav />
+        } 
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
