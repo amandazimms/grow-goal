@@ -14,8 +14,8 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import ProfilePage from '../ProfilePage/ProfilePage';
+import GoalsPage from '../GoalsPage/GoalsPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -37,78 +37,57 @@ function App() {
 
         {/* If a user is logged in, show nav bar */}
         {user.id &&
-        <Nav />
+          <Nav />
         } 
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
+          {/* todo when more of the app is together, decide where to reroute this.  */}
           <Redirect exact from="/" to="/home" />
 
           {/* Visiting localhost:3000/about will show the about page. */}
-          <Route
-            // shows AboutPage at all times (logged in or not)
-            exact
-            path="/about"
-          >
-            <AboutPage />
-          </Route>
+          
+          {/* shows Public Goals page at all times (logged in or not) */}
+          {/*todo implement only for stretch goal <Route exact path="/public-goals">
+            <PublicGoalsPage />
+          </Route> */}
 
           {/* For protected routes, the view could show one of several things on the same route.
-            Visiting localhost:3000/user will show the UserPage if the user is logged in.
+            Visiting localhost:3000/user will show the ProfilePage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/user"
-          >
-            <UserPage />
+         
+         {/* logged in shows ProfilePage, else shows LoginPage */}
+          <ProtectedRoute exact path="/profile">
+            <ProfilePage/>
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
-          >
-            <InfoPage />
+          {/* logged in shows GoalsPage, else shows LoginPage */}
+          <ProtectedRoute exact path="/goals">
+            <GoalsPage />
           </ProtectedRoute>
 
-          <Route
-            exact
-            path="/login"
-          >
+          <Route exact path="/login">
             {user.id ?
-              // If the user is already logged in, 
-              // redirect to the /user page
-              <Redirect to="/user" />
-              :
+              // If the user is already logged in, redirect to the /goals page
+              <Redirect to="/goals" /> :
               // Otherwise, show the login page
               <LoginPage />
             }
           </Route>
 
-          <Route
-            exact
-            path="/registration"
-          >
+          <Route exact path="/registration">
             {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to="/user" />
-              :
+              // If the user is already logged in, redirect them to the /goals page
+              <Redirect to="/goals" /> :
               // Otherwise, show the registration page
               <RegisterPage />
             }
           </Route>
 
-          <Route
-            exact
-            path="/home"
-          >
+          <Route exact path="/home">
             {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to="/user" />
-              :
+              // If the user is already logged in, redirect them to the /user page
+              <Redirect to="/goals" /> :
               // Otherwise, show the Landing page
               <LandingPage />
             }

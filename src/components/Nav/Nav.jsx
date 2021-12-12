@@ -14,8 +14,8 @@ function Nav() {
       
       <div>
       
-        <Link to="/home">
-          <img id="home-nav" class="nav-icon" src="/images/icons/Home.png"/>
+        <Link to="/goals">
+          <img id="goals-home-nav" class="nav-icon" src="/images/icons/Home.png"/>
         </Link>
 
         <Link to="/profile">

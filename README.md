@@ -99,8 +99,8 @@ This code is also heavily commented. We recommend reading through the comments, 
   - Footer/Footer
   - Nav/Nav
   - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
+  - GoalsPage/GoalsPage
+  - ProfilePage/ProfilePage
   - LoginPage/LoginPage
   - RegisterPage/RegisterPage
   - LogOutButton/LogOutButton
