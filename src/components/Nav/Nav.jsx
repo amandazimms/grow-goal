@@ -10,16 +10,16 @@ function Nav() {
   return (
     <div className="nav">
 
-      <img id="logo-nav" class="nav-icon" src="/images/icons/LogoNav.png"/>
+      <img id="logo-nav" className="nav-icon" src="/images/icons/LogoNav.png"/>
       
       <div>
       
         <Link to="/goals">
-          <img id="goals-home-nav" class="nav-icon" src="/images/icons/Home.png"/>
+          <img id="goals-home-nav" className="nav-icon" src="/images/icons/Home.png"/>
         </Link>
 
         <Link to="/profile">
-          <img id="profile-nav" class="nav-icon" src="/images/icons/Profile.png"/>
+          <img id="profile-nav" className="nav-icon" src="/images/icons/Profile.png"/>
         </Link>
 
 

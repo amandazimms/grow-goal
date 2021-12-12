@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 
 function EditableText() {
 
-  const [isEditingMode, setIsEditingMode] = useState(false);
+  const [displayIcons, setDisplayIcons] = useState(false);
+  const [editingMode, setEditingMode] = useState(false);
 
   const [text, setText] = useState('');
-  const [editingText, setEditingText] = useState();
+  const [editingText, setEditingText] = useState(text);
 
   const handleChange = (event) =>{
     setEditingText(event.target.value);
@@ -13,25 +14,53 @@ function EditableText() {
 
   const doneButton = () => {
     setText(editingText);
-    setIsEditingMode(false);
+    setEditingMode(false);
   }
 
   const cancelButton = () => {
-    setIsEditingMode(false);
+    setEditingMode(false);
   }
 
   const setEditingTrue = () => {
-    setIsEditingMode(true);
+    setEditingMode(true);
+    setDisplayIcons(false);
+    console.log('editing mode:', editingMode);
+    console.log('display icons:', displayIcons);
+  }
+
+  const setDisplayIconsTrue = () => {
+    setDisplayIcons(true);
+    console.log('display icons:', displayIcons);
+  }
+
+  const editButton = () => {
+    setEditingMode(true);
+
+  }
+
+  const deleteButton = () => {
+    //todo delete this whole component, after prompt
   }
 
 
   return (
     <div>
-      { isEditingMode ? <>
-         <input placeholder={text} type="text" onChange={ (event) => handleChange(event) }></input>
+      { editingMode 
+        ? 
+         <><input value={editingText} type="text" onChange={ (event) => handleChange(event) }></input>
          <button onClick={doneButton}>done</button>
-         <button onClick={cancelButton}>cancel</button> </>
-        : <p onClick={setEditingTrue}>text: {text}</p>
+         <button onClick={cancelButton}>cancel</button></>
+        : 
+          <>
+          <p onClick={setDisplayIconsTrue}>text: {text}</p> 
+          { displayIcons 
+            ? 
+              <><button onClick={editButton}>edit</button>
+              <button onClick={deleteButton}>delete</button></>
+            :
+              <></>
+          } </>
+        
       }
 
      
