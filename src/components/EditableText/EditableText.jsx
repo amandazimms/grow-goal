@@ -36,6 +36,7 @@ function EditableText(props) {
     setDisplayIcons(false);
   }
 
+  //todo - could we pass two different deleteButton functions as props? one for goal, one for task? since their funcitonality is so different...
   const deleteButton = () => {
     if (confirm("delete this task/goal?")){
       // delete this task/goal from the db, and make sure to re-render (get again)
