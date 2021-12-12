@@ -2,26 +2,29 @@ import React from 'react';
 import EditableText from '../EditableText/EditableText';
 
 function GoalPage() {
+
+  //todo change this to get from DB/store
   const placeholderTasks = [
     'do the dishes',
     'do the laundry',
     'make coffee'
   ]
 
+  const placeholderTitle = 'Get Through Tuesday'
+
   return (
     <div className="container">
-      <h2>GOAL TITLE HERE</h2>
+      <h1>Goal:</h1><EditableText text={placeholderTitle} />
 
-      <h3>Task List</h3>
+      <h3>Task List:</h3>
 
-      {/* get all tasks from the db, map here: */}
       {
         placeholderTasks.map(task =>(
-            <EditableText task={task} />
+            <EditableText text={task} />
         ))
       }
 
-      <h3>Plant Avatar</h3>
+      <h3>Plant Avatar:</h3>
 
 
     </div>

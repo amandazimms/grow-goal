@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 
 function EditableText(props) {
 
-  const [displayIcons, setDisplayIcons] = useState(false);
-  const [editingMode, setEditingMode] = useState(false);
+  const placeholderText = props.placeholderText || '';
 
-  const [text, setText] = useState(props.task);
+  const [displayIcons, setDisplayIcons] = useState(false);
+  const [editingMode, setEditingMode] = useState(props.isEditingMode || false);
+
+  const [text, setText] = useState(props.text || '');
   const [editingText, setEditingText] = useState(text);
 
   const handleChange = (event) =>{
@@ -48,12 +50,12 @@ function EditableText(props) {
     <div>
       { editingMode 
         ? 
-         <><input value={editingText} type="text" onChange={ (event) => handleChange(event) }></input>
+         <><input value={editingText} placeholder={placeholderText} type="text" onChange={ (event) => handleChange(event) }></input>
          <button onClick={doneButton}>done</button>
          <button onClick={cancelButton}>cancel</button></>
         : 
           <>
-          <p onClick={setDisplayIconsTrue}>text: {text}</p> 
+          <p  onClick={setDisplayIconsTrue}>{text}</p> 
           { displayIcons 
             ? 
               <><button onClick={editButton}>edit</button>
