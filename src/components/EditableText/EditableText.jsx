@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-function EditableText() {
+function EditableText(props) {
 
   const [displayIcons, setDisplayIcons] = useState(false);
   const [editingMode, setEditingMode] = useState(false);
 
-  const [text, setText] = useState('');
+  const [text, setText] = useState(props.task);
   const [editingText, setEditingText] = useState(text);
 
   const handleChange = (event) =>{
