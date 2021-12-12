@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import NewGoalPage from '../NewGoalPage/NewGoalPage';
+import GoalPage from '../GoalPage/GoalPage';
 
 import './App.css';
 
@@ -70,6 +71,11 @@ function App() {
           {/* logged in shows NewGoalPage, else shows LoginPage */}
           <ProtectedRoute exact path="/new-goal">
             <NewGoalPage />
+          </ProtectedRoute>
+
+          {/* logged in shows GoalPage, else shows LoginPage */}
+          <ProtectedRoute exact path="/goal">
+            <GoalPage />
           </ProtectedRoute>
 
           <Route exact path="/login">

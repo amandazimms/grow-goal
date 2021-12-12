@@ -10,6 +10,10 @@ function GoalsPage() {
         <button>Add New Goal</button>
       </Link>
 
+      <Link to="/goal">
+        <button>View This Existing Goal</button>
+      </Link>
+
 
     </div>
   );
