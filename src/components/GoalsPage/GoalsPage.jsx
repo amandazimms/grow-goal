@@ -6,8 +6,6 @@ function GoalsPage() {
     <div className="container">
       <h2>Goals Page</h2>
 
-      
-
       <Link to="/new-goal">
         <button>Add New Goal</button>
       </Link>

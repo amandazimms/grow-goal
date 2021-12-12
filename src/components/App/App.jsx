@@ -21,7 +21,6 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import NewGoalPage from '../NewGoalPage/NewGoalPage';
 
-
 import './App.css';
 
 function App() {
