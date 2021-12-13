@@ -56,7 +56,7 @@ function EditableText(props) {
          <button onClick={cancelButton}>cancel</button></>
         : 
           <>
-          <p  onClick={setDisplayIconsTrue}>{text}</p> 
+          <p onClick={setDisplayIconsTrue}>{text}</p> 
           { displayIcons 
             ? 
               <><button onClick={editButton}>edit</button>

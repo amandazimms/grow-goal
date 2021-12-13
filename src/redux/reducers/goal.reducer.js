@@ -3,7 +3,7 @@ const goalReducer = (state = [], action) => {
     case 'SET_GOALS':
       return action.payload;
     case 'UNSET_GOALS':
-      return {};
+      return [];
     default:
       return state;
   }

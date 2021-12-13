@@ -16,7 +16,6 @@ router.get('/', (req,res) => {
   const queryString = `SELECT * FROM "goal"`;
   
   pool.query(queryString).then((results)=>{
-    console.log('---->get goal results:', results.rows);
     res.send(results.rows);
   }).catch((err)=>{
     console.log('error with goals GET:', err);
