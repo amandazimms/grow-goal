@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import AddNewText from '../AddNewText/AddNewText';
 import EditableText from '../EditableText/EditableText';
 
 function GoalPage() {
@@ -14,11 +15,15 @@ function GoalPage() {
 
   const [title, setTitle] = useState('');
 
+  const [addingTask, setAddingTask] = useState(false);
+
   useEffect(() => {
     dispatch({ type: 'FETCH_TASKS', payload: selectedGoal.id }); 
   }, []);
 
-
+  const addTask = () => {
+    setAddingTask(true);
+  }
 
   return (
     <div className="container">
@@ -26,11 +31,13 @@ function GoalPage() {
       <h1>Goal:</h1><EditableText text={selectedGoal.goal_name} />
 
       <h3>Task List:</h3>
-      {/* {
-        tasks.map(task =>(
-            <EditableText text={task} />
-        ))
-      } */}
+      
+      <button onClick={addTask}>+</button>
+      {
+        addingTask 
+        ? <AddNewText placeholderText={'Describe New Task'} onLeaveAdd={()=>setAddingTask(false)}/>
+        : <></>
+      }
 
       {tasks.map(task => {
         return (

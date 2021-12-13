@@ -23,14 +23,6 @@ function EditableText(props) {
     setEditingMode(false);
   }
 
-  const setDisplayIconsTrue = () => {
-    setDisplayIcons(true);
-  }
-
-  const setDisplayIconsFalse = () => {
-    setDisplayIcons(true);
-  }
-
   const editButton = () => {
     setEditingMode(true);
     setDisplayIcons(false);
@@ -56,7 +48,7 @@ function EditableText(props) {
          <button onClick={cancelButton}>cancel</button></>
         : 
           <>
-          <p onClick={setDisplayIconsTrue}>{text}</p> 
+          <p onClick={() => setDisplayIcons(true)}>{text}</p> 
           { displayIcons 
             ? 
               <><button onClick={editButton}>edit</button>

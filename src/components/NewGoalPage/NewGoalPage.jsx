@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AddNewText from '../AddNewText/AddNewText';
 import EditableText from '../EditableText/EditableText';
 
 function NewGoalPage() {
@@ -10,7 +11,7 @@ function NewGoalPage() {
     //todo save to db
   }
 
-  const addNewTask = () => {
+  const addTask = () => {
     setAddingTask(true);
   }
 
@@ -21,13 +22,11 @@ function NewGoalPage() {
 
 
       <h3>Task List:</h3>
-      <button onClick={addNewTask}>+</button>
-
-      { addingTask 
-        ?
-          <EditableText isEditingMode={true} placeholderText={'Describe New Task'} />
-        :
-          <></>    
+      <button onClick={addTask}>+</button>
+      {
+        addingTask 
+        ? <AddNewText placeholderText={'Describe New Task'} onLeaveAdd={()=>setAddingTask(false)}/>
+        : <></>
       }
 
       {
@@ -38,6 +37,7 @@ function NewGoalPage() {
 
 
       <h3>Plant Avatar:</h3>
+
 
       <button onClick={saveGoal}>Save Goal</button>
     </div>
