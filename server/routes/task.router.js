@@ -13,7 +13,6 @@ const router = express.Router();
 // is that the password gets encrypted before being inserted
 
 router.get('/', (req,res) => {
-  console.log('---->req.query for task get is:', req.query);
   const queryString = `SELECT * FROM task WHERE goal_id=${req.query.id}`;
 
   pool.query(queryString).then((results)=>{

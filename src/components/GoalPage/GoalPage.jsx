@@ -18,7 +18,6 @@ function GoalPage() {
   const [addingTask, setAddingTask] = useState(false);
 
   useEffect(() => {
-    console.log('-->Goal Page is about to dispatch a "fetch tasks. the selected goal is:', selectedGoal);
     dispatch({ type: 'FETCH_TASKS', payload: selectedGoal.id }); 
   }, []);
 

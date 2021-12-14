@@ -12,7 +12,6 @@ function AddNewText(props) {
   const selectedGoal = useSelector(store => store.selectedGoal);
 
   useEffect(() => {
-    console.log('-->AddNewText is about to dispatch a "fetch tasks. the selected goal is:', selectedGoal);
     dispatch({ type: 'FETCH_TASKS', payload: selectedGoal.id }); 
   }, []);
 
@@ -21,11 +20,9 @@ function AddNewText(props) {
   }
 
   const doneButton = () => {
-    console.log('selectedGoal is:', selectedGoal);
     dispatch({ type: 'ADD_TASK', payload: {
       task_name: text,
       is_complete: false,
-      // todo: add actual specific goal id - props or reducer?
       goal_id: selectedGoal.id
     }});
     props.onLeaveAdd();

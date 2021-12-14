@@ -11,7 +11,6 @@ function* taskSaga() {
 
 function* addTask(action) {
   try {
-      console.log('--->add task. action:', action)
       const task = yield axios.post('/api/task', { task_name: action.payload.task_name, is_complete: action.payload.is_complete, goal_id: action.payload.goal_id });
       console.log('posting task:', task.data);
       yield put({ type: 'FETCH_TASKS', payload: action.payload.goal_id });
@@ -25,7 +24,6 @@ function* addTask(action) {
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchTasks(action) {
   try {
-    console.log('---->fetch tasks action.payload:', action.payload)
     const response = yield axios.get('/api/task', { params: { id: action.payload } });
     yield put({ type: 'SET_TASKS', payload: response.data });
   } catch (error) {
