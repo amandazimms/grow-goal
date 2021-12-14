@@ -1,22 +1,27 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function AddNewText(props) {
 
   const dispatch = useDispatch();
+
   const placeholderText = props.placeholderText || '';
+
   const [text, setText] = useState(props.text || '');
+
+  const selectedGoal = useSelector(store => store.selectedGoal);
 
   const handleChange = (event) =>{
     setText(event.target.value);
   }
 
   const doneButton = () => {
+    console.log('selectedGoal is:', selectedGoal);
     dispatch({ type: 'ADD_TASK', payload: {
       task_name: text,
       is_complete: false,
       // todo: add actual specific goal id - props or reducer?
-      goal_id: 1
+      goal_id: selectedGoal.id
     }});
     props.onLeaveAdd();
   }

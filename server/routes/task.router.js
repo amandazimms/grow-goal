@@ -26,7 +26,6 @@ router.get('/', (req,res) => {
 })
 
 router.post('/', (req, res) => {
-  console.log('--------------->task post req.body:', req.body);
   const queryString = `INSERT INTO "task" (task_name, is_complete, goal_id)
     VALUES ($1, $2, $3)`;
     values = [req.body.task_name, req.body.is_complete, req.body.goal_id];

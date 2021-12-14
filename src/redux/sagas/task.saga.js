@@ -10,7 +10,6 @@ function* taskSaga() {
 
 
 function* addTask(action) {
-  console.log('addTask action.payload: ----------->', action.payload);
   try {
       const task = yield axios.post('/api/task', { task_name: action.payload.task_name, is_complete: action.payload.is_complete, goal_id: action.payload.goal_id });
       console.log('posting task:', task.data);
