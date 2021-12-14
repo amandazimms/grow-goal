@@ -5,6 +5,20 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* taskSaga() {
   yield takeLatest('FETCH_TASKS', fetchTask);
+  yield takeLatest('ADD_TASK', addTask);
+}
+
+
+function* addTask(action) {
+  console.log('addTask action.payload: ----------->', action.payload);
+  try {
+      const task = yield axios.post('/api/task', { task_name: action.payload.task_name, is_complete: action.payload.is_complete, goal_id: action.payload.goal_id });
+      console.log('posting task:', task.data);
+      yield put({ type: 'FETCH_TASKS'});
+
+  } catch {
+      console.log('add new task error');
+  }
 }
 
 
@@ -17,5 +31,7 @@ function* fetchTask() {
     console.log('Task get request failed', error);
   }
 }
+
+
 
 export default taskSaga;

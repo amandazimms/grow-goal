@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 function AddNewText(props) {
 
+  const dispatch = useDispatch();
   const placeholderText = props.placeholderText || '';
   const [text, setText] = useState(props.text || '');
 
@@ -10,7 +12,12 @@ function AddNewText(props) {
   }
 
   const doneButton = () => {
-    //todo save this text/add it to store/db
+    dispatch({ type: 'ADD_TASK', payload: {
+      task_name: text,
+      is_complete: false,
+      // todo: add actual specific goal id - props or reducer?
+      goal_id: 1
+    }});
     props.onLeaveAdd();
   }
 

@@ -26,11 +26,12 @@ router.get('/', (req,res) => {
 })
 
 router.post('/', (req, res) => {
+  console.log('--------------->task post req.body:', req.body);
   const queryString = `INSERT INTO "task" (task_name, is_complete, goal_id)
     VALUES ($1, $2, $3)`;
-    values = [req.body.taskName, req.body.isComplete, req.body.goalId];
+    values = [req.body.task_name, req.body.is_complete, req.body.goal_id];
   
-    pool.query(queryString, value)
+    pool.query(queryString, values)
     .then((results)=>{
       res.sendStatus(200);
     }).catch((err) => {
