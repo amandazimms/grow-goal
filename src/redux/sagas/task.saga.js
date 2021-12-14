@@ -22,9 +22,10 @@ function* addTask(action) {
 
 
 // worker Saga: will be fired on "FETCH_USER" actions
-function* fetchTask() {
+function* fetchTask(action) {
   try {
-    const response = yield axios.get('/api/task');
+    console.log('fetch task action,payload:', action.payload)
+    const response = yield axios.get('/api/task', { params: { id: action.payload } });
     yield put({ type: 'SET_TASKS', payload: response.data });
   } catch (error) {
     console.log('Task get request failed', error);
