@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 function AddNewText(props) {
@@ -10,6 +10,11 @@ function AddNewText(props) {
   const [text, setText] = useState(props.text || '');
 
   const selectedGoal = useSelector(store => store.selectedGoal);
+
+  useEffect(() => {
+    console.log('-->AddNewText is about to dispatch a "fetch tasks. the selected goal is:', selectedGoal);
+    dispatch({ type: 'FETCH_TASKS', payload: selectedGoal.id }); 
+  }, []);
 
   const handleChange = (event) =>{
     setText(event.target.value);
