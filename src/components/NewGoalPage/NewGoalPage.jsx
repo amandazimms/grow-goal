@@ -14,9 +14,9 @@ function NewGoalPage() {
   const [title, setTitle] = useState(selectedGoal.goal_name);
   const [addingTask, setAddingTask] = useState(false);
 
-  useEffect(() => {
-    dispatch({ type: 'FETCH_TASKS', payload: selectedGoal.id }); 
-  }, []);
+  // useEffect(() => {
+  //   dispatch({ type: 'FETCH_TASKS', payload: selectedGoal.id }); 
+  // }, []);
 
   const addTask = () => {
     setAddingTask(true);

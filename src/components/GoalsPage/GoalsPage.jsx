@@ -13,6 +13,7 @@ function GoalsPage() {
   }, []);
 
   const setSelectedGoal = (goal) =>{
+    console.log('goals page will set selected goal to:', goal);
     dispatch( {type: 'SET_SELECTED_GOAL', payload: goal});
   }
 

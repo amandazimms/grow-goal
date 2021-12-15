@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
   console.log('about to post this goal! req.body is:', req.body);
 
   const queryString = `INSERT INTO "goal" ("goal_name", "progress", "is_accomplished", "user_id", "plant_avatar_id")
-    VALUES ($1, $2, $3, $4, $5)`;
+    VALUES ($1, $2, $3, $4, $5) RETURNING id`;
     values = [req.body.goal_name, 
               req.body.progress, 
               req.body.is_accomplished, 
@@ -36,7 +36,9 @@ router.post('/', (req, res) => {
   
     pool.query(queryString, values)
     .then((results)=>{
-      res.sendStatus(200);
+      res.send(results.rows[0]);
+      //since we asked for RETURNING id, rows [0].id will be the id for the entry we just made
+
     }).catch((err) => {
       console.log('POST goal failed: ', err);
       res.sendStatus(500);
