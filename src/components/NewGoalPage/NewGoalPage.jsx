@@ -1,18 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import AddNewText from '../AddNewText/AddNewText';
 import EditableText from '../EditableText/EditableText';
 
 function NewGoalPage() {
+
+  const store = useSelector(store => store);
+  const dispatch = useDispatch();
+
+  const tasks = useSelector(store => store.task);
+  const selectedGoal = useSelector(store => store.selectedGoal);
+
+  const [title, setTitle] = useState(selectedGoal.goal_name);
   const [addingTask, setAddingTask] = useState(false);
 
-  const tasks = [];
-
-  const saveGoal = () => {
-    //todo save to db
-  }
+  useEffect(() => {
+    dispatch({ type: 'FETCH_TASKS', payload: selectedGoal.id }); 
+  }, []);
 
   const addTask = () => {
     setAddingTask(true);
+  }
+
+  const saveGoal = () => {
+    //todo save to db
   }
 
   return (
@@ -22,6 +33,7 @@ function NewGoalPage() {
 
 
       <h3>Task List:</h3>
+      
       <button onClick={addTask}>+</button>
       {
         addingTask 

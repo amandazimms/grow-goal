@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-//todo, eventually: add, update, delete task
+
 
 function* taskSaga() {
   yield takeLatest('FETCH_TASKS', fetchTasks);
@@ -9,10 +9,13 @@ function* taskSaga() {
 }
 
 
+// worker Saga: will be fired on "ADD_TASKS" actions
 function* addTask(action) {
   try {
-      const task = yield axios.post('/api/task', { task_name: action.payload.task_name, is_complete: action.payload.is_complete, goal_id: action.payload.goal_id });
+      const task = yield axios.post('/api/task', 
+          { task_name: action.payload.task_name, is_complete: action.payload.is_complete, goal_id: action.payload.goal_id });
       console.log('posting task:', task.data);
+      
       yield put({ type: 'FETCH_TASKS', payload: action.payload.goal_id });
 
   } catch {
@@ -21,7 +24,7 @@ function* addTask(action) {
 }
 
 
-// worker Saga: will be fired on "FETCH_USER" actions
+// worker Saga: will be fired on "FETCH_TASKS" actions
 function* fetchTasks(action) {
   try {
     const response = yield axios.get('/api/task', { params: { id: action.payload } });

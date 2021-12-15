@@ -7,13 +7,25 @@ function GoalsPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    //todo - add payload for specific goals to this user
     dispatch( {type: 'FETCH_GOALS'} );
     console.log('goals:', goals);
-    // dispatch( {type: 'FETCH_TASKS'} );
   }, []);
 
   const setSelectedGoal = (goal) =>{
     dispatch( {type: 'SET_SELECTED_GOAL', payload: goal});
+  }
+
+  const addNewGoal = () => {
+    dispatch({ type: 'ADD_GOAL', payload: {
+        goal_name: '',
+        progress: 0,
+        is_accomplished: false,
+        user_id: 1,
+        plant_avatar_id: 1
+        //todo add userID
+    }});
+    //note that ADD_GOAL sequence ends with SET_SELECTED_GOAL for the new goal
   }
 
   return (
@@ -21,7 +33,7 @@ function GoalsPage() {
       <h3>{JSON.stringify(goals)}</h3>
       <h2>Goals Page</h2>
 
-      <Link to="/new-goal">
+      <Link to="/new-goal" onClick={addNewGoal}>
         <button>Add New Goal</button>
       </Link>
 

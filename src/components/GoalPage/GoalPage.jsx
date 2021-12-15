@@ -7,14 +7,12 @@ import EditableText from '../EditableText/EditableText';
 function GoalPage() {
 
   const store = useSelector(store => store);
-
-
   const dispatch = useDispatch();
+
   const tasks = useSelector(store => store.task);
   const selectedGoal = useSelector(store => store.selectedGoal);
 
-  const [title, setTitle] = useState('');
-
+  const [title, setTitle] = useState(selectedGoal.goal_name);
   const [addingTask, setAddingTask] = useState(false);
 
   useEffect(() => {

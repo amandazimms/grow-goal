@@ -24,11 +24,17 @@ router.get('/', (req,res) => {
 })
 
 router.post('/', (req, res) => {
-  const queryString = `INSERT INTO "goal" (goal_name, progress, is_accomplished, last_update, user_id, plant_avatar_id)
-    VALUES ($1, $2, $3, $4, $5, $6)`;
-    values = [req.body.goalName, req.body.progress, req.body.isAccomplished, req.body.lastUpdate, req.body.userId, req.body.plantAvatarId];
+  console.log('about to post this goal! req.body is:', req.body);
+
+  const queryString = `INSERT INTO "goal" ("goal_name", "progress", "is_accomplished", "user_id", "plant_avatar_id")
+    VALUES ($1, $2, $3, $4, $5)`;
+    values = [req.body.goal_name, 
+              req.body.progress, 
+              req.body.is_accomplished, 
+              req.body.user_id, 
+              req.body.plant_avatar_id];
   
-    pool.query(queryString, value)
+    pool.query(queryString, values)
     .then((results)=>{
       res.sendStatus(200);
     }).catch((err) => {
