@@ -24,8 +24,6 @@ router.get('/', (req,res) => {
 })
 
 router.post('/', (req, res) => {
-  console.log('about to post this goal! req.body is:', req.body);
-
   const queryString = `INSERT INTO "goal" ("goal_name", "progress", "is_accomplished", "user_id", "plant_avatar_id")
     VALUES ($1, $2, $3, $4, $5) RETURNING id`;
     values = [req.body.goal_name, 

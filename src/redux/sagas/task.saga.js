@@ -14,8 +14,8 @@ function* addTask(action) {
   try {
       const task = yield axios.post('/api/task', 
           { task_name: action.payload.task_name, is_complete: action.payload.is_complete, goal_id: action.payload.goal_id });
-      console.log('posting task:', task.data);
       
+      console.log('--->in TASK SAGA, about to fetch these tasks for action.payload.goal_id:', action.payload.goal_id);    
       yield put({ type: 'FETCH_TASKS', payload: action.payload.goal_id });
 
   } catch {

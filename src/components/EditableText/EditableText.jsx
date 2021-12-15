@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function EditableText(props) {
 
@@ -10,6 +10,9 @@ function EditableText(props) {
   const [text, setText] = useState(props.text || '');
   const [editingText, setEditingText] = useState(text);
 
+  useEffect(() => {
+    console.log('log to check about react object children. text:', text, 'editingText:', editingText, 'placeholderText', placeholderText);
+  }, [])
   const handleChange = (event) =>{
     setEditingText(event.target.value);
   }
@@ -48,7 +51,8 @@ function EditableText(props) {
          <button onClick={cancelButton}>cancel</button></>
         : 
           <>
-          <p onClick={() => setDisplayIcons(true)}>{text}</p> 
+          <p onClick={() => setDisplayIcons(true)}>{text}</p>
+ 
           { displayIcons 
             ? 
               <><button onClick={editButton}>edit</button>

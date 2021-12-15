@@ -43,7 +43,7 @@ function NewGoalPage() {
 
       {
         tasks.map(task =>(
-            <EditableText text={task} />
+            <EditableText text={task.task_name} />
         ))
       }
 

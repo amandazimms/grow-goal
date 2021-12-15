@@ -9,11 +9,9 @@ function GoalsPage() {
   useEffect(() => {
     //todo - add payload for specific goals to this user
     dispatch( {type: 'FETCH_GOALS'} );
-    console.log('goals:', goals);
   }, []);
 
   const setSelectedGoal = (goal) =>{
-    console.log('goals page will set selected goal to:', goal);
     dispatch( {type: 'SET_SELECTED_GOAL', payload: goal});
   }
 
