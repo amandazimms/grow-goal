@@ -10,6 +10,7 @@ function GoalPage() {
   const dispatch = useDispatch();
 
   const tasks = useSelector(store => store.task);
+
   const selectedGoal = useSelector(store => store.selectedGoal);
 
   const [title, setTitle] = useState(selectedGoal.goal_name);
@@ -40,7 +41,7 @@ function GoalPage() {
       {tasks.map(task => {
         return (
           <div key={task.id}>
-            <EditableText text={task.task_name} />
+            <EditableText text={task.task_name} id={task.id} />
           </div>
           );
       })}

@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 function EditableText(props) {
+
+  const dispatch = useDispatch();
+
+  const store = useSelector(store => store);
+  const selectedGoal = useSelector(store => store.selectedGoal);
 
   const placeholderText = props.placeholderText || '';
 
@@ -11,14 +18,21 @@ function EditableText(props) {
   const [editingText, setEditingText] = useState(text);
 
   useEffect(() => {
-    console.log('log to check about react object children. text:', text, 'editingText:', editingText, 'placeholderText', placeholderText);
+    //console.log('log to check about react object children. text:', text, 'editingText:', editingText, 'placeholderText', placeholderText);
   }, [])
   const handleChange = (event) =>{
     setEditingText(event.target.value);
   }
 
   const doneButton = () => {
-    setText(editingText);
+  //  setText(editingText);
+
+    // const taskToSend = {
+    //   task_name: editingText,
+    //   id: props.id,
+    //   goal_id: selectedGoal.id
+    // }
+    // dispatch({type: 'UPDATE_TASK', payload: taskToSend })
     setEditingMode(false);
   }
 

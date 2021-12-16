@@ -48,7 +48,7 @@ router.put('/', (req, res) => {
   const queryString = `UPDATE "goal" SET goal_name=$1 WHERE id=$2`;
     values = [req.query.goalName, req.query.id];
 
-  pool.query(queryString, value)
+  pool.query(queryString, values)
     .then((results)=>{
       res.sendStatus(200);
     }).catch((err) => {
@@ -61,7 +61,7 @@ router.delete('/', (req,res)=> {
   const queryString = `DELETE FROM "goal" WHERE id=$1`;
   values = [req.params.id];
 
-  pool.query(queryString, value)
+  pool.query(queryString, values)
     .then((results)=>{
       res.sendStatus(200);
     }).catch((err) => {

@@ -27,9 +27,8 @@ function* addGoal(action) {
     //whenever adding a goal, we should also set it as the selected_goal, since that will always be the case.
     yield put({ type: 'SET_SELECTED_GOAL', payload: newGoal });
 
-    console.log('--->in GOAL SAGA, about to fetch these tasks for newGoal.id:', newGoal.id);    
-    yield put({ type: 'FETCH_TASKS', payload: newGoal.id })
-
+    yield put({ type: 'FETCH_TASKS', payload: newGoal.id });
+    
   } catch {
       console.log('add new goal error');
   }
