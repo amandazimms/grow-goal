@@ -1,7 +1,5 @@
 import axios from 'axios';
-import { response } from 'express';
 import { put, takeLatest } from 'redux-saga/effects';
-
 
 
 function* taskSaga() {
@@ -10,19 +8,19 @@ function* taskSaga() {
   yield takeLatest('ADD_TASK', addTask);
 }
 
-// worker Saga: will be fired on "UPDATE_TASK" actions
-// function* updateTask(action){
-//   console.log('in update task, action.payload:', action.payload);
-//   try {
-//     const resposnse = yield axios.put(`/api/task/${action.payload.id}`, 
-//         { task_name: action.payload.task_name, goal_id: action.payload.goal_id });
+//worker Saga: will be fired on "UPDATE_TASK" actions
+function* updateTask(action){
+  console.log('in update task, action.payload:', action.payload);
+  try {
+    const resposnse = yield axios.put(`/api/task/${action.payload.id}`, 
+        { task_name: action.payload.task_name, goal_id: action.payload.goal_id });
     
-//     yield put({ type: 'FETCH_TASKS', payload: response.data });
+    yield put({ type: 'FETCH_TASKS', payload: response.data });
 
-//   } catch {
-//       console.log('add new task error');
-//   } 
-// }
+  } catch {
+      console.log('add new task error');
+  } 
+}
 
 
 // worker Saga: will be fired on "ADD_TASKS" actions
@@ -31,6 +29,7 @@ function* addTask(action) {
       const task = yield axios.post('/api/task', 
           { task_name: action.payload.task_name, is_complete: action.payload.is_complete, goal_id: action.payload.goal_id });
       
+      console.log('--->in TASK SAGA, about to fetch these tasks for action.payload.goal_id:', action.payload.goal_id);    
       yield put({ type: 'FETCH_TASKS', payload: action.payload.goal_id });
 
   } catch {
