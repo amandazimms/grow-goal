@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import AddNewText from '../AddNewText/AddNewText';
-import EditableText from '../EditableText/EditableText';
+import Goal from '../Goal/Goal';
+import Task from '../Task/Task';
 
 function GoalPage() {
 
@@ -27,7 +28,7 @@ function GoalPage() {
   return (
     <div className="container">
       <h5>{JSON.stringify(store)}</h5>
-      <h1>Goal:</h1><EditableText text={selectedGoal.goal_name} />
+      <h1>Goal:</h1><Goal text={selectedGoal.goal_name} />
 
       <h3>Task List:</h3>
       
@@ -41,7 +42,7 @@ function GoalPage() {
       {tasks.map(task => {
         return (
           <div key={task.id}>
-            <EditableText text={task.task_name} id={task.id} />
+            <Task text={task.task_name} id={task.id} />
           </div>
           );
       })}

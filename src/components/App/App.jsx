@@ -23,6 +23,7 @@ import NewGoalPage from '../NewGoalPage/NewGoalPage';
 import GoalPage from '../GoalPage/GoalPage';
 
 import './App.css';
+// import './App.scss';
 
 function App() {
   const dispatch = useDispatch();
@@ -36,7 +37,6 @@ function App() {
   return (
     <Router>
       <div>
-
         {/* If a user is logged in, show nav bar */}
         {user.id &&
           <Nav />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AddNewText from '../AddNewText/AddNewText';
-import EditableText from '../EditableText/EditableText';
+import Task from '../Task/Task';
 
 function NewGoalPage() {
 
@@ -29,7 +29,7 @@ function NewGoalPage() {
   return (
     <div className="container">
       <h2>ADD NEW GOAL</h2>
-      <EditableText isEditingMode={true} placeholderText={'Name of Goal'}/>
+      <Task isEditingMode={true} placeholderText={'Name of Goal'}/>
 
 
       <h3>Task List:</h3>
@@ -43,7 +43,7 @@ function NewGoalPage() {
 
       {
         tasks.map(task =>(
-            <EditableText text={task.task_name} />
+            <Task text={task.task_name} />
         ))
       }
 

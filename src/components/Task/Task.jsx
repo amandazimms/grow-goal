@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-function EditableText(props) {
+function Task(props) {
 
   const dispatch = useDispatch();
 
@@ -62,20 +62,26 @@ function EditableText(props) {
     <div>
       { editingMode 
         ? 
-         <><input value={editingText} placeholder={placeholderText} type="text" onChange={ (event) => handleChange(event) }></input>
-         <button onClick={doneButton}>done</button>
-         <button onClick={cancelButton}>cancel</button></>
+         <>
+          <input value={editingText} placeholder={placeholderText} type="text" onChange={ (event) => handleChange(event) }></input>
+          <button onClick={doneButton}>done</button>
+          <button onClick={cancelButton}>cancel</button>
+         </>
         : 
           <>
-          <p onClick={() => setDisplayIcons(true)}>{text}</p>
+            <input type="checkbox" name="example"></input>
+            <p onClick={() => setDisplayIcons(true)}>{text}</p>
  
-          { displayIcons 
-            ? 
-              <><button onClick={editButton}>edit</button>
-              <button onClick={deleteButton}>delete</button></>
-            :
-              <></>
-          } </>
+            { displayIcons 
+              ? 
+                <>
+                  <button onClick={editButton}>edit</button>
+                  <button onClick={deleteButton}>delete</button>
+                </>
+              :
+                <></>
+            } 
+          </>
         
       }
 
@@ -84,4 +90,4 @@ function EditableText(props) {
   );
 }
 
-export default EditableText;
+export default Task;
