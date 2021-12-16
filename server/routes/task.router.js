@@ -43,9 +43,10 @@ router.put('/:id', (req, res) => {
   console.log("---->in task router; put req.params:", req.params);
 
   const queryString = `UPDATE "task" SET 
-      task_name=$1
+      task_name=$1,
+      is_complete=$2
       WHERE id=${req.params.id}`;
-  values = [req.body.task_name];
+  values = [req.body.task_name, req.body.is_complete];
 
   pool.query(queryString, values)
     .then(()=>{

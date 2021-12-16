@@ -12,12 +12,14 @@ function* updateTask(action){
   console.log('in task saga, update task, action.payload:', action.payload);
   try {
     const updatedTask = yield axios.put(`/api/task/${action.payload.id}`, 
-        { task_name: action.payload.task_name, goal_id: action.payload.goal_id });
+        { task_name: action.payload.task_name, 
+          is_complete: action.payload.is_complete, 
+          goal_id: action.payload.goal_id });
     
     yield put({ type: 'FETCH_TASKS', payload: action.payload.goal_id });
 
   } catch {
-      console.log('add new task error');
+    console.log('add new task error');
   } 
 }
 
@@ -31,7 +33,7 @@ function* addTask(action) {
       yield put({ type: 'FETCH_TASKS', payload: action.payload.goal_id });
 
   } catch {
-      console.log('add new task error');
+    console.log('add new task error');
   }
 }
 
@@ -39,8 +41,11 @@ function* addTask(action) {
 // worker Saga: will be fired on "FETCH_TASKS" actions
 function* fetchTasks(action) {
   try {
-    const response = yield axios.get('/api/task', { params: { id: action.payload } });
+    const response = yield axios.get('/api/task', 
+      { params: { id: action.payload } });
+
     yield put({ type: 'SET_TASKS', payload: response.data });
+
   } catch (error) {
     console.log('Task get request failed', error);
   }

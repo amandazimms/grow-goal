@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { Button } from 'react-bootstrap';
 
 function Task(props) {
 
@@ -17,6 +17,14 @@ function Task(props) {
   const [text, setText] = useState(props.text || '');
   const [editingText, setEditingText] = useState(text);
 
+  const [showComplete, setShowComplete] = useState(false);
+  const [checkBoxImage, setCheckBoxImage] = useState('./images/icons/box.png');
+  
+  
+  const checkedBoxImgPath = './images/icons/checkedBox.png';
+  const boxImgPath = './images/icons/box.png';
+
+
   useEffect(() => {
     //console.log('log to check about react object children. text:', text, 'editingText:', editingText, 'placeholderText', placeholderText);
   }, [])
@@ -24,18 +32,48 @@ function Task(props) {
     setEditingText(event.target.value);
   }
 
+
+  const toggleCompleted = () => {
+    let taskToSend = {
+      task_name: props.task_name,
+      id: props.id,
+      goal_id: selectedGoal.id
+      //is_complete gets add in the next step, depending if true/false
+    }
+
+    //todo this could be DRYer
+    if (showComplete) { //if task was complete and we clicked, we mark UN complete
+      setShowComplete(false);
+      setCheckBoxImage('./images/icons/box.png');
+      taskToSend.is_complete = false;
+    } 
+    else { //if task was incomplete and we clicked, mark COMPLETE
+      setShowComplete(true);
+      setCheckBoxImage('./images/icons/checkedBox.png');
+      taskToSend.is_complete = true;
+    }
+
+    dispatch({type: 'UPDATE_TASK', payload: taskToSend });
+  }
+
+
+
   const doneButton = () => {
     console.log("done button clicked");
 
+    //todo: this is a hackey way of making it show up immediately, rather than having
+    //to navigtate away and come back, for the newly updated task to show
     setText(editingText);
 
-      const taskToSend = {
-        task_name: editingText,
-        id: props.id,
-        goal_id: selectedGoal.id
-      }
-      dispatch({type: 'UPDATE_TASK', payload: taskToSend })
-      setEditingMode(false);
+    const taskToSend = {
+      task_name: editingText,
+      id: props.id,
+      is_complete: props.is_complete,
+      goal_id: selectedGoal.id
+    }
+    dispatch({type: 'UPDATE_TASK', payload: taskToSend });
+
+    setEditingMode(false);
   }
 
   const cancelButton = () => {
@@ -57,7 +95,6 @@ function Task(props) {
     }
   }
 
-
   return (
     <div>
       { editingMode 
@@ -69,8 +106,14 @@ function Task(props) {
          </>
         : 
           <>
-            <input type="checkbox" name="example"></input>
-            <p onClick={() => setDisplayIcons(true)}>{text}</p>
+
+            
+            <button className="iconButton checkButton" onClick={() => toggleCompleted()}>
+              <img className="iconImage" src={checkBoxImage} alt="Mark task incomplete"></img>
+            </button>
+           
+            {/* todo also style this text as strikethru vs not if it's complete vs not. */}
+            <p className="taskText" onClick={() => setDisplayIcons(true)}>{text}</p>
  
             { displayIcons 
               ? 
