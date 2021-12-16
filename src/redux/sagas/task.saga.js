@@ -11,10 +11,9 @@ function* taskSaga() {
 function* updateTask(action){
   console.log('in task saga, update task, action.payload:', action.payload);
   try {
-    const response = yield axios.put(`/api/task/${action.payload.id}`, 
+    const updatedTask = yield axios.put(`/api/task/${action.payload.id}`, 
         { task_name: action.payload.task_name, goal_id: action.payload.goal_id });
     
-    // console.log("RESPONSE:", response);
     yield put({ type: 'FETCH_TASKS', payload: action.payload.goal_id });
 
   } catch {
