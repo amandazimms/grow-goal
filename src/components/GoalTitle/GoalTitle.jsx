@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-function Goal(props) {
+function GoalTitle(props) {
 
   const dispatch = useDispatch();
 
@@ -84,4 +84,4 @@ function Goal(props) {
   );
 }
 
-export default Goal;
+export default GoalTitle;

@@ -9,7 +9,6 @@ function* taskSaga() {
 
 //worker Saga: will be fired on "UPDATE_TASK" actions
 function* updateTask(action){
-  console.log('in task saga, update task, action.payload:', action.payload);
   try {
     const updatedTask = yield axios.put(`/api/task/${action.payload.id}`, 
         { task_name: action.payload.task_name, 
@@ -26,6 +25,7 @@ function* updateTask(action){
 
 // worker Saga: will be fired on "ADD_TASKS" actions
 function* addTask(action) {
+  console.log('adding new task. action.paylaod:', action.payload);
   try {
       const task = yield axios.post('/api/task', 
           { task_name: action.payload.task_name, is_complete: action.payload.is_complete, goal_id: action.payload.goal_id });

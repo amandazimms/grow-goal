@@ -24,6 +24,7 @@ router.get('/', (req,res) => {
 })
 
 router.post('/', (req, res) => {
+  console.log('---> in task router post. req.body is:', req.body);
   const queryString = `INSERT INTO "task" (task_name, is_complete, goal_id)
     VALUES ($1, $2, $3)`;
     values = [req.body.task_name, req.body.is_complete, req.body.goal_id];
@@ -39,9 +40,6 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   //todo this is incomplete and only updates the name:
-  console.log("---->in task router; put req.body:", req.body);
-  console.log("---->in task router; put req.params:", req.params);
-
   const queryString = `UPDATE "task" SET 
       task_name=$1,
       is_complete=$2

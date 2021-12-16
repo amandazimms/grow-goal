@@ -14,8 +14,8 @@ function Task(props) {
   const [displayIcons, setDisplayIcons] = useState(false);
   const [editingMode, setEditingMode] = useState(props.isEditingMode || false);
 
-  const [text, setText] = useState(props.text || '');
-  const [editingText, setEditingText] = useState(text);
+  const [taskName, setTaskName] = useState(props.task_name || '');
+  const [editingText, setEditingText] = useState(taskName);
 
   const [showComplete, setShowComplete] = useState(false);
   const [checkBoxImage, setCheckBoxImage] = useState('./images/icons/box.png');
@@ -34,6 +34,7 @@ function Task(props) {
 
 
   const toggleCompleted = () => {
+    console.log("a toggle. props.task_name is:", props.task_name, "props is:", props);
     let taskToSend = {
       task_name: props.task_name,
       id: props.id,
@@ -63,7 +64,7 @@ function Task(props) {
 
     //todo: this is a hackey way of making it show up immediately, rather than having
     //to navigtate away and come back, for the newly updated task to show
-    setText(editingText);
+    setTaskName(editingText);
 
     const taskToSend = {
       task_name: editingText,
@@ -89,7 +90,7 @@ function Task(props) {
   const deleteButton = () => {
     if (confirm("delete this task/goal?")){
       // delete this task/goal from the db, and make sure to re-render (get again)
-      setText('Placeholder (This is deleted)');
+      setTaskName('Placeholder (This is deleted)');
       setDisplayIcons(false);
       setEditingMode(false);
     }
@@ -97,6 +98,7 @@ function Task(props) {
 
   return (
     <div>
+      {/* <p>{JSON.stringify(props)}</p> */}
       { editingMode 
         ? 
          <>
@@ -113,7 +115,7 @@ function Task(props) {
             </button>
            
             {/* todo also style this text as strikethru vs not if it's complete vs not. */}
-            <p className="taskText" onClick={() => setDisplayIcons(true)}>{text}</p>
+            <p className="taskText" onClick={() => setDisplayIcons(true)}>{taskName}</p>
  
             { displayIcons 
               ? 
