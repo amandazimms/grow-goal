@@ -4,18 +4,20 @@ import { Button } from 'react-bootstrap';
 
 function Task(props) {
 
+  const task = props.task;
+
   const dispatch = useDispatch();
 
   const store = useSelector(store => store);
   const selectedGoal = useSelector(store => store.selectedGoal);
 
-  const placeholderText = props.placeholderText || '';
-
   const [displayIcons, setDisplayIcons] = useState(false);
+
+                  //todo what is task.isEditingMode?
   const [editingMode, setEditingMode] = useState(props.isEditingMode || false);
 
-  const [taskName, setTaskName] = useState(props.task_name || '');
-  const [editingText, setEditingText] = useState(taskName);
+  const [text, setText] = useState(task.task_name || '');
+  const [editingText, setEditingText] = useState(text);
 
   const [showComplete, setShowComplete] = useState(false);
   const [checkBoxImage, setCheckBoxImage] = useState('./images/icons/box.png');
@@ -34,10 +36,9 @@ function Task(props) {
 
 
   const toggleCompleted = () => {
-    console.log("a toggle. props.task_name is:", props.task_name, "props is:", props);
     let taskToSend = {
-      task_name: props.task_name,
-      id: props.id,
+      task_name: task.task_name,
+      id: task.id,
       goal_id: selectedGoal.id
       //is_complete gets add in the next step, depending if true/false
     }
@@ -64,12 +65,12 @@ function Task(props) {
 
     //todo: this is a hackey way of making it show up immediately, rather than having
     //to navigtate away and come back, for the newly updated task to show
-    setTaskName(editingText);
+    setText(editingText);
 
     const taskToSend = {
       task_name: editingText,
-      id: props.id,
-      is_complete: props.is_complete,
+      id: task.id,
+      is_complete: task.is_complete,
       goal_id: selectedGoal.id
     }
     dispatch({type: 'UPDATE_TASK', payload: taskToSend });
@@ -90,32 +91,31 @@ function Task(props) {
   const deleteButton = () => {
     if (confirm("delete this task/goal?")){
       // delete this task/goal from the db, and make sure to re-render (get again)
-      setTaskName('Placeholder (This is deleted)');
       setDisplayIcons(false);
       setEditingMode(false);
+      
+      dispatch({type: 'DELETE_TASK', payload: task});
     }
   }
 
   return (
     <div>
-      {/* <p>{JSON.stringify(props)}</p> */}
+      <p>{JSON.stringify(props)}</p>
       { editingMode 
         ? 
          <>
-          <input value={editingText} placeholder={placeholderText} type="text" onChange={ (event) => handleChange(event) }></input>
+          <input value={editingText} placeholder={props.task_name} type="text" onChange={ (event) => handleChange(event) }></input>
           <button onClick={doneButton}>done</button>
           <button onClick={cancelButton}>cancel</button>
          </>
         : 
           <>
-
-            
             <button className="iconButton checkButton" onClick={() => toggleCompleted()}>
               <img className="iconImage" src={checkBoxImage} alt="Mark task incomplete"></img>
             </button>
            
             {/* todo also style this text as strikethru vs not if it's complete vs not. */}
-            <p className="taskText" onClick={() => setDisplayIcons(true)}>{taskName}</p>
+            <p className="taskText" onClick={() => setDisplayIcons(true)}>{task.task_name}</p>
  
             { displayIcons 
               ? 
@@ -127,10 +127,8 @@ function Task(props) {
                 <></>
             } 
           </>
-        
       }
 
-     
     </div>
   );
 }

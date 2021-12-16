@@ -42,7 +42,8 @@ function GoalPage() {
       {tasks.map(task => {
         return (
           <div key={task.id}>
-            <Task task_name={task.task_name} id={task.id} is_complete={task.is_complete}/>
+            <Task task={task}/>
+            {/* task_name={task.task_name} id={task.id} is_complete={task.is_complete}/> */}
           </div>
           );
       })}

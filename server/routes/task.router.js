@@ -24,7 +24,6 @@ router.get('/', (req,res) => {
 })
 
 router.post('/', (req, res) => {
-  console.log('---> in task router post. req.body is:', req.body);
   const queryString = `INSERT INTO "task" (task_name, is_complete, goal_id)
     VALUES ($1, $2, $3)`;
     values = [req.body.task_name, req.body.is_complete, req.body.goal_id];
@@ -39,7 +38,6 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  //todo this is incomplete and only updates the name:
   const queryString = `UPDATE "task" SET 
       task_name=$1,
       is_complete=$2
@@ -58,17 +56,16 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/', (req,res)=> {
-  const queryString = `DELETE FROM "task" WHERE id=$1`;
-  values = [req.params.id];
+router.delete('/:id', (req,res)=> {
+  const queryString = `DELETE FROM "task" WHERE id=${req.params.id}`;
 
-  pool.query(queryString, value)
-    .then((results)=>{
+  pool.query(queryString)
+    .then(()=>{
       res.sendStatus(200);
     }).catch((err) => {
       console.log('DELETE task failed: ', err);
       res.sendStatus(500);
     });
-})
+});
 
 module.exports = router;
