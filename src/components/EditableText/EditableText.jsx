@@ -25,15 +25,17 @@ function EditableText(props) {
   }
 
   const doneButton = () => {
-  //  setText(editingText);
+    console.log("done button clicked");
 
-    // const taskToSend = {
-    //   task_name: editingText,
-    //   id: props.id,
-    //   goal_id: selectedGoal.id
-    // }
-    // dispatch({type: 'UPDATE_TASK', payload: taskToSend })
-    setEditingMode(false);
+    setText(editingText);
+
+      const taskToSend = {
+        task_name: editingText,
+        id: props.id,
+        goal_id: selectedGoal.id
+      }
+      dispatch({type: 'UPDATE_TASK', payload: taskToSend })
+      setEditingMode(false);
   }
 
   const cancelButton = () => {

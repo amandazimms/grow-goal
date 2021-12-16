@@ -37,22 +37,27 @@ router.post('/', (req, res) => {
     });
 });
 
-// router.put('/', (req, res) => {
-//   //todo this is incomplete and only updates the name:
-//   console.log("---->put req.body:", req.body);
-//   // const queryString = `UPDATE "task" SET 
-//   //     task_name=$1
-//   //     WHERE id=$2`;
-//   // values = [req.query.taskName, req.query.id];
+router.put('/:id', (req, res) => {
+  //todo this is incomplete and only updates the name:
+  console.log("---->in task router; put req.body:", req.body);
+  console.log("---->in task router; put req.params:", req.params);
 
-//   // pool.query(queryString, value)
-//   //   .then((results)=>{
-//   //     res.sendStatus(200);
-//   //   }).catch((err) => {
-//   //     console.log('PUT task failed: ', err);
-//   //     res.sendStatus(500);
-//   //   });
-// });
+  const queryString = `UPDATE "task" SET 
+      task_name=$1
+      WHERE id=${req.params.id}`;
+  values = [req.query.task_name];
+
+  pool.query(queryString, values)
+    .then((results)=>{
+      res.sendStatus(200);
+      // console.log('--->results.rows:', results.rows);
+      // res.send(results.rows);
+
+    }).catch((err) => {
+      console.log('PUT task failed: ', err);
+      res.sendStatus(500);
+    });
+});
 
 router.delete('/', (req,res)=> {
   const queryString = `DELETE FROM "task" WHERE id=$1`;

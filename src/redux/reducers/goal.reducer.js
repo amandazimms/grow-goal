@@ -1,5 +1,4 @@
 const goalReducer = (state = [], action) => {
-  console.log('in goal reducer. action.payload is:', action.payload);  
   switch (action.type) {
     case 'SET_GOALS':
       return action.payload;
