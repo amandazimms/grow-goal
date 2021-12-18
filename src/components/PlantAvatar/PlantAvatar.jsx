@@ -18,8 +18,7 @@ function Task(props) {
   const [imagePath, setImagePath] = useState("");
 
   useEffect(() => {
-    console.log('in plant avatar component, useEffect');
-    dispatch({ type: 'FETCH_PLANT_AVATAR', payload: selectedGoal.id });
+    dispatch({ type: 'FETCH_PLANT_AVATAR', payload: selectedGoal });
   }, []);
 
   const handleChange = (event) =>{
@@ -48,7 +47,7 @@ function Task(props) {
 
   return (
     <div>
-      <p>{JSON.stringify(plantAvatar.image_path_stage_1)}</p>
+      <p>{JSON.stringify(selectedGoal)}</p>
       { editingMode 
         ? 
          <>
@@ -57,8 +56,7 @@ function Task(props) {
          </>
         : 
           <>
-            {/* todo also style this text as strikethru vs not if it's complete vs not. */}
-            {/* <p className="taskText" onClick={() => setDisplayIcons(true)}>{text}</p> */}
+            <img className="plantAvatarImage" src={plantAvatar}></img>
  
             { displayIcons 
               ? 
@@ -66,7 +64,8 @@ function Task(props) {
                   <button onClick={editButton}>edit</button>
                 </>
               :
-                <></>
+                <>
+                </>
             } 
           </>
       }

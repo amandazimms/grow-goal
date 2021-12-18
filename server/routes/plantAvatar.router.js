@@ -13,12 +13,7 @@ const router = express.Router();
 // is that the password gets encrypted before being inserted
 
 router.get('/', (req,res) => {
-  // console.log('--->in plantAvatar router get. req.query:', req.query);
-  // console.log('--->in plantAvatar router get. req.body:', req.body);
-  // console.log('--->in plantAvatar router get. req.params:', req.params);
-  const queryString = `SELECT
-          image_path_stage_1, image_path_stage_2, image_path_stage_3, image_path_stage_4,
-          image_path_stage_5, image_path_stage_6, image_path_stage_7, image_path_stage_8 
+  const queryString = `SELECT image_path_stage_${req.query.growthStage} 
       FROM "goal"
       JOIN "plant_avatar" ON goal.plant_avatar_id=plant_avatar.id 
       WHERE goal.id=${req.query.id};`
