@@ -4,12 +4,13 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* goalSaga() {
   yield takeLatest('ADD_GOAL', addGoal);
   yield takeLatest('FETCH_GOALS', fetchGoal);
-  yield takeLatest('UPDATE_GOAL_TITLE', updateGoal);
+  yield takeLatest('UPDATE_GOAL_TITLE', updateGoalTitle);
+  yield takeLatest('UPDATE_GOAL_PROGRESS', updateGoalProgress);
   yield takeLatest('DELETE_GOAL', deleteGoal);
 }
 
 // worker Saga: will be fired on "UPDATE_GOAL_TITLE" actions
-function* updateGoal(action) {
+function* updateGoalTitle(action) {
   const ap = action.payload;
 
   try {
@@ -19,7 +20,24 @@ function* updateGoal(action) {
     yield put({ type: 'FETCH_GOALS', payload: ap.id });
 
   } catch {
-    console.log('update goal error');
+    console.log('update goal title error');
+  } 
+}
+
+// worker Saga: will be fired on "UPDATE_GOAL_PROGRESS" actions
+function* updateGoalProgress(action) {
+  const ap = action.payload;
+  //AP.progress is PROGRESS percentage (eg .5)
+  //AP.id is selected Goal id.
+
+  try {
+    const updatedGoal = yield axios.put(`/api/goal/progress/${ap.id}`, 
+        { progress: ap.progress });
+    
+    yield put({ type: 'SET_GOAL_PROGRESS', payload: ap.progress });
+
+  } catch {
+    console.log('update goal progresss error');
   } 
 }
 

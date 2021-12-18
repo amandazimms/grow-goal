@@ -44,6 +44,8 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
+  //todo specify this as NAME change put, similar to below
+
   // console.log('>>>> in goal router, req.params:', req.params);
   // console.log('>>>> in goal router, req.body:', req.body);
   // console.log('>>>> in goal router, req.query:', req.query);
@@ -52,6 +54,27 @@ router.put('/:id', (req, res) => {
         goal_name=$1 
         WHERE id=${req.params.id}`;
   values = [req.body.goal_name];
+
+  pool.query(queryString, values)
+    .then((results)=>{
+      res.sendStatus(200);
+
+    }).catch((err) => {
+      console.log('PUT goal failed: ', err);
+      res.sendStatus(500);
+    });
+});
+
+router.put('/progress/:id', (req, res) => {
+  console.log('did we make it to progress router?');
+  console.log('>>>> in goal router, req.params:', req.params);
+  console.log('>>>> in goal router, req.body:', req.body);
+  console.log('>>>> in goal router, req.query:', req.query);
+
+  const queryString = `UPDATE "goal" SET 
+        progress=$1 
+        WHERE id=${req.params.id}`;
+  values = [req.body.progress];
 
   pool.query(queryString, values)
     .then((results)=>{

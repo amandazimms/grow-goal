@@ -31,7 +31,7 @@ function GoalPage(props) {
 
   return (
     <div className="container">
-      {/* <h5>selected goal: {JSON.stringify(selectedGoal)}</h5> */}
+      <h5>tasks for this goal: {JSON.stringify(tasks)}</h5>
       <h1>Goal:</h1><GoalTitle isNew={isNew} goal={selectedGoal} />
 
       <h3>Task List:</h3>
