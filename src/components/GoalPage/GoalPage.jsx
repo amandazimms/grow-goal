@@ -22,6 +22,7 @@ function GoalPage(props) {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_TASKS', payload: selectedGoal.id }); 
+    dispatch({ type: 'FETCH_PLANT_AVATAR', payload: selectedGoal.id });
   }, []);
 
   const addTask = () => {

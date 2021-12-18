@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-//todo, eventually: add, update, delete goal
-
 function* goalSaga() {
   yield takeLatest('ADD_GOAL', addGoal);
   yield takeLatest('FETCH_GOALS', fetchGoal);
