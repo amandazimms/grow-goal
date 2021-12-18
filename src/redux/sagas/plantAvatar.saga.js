@@ -14,25 +14,25 @@ function* fetchPlantAvatar(action) {
 
   switch (true) {
     case (ap.progress > .875):
-      growthStage = 8;
-      break;
-    case (ap.progress > .75):
       growthStage = 7;
       break;
-    case (ap.progress > .625):
+    case (ap.progress > .75):
       growthStage = 6;
       break;
-    case (ap.progress > .5):
+    case (ap.progress > .625):
       growthStage = 5;
       break;
-    case (ap.progress > .375):
+    case (ap.progress > .5):
       growthStage = 4;
       break;
-    case (ap.progress > .25):
+    case (ap.progress > .375):
       growthStage = 3;
       break;
-    case (ap.progress > .125):
+    case (ap.progress > .25):
       growthStage = 2;
+      break;
+    case (ap.progress > .125):
+      growthStage = 1;
       break;
     default:
       growthStage = 0;

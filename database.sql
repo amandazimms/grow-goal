@@ -40,6 +40,7 @@ VALUES ('Do prewriting research', TRUE, 1),
 
 CREATE TABLE "plant_avatar" (
   "id" SERIAL PRIMARY KEY,
+  "image_path_stage_0" VARCHAR
   "image_path_stage_1" VARCHAR,
   "image_path_stage_2" VARCHAR,
   "image_path_stage_3" VARCHAR,
@@ -47,9 +48,8 @@ CREATE TABLE "plant_avatar" (
   "image_path_stage_5" VARCHAR,
   "image_path_stage_6" VARCHAR,
   "image_path_stage_7" VARCHAR,
-  "image_path_stage_8" VARCHAR
 );
-INSERT INTO "plant_avatar" ("image_path_stage_1", "image_path_stage_2", "image_path_stage_3", "image_path_stage_4", "image_path_stage_5", "image_path_stage_6", "image_path_stage_7", "image_path_stage_8")
+INSERT INTO "plant_avatar" ("image_path_stage_0", "image_path_stage_1", "image_path_stage_2", "image_path_stage_3", "image_path_stage_4", "image_path_stage_5", "image_path_stage_6", "image_path_stage_7")
 VALUES ('/images/plantAvatars/PH0.png', '/images/plantAvatars/PH1.png', '/images/plantAvatars/PH2.png', '/images/plantAvatars/PH3.png', '/images/plantAvatars/PH4.png', '/images/plantAvatars/PH5.png', '/images/plantAvatars/PH6.png', '/images/plantAvatars/PH7.png');
 
 
