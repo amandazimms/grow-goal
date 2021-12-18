@@ -30,8 +30,6 @@ function GoalPage(props) {
 
   return (
     <div className="container">
-      {/* <h5>new? {JSON.stringify(isNew)}</h5> */}
-
       {/* <h5>selected goal: {JSON.stringify(selectedGoal)}</h5> */}
       <h1>Goal:</h1><GoalTitle isNew={isNew} goal={selectedGoal} />
 
@@ -48,13 +46,12 @@ function GoalPage(props) {
         return (
           <div key={task.id}>
             <Task task={task}/>
-            {/* task_name={task.task_name} id={task.id} is_complete={task.is_complete}/> */}
           </div>
           );
       })}
 
       <h3>Plant Avatar:</h3>
-
+      <PlantAvatar />
 
     </div>
   );
