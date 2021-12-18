@@ -34,7 +34,7 @@ function* updateTask(action){
     yield put({ type: 'FETCH_TASKS', payload: ap.goal_id });
 
   } catch {
-    console.log('add new task error');
+    console.log('update task error');
   } 
 }
 

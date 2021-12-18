@@ -17,7 +17,6 @@ function Task(props) {
   const [editingMode, setEditingMode] = useState(props.isEditingMode || false);
 
   const [text, setText] = useState(task.task_name || '');
-  const [editingText, setEditingText] = useState(text);
 
   const [showComplete, setShowComplete] = useState(false);
   const [checkBoxImage, setCheckBoxImage] = useState('./images/icons/box.png');
@@ -29,11 +28,11 @@ function Task(props) {
 
   useEffect(() => {
     //console.log('log to check about react object children. text:', text, 'editingText:', editingText, 'placeholderText', placeholderText);
-  }, [])
-  const handleChange = (event) =>{
-    setEditingText(event.target.value);
-  }
+  }, []);
 
+  const handleChange = (event) =>{
+    setText(event.target.value);
+  }
 
   const toggleCompleted = () => {
     let taskToSend = {
@@ -61,14 +60,12 @@ function Task(props) {
 
 
   const doneButton = () => {
-    console.log("done button clicked");
-
     //todo: this is a hackey way of making it show up immediately, rather than having
     //to navigtate away and come back, for the newly updated task to show
-    setText(editingText);
+    setText(text);
 
     const taskToSend = {
-      task_name: editingText,
+      task_name: text,
       id: task.id,
       is_complete: task.is_complete,
       goal_id: selectedGoal.id
@@ -103,7 +100,7 @@ function Task(props) {
       { editingMode 
         ? 
          <>
-          <input value={editingText} placeholder={task.task_name} type="text" onChange={ (event) => handleChange(event) }></input>
+          <input value={text} placeholder={task.task_name} type="text" onChange={ (event) => handleChange(event) }></input>
           <button onClick={doneButton}>done</button>
           <button onClick={cancelButton}>cancel</button>
          </>
@@ -114,7 +111,7 @@ function Task(props) {
             </button>
            
             {/* todo also style this text as strikethru vs not if it's complete vs not. */}
-            <p className="taskText" onClick={() => setDisplayIcons(true)}>{task.task_name}</p>
+            <p className="taskText" onClick={() => setDisplayIcons(true)}>{text}</p>
  
             { displayIcons 
               ? 

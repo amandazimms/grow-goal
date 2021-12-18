@@ -16,30 +16,28 @@ function GoalTitle(props) {
               //todo what is task.isEditingMode?
   const [editingMode, setEditingMode] = useState(props.isEditingMode || false);
 
-  const [text, setText] = useState(props.text || '');
-  const [editingText, setEditingText] = useState(text);
+  const [text, setText] = useState(goal.goal_name || '');
 
   useEffect(() => {
-    //console.log('log to check about react object children. text:', text, 'editingText:', editingText, 'placeholderText', placeholderText);
+    
   }, [])
   
   const handleChange = (event) =>{
-    setEditingText(event.target.value);
+    setText(event.target.value);
   }
 
   const doneButton = () => {
-    //todo rework
-    // console.log("done button clicked");
+    //todo: this is a hackey way of making it show up immediately, rather than having
+    //to navigtate away and come back, for the newly updated task to show
+    setText(text);
 
-    // setText(editingText);
+    const goalToSend = {
+      goal_name: text,
+      id: goal.id
+    }
+    dispatch({type: 'UPDATE_GOAL_TITLE', payload: goalToSend });
 
-    //   const taskToSend = {
-    //     task_name: editingText,
-    //     id: props.id,
-    //     goal_id: selectedGoal.id
-    //   }
-    //   dispatch({type: 'UPDATE_GOAL_TITLE', payload: taskToSend })
-    //   setEditingMode(false);
+    setEditingMode(false);
   }
 
   const cancelButton = () => {
@@ -64,12 +62,14 @@ function GoalTitle(props) {
     <div>
       { editingMode 
         ? 
-         <><input value={editingText} placeholder={goal.goal_name} type="text" onChange={ (event) => handleChange(event) }></input>
-         <button onClick={doneButton}>done</button>
-         <button onClick={cancelButton}>cancel</button></>
+         <>
+          <input value={text} placeholder={goal.goal_name} type="text" onChange={ (event) => handleChange(event) }></input>
+          <button onClick={doneButton}>done</button>
+          <button onClick={cancelButton}>cancel</button>
+         </>
         : 
           <>
-          <p className="goalTitleText" onClick={() => setDisplayIcons(true)}>{goal.goal_name}</p>
+          <p className="goalTitleText" onClick={() => setDisplayIcons(true)}>{text}</p>
  
           { displayIcons 
             ? 

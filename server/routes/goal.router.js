@@ -44,13 +44,19 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  //todo this is incomplete and only updates the name:
-  const queryString = `UPDATE "goal" SET goal_name=$1 WHERE id=$2`;
-    values = [req.query.goalName, req.query.id];
+  // console.log('>>>> in goal router, req.params:', req.params);
+  // console.log('>>>> in goal router, req.body:', req.body);
+  // console.log('>>>> in goal router, req.query:', req.query);
+
+  const queryString = `UPDATE "goal" SET 
+        goal_name=$1 
+        WHERE id=${req.params.id}`;
+  values = [req.body.goal_name];
 
   pool.query(queryString, values)
     .then((results)=>{
       res.sendStatus(200);
+
     }).catch((err) => {
       console.log('PUT goal failed: ', err);
       res.sendStatus(500);

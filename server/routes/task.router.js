@@ -13,6 +13,10 @@ const router = express.Router();
 // is that the password gets encrypted before being inserted
 
 router.get('/', (req,res) => {
+  // console.log('--->in task router get. req.query:', req.query);
+  // console.log('--->in task router get. req.body:', req.body);
+  // console.log('--->in task router get. req.params:', req.params);
+
   const queryString = `SELECT * FROM task WHERE goal_id=${req.query.id} ORDER BY id`;
 
   pool.query(queryString).then((results)=>{
@@ -38,6 +42,10 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
+  // console.log('*** in task router PUT. req.query:', req.query);
+  // console.log('*** in task router PUT. req.body:', req.body);
+  // console.log('*** in task router PUT. req.params:', req.params);
+
   const queryString = `UPDATE "task" SET 
       task_name=$1,
       is_complete=$2

@@ -6,7 +6,23 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* goalSaga() {
   yield takeLatest('ADD_GOAL', addGoal);
   yield takeLatest('FETCH_GOALS', fetchGoal);
+  yield takeLatest('UPDATE_GOAL_TITLE', updateGoal);
   yield takeLatest('DELETE_GOAL', deleteGoal);
+}
+
+// worker Saga: will be fired on "UPDATE_GOAL_TITLE" actions
+function* updateGoal(action) {
+  const ap = action.payload;
+
+  try {
+    const updatedGoal = yield axios.put(`/api/goal/${ap.id}`, 
+        { goal_name: ap.goal_name });
+    
+    yield put({ type: 'FETCH_GOALS', payload: ap.id });
+
+  } catch {
+    console.log('update goal error');
+  } 
 }
 
 // worker Saga: will be fired on "DELETE_GOAL" actions
