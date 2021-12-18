@@ -51,18 +51,13 @@ function Task(props) {
       { editingMode 
         ? 
          <>
-          <input value={text} placeholder={task.task_name} type="text" onChange={ (event) => handleChange(event) }></input>
           <button onClick={doneButton}>done</button>
           <button onClick={cancelButton}>cancel</button>
          </>
         : 
           <>
-            <button className="iconButton checkButton" onClick={() => toggleCompleted()}>
-              <img className="iconImage" src={checkBoxImage} alt="Mark task incomplete"></img>
-            </button>
-           
             {/* todo also style this text as strikethru vs not if it's complete vs not. */}
-            <p className="taskText" onClick={() => setDisplayIcons(true)}>{text}</p>
+            {/* <p className="taskText" onClick={() => setDisplayIcons(true)}>{text}</p> */}
  
             { displayIcons 
               ? 

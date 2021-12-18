@@ -4,7 +4,7 @@ const {
 } = require('../modules/authentication-middleware');
 const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
-//todo do we need a task strategy?
+//todo do we need a plantAvatar strategy?
 
 const router = express.Router();
 
@@ -13,33 +13,27 @@ const router = express.Router();
 // is that the password gets encrypted before being inserted
 
 router.get('/', (req,res) => {
-  console.log('--->in task router get. req.query:', req.query);
-  console.log('--->in task router get. req.body:', req.body);
-  console.log('--->in task router get. req.params:', req.params);
-
-  const queryString = `SELECT * FROM task WHERE goal_id=${req.query.id} ORDER BY id`;
-
+  // console.log('--->in plantAvatar router get. req.query:', req.query);
+  // console.log('--->in plantAvatar router get. req.body:', req.body);
+  // console.log('--->in plantAvatar router get. req.params:', req.params);
+  const queryString = `SELECT
+          goal.id AS goal_id, 
+          plant_avatar.id AS plant_avatar_id, 
+          goal_name, progress, is_accomplished, user_id, 
+          image_path_stage_1, image_path_stage_2, image_path_stage_3, image_path_stage_4,
+          image_path_stage_5, image_path_stage_6, image_path_stage_7, image_path_stage_8 
+      FROM "goal"
+      JOIN "plant_avatar" ON goal.plant_avatar_id=plant_avatar.id 
+      WHERE goal.id=${req.query.id};`
+  
   pool.query(queryString).then((results)=>{
     res.send(results.rows);
+
   }).catch((err)=>{
-    console.log('error with tasks GET:', err);
+    console.log('error with plant_avatar GET:', err);
     res.sendStatus(500);
   })
 })
-
-router.post('/', (req, res) => {
-  const queryString = `INSERT INTO "task" (task_name, is_complete, goal_id)
-    VALUES ($1, $2, $3)`;
-    values = [req.body.task_name, req.body.is_complete, req.body.goal_id];
-  
-    pool.query(queryString, values)
-    .then((results)=>{
-      res.sendStatus(200);
-    }).catch((err) => {
-      console.log('POST task failed: ', err);
-      res.sendStatus(500);
-    });
-});
 
 router.put('/:id', (req, res) => {
   // console.log('*** in task router PUT. req.query:', req.query);
@@ -60,18 +54,6 @@ router.put('/:id', (req, res) => {
 
     }).catch((err) => {
       console.log('PUT task failed: ', err);
-      res.sendStatus(500);
-    });
-});
-
-router.delete('/:id', (req,res)=> {
-  const queryString = `DELETE FROM "task" WHERE id=${req.params.id}`;
-
-  pool.query(queryString)
-    .then(()=>{
-      res.sendStatus(200);
-    }).catch((err) => {
-      console.log('DELETE task failed: ', err);
       res.sendStatus(500);
     });
 });

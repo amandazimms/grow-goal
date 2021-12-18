@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import AddNewText from '../AddNewText/AddNewText';
 import GoalTitle from '../GoalTitle/GoalTitle';
+import PlantAvatar from '../PlantAvatar/PlantAvatar';
 import Task from '../Task/Task';
 
 function GoalPage(props) {
