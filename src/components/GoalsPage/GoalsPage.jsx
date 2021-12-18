@@ -29,7 +29,6 @@ function GoalsPage() {
 
   return (
     <div className="container">
-      <img className="plantAvatarImage" src="/images/plantAvatars/Bush8.png"></img>
       {/* <h3>{JSON.stringify(goals)}</h3> */}
       <h2>Goals Page</h2>
 

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 function GoalTitle(props) {
 
   const goal = props.goal;
+  const isNew = props.isNew;
 
   const dispatch = useDispatch();
 
@@ -13,8 +14,7 @@ function GoalTitle(props) {
 
   const [displayIcons, setDisplayIcons] = useState(false);
 
-              //todo what is task.isEditingMode?
-  const [editingMode, setEditingMode] = useState(props.isEditingMode || false);
+  const [editingMode, setEditingMode] = useState(isNew || false);
 
   const [text, setText] = useState(goal.goal_name || '');
 
@@ -27,10 +27,6 @@ function GoalTitle(props) {
   }
 
   const doneButton = () => {
-    //todo: this is a hackey way of making it show up immediately, rather than having
-    //to navigtate away and come back, for the newly updated task to show
-    setText(text);
-
     const goalToSend = {
       goal_name: text,
       id: goal.id
