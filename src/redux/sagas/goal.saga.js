@@ -34,7 +34,8 @@ function* updateGoalProgress(action) {
     const updatedGoal = yield axios.put(`/api/goal/progress/${ap.id}`, 
         { progress: ap.progress });
     
-    yield put({ type: 'SET_GOAL_PROGRESS', payload: ap.progress });
+   // yield put({ type: 'SET_GOAL_PROGRESS', payload: ap.progress });
+   yield put({ type: 'FETCH_PLANT_AVATAR', payload: ap });
 
   } catch {
     console.log('update goal progresss error');

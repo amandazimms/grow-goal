@@ -38,6 +38,8 @@ function* fetchPlantAvatar(action) {
       growthStage = 0;
   }
 
+  console.log('----->performing fetch for this growth stage:', growthStage);
+
   try {
     const response = yield axios.get('/api/plantAvatar', 
         { params: { id: ap.id, growthStage: growthStage } });
