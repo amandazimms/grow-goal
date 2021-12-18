@@ -12,12 +12,26 @@ function* fetchPlantAvatar(action) {
 
   let growthStage = 0;
 
-  //todo add more logic for all 8 stages
   switch (true) {
-    case (ap.progress > .5):
+    case (ap.progress > .875):
       growthStage = 8;
       break;
-    case (ap.progress <= .5):
+    case (ap.progress > .75):
+      growthStage = 7;
+      break;
+    case (ap.progress > .625):
+      growthStage = 6;
+      break;
+    case (ap.progress > .5):
+      growthStage = 5;
+      break;
+    case (ap.progress > .375):
+      growthStage = 4;
+      break;
+    case (ap.progress > .25):
+      growthStage = 3;
+      break;
+    case (ap.progress > .125):
       growthStage = 2;
       break;
     default:

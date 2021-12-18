@@ -8,14 +8,11 @@ function Task(props) {
 
   const store = useSelector(store => store);
   const selectedGoal = useSelector(store => store.selectedGoal);
-  const plantAvatar = useSelector(store => store.plantAvatar);
+  const plantAvatarURL = useSelector(store => store.plantAvatar);
 
   const [displayIcons, setDisplayIcons] = useState(false);
 
   const [editingMode, setEditingMode] = useState(false);
-
-                      //todo add default to imagePath? props.___?
-  const [imagePath, setImagePath] = useState("");
 
   useEffect(() => {
     dispatch({ type: 'FETCH_PLANT_AVATAR', payload: selectedGoal });
@@ -47,7 +44,7 @@ function Task(props) {
 
   return (
     <div>
-      <p>{JSON.stringify(selectedGoal)}</p>
+      {/* <p>{JSON.stringify(selectedGoal)}</p> */}
       { editingMode 
         ? 
          <>
@@ -56,7 +53,7 @@ function Task(props) {
          </>
         : 
           <>
-            <img className="plantAvatarImage" src={plantAvatar}></img>
+            <img className="plantAvatarImage" src={plantAvatarURL}></img>
  
             { displayIcons 
               ? 
