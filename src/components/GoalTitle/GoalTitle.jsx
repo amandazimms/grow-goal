@@ -4,14 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function GoalTitle(props) {
 
+  const goal = props.goal;
+
   const dispatch = useDispatch();
 
   const store = useSelector(store => store);
   const selectedGoal = useSelector(store => store.selectedGoal);
 
-  const placeholderText = props.placeholderText || '';
-
   const [displayIcons, setDisplayIcons] = useState(false);
+
+              //todo what is task.isEditingMode?
   const [editingMode, setEditingMode] = useState(props.isEditingMode || false);
 
   const [text, setText] = useState(props.text || '');
@@ -20,22 +22,24 @@ function GoalTitle(props) {
   useEffect(() => {
     //console.log('log to check about react object children. text:', text, 'editingText:', editingText, 'placeholderText', placeholderText);
   }, [])
+  
   const handleChange = (event) =>{
     setEditingText(event.target.value);
   }
 
   const doneButton = () => {
-    console.log("done button clicked");
+    //todo rework
+    // console.log("done button clicked");
 
-    setText(editingText);
+    // setText(editingText);
 
-      const taskToSend = {
-        task_name: editingText,
-        id: props.id,
-        goal_id: selectedGoal.id
-      }
-      dispatch({type: 'UPDATE_TASK', payload: taskToSend })
-      setEditingMode(false);
+    //   const taskToSend = {
+    //     task_name: editingText,
+    //     id: props.id,
+    //     goal_id: selectedGoal.id
+    //   }
+    //   dispatch({type: 'UPDATE_GOAL_TITLE', payload: taskToSend })
+    //   setEditingMode(false);
   }
 
   const cancelButton = () => {
@@ -47,13 +51,11 @@ function GoalTitle(props) {
     setDisplayIcons(false);
   }
 
-  //todo - could we pass two different deleteButton functions as props? one for goal, one for task? since their funcitonality is so different...
   const deleteButton = () => {
-    if (confirm("delete this task/goal?")){
+    if (confirm("delete this ENTIRE GOAL? this action cannot be undone")){
       // delete this task/goal from the db, and make sure to re-render (get again)
-      setText('Placeholder (This is deleted)');
-      setDisplayIcons(false);
-      setEditingMode(false);
+      
+      dispatch({type: 'DELETE_GOAL', payload: goal});
     }
   }
 
@@ -62,12 +64,12 @@ function GoalTitle(props) {
     <div>
       { editingMode 
         ? 
-         <><input value={editingText} placeholder={placeholderText} type="text" onChange={ (event) => handleChange(event) }></input>
+         <><input value={editingText} placeholder={goal.goal_name} type="text" onChange={ (event) => handleChange(event) }></input>
          <button onClick={doneButton}>done</button>
          <button onClick={cancelButton}>cancel</button></>
         : 
           <>
-          <p onClick={() => setDisplayIcons(true)}>{text}</p>
+          <p className="goalTitleText" onClick={() => setDisplayIcons(true)}>{goal.goal_name}</p>
  
           { displayIcons 
             ? 

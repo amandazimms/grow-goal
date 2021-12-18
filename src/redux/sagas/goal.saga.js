@@ -4,19 +4,36 @@ import { put, takeLatest } from 'redux-saga/effects';
 //todo, eventually: add, update, delete goal
 
 function* goalSaga() {
-  yield takeLatest('FETCH_GOALS', fetchGoal);
   yield takeLatest('ADD_GOAL', addGoal);
+  yield takeLatest('FETCH_GOALS', fetchGoal);
+  yield takeLatest('DELETE_GOAL', deleteGoal);
+}
+
+// worker Saga: will be fired on "DELETE_GOAL" actions
+function* deleteGoal(action) {
+  const ap = action.payload;
+
+  try {
+    const deletedTask = yield axios.delete(`/api/goal/${ap.id}`);
+
+    //todo navigate to goals page.
+
+  } catch {
+    console.log('delete goal error');
+  }
+
 }
 
 // worker Saga: will be fired on "ADD_GOAL" actions
 function* addGoal(action) {
+  const ap = action.payload;
   try {
     let newGoal = {
-      goal_name: action.payload.goal_name, 
-      progress: action.payload.progress, 
-      is_accomplished: action.payload.is_accomplished, 
-      user_id: action.payload.user_id, 
-      plant_avatar_id: action.payload.plant_avatar_id 
+      goal_name: ap.goal_name, 
+      progress: ap.progress, 
+      is_accomplished: ap.is_accomplished, 
+      user_id: ap.user_id, 
+      plant_avatar_id: ap.plant_avatar_id 
     }
 
     const goal = yield axios.post('/api/goal', newGoal);

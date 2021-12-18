@@ -11,7 +11,6 @@ function* taskSaga() {
 function* deleteTask(action){
   const ap = action.payload;
 
-  console.log('about to delete this ap:', ap);
   try {
     const deletedTask = yield axios.delete(`/api/task/${ap.id}`);
 

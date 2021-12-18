@@ -43,7 +43,7 @@ router.post('/', (req, res) => {
     });
 });
 
-router.put('/', (req, res) => {
+router.put('/:id', (req, res) => {
   //todo this is incomplete and only updates the name:
   const queryString = `UPDATE "goal" SET goal_name=$1 WHERE id=$2`;
     values = [req.query.goalName, req.query.id];
@@ -57,12 +57,11 @@ router.put('/', (req, res) => {
     });
 });
 
-router.delete('/', (req,res)=> {
-  const queryString = `DELETE FROM "goal" WHERE id=$1`;
-  values = [req.params.id];
+router.delete('/:id', (req,res)=> {
+  const queryString = `DELETE FROM "goal" WHERE id=${req.params.id}`;
 
-  pool.query(queryString, values)
-    .then((results)=>{
+  pool.query(queryString)
+    .then(()=>{
       res.sendStatus(200);
     }).catch((err) => {
       console.log('DELETE goal failed: ', err);

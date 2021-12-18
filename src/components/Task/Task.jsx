@@ -87,9 +87,8 @@ function Task(props) {
     setDisplayIcons(false);
   }
 
-  //todo - could we pass two different deleteButton functions as props? one for goal, one for task? since their funcitonality is so different...
   const deleteButton = () => {
-    if (confirm("delete this task/goal?")){
+    if (confirm("delete this task?")){
       // delete this task/goal from the db, and make sure to re-render (get again)
       setDisplayIcons(false);
       setEditingMode(false);
@@ -100,11 +99,11 @@ function Task(props) {
 
   return (
     <div>
-      <p>{JSON.stringify(props)}</p>
+      {/* <p>{JSON.stringify(props)}</p> */}
       { editingMode 
         ? 
          <>
-          <input value={editingText} placeholder={props.task_name} type="text" onChange={ (event) => handleChange(event) }></input>
+          <input value={editingText} placeholder={task.task_name} type="text" onChange={ (event) => handleChange(event) }></input>
           <button onClick={doneButton}>done</button>
           <button onClick={cancelButton}>cancel</button>
          </>

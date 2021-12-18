@@ -29,7 +29,7 @@ function GoalsPage() {
 
   return (
     <div className="container">
-      <h3>{JSON.stringify(goals)}</h3>
+      {/* <h3>{JSON.stringify(goals)}</h3> */}
       <h2>Goals Page</h2>
 
       <Link to="/new-goal" onClick={addNewGoal}>
@@ -40,6 +40,7 @@ function GoalsPage() {
       {goals.map(goal => {
         return (
           <div key={goal.id}>
+            <img src="/images/plantAvatars/Bush1.png"></img>
             <h3>{goal.goal_name}</h3>
             
             <Link to="/goal" onClick={() => setSelectedGoal(goal)}>

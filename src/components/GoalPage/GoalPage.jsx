@@ -5,7 +5,10 @@ import AddNewText from '../AddNewText/AddNewText';
 import GoalTitle from '../GoalTitle/GoalTitle';
 import Task from '../Task/Task';
 
-function GoalPage() {
+function GoalPage(props) {
+
+  //if we arrived here from clicking "new goal", this will be true and will trigger some conditional renders
+  const isNew = props.isNew;
 
   const store = useSelector(store => store);
   const dispatch = useDispatch();
@@ -27,8 +30,10 @@ function GoalPage() {
 
   return (
     <div className="container">
-      {/* <h5>{JSON.stringify(store)}</h5> */}
-      <h1>Goal:</h1><GoalTitle text={selectedGoal.goal_name} />
+      <h5>new? {JSON.stringify(isNew)}</h5>
+
+      <h5>selected goal: {JSON.stringify(selectedGoal)}</h5>
+      <h1>Goal:</h1><GoalTitle goal={selectedGoal} />
 
       <h3>Task List:</h3>
       
