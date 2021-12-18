@@ -60,10 +60,6 @@ function Task(props) {
 
 
   const doneButton = () => {
-    //todo: this is a hackey way of making it show up immediately, rather than having
-    //to navigtate away and come back, for the newly updated task to show
-    setText(text);
-
     const taskToSend = {
       task_name: text,
       id: task.id,
