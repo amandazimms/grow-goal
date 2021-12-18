@@ -4,12 +4,11 @@ import { Button } from 'react-bootstrap';
 
 function Task(props) {
 
-  // const task = props.task;
-
   const dispatch = useDispatch();
 
   const store = useSelector(store => store);
   const selectedGoal = useSelector(store => store.selectedGoal);
+  const plantAvatar = useSelector(store => store.plantAvatar);
 
   const [displayIcons, setDisplayIcons] = useState(false);
 
@@ -19,6 +18,8 @@ function Task(props) {
   const [imagePath, setImagePath] = useState("");
 
   useEffect(() => {
+    console.log('in plant avatar component, useEffect');
+    dispatch({ type: 'FETCH_PLANT_AVATAR', payload: selectedGoal.id });
   }, []);
 
   const handleChange = (event) =>{
@@ -47,7 +48,7 @@ function Task(props) {
 
   return (
     <div>
-      {/* <p>{JSON.stringify(props)}</p> */}
+      <p>{JSON.stringify(plantAvatar.image_path_stage_1)}</p>
       { editingMode 
         ? 
          <>

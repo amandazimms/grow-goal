@@ -17,9 +17,6 @@ router.get('/', (req,res) => {
   // console.log('--->in plantAvatar router get. req.body:', req.body);
   // console.log('--->in plantAvatar router get. req.params:', req.params);
   const queryString = `SELECT
-          goal.id AS goal_id, 
-          plant_avatar.id AS plant_avatar_id, 
-          goal_name, progress, is_accomplished, user_id, 
           image_path_stage_1, image_path_stage_2, image_path_stage_3, image_path_stage_4,
           image_path_stage_5, image_path_stage_6, image_path_stage_7, image_path_stage_8 
       FROM "goal"
@@ -27,7 +24,7 @@ router.get('/', (req,res) => {
       WHERE goal.id=${req.query.id};`
   
   pool.query(queryString).then((results)=>{
-    res.send(results.rows);
+    res.send(results.rows[0]);
 
   }).catch((err)=>{
     console.log('error with plant_avatar GET:', err);
