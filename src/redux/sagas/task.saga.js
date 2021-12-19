@@ -35,8 +35,10 @@ function* updateTask(action){
           is_complete: ap.is_complete, 
           goal_id: ap.goal_id });
     
-
+ //AP.progress is PROGRESS percentage (eg .5)
+ //AP.id is selected Goal id.
     yield put({ type: 'FETCH_TASKS', payload: ap.goal_id });
+    yield put({ type: 'UPDATE_GOAL_PROGRESS', payload: { progress: todohowDoISendProgress, id: ap.goal_id } });
 
   } catch {
     console.log('update task error');
@@ -76,9 +78,8 @@ function* fetchTasks(action) {
     const completedTasks = response.data.filter(task => task.is_complete);
     const progress = completedTasks.length/response.data.length;
 
-    console.log('completed:', completedTasks, "progress:", progress);
-
-    yield put({ type: 'UPDATE_GOAL_PROGRESS', payload: {progress: progress, id: ap} });
+    yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: { progress: progress, id: ap }});
+    yield put({ type: 'UPDATE_GOAL_PROGRESS', payload: {progress: progress, id: ap} }); 
     yield put({ type: 'SET_TASKS', payload: response.data });
 
   } catch (error) {

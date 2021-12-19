@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
 import goal from './goal.reducer';
-import goalProgress from './goalProgress.reducer';
 import task from './task.reducer';
 import selectedGoal from './selectedGoal.reducer';
 import selectedPlantAvatar from './selectedPlantAvatar.reducer';
@@ -19,7 +18,6 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   goal,
-  goalProgress,
   task,
   selectedGoal,
   selectedPlantAvatar,

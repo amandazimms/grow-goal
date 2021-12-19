@@ -13,9 +13,9 @@ const router = express.Router();
 // is that the password gets encrypted before being inserted
 
 router.get('/', (req,res) => {
-  console.log('--->in task router get. req.query:', req.query);
-  console.log('--->in task router get. req.body:', req.body);
-  console.log('--->in task router get. req.params:', req.params);
+  // console.log('--->in task router get. req.query:', req.query);
+  // console.log('--->in task router get. req.body:', req.body);
+  // console.log('--->in task router get. req.params:', req.params);
 
   const queryString = `SELECT * FROM task WHERE goal_id=${req.query.id} ORDER BY id`;
 

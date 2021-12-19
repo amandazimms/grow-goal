@@ -10,6 +10,9 @@ function* selectedPlantAvatarSaga() {
 
 // worker Saga: will be fired on "FETCH_SELECTED_PLANT_AVATAR" actions
 function* fetchSelectedPlantAvatar(action) {
+// runs after actions affecting goal progress are taken (toggle/add/edit/delete task)
+// sets the right avatar image path for the current amount of progress  
+
   const ap = action.payload;
 
   let growthStage = 0;
@@ -40,6 +43,7 @@ function* fetchSelectedPlantAvatar(action) {
       growthStage = 0;
   }
 
+
   try {
     const response = yield axios.get('/api/plantAvatar/selected', 
         { params: { id: ap.id, growthStage: growthStage } });
@@ -59,6 +63,8 @@ function* fetchSelectedPlantAvatar(action) {
 
 //worker Saga: will be fired on "UPDATE_SELECTED_PLANT_AVATAR" actions
 function* updateSelectedPlantAvatar(action){
+// runs when user selects a different/new avatar image within a goal
+
   // const ap = action.payload;
 
   // try {

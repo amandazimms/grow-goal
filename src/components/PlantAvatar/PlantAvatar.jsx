@@ -9,6 +9,9 @@ function PlantAvatar(props) {
   const goal = props.goal;
   const isNew = props.isNew;
 
+  const backArrow = '<';
+  const nextArrow = '>';
+
   const dispatch = useDispatch();
 
   const store = useSelector(store => store);
@@ -21,6 +24,7 @@ function PlantAvatar(props) {
   const [editingMode, setEditingMode] = useState(isNew || false);
 
   useEffect(() => {
+    console.log('in plant avatar dispatch');
     dispatch({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: selectedGoal });
     dispatch({ type: 'FETCH_PLANT_AVATARS', payload: selectedGoal });
   }, []);
@@ -65,21 +69,23 @@ function PlantAvatar(props) {
 
   return (
     <div>
-      <p>selected PA:{JSON.stringify(selectedPlantAvatar)}</p>
-      <p>all PAs:{JSON.stringify(plantAvatars)}</p>
+      {/* <p>selected PA:{JSON.stringify(selectedPlantAvatar)}</p>
+      <p>all PAs:{JSON.stringify(plantAvatars)}</p> */}
 
       { editingMode 
         ? 
          <>
+          <button onClick={backButton}>{backArrow}</button>
+            <img className="plantAvatarImage" src={plantAvatars[selectedImageIndex]}></img>
+          <button onClick={nextButton}>{nextArrow}</button>
+
           <button onClick={doneButton}>done</button>
           <button onClick={cancelButton}>cancel</button>
          </>
         : 
           <>
-            <button onClick={backButton}>BACK</button>
-              <img className="plantAvatarImage" src={plantAvatars[selectedImageIndex]}></img>
-            <button onClick={nextButton}>NEXT</button>
- 
+
+            <img className="plantAvatarImage" onClick={() => setDisplayEditIcon(true)} src={selectedPlantAvatar}></img>
             { displayEditIcon 
               ? 
                 <>
