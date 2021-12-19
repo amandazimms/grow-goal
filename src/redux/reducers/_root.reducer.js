@@ -5,7 +5,8 @@ import goal from './goal.reducer';
 import goalProgress from './goalProgress.reducer';
 import task from './task.reducer';
 import selectedGoal from './selectedGoal.reducer';
-import plantAvatar from './plantAvatar.reducer';
+import selectedPlantAvatar from './selectedPlantAvatar.reducer';
+import plantAvatars from './plantAvatars.reducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   goalProgress,
   task,
   selectedGoal,
-  plantAvatar,
+  selectedPlantAvatar,
+  plantAvatars,
 });
 //our code elsewhere will look like: this.props.store.errors or this.props.store.user or this.props.store.errors.loginMessage
 

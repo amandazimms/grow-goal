@@ -13,14 +13,16 @@ function PlantAvatar(props) {
 
   const store = useSelector(store => store);
   const selectedGoal = useSelector(store => store.selectedGoal);
-  const plantAvatarURL = useSelector(store => store.plantAvatar);
+  const selectedPlantAvatar = useSelector(store => store.selectedPlantAvatar);
+  const plantAvatars = useSelector(store => store.plantAvatars);
 
   const [displayIcons, setDisplayIcons] = useState(false);
 
   const [editingMode, setEditingMode] = useState(isNew || false);
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_PLANT_AVATAR', payload: selectedGoal });
+    dispatch({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: selectedGoal });
+    dispatch({ type: 'FETCH_PLANT_AVATARS', payload: selectedGoal });
   }, []);
 
   const handleChange = (event) =>{
@@ -69,7 +71,9 @@ function PlantAvatar(props) {
 
   return (
     <div>
-      {/* <p>{JSON.stringify(selectedGoal)}</p> */}
+      <p>selected PA:{JSON.stringify(selectedPlantAvatar)}</p>
+      <p>all PAs:{JSON.stringify(plantAvatars)}</p>
+
       { editingMode 
         ? 
          <>
@@ -78,8 +82,6 @@ function PlantAvatar(props) {
          </>
         : 
           <>
-          
-            <h5>{JSON.stringify(selectedImageIndex)}</h5>
             <button onClick={backButton}>BACK</button>
               <img className="plantAvatarImage" src={imagePaths[selectedImageIndex]}></img>
             <button onClick={nextButton}>NEXT</button>

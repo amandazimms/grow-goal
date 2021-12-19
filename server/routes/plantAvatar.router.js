@@ -4,7 +4,6 @@ const {
 } = require('../modules/authentication-middleware');
 const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
-//todo do we need a plantAvatar strategy?
 
 const router = express.Router();
 
@@ -12,7 +11,7 @@ const router = express.Router();
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
 
-router.get('/', (req,res) => {
+router.get('/selected', (req,res) => {
   const queryString = `SELECT image_path_stage_${req.query.growthStage} 
       FROM "goal"
       JOIN "plant_avatar" ON goal.plant_avatar_id=plant_avatar.id 
@@ -27,27 +26,40 @@ router.get('/', (req,res) => {
   })
 })
 
+router.get('/all', (req,res) => {
+  const queryString = `SELECT "image_path_stage_7"
+      FROM "plant_avatar";`
+  
+  pool.query(queryString).then((results)=>{
+    res.send(results.rows);
+
+  }).catch((err)=>{
+    console.log('error with plant_avatar GET:', err);
+    res.sendStatus(500);
+  })
+})
+
 router.put('/:id', (req, res) => {
   // console.log('*** in task router PUT. req.query:', req.query);
   // console.log('*** in task router PUT. req.body:', req.body);
   // console.log('*** in task router PUT. req.params:', req.params);
 
-  const queryString = `UPDATE "task" SET 
-      task_name=$1,
-      is_complete=$2
-      WHERE id=${req.params.id}`;
-  values = [req.body.task_name, req.body.is_complete];
+  // const queryString = `UPDATE "task" SET 
+  //     task_name=$1,
+  //     is_complete=$2
+  //     WHERE id=${req.params.id}`;
+  // values = [req.body.task_name, req.body.is_complete];
 
-  pool.query(queryString, values)
-    .then(()=>{
-      res.sendStatus(200);
-      // console.log('--->results.rows:', results.rows);
-      // res.send(results.rows);
+  // pool.query(queryString, values)
+  //   .then(()=>{
+  //     res.sendStatus(200);
+  //     // console.log('--->results.rows:', results.rows);
+  //     // res.send(results.rows);
 
-    }).catch((err) => {
-      console.log('PUT task failed: ', err);
-      res.sendStatus(500);
-    });
+  //   }).catch((err) => {
+  //     console.log('PUT task failed: ', err);
+  //     res.sendStatus(500);
+  //   });
 });
 
 module.exports = router;

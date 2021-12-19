@@ -1,10 +1,10 @@
-const plantAvatarReducer = (state = '', action) => {
+const selectedPlantAvatarReducer = (state = '', action) => {
   //holds the ONE plant avatar image url for the current growth stage only
   
   switch (action.type) {
-    case 'SET_PLANT_AVATAR':
+    case 'SET_SELECTED_PLANT_AVATAR':
       return action.payload;
-    case 'UNSET_PLANT_AVATAR':
+    case 'UNSET_SELECTED_PLANT_AVATAR':
       return [];
     default:
       return state;
@@ -13,4 +13,4 @@ const plantAvatarReducer = (state = '', action) => {
 
 // user will be on the redux state at:
 // state.user
-export default plantAvatarReducer;
+export default selectedPlantAvatarReducer;

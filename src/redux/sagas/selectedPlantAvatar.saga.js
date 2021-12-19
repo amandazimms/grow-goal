@@ -1,13 +1,15 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-function* plantAvatarSaga() {
-  yield takeLatest('FETCH_PLANT_AVATAR', fetchPlantAvatar);
-  yield takeLatest('UPDATE_PLANT_AVATAR', updatePlantAvatar);
+//Saga for the ONE url representing this goal's current plant avatar's current stage
+
+function* selectedPlantAvatarSaga() {
+  yield takeLatest('FETCH_SELECTED_PLANT_AVATAR', fetchSelectedPlantAvatar);
+  yield takeLatest('UPDATE_SELECTED_PLANT_AVATAR', updateSelectedPlantAvatar);
 }
 
-// worker Saga: will be fired on "FETCH_PLANT_AVATAR" actions
-function* fetchPlantAvatar(action) {
+// worker Saga: will be fired on "FETCH_SELECTED_PLANT_AVATAR" actions
+function* fetchSelectedPlantAvatar(action) {
   const ap = action.payload;
 
   let growthStage = 0;
@@ -38,10 +40,8 @@ function* fetchPlantAvatar(action) {
       growthStage = 0;
   }
 
-  console.log('----->performing fetch for this growth stage:', growthStage);
-
   try {
-    const response = yield axios.get('/api/plantAvatar', 
+    const response = yield axios.get('/api/plantAvatar/selected', 
         { params: { id: ap.id, growthStage: growthStage } });
     
     //depending on the growth stage, response.data may look like, for example,
@@ -50,22 +50,22 @@ function* fetchPlantAvatar(action) {
     //to always get the value of the first (0) property, no matter the name of the key, we do the following:
     let val = Object.values(response.data)[0];
 
-    yield put({ type: 'SET_PLANT_AVATAR', payload: val });
+    yield put({ type: 'SET_SELECTED_PLANT_AVATAR', payload: val });
 
   } catch (error) {
     console.log('plant Avatar get request failed', error);
   }
 }
 
-//worker Saga: will be fired on "UPDATE_PLANT_AVATAR" actions
-function* updatePlantAvatar(action){
+//worker Saga: will be fired on "UPDATE_SELECTED_PLANT_AVATAR" actions
+function* updateSelectedPlantAvatar(action){
   // const ap = action.payload;
 
   // try {
   //   const updatedTask = yield axios.put(`/api/plantAvatar/${ap.id}`, 
   //       { id: ap.id });
   //                                   //todo check on goal_id here v
-  //   yield put({ type: 'FETCH_PLANT_AVATAR', payload: ap.goal_id });
+  //   yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: ap.goal_id });
 
   // } catch (error) {
   //   console.log("update Plant Avatar error", error);
@@ -76,4 +76,4 @@ function* updatePlantAvatar(action){
 
 
 
-export default plantAvatarSaga;
+export default selectedPlantAvatarSaga;

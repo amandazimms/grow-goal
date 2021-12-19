@@ -4,7 +4,8 @@ import registrationSaga from './registration.saga';
 import taskSaga from './task.saga';
 import goalSaga from './goal.saga';
 import userSaga from './user.saga';
-import plantAvatarSaga from './plantAvatar.saga';
+import selectedPlantAvatarSaga from './selectedPlantAvatar.saga';
+import plantAvatarsSaga from './plantAvatars.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -20,6 +21,7 @@ export default function* rootSaga() {
     userSaga(),
     goalSaga(),
     taskSaga(),
-    plantAvatarSaga(),
+    selectedPlantAvatarSaga(),
+    plantAvatarsSaga(),
   ]);
 }
