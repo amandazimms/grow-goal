@@ -13,7 +13,7 @@ const router = express.Router();
 // is that the password gets encrypted before being inserted
 
 router.get('/', (req,res) => {
-  const queryString = `SELECT * FROM "goal"`;
+  const queryString = `SELECT * FROM "goal" ORDER BY id`;
   
   pool.query(queryString).then((results)=>{
     res.send(results.rows);

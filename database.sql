@@ -50,8 +50,13 @@ CREATE TABLE "plant_avatar" (
   "image_path_stage_7" VARCHAR,
 );
 INSERT INTO "plant_avatar" ("image_path_stage_0", "image_path_stage_1", "image_path_stage_2", "image_path_stage_3", "image_path_stage_4", "image_path_stage_5", "image_path_stage_6", "image_path_stage_7")
-VALUES ('/images/plantAvatars/PH0.png', '/images/plantAvatars/PH1.png', '/images/plantAvatars/PH2.png', '/images/plantAvatars/PH3.png', '/images/plantAvatars/PH4.png', '/images/plantAvatars/PH5.png', '/images/plantAvatars/PH6.png', '/images/plantAvatars/PH7.png');
-
+VALUES ('/images/plantAvatars/BlueBramble1.png', '/images/plantAvatars/BlueBramble2.png', '/images/plantAvatars/BlueBramble3.png', '/images/plantAvatars/BlueBramble4.png', '/images/plantAvatars/BlueBramble5.png', '/images/plantAvatars/BlueBramble6.png', '/images/plantAvatars/BlueBramble7.png', '/images/plantAvatars/BlueBramble8.png'),
+('/images/plantAvatars/RedBramble1.png', '/images/plantAvatars/RedBramble2.png', '/images/plantAvatars/RedBramble3.png', '/images/plantAvatars/RedBramble4.png', '/images/plantAvatars/RedBramble5.png', '/images/plantAvatars/RedBramble6.png', '/images/plantAvatars/RedBramble7.png', '/images/plantAvatars/RedBramble8.png'),
+('/images/plantAvatars/PinkTulip1.png', '/images/plantAvatars/PinkTulip2.png', '/images/plantAvatars/PinkTulip3.png', '/images/plantAvatars/PinkTulip4.png', '/images/plantAvatars/PinkTulip5.png', '/images/plantAvatars/PinkTulip6.png', '/images/plantAvatars/PinkTulip7.png', '/images/plantAvatars/PinkTulip8.png'),
+('/images/plantAvatars/PinkVine1.png', '/images/plantAvatars/PinkVine2.png', '/images/plantAvatars/PinkVine3.png', '/images/plantAvatars/PinkVine4.png', '/images/plantAvatars/PinkVine5.png', '/images/plantAvatars/PinkVine6.png', '/images/plantAvatars/PinkVine7.png', '/images/plantAvatars/PinkVine8.png'),
+('/images/plantAvatars/RedVine1.png', '/images/plantAvatars/RedVine2.png', '/images/plantAvatars/RedVine3.png', '/images/plantAvatars/RedVine4.png', '/images/plantAvatars/RedVine5.png', '/images/plantAvatars/RedVine6.png', '/images/plantAvatars/RedVine7.png', '/images/plantAvatars/RedVine8.png'),
+('/images/plantAvatars/ScarletVine1.png', '/images/plantAvatars/ScarletVine2.png', '/images/plantAvatars/ScarletVine3.png', '/images/plantAvatars/ScarletVine4.png', '/images/plantAvatars/ScarletVine5.png', '/images/plantAvatars/ScarletVine6.png', '/images/plantAvatars/ScarletVine7.png', '/images/plantAvatars/ScarletVine8.png'),
+('/images/plantAvatars/YellowTulip1.png', '/images/plantAvatars/YellowTulip2.png', '/images/plantAvatars/YellowTulip3.png', '/images/plantAvatars/YellowTulip4.png', '/images/plantAvatars/YellowTulip5.png', '/images/plantAvatars/YellowTulip6.png', '/images/plantAvatars/YellowTulip7.png', '/images/plantAvatars/YellowTulip8.png');
 
 CREATE TABLE "profile_avatar" (
   "id" SERIAL PRIMARY KEY,
