@@ -10,8 +10,8 @@ function* selectedPlantAvatarSaga() {
 
 // worker Saga: will be fired on "FETCH_SELECTED_PLANT_AVATAR" actions
 function* fetchSelectedPlantAvatar(action) {
+  console.log('fetching selected goals plant avatar');
   const ap = action.payload;
-  console.log('fetching selected plant. ap is:', ap);
 
   let growthStage = 0;
 
@@ -45,6 +45,7 @@ function* fetchSelectedPlantAvatar(action) {
     const response = yield axios.get('/api/plantAvatar/selected', 
         { params: { id: ap.id, growthStage: growthStage } });
     
+    console.log('back from fetch, response.data was:', response.data);  
     //depending on the growth stage, response.data may look like, for example,
     //image_path_stage_5: '/images/plantAvatars/Bush5.png', or
     //image_path_stage_8: '/images/plantAvatars/Bush8.png'. 
