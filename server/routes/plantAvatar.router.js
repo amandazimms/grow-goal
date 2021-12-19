@@ -40,12 +40,15 @@ router.get('/all', (req,res) => {
 })
 
 router.put('/:id', (req, res) => {
-  // console.log('*** in task router PUT. req.query:', req.query);
-  // console.log('*** in task router PUT. req.body:', req.body);
-  // console.log('*** in task router PUT. req.params:', req.params);
+  // console.log('*** in pa router PUT. req.query:', req.query);
+  // console.log('*** in pa router PUT. req.body:', req.body);
+  // console.log('*** in pa router PUT. req.params:', req.params);
 
-  // const queryString = `UPDATE "task" SET 
-  //     task_name=$1,
+  //req.body.path is our url string
+  //req.params.id is our goal id
+
+  // const queryString = `UPDATE "goal" SET 
+  //     plant_avatar_id=$1,
   //     is_complete=$2
   //     WHERE id=${req.params.id}`;
   // values = [req.body.task_name, req.body.is_complete];

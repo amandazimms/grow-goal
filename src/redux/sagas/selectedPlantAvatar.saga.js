@@ -48,9 +48,9 @@ function* fetchSelectedPlantAvatar(action) {
     //image_path_stage_5: '/images/plantAvatars/Bush5.png', or
     //image_path_stage_8: '/images/plantAvatars/Bush8.png'. 
     //to always get the value of the first (0) property, no matter the name of the key, we do the following:
-    const val = Object.values(response.data)[0];
-
-    yield put({ type: 'SET_SELECTED_PLANT_AVATAR', payload: val });
+    //const val = Object.values(response.data)[0];
+   
+    yield put({ type: 'SET_SELECTED_PLANT_AVATAR', payload: response.data });
 
   } catch (error) {
     console.log('plant Avatar get request failed', error);
@@ -59,17 +59,21 @@ function* fetchSelectedPlantAvatar(action) {
 
 //worker Saga: will be fired on "UPDATE_SELECTED_PLANT_AVATAR" actions
 function* updateSelectedPlantAvatar(action){
-  // const ap = action.payload;
+  //from there, sql query to find this in the column 7/8
+  //return the plant_avatar_id on same row
+  //set that as plant_avatar_id within the goal for selected goal
+  const ap = action.payload;
+  //AP is a string url for the image path of stage 8
 
-  // try {
-  //   const updatedTask = yield axios.put(`/api/plantAvatar/${ap.id}`, 
-  //       { id: ap.id });
-  //                                   //todo check on goal_id here v
-  //   yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: ap.goal_id });
+  try {
+    const updatedAvatar = yield axios.put(`/api/plantAvatar/${ap.id}`, 
+        { path: ap.path });
+                                    //todo check on goal_id here v
+    //todo do this? yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: ap.goal_id });
 
-  // } catch (error) {
-  //   console.log("update Plant Avatar error", error);
-  // } 
+  } catch (error) {
+    console.log("update Plant Avatar error", error);
+  } 
 }
 
 

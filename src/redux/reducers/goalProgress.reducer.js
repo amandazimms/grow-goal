@@ -1,4 +1,6 @@
 const goalProgressReducer = (state = 0, action) => {
+  //progress for the current (selectedGoal) goal
+
   switch (action.type) {
     case 'SET_GOAL_PROGRESS':
       return action.payload;   

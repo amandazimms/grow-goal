@@ -5,7 +5,7 @@ function* goalSaga() {
   yield takeLatest('ADD_GOAL', addGoal);
   yield takeLatest('FETCH_GOALS', fetchGoal);
   yield takeLatest('UPDATE_GOAL_TITLE', updateGoalTitle);
-  yield takeLatest('UPDATE_GOAL_PROGRESS', updateGoalProgress);
+  yield takeLatest('UPDATE_GOAL_PROGRESS', updateGoalProgress); 
   yield takeLatest('DELETE_GOAL', deleteGoal);
 }
 
@@ -24,8 +24,8 @@ function* updateGoalTitle(action) {
   } 
 }
 
-// worker Saga: will be fired on "UPDATE_GOAL_PROGRESS" actions
-function* updateGoalProgress(action) {
+//worker Saga: will be fired on "UPDATE_GOAL_PROGRESS" actions
+function* updateGoalProgress(action) { 
   const ap = action.payload;
   //AP.progress is PROGRESS percentage (eg .5)
   //AP.id is selected Goal id.
@@ -33,9 +33,10 @@ function* updateGoalProgress(action) {
   try {
     const updatedGoal = yield axios.put(`/api/goal/progress/${ap.id}`, 
         { progress: ap.progress });
-    
-   // yield put({ type: 'SET_GOAL_PROGRESS', payload: ap.progress });
-   yield put({ type: 'FETCH_PLANT_AVATAR', payload: ap });
+  
+   console.log("will now SET goal progress/avatar with this progress:", ap.progress, "and this id:", ap.id);
+   yield put({ type: 'SET_GOAL_PROGRESS', payload: ap.progress });
+   yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: {progress: ap.progress, id: ap.id} })
 
   } catch {
     console.log('update goal progresss error');

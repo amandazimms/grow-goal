@@ -18,9 +18,9 @@ function* fetchPlantAvatars(action) {
     //[image_path_stage_5: '/images/plantAvatars/Bush5.png',
     //image_path_stage_8: '/images/plantAvatars/Bush8.png']
     //etc. but we only want the value, not the key. so we map through and collect only the values like so:
-    const vals = response.data.map(item => Object.values(item)[0]);
+    //const vals = response.data.map(item => Object.values(item)[0]);
 
-    yield put({ type: 'SET_PLANT_AVATARS', payload: vals });
+    yield put({ type: 'SET_PLANT_AVATARS', payload: response.data });
 
   } catch (error) {
     console.log('plant Avatar get request failed', error);

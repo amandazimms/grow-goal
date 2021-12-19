@@ -56,6 +56,7 @@ function GoalTitle(props) {
 
   return (
     <div>
+      {/* <p>editing mode?{JSON.stringify(editingMode)}</p> */}
       { editingMode 
         ? 
          <>
@@ -65,15 +66,16 @@ function GoalTitle(props) {
          </>
         : 
           <>
-          <p className="goalTitleText" onClick={() => setDisplayIcons(true)}>{text}</p>
- 
-          { displayIcons 
-            ? 
-              <><button onClick={editButton}>edit</button>
-              <button onClick={deleteButton}>delete</button></>
-            :
-              <></>
-          } </>
+            <p className="goalTitleText" onClick={() => setDisplayIcons(true)}>{text}</p>
+  
+            { displayIcons 
+              ? 
+                <><button onClick={editButton}>edit</button>
+                <button onClick={deleteButton}>delete</button></>
+              :
+                <></>
+            } 
+          </>
         
       }
 

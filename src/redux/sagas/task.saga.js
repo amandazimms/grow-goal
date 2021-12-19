@@ -1,9 +1,5 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
-// import { useDispatch } from 'react-redux';
-
-
-// const dispatch = useDispatch();
 
 function* taskSaga() {
   yield takeLatest('ADD_TASK', addTask);
@@ -43,6 +39,27 @@ function* updateTask(action){
   } 
 }
 
+// worker Saga: will be fired on "FETCH_TASKS" actions
+function* fetchTasks(action) {
+  const ap = action.payload;
+
+  try {
+    const response = yield axios.get('/api/task', 
+      { params: { id: ap } });
+    //AP is goal id.
+    //RESPONSE.DATA is array of tasks with all properties.
+    
+    const completedTasks = response.data.filter(task => task.is_complete);
+    const progress = completedTasks.length/response.data.length;
+
+
+    yield put({ type: 'SET_TASKS', payload: response.data });
+    yield put({ type: 'UPDATE_GOAL_PROGRESS', payload: {progress: progress, id: ap} });
+
+  } catch (error) {
+    console.log('Task get request failed', error);
+  }
+}
 
 // worker Saga: will be fired on "ADD_TASKS" actions
 function* addTask(action) {
@@ -60,32 +77,6 @@ function* addTask(action) {
     console.log('add new task error');
   }
 }
-
-
-// worker Saga: will be fired on "FETCH_TASKS" actions
-function* fetchTasks(action) {
-  const ap = action.payload;
-
-  try {
-    const response = yield axios.get('/api/task', 
-      { params: { id: ap } });
-
-    //AP is goal id.
-    //RESPONSE.DATA is array of tasks with all properties.
-    
-    const completedTasks = response.data.filter(task => task.is_complete);
-    const progress = completedTasks.length/response.data.length;
-
-    console.log('completed:', completedTasks, "progress:", progress);
-
-    yield put({ type: 'UPDATE_GOAL_PROGRESS', payload: {progress: progress, id: ap} });
-    yield put({ type: 'SET_TASKS', payload: response.data });
-
-  } catch (error) {
-    console.log('Task get request failed', error);
-  }
-}
-
 
 
 export default taskSaga;
