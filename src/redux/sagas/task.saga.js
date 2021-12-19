@@ -75,8 +75,11 @@ function* fetchTasks(action) {
     //AP is goal id.
     //RESPONSE.DATA is array of tasks with all properties.
     
+    //calculate the progress percentage for this goal.
     const completedTasks = response.data.filter(task => task.is_complete);
     const progress = completedTasks.length/response.data.length;
+
+    console.log("---->completed:", completedTasks, "progress:", progress);
 
     yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: { progress: progress, id: ap }});
     yield put({ type: 'UPDATE_GOAL_PROGRESS', payload: {progress: progress, id: ap} }); 
