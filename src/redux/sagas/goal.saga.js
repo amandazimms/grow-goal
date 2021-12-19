@@ -34,7 +34,6 @@ function* updateGoalProgress(action) {
     const updatedGoal = yield axios.put(`/api/goal/progress/${ap.id}`, 
         { progress: ap.progress });
   
-   console.log("will now SET goal progress/avatar with this progress:", ap.progress, "and this id:", ap.id);
    yield put({ type: 'SET_GOAL_PROGRESS', payload: ap.progress });
    yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: {progress: ap.progress, id: ap.id} })
 
