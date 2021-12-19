@@ -48,7 +48,7 @@ function* fetchSelectedPlantAvatar(action) {
     //image_path_stage_5: '/images/plantAvatars/Bush5.png', or
     //image_path_stage_8: '/images/plantAvatars/Bush8.png'. 
     //to always get the value of the first (0) property, no matter the name of the key, we do the following:
-    let val = Object.values(response.data)[0];
+    const val = Object.values(response.data)[0];
 
     yield put({ type: 'SET_SELECTED_PLANT_AVATAR', payload: val });
 

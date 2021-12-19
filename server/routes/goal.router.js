@@ -66,10 +66,9 @@ router.put('/:id', (req, res) => {
 });
 
 router.put('/progress/:id', (req, res) => {
-  console.log('did we make it to progress router?');
-  console.log('>>>> in goal router, req.params:', req.params);
-  console.log('>>>> in goal router, req.body:', req.body);
-  console.log('>>>> in goal router, req.query:', req.query);
+  // console.log('>>>> in goal router, req.params:', req.params);
+  // console.log('>>>> in goal router, req.body:', req.body);
+  // console.log('>>>> in goal router, req.query:', req.query);
 
   const queryString = `UPDATE "goal" SET 
         progress=$1 

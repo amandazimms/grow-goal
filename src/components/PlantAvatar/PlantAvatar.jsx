@@ -16,7 +16,7 @@ function PlantAvatar(props) {
   const selectedPlantAvatar = useSelector(store => store.selectedPlantAvatar);
   const plantAvatars = useSelector(store => store.plantAvatars);
 
-  const [displayIcons, setDisplayIcons] = useState(false);
+  const [displayEditIcon, setDisplayEditIcon] = useState(false);
 
   const [editingMode, setEditingMode] = useState(isNew || false);
 
@@ -46,25 +46,19 @@ function PlantAvatar(props) {
 
   const editButton = () => {
     setEditingMode(true);
-    setDisplayIcons(false);
+    setDisplayEditIcon(false);
   }
-
-  const imagePaths = [
-    '/images/plantAvatars/BlueBramble8.png',
-    '/images/plantAvatars/PinkVine8.png',
-    '/images/plantAvatars/YellowTulip8.png'
-  ];
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const backButton = () => {
     selectedImageIndex === 0 ?
-      setSelectedImageIndex(imagePaths.length-1)
+      setSelectedImageIndex(plantAvatars.length-1)
     : setSelectedImageIndex(selectedImageIndex-1);
   }
 
   const nextButton = () => {
-    selectedImageIndex === imagePaths.length-1 ?
+    selectedImageIndex === plantAvatars.length-1 ?
       setSelectedImageIndex(0)
     : setSelectedImageIndex(selectedImageIndex+1);
   }
@@ -83,10 +77,10 @@ function PlantAvatar(props) {
         : 
           <>
             <button onClick={backButton}>BACK</button>
-              <img className="plantAvatarImage" src={imagePaths[selectedImageIndex]}></img>
+              <img className="plantAvatarImage" src={plantAvatars[selectedImageIndex]}></img>
             <button onClick={nextButton}>NEXT</button>
  
-            { displayIcons 
+            { displayEditIcon 
               ? 
                 <>
                   <button onClick={editButton}>edit</button>
