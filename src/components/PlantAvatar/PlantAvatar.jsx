@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
+import ImagePicker from '../ImagePicker/ImagePicker';
 
-function Task(props) {
+
+function PlantAvatar(props) {
+  
+  const goal = props.goal;
+  const isNew = props.isNew;
 
   const dispatch = useDispatch();
 
@@ -12,7 +17,7 @@ function Task(props) {
 
   const [displayIcons, setDisplayIcons] = useState(false);
 
-  const [editingMode, setEditingMode] = useState(false);
+  const [editingMode, setEditingMode] = useState(isNew || false);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_PLANT_AVATAR', payload: selectedGoal });
@@ -42,6 +47,26 @@ function Task(props) {
     setDisplayIcons(false);
   }
 
+  const imagePaths = [
+    '/images/plantAvatars/BlueBramble8.png',
+    '/images/plantAvatars/PinkVine8.png',
+    '/images/plantAvatars/YellowTulip8.png'
+  ];
+
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const backButton = () => {
+    selectedImageIndex === 0 ?
+      setSelectedImageIndex(imagePaths.length-1)
+    : setSelectedImageIndex(selectedImageIndex-1);
+  }
+
+  const nextButton = () => {
+    selectedImageIndex === imagePaths.length-1 ?
+      setSelectedImageIndex(0)
+    : setSelectedImageIndex(selectedImageIndex+1);
+  }
+
   return (
     <div>
       {/* <p>{JSON.stringify(selectedGoal)}</p> */}
@@ -53,7 +78,11 @@ function Task(props) {
          </>
         : 
           <>
-            <img className="plantAvatarImage" src={plantAvatarURL}></img>
+          
+            <h5>{JSON.stringify(selectedImageIndex)}</h5>
+            <button onClick={backButton}>BACK</button>
+              <img className="plantAvatarImage" src={imagePaths[selectedImageIndex]}></img>
+            <button onClick={nextButton}>NEXT</button>
  
             { displayIcons 
               ? 
@@ -71,4 +100,4 @@ function Task(props) {
   );
 }
 
-export default Task;
+export default PlantAvatar;

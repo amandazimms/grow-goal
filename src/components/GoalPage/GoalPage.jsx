@@ -52,7 +52,7 @@ function GoalPage(props) {
       })}
 
       <h3>Plant Avatar:</h3>
-      <PlantAvatar />
+      <PlantAvatar isNew={isNew}/>
 
     </div>
   );
