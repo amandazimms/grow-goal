@@ -44,25 +44,25 @@ router.put('/:id', (req, res) => {
   // console.log('*** in pa router PUT. req.body:', req.body);
   // console.log('*** in pa router PUT. req.params:', req.params);
 
-  //req.body.path is our url string
-  //req.params.id is our goal id
+  // req.body.plant_avatar_id is our plant avatar id
+  // req.params.id is our goal id
 
-  // const queryString = `UPDATE "goal" SET 
-  //     plant_avatar_id=$1,
-  //     is_complete=$2
-  //     WHERE id=${req.params.id}`;
-  // values = [req.body.task_name, req.body.is_complete];
+  const queryString = `UPDATE "goal" SET 
+      plant_avatar_id=$1 
+      WHERE id=${req.params.id} 
+      RETURNING "progress"`;
 
-  // pool.query(queryString, values)
-  //   .then(()=>{
-  //     res.sendStatus(200);
-  //     // console.log('--->results.rows:', results.rows);
-  //     // res.send(results.rows);
+  values = [req.body.plant_avatar_id];
 
-  //   }).catch((err) => {
-  //     console.log('PUT task failed: ', err);
-  //     res.sendStatus(500);
-  //   });
+  pool.query(queryString, values)
+    .then((results)=>{
+      console.log('RETURNING results.rows:', results.rows[0]);
+      res.send(results.rows[0])
+
+    }).catch((err) => {
+      console.log('PUT task failed: ', err);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

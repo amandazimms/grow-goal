@@ -11,6 +11,7 @@ function* selectedPlantAvatarSaga() {
 // worker Saga: will be fired on "FETCH_SELECTED_PLANT_AVATAR" actions
 function* fetchSelectedPlantAvatar(action) {
   const ap = action.payload;
+  console.log('fetching selected plant. ap is:', ap);
 
   let growthStage = 0;
 
@@ -59,17 +60,18 @@ function* fetchSelectedPlantAvatar(action) {
 
 //worker Saga: will be fired on "UPDATE_SELECTED_PLANT_AVATAR" actions
 function* updateSelectedPlantAvatar(action){
-  //from there, sql query to find this in the column 7/8
-  //return the plant_avatar_id on same row
-  //set that as plant_avatar_id within the goal for selected goal
   const ap = action.payload;
-  //AP is a string url for the image path of stage 8
+  //ap.plant_avatar_id is the chosen plant avatar's id
+  //ap.goal_id is the selectedGoal's id
 
   try {
-    const updatedAvatar = yield axios.put(`/api/plantAvatar/${ap.id}`, 
-        { path: ap.path });
-                                    //todo check on goal_id here v
-    //todo do this? yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: ap.goal_id });
+    const updatedAvatar = yield axios.put(`/api/plantAvatar/${ap.goal_id}`, 
+        { plant_avatar_id: ap.plant_avatar_id });
+
+    //progress for this goal, which we sent back in the router via RETURNING    
+    const progress = updatedAvatar.data.progress;    
+    
+    yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: { progress: progress, id: ap.goal_id} });
 
   } catch (error) {
     console.log("update Plant Avatar error", error);

@@ -49,11 +49,9 @@ function PlantAvatar(props) {
   }
 
   const doneButton = () => {
-    //todo update this v
-    const selectedImagePath = plantAvatars[selectedImageIndex].image_path_stage_7;
-    console.log("done button clicked, selectedImagePath was:", selectedImagePath);
+    const plant_avatar_id = selectedImageIndex;
     
-    dispatch({type: 'UPDATE_SELECTED_PLANT_AVATAR', payload: {path: selectedImagePath, id: selectedGoal.id} });
+    dispatch({type: 'UPDATE_SELECTED_PLANT_AVATAR', payload: { plant_avatar_id: plant_avatar_id, goal_id: selectedGoal.id} });
 
     setEditingMode(false);
   }
