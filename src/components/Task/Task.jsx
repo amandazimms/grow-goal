@@ -18,8 +18,9 @@ function Task(props) {
 
   const [text, setText] = useState(task.task_name || '');
 
-  const [showComplete, setShowComplete] = useState(false);
-  const [checkBoxImage, setCheckBoxImage] = useState('./images/icons/box.png');
+  const [showComplete, setShowComplete] = useState(task.is_complete);
+  const [checkBoxImage, setCheckBoxImage] = useState(showComplete ? './images/icons/checkedBox.png' : './images/icons/box.png');
+    //task.is_complete ? './images/icons/checkedBox.png' : './images/icons/box.png');
   
   
   const checkedBoxImgPath = './images/icons/checkedBox.png';
@@ -91,7 +92,6 @@ function Task(props) {
 
   return (
     <div>
-      {/* <p>{JSON.stringify(props)}</p> */}
       { editingMode 
         ? 
          <>
