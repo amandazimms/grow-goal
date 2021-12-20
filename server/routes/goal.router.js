@@ -43,7 +43,7 @@ router.post('/', (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/name/:id', (req, res) => {
   //todo specify this as NAME change put, similar to below
 
   // console.log('>>>> in goal router, req.params:', req.params);
@@ -66,14 +66,18 @@ router.put('/:id', (req, res) => {
 });
 
 router.put('/progress/:id', (req, res) => {
-  // console.log('>>>> in goal router, req.params:', req.params);
-  // console.log('>>>> in goal router, req.body:', req.body);
-  // console.log('>>>> in goal router, req.query:', req.query);
+  // console.log('>>>> in goal progress router, req.params:', req.params);
+  // console.log('>>>> in goal progress router, req.body:', req.body);
+  // console.log('>>>> in goal progress router, req.query:', req.query);
 
+  //req.params.id is the goal id
+  //req.body.progress is the goal progress percentage
+  //req.body.current_image_path is image path's url
   const queryString = `UPDATE "goal" SET 
-        progress=$1 
+        "progress"=$1,
+        "current_avatar_path"=$2 
         WHERE id=${req.params.id}`;
-  values = [req.body.progress];
+  values = [req.body.progress, req.body.current_image_path];
 
   pool.query(queryString, values)
     .then((results)=>{

@@ -52,9 +52,8 @@ function* fetchTasks(action) {
     const completedTasks = response.data.filter(task => task.is_complete);
     const progress = completedTasks.length/response.data.length;
 
-
+    yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: {progress: progress, id: ap} });
     yield put({ type: 'SET_TASKS', payload: response.data });
-    yield put({ type: 'UPDATE_GOAL_PROGRESS', payload: {progress: progress, id: ap} });
 
   } catch (error) {
     console.log('Task get request failed', error);

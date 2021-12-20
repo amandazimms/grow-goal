@@ -2,10 +2,8 @@ import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
 import goal from './goal.reducer';
-import goalProgress from './goalProgress.reducer';
 import task from './task.reducer';
 import selectedGoal from './selectedGoal.reducer';
-import selectedPlantAvatar from './selectedPlantAvatar.reducer';
 import plantAvatars from './plantAvatars.reducer';
 
 
@@ -19,10 +17,8 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   goal,
-  goalProgress,
   task,
   selectedGoal,
-  selectedPlantAvatar,
   plantAvatars,
 });
 //our code elsewhere will look like: this.props.store.errors or this.props.store.user or this.props.store.errors.loginMessage

@@ -41,12 +41,12 @@ function GoalsPage() {
       {goals.map(goal => {
         return (
           <div key={goal.id}>
+            <p>{JSON.stringify(goal)}</p>
             <h3>{goal.goal_name}</h3>
             
             <Link to="/goal" onClick={() => setSelectedGoal(goal)}>
               <Button>
-                Goal plant avatar image here
-                {/* todo: image of goal's plant Avatar */}
+                Img
                 {/* <img src={goal.poster} alt={goal.title}/> */}
               </Button>
             </Link>

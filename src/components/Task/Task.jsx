@@ -27,7 +27,6 @@ function Task(props) {
 
 
   useEffect(() => {
-    //console.log('log to check about react object children. text:', text, 'editingText:', editingText, 'placeholderText', placeholderText);
   }, []);
 
   const handleChange = (event) =>{

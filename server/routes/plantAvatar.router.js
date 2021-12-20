@@ -12,6 +12,12 @@ const router = express.Router();
 // is that the password gets encrypted before being inserted
 
 router.get('/selected', (req,res) => {
+  // console.log('*** in pa router GET. req.params:', req.params);
+  // console.log('*** in pa router GET. req.query:', req.query);
+  // console.log('*** in pa router GET. req.body:', req.body);
+
+  //req.query.growthStage is the 0-7 growth stage of this plant
+  //req.query.id is the goal id
   const queryString = `SELECT image_path_stage_${req.query.growthStage} 
       FROM "goal"
       JOIN "plant_avatar" ON goal.plant_avatar_id=plant_avatar.id 
@@ -25,6 +31,12 @@ router.get('/selected', (req,res) => {
     res.sendStatus(500);
   })
 })
+
+
+
+
+
+
 
 router.get('/all', (req,res) => {
   const queryString = `SELECT "image_path_stage_7"

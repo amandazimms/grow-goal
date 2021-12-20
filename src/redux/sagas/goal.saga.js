@@ -14,7 +14,7 @@ function* updateGoalTitle(action) {
   const ap = action.payload;
 
   try {
-    const updatedGoal = yield axios.put(`/api/goal/${ap.id}`, 
+    const updatedGoal = yield axios.put(`/api/goal/name/${ap.id}`, 
         { goal_name: ap.goal_name });
     
     yield put({ type: 'FETCH_GOALS', payload: ap.id });
@@ -29,13 +29,14 @@ function* updateGoalProgress(action) {
   const ap = action.payload;
   //AP.progress is PROGRESS percentage (eg .5)
   //AP.id is selected Goal id.
+  //AP.current_image_path is the url to this growth stage of the plant avatar
 
   try {
+    //we want to update the selected goal's progress and current_avatar_path columns
     const updatedGoal = yield axios.put(`/api/goal/progress/${ap.id}`, 
-        { progress: ap.progress });
-  
-   yield put({ type: 'SET_GOAL_PROGRESS', payload: ap.progress });
-   yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: {progress: ap.progress, id: ap.id} })
+        { progress: ap.progress, current_image_path: ap.current_image_path });
+
+    yield put({ type: 'SET_SELECTED_GOAL_IMAGE', payload: {current_avatar_path: ap.current_image_path} });
 
   } catch {
     console.log('update goal progresss error');

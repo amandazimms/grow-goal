@@ -13,9 +13,6 @@ function PlantAvatar(props) {
   const store = useSelector(store => store);
   const selectedGoal = useSelector(store => store.selectedGoal);
 
-                                      //this funkiness < allows us to only use the value (img path), not the key
-  const selectedPlantAvatar = useSelector(store => Object.values(store.selectedPlantAvatar)[0]);
- 
   const plantAvatars = useSelector(store  => store.plantAvatars);  
 
   const [displayEditIcon, setDisplayEditIcon] = useState(false);
@@ -60,8 +57,6 @@ function PlantAvatar(props) {
     <div>
       {/* <p>selected PA:{JSON.stringify(selectedPlantAvatar)}</p>
       <p>all PAs:{JSON.stringify(plantAvatars)}</p> */}
-
-
       { editingMode 
         ? 
          <>
@@ -74,7 +69,8 @@ function PlantAvatar(props) {
          </>
         : 
           <>
-            <img className="plantAvatarImage" onClick={() => setDisplayEditIcon(true)} src={selectedPlantAvatar}></img>
+
+          <img className="plantAvatarImage" onClick={() => setDisplayEditIcon(true)} src={selectedGoal.current_avatar_path}></img>
 
             { displayEditIcon 
               ? 
