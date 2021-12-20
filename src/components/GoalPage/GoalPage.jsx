@@ -8,7 +8,6 @@ import Task from '../Task/Task';
 import { Button } from 'react-bootstrap';
 
 function GoalPage(props) {
-
   //if we arrived here from clicking "new goal", this will be true and will trigger some conditional renders
   const isNew = props.isNew;
 

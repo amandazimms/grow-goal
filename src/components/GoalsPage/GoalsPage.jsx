@@ -45,9 +45,8 @@ function GoalsPage() {
             <h3>{goal.goal_name}</h3>
             
             <Link to="/goal" onClick={() => setSelectedGoal(goal)}>
-              <Button>
-                Img
-                {/* <img src={goal.poster} alt={goal.title}/> */}
+              <Button className="thumbnailButton">
+                <img className="plantAvatarThumbnail" src={goal.current_avatar_path} alt={goal.current_avatar_path}/>
               </Button>
             </Link>
           </div>
