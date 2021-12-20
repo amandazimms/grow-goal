@@ -4,9 +4,10 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* plantAvatarsSaga() {
   yield takeLatest('FETCH_PLANT_AVATARS', fetchPlantAvatars);
   yield takeLatest('FETCH_SELECTED_PLANT_AVATAR', fetchSelectedPlantAvatar);
+  yield takeLatest('UPDATE_SELECTED_PLANT_AVATAR', updateSelectedPlantAvatar);
 }
 
-
+//worker Saga: will be fired on "FETCH_SELECTED_PLANT_AVATAR" actions
 function* fetchSelectedPlantAvatar(action) {
   //fetch current plant avatar growth stage to display for this goal's id
   const ap = action.payload;
@@ -55,6 +56,25 @@ function* fetchSelectedPlantAvatar(action) {
   }
 }
 
+//worker Saga: will be fired on "UPDATE_SELECTED_PLANT_AVATAR" actions
+function* updateSelectedPlantAvatar(action){
+  const ap = action.payload;
+  //ap.plant_avatar_id is the chosen plant avatar's id
+  //ap.goal_id is the selectedGoal's id
+
+  try {
+    const updatedAvatar = yield axios.put(`/api/plantAvatar/${ap.goal_id}`, 
+        { plant_avatar_id: ap.plant_avatar_id });
+
+    //progress for this goal, which we sent back in the router via RETURNING    
+    const progress = updatedAvatar.data.progress;    
+    
+    yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: { progress: progress, id: ap.goal_id} });
+
+  } catch (error) {
+    console.log("update Plant Avatar error", error);
+  } 
+}
 
 // worker Saga: will be fired on "FETCH_PLANT_AVATARS" actions
 function* fetchPlantAvatars(action) {
