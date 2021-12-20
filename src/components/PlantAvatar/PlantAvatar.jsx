@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import ImagePicker from '../ImagePicker/ImagePicker';
 
-
 function PlantAvatar(props) {
   
   const goal = props.goal;
@@ -66,12 +65,12 @@ function PlantAvatar(props) {
       { editingMode 
         ? 
          <>
-          <button onClick={backButton}>BACK</button>
+          <Button onClick={backButton}>BACK</Button>
             <img className="plantAvatarImage" src={plantAvatars[selectedImageIndex].image_path_stage_7}></img>
-          <button onClick={nextButton}>NEXT</button>
+          <Button onClick={nextButton}>NEXT</Button>
 
-          <button onClick={doneButton}>done</button>
-          <button onClick={cancelButton}>cancel</button>
+          <Button onClick={doneButton}>done</Button>
+          <Button onClick={cancelButton}>cancel</Button>
          </>
         : 
           <>
@@ -80,7 +79,7 @@ function PlantAvatar(props) {
             { displayEditIcon 
               ? 
                 <>
-                  <button onClick={editButton}>edit</button>
+                  <Button onClick={editButton}>edit</Button>
                 </>
               :
                 <>

@@ -61,8 +61,8 @@ function GoalTitle(props) {
         ? 
          <>
           <input value={text} placeholder={goal.goal_name} type="text" onChange={ (event) => handleChange(event) }></input>
-          <button onClick={doneButton}>done</button>
-          <button onClick={cancelButton}>cancel</button>
+          <Button onClick={doneButton}>done</Button>
+          <Button onClick={cancelButton}>cancel</Button>
          </>
         : 
           <>
@@ -70,8 +70,10 @@ function GoalTitle(props) {
   
             { displayIcons 
               ? 
-                <><button onClick={editButton}>edit</button>
-                <button onClick={deleteButton}>delete</button></>
+                <>
+                  <Button onClick={editButton}>edit</Button>
+                  <Button onClick={deleteButton}>delete</Button>
+                </>
               :
                 <></>
             } 

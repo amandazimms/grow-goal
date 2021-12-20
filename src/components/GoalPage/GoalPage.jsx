@@ -5,6 +5,7 @@ import AddNewText from '../AddNewText/AddNewText';
 import GoalTitle from '../GoalTitle/GoalTitle';
 import PlantAvatar from '../PlantAvatar/PlantAvatar';
 import Task from '../Task/Task';
+import { Button } from 'react-bootstrap';
 
 function GoalPage(props) {
 
@@ -36,7 +37,7 @@ function GoalPage(props) {
 
       <h3>Task List:</h3>
       
-      <button onClick={addTask}>+</button>
+      <Button onClick={addTask}>+</Button>
       {
         addingTask 
         ? <AddNewText placeholderText={'Describe New Task'} onLeaveAdd={()=>setAddingTask(false)}/>

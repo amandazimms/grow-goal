@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 function GoalsPage() {
   const goals = useSelector((store) => store.goal);
@@ -33,7 +34,7 @@ function GoalsPage() {
       <h2>Goals Page</h2>
 
       <Link to="/new-goal" onClick={addNewGoal}>
-        <button>Add New Goal</button>
+        <Button>Add New Goal</Button>
       </Link>
 
 
@@ -43,11 +44,11 @@ function GoalsPage() {
             <h3>{goal.goal_name}</h3>
             
             <Link to="/goal" onClick={() => setSelectedGoal(goal)}>
-              <button>
+              <Button>
                 Goal plant avatar image here
                 {/* todo: image of goal's plant Avatar */}
                 {/* <img src={goal.poster} alt={goal.title}/> */}
-              </button>
+              </Button>
             </Link>
           </div>
           );

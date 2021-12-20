@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Button } from 'react-bootstrap';
 
 function AddNewText(props) {
 
@@ -36,8 +37,8 @@ function AddNewText(props) {
   return (
     <div>
       <input placeholder={placeholderText} type="text" onChange={ (event) => handleChange(event) }></input>
-      <button onClick={doneButton}>done</button>
-      <button onClick={cancelButton}>cancel</button>
+      <Button onClick={doneButton}>done</Button>
+      <Button onClick={cancelButton}>cancel</Button>
     </div>
   );
 }
