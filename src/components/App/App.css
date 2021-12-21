@@ -231,3 +231,33 @@ Image
 .plantAvatarThumbnail {
   width: 100px;
 }
+
+.pageTitle, .pageSubTitle {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  font-size: 48px;
+}
+
+.pageSubTitle {
+  font-size: 40px;
+}
+
+.cardArea {
+  background-size: cover;
+  border-radius: 25px;
+  width: 350px;
+  height: 500px;
+  border: none;
+  resize: both;
+  padding: 20px;
+  margin: 20px;
+}
+
+.cardYellow {
+  background-image: url('./YellowBG.png');
+}
+
+.cardBlue {
+  background-image: url('./BlueBG.png');
+}

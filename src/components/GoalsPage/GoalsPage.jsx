@@ -32,7 +32,7 @@ function GoalsPage() {
 
   return (
     <div className="container">
-      <h2>Goals Page</h2>
+      <h2 className="pageTitle">GOALS</h2>
 
       <Link to="/new-goal" onClick={addNewGoal}>
         <Button>Add New Goal</Button>
