@@ -32,9 +32,6 @@ function GoalsPage() {
 
   return (
     <div className="container">
-          <p>{JSON.stringify(user)}</p>
-
-      {/* <h3>{JSON.stringify(goals)}</h3> */}
       <h2>Goals Page</h2>
 
       <Link to="/new-goal" onClick={addNewGoal}>
