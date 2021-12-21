@@ -13,10 +13,18 @@ const router = express.Router();
 // is that the password gets encrypted before being inserted
 
 router.get('/', (req,res) => {
-  const queryString = `SELECT * FROM "goal" ORDER BY id`;
+  // console.log('>>>> in goal router, req.params:', req.params);
+  // console.log('>>>> in goal router, req.body:', req.body);
+  // console.log('>>>> in goal router, req.query:', req.query);
+
+  //req.query.userId is user id
+  const queryString = `SELECT * FROM "goal" 
+      WHERE "user_id"=${req.query.userId}  
+      ORDER BY id`;
   
   pool.query(queryString).then((results)=>{
     res.send(results.rows);
+    
   }).catch((err)=>{
     console.log('error with goals GET:', err);
     res.sendStatus(500);

@@ -5,11 +5,13 @@ import { Button } from 'react-bootstrap';
 
 function GoalsPage() {
   const goals = useSelector((store) => store.goal);
+  const user = useSelector((store) => store.user);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     //todo - add payload for specific goals to this user
-    dispatch( {type: 'FETCH_GOALS'} );
+    dispatch( {type: 'FETCH_GOALS', payload: {user: user} } );
   }, []);
 
   const setSelectedGoal = (goal) =>{
@@ -30,6 +32,8 @@ function GoalsPage() {
 
   return (
     <div className="container">
+          <p>{JSON.stringify(user)}</p>
+
       {/* <h3>{JSON.stringify(goals)}</h3> */}
       <h2>Goals Page</h2>
 

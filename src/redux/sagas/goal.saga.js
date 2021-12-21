@@ -59,7 +59,7 @@ function* deleteGoal(action) {
 }
 
 // worker Saga: will be fired on "ADD_GOAL" actions
-function* addGoal(action) {
+function* addGoal(action) {  
   const ap = action.payload;
   try {
     let newGoal = {
@@ -87,10 +87,14 @@ function* addGoal(action) {
 
 // worker Saga: will be fired on "FETCH_GOAL" actions
 function* fetchGoal(action) {
+  const ap = action.payload;
+  
   try {
-    const response = yield axios.get('/api/goal');
+    const response = yield axios.get('/api/goal',       
+        { params: { userId: ap.user.id } });
 
     yield put({ type: 'SET_GOALS', payload: response.data });
+
   } catch (error) {
     console.log('Goal get request failed', error);
   }
