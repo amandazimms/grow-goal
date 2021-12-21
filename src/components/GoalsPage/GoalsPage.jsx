@@ -23,7 +23,7 @@ function GoalsPage() {
         goal_name: '',
         progress: 0,
         is_accomplished: false,
-        user_id: 1,
+        user_id: user.id,
         plant_avatar_id: 1
         //todo add userID
     }});

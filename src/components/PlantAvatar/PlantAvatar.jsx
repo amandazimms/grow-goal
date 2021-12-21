@@ -55,14 +55,16 @@ function PlantAvatar(props) {
   }
 
   return (
-    <div>
-      {/* <p>selected PA:{JSON.stringify(selectedPlantAvatar)}</p>
-      <p>all PAs:{JSON.stringify(plantAvatars)}</p> */}
+    <div> 
       { editingMode 
         ? 
          <>
+          <p>pa's: {JSON.stringify(plantAvatars)}</p>
+          <p>pa at this index:{JSON.stringify(plantAvatars[selectedImageIndex])}</p>
+          {/* <p>stage 7{JSON.stringify(plantAvatars[selectedImageIndex].image_path_stage_7)}</p> */}
+
           <Button onClick={backButton}>BACK</Button>
-            <img className="plantAvatarImage" src={plantAvatars[selectedImageIndex].image_path_stage_7}></img>
+            {/* <img className="plantAvatarImage" src={plantAvatars[selectedImageIndex].image_path_stage_7}></img> */}
           <Button onClick={nextButton}>NEXT</Button>
 
           <Button onClick={doneButton}>done</Button>

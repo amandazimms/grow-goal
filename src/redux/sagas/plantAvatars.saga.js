@@ -40,7 +40,6 @@ function* fetchSelectedPlantAvatar(action) {
       growthStage = 0;
   }
 
-
   try {
     const response = yield axios.get(`/api/plantAvatar/selected`, 
         { params: {growthStage: growthStage, id: ap.id} });

@@ -78,7 +78,9 @@ function* addGoal(action) {
     //whenever adding a goal, we should also set it as the selected_goal, since that will always be the case.
     yield put({ type: 'SET_SELECTED_GOAL', payload: newGoal });
 
-    yield put({ type: 'FETCH_TASKS', payload: newGoal.id });
+    //by definition there are no tasks at this point (at the instant of clicking "add new goal"),
+    //so set tasks reducer to an empty array
+    yield put({ type: 'SET_TASKS', payload: [] });
     
   } catch {
       console.log('add new goal error');

@@ -32,12 +32,6 @@ router.get('/selected', (req,res) => {
   })
 })
 
-
-
-
-
-
-
 router.get('/all', (req,res) => {
   const queryString = `SELECT "image_path_stage_7"
       FROM "plant_avatar" 

@@ -43,6 +43,7 @@ function* updateTask(action){
 function* fetchTasks(action) {
   const ap = action.payload;
 
+  console.log('------------------->fetch');
   try {
     const response = yield axios.get('/api/task', 
       { params: { id: ap } });
@@ -50,7 +51,7 @@ function* fetchTasks(action) {
     //RESPONSE.DATA is array of tasks with all properties.
     
     const completedTasks = response.data.filter(task => task.is_complete);
-    const progress = completedTasks.length/response.data.length;
+    const progress = completedTasks.length/response.data.length || 0;
 
     yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: {progress: progress, id: ap} });
     yield put({ type: 'SET_TASKS', payload: response.data });

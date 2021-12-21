@@ -22,7 +22,9 @@ function GoalPage(props) {
   const [addingTask, setAddingTask] = useState(false);
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_TASKS', payload: selectedGoal.id }); 
+    if (!isNew){ //don't try to fetch any tasks if we just opened up a new goal page,since there are none.
+      dispatch({ type: 'FETCH_TASKS', payload: selectedGoal.id }); 
+    }
   }, []);
 
   const addTask = () => {

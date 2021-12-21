@@ -10,11 +10,12 @@ const router = express.Router();
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
+//console.log("!");
 
 router.get('/', (req,res) => {
-  // console.log('--->in task router get. req.query:', req.query);
-  // console.log('--->in task router get. req.body:', req.body);
-  // console.log('--->in task router get. req.params:', req.params);
+  console.log('--->in task router get. req.query:', req.query);
+  console.log('--->in task router get. req.body:', req.body);
+  console.log('--->in task router get. req.params:', req.params);
 
   const queryString = `SELECT * FROM task WHERE goal_id=${req.query.id} ORDER BY id`;
 
