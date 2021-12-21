@@ -22,7 +22,6 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import GoalPage from '../GoalPage/GoalPage';
 
 import './App.css';
-// import './App.scss';
 
 function App() {
   const dispatch = useDispatch();

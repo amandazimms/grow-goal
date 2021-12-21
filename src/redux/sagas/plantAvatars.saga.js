@@ -78,7 +78,7 @@ function* updateSelectedPlantAvatar(action){
 // worker Saga: will be fired on "FETCH_PLANT_AVATARS" actions
 function* fetchPlantAvatars() {
   //Fetch ALL of the plant avatars at their stage 8 image, for user to choose from
-
+  
   try {
     const response = yield axios.get('/api/plantAvatar/all');
     
