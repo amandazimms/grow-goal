@@ -20,7 +20,6 @@ function PlantAvatar(props) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_PLANT_AVATARS', payload: selectedGoal });
   }, []);
 
   const cancelButton = () => {
@@ -48,7 +47,6 @@ function PlantAvatar(props) {
     //since db is 1-indexed while this array is 0-indexed; add 1 for the next step.
     const plant_avatar_id = selectedImageIndex +1;
 
-    console.log('done button');
     dispatch({type: 'UPDATE_SELECTED_PLANT_AVATAR', payload: { plant_avatar_id: plant_avatar_id, goal_id: selectedGoal.id} });
 
     setEditingMode(false);
@@ -59,12 +57,8 @@ function PlantAvatar(props) {
       { editingMode 
         ? 
          <>
-          <p>pa's: {JSON.stringify(plantAvatars)}</p>
-          <p>pa at this index:{JSON.stringify(plantAvatars[selectedImageIndex])}</p>
-          {/* <p>stage 7{JSON.stringify(plantAvatars[selectedImageIndex].image_path_stage_7)}</p> */}
-
           <Button onClick={backButton}>BACK</Button>
-            {/* <img className="plantAvatarImage" src={plantAvatars[selectedImageIndex].image_path_stage_7}></img> */}
+            <img className="plantAvatarImage" src={plantAvatars[selectedImageIndex].image_path_stage_7}></img>
           <Button onClick={nextButton}>NEXT</Button>
 
           <Button onClick={doneButton}>done</Button>

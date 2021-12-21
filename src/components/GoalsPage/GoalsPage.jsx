@@ -10,8 +10,8 @@ function GoalsPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    //todo - add payload for specific goals to this user
     dispatch( {type: 'FETCH_GOALS', payload: {user: user} } );
+    dispatch({ type: 'FETCH_PLANT_AVATARS' });
   }, []);
 
   const setSelectedGoal = (goal) =>{
