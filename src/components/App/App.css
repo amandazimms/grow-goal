@@ -7,6 +7,14 @@
 }
 
 @font-face {
+  font-family: 'mungil';
+  src:  url('../../fonts/mungil-regular_2-webfont.woff2') format('woff2'),
+        url('../../fonts/mungil-regular_2-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'averia serif bold';
   src:  url('../../fonts/averiaserif-bold-webfont.woff2') format('woff2'),
         url('../../fonts/averiaserif-bold-webfont.woff') format('woff');
@@ -31,12 +39,37 @@
 }
 
 @font-face {
+  font-family: 'averia bold';
+  src:  url('../../fonts/averia-bold-webfont.woff2') format('woff2'),
+        url('../../fonts/averia-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'averia light';
+  src:  url('../../fonts/averia-light-webfont.woff2') format('woff2'),
+        url('../../fonts/averia-light-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'averia';
+  src:  url('../../fonts/averia-regular-webfont.woff2') format('woff2'),
+        url('../../fonts/averia-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'roble';
   src:  url('../../fonts/roblefont-webfont.woff2') format('woff2'),
         url('../../fonts/roblefont-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
+
 html,
 body,
 #react-root {
@@ -44,13 +77,15 @@ body,
 }
 
 body {
-  font-family: 'averia serif', serif;
+  font-family: 'averia', sans-serif;
   /* 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
   margin: 0px;
+  padding-top: 100px;
+  background-color: rgb(236, 245, 237);
 }
 
 button, h1, h2, h3, h4, h5, h6 {
-  font-family: 'roble', sans-serif;
+  font-family: 'averia bold', sans-serif;
 }
 
 img {
@@ -79,11 +114,10 @@ Button
 
 .btn {
   display: inline-block;
-  padding: 10px 20px;
-  border-color: #014041;
-  border-width: 1px 1px 3px;
-  border-radius: 4px;
-  background-color: #00acb0;
+  padding: 7px 13px;
+  border: none;
+  border-radius: 7px; 
+  background-color: rgb(36, 143, 42);
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -106,7 +140,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: rgb(53, 173, 59);
   text-decoration: none;
 }
 
@@ -123,8 +157,8 @@ Button
 
 .btn_asLink:hover {
   background-color: transparent;
-  border-color: #008183;
-  color: #008183;
+  border-color: #054b02;
+  color: #054b02;
 }
 
 .iconButton {

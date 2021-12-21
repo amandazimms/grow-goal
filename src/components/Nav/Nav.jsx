@@ -15,11 +15,11 @@ function Nav() {
       <div>
       
         <Link to="/goals">
-          <img id="goals-home-nav" className="nav-icon" src="/images/icons/Home.png"/>
+          <img id="goals-home-nav" className="nav-icon" src="/images/icons/GrowIcon.png"/>
         </Link>
 
         <Link to="/profile">
-          <img id="profile-nav" className="nav-icon" src="/images/icons/Profile.png"/>
+          <img id="profile-nav" className="nav-icon" src="/images/icons/ProfilePH.png"/>
         </Link>
 
 
