@@ -10,7 +10,7 @@ function Nav() {
   return (
     <div className="nav">
 
-      <img id="logo-nav" className="nav-icon" src="/images/icons/LogoNav.png"/>
+      <img id="logo-nav" className="nav-icon" src="/images/Logo.png"/>
       
       <div>
       

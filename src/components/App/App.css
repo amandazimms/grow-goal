@@ -7,7 +7,7 @@
 }
 
 @font-face {
-  font-family: 'averia bold';
+  font-family: 'averia serif bold';
   src:  url('../../fonts/averiaserif-bold-webfont.woff2') format('woff2'),
         url('../../fonts/averiaserif-bold-webfont.woff') format('woff');
   font-weight: normal;
@@ -15,7 +15,7 @@
 }
 
 @font-face {
-  font-family: 'averia light';
+  font-family: 'averia serif light';
   src:  url('../../fonts/averiaserif-light-webfont.woff2') format('woff2'),
         url('../../fonts/averiaserif-light-webfont.woff') format('woff');
   font-weight: normal;
@@ -23,13 +23,20 @@
 }
 
 @font-face {
-  font-family: 'averia';
+  font-family: 'averia serif';
   src:  url('../../fonts/averiaserif-regular-webfont.woff2') format('woff2'),
         url('../../fonts/averiaserif-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'roble';
+  src:  url('../../fonts/roblefont-webfont.woff2') format('woff2'),
+        url('../../fonts/roblefont-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 html,
 body,
 #react-root {
@@ -37,13 +44,13 @@ body,
 }
 
 body {
-  font-family: 'averia', serif;
+  font-family: 'averia serif', serif;
   /* 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
   margin: 0px;
 }
 
 button, h1, h2, h3, h4, h5, h6 {
-  font-family: 'bakso sapi', sans-serif;
+  font-family: 'roble', sans-serif;
 }
 
 img {
