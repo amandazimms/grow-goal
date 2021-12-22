@@ -110,8 +110,12 @@ function Task(props) {
             { displayIcons 
               ? 
                 <>
-                  <Button onClick={editButton}>edit</Button>
-                  <Button onClick={deleteButton}>delete</Button>
+                  <Button onClick={editButton} className="iconButton editDeleteIconButton"> 
+                    <img className="iconImage editDeleteIcon" src='./images/icons/EditIcon.png' alt="Edit task"></img>
+                  </Button>
+                  <Button onClick={deleteButton} className="iconButton editDeleteIconButton">
+                    <img className="iconImage" src='./images/icons/TrashIcon.png' alt="Delete task"></img>
+                  </Button>
                 </>
               :
                 <></>

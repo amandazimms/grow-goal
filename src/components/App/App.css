@@ -164,7 +164,6 @@ Button
 
 .iconButton {
   display: inline;
-  width: 15px;
   margin-right: 5px;
   /* remove default button styles */
   background: none;
@@ -174,6 +173,16 @@ Button
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+}
+
+.iconImage {
+  height: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.editDeleteIconButton {
+  margin-left: 5px;
 }
 
 .thumbnailButton {
