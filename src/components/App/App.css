@@ -184,6 +184,7 @@ Button
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+  padding: 28px;
 }
 
 /* --------------------------------------------------------------------------------
@@ -224,14 +225,6 @@ input {
 /* --------------------------------------------------------------------------------
 Image
 -------------------------------------------------------------------------------- */
-.plantAvatarImage {
-  width: 200px;
-}
-
-.plantAvatarThumbnail {
-  width: 100px;
-}
-
 .pageTitle, .pageSubTitle {
   margin: auto;
   width: 50%;
@@ -243,15 +236,72 @@ Image
   font-size: 40px;
 }
 
+.cards {
+  /* flexbox parent that holds the task and plant avatar cards */
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
 .cardArea {
   background-size: cover;
   border-radius: 25px;
   width: 350px;
-  height: 500px;
+  min-height: 350px;
+
+
   border: none;
   resize: both;
   padding: 20px;
   margin: 20px;
+
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+}
+
+.cardAreaSmall {
+  background-image: url('./BlueBG.png');
+  background-size: cover;
+  border-radius: 25px;
+  width: 200px;
+  height: 275px;
+
+  border: none;
+  resize: both;
+  padding: 20px;
+  margin: 20px;
+
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
 }
 
 .cardYellow {
@@ -260,4 +310,71 @@ Image
 
 .cardBlue {
   background-image: url('./BlueBG.png');
+}
+
+.thumbnailGoalTitle {
+  font-size: 24px;
+  text-align: center;
+}
+
+.cardParent {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-content: stretch;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.plantAvatarButtonBack {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 0;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+}
+
+.plantAvatarButtonNext {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 2;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+}
+
+.plantAvatarImage {
+  width: 200px;
+  -webkit-order: 2;
+  -ms-flex-order: 2;
+  order: 2;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+}
+
+.plantAvatarThumbnail {
+  width: 100px;
 }

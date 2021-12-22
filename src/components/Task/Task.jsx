@@ -19,12 +19,11 @@ function Task(props) {
   const [text, setText] = useState(task.task_name || '');
 
   const [showComplete, setShowComplete] = useState(task.is_complete);
-  const [checkBoxImage, setCheckBoxImage] = useState(showComplete ? './images/icons/checkedBox.png' : './images/icons/box.png');
-    //task.is_complete ? './images/icons/checkedBox.png' : './images/icons/box.png');
+  const [checkBoxImage, setCheckBoxImage] = useState(showComplete ? './images/icons/CheckedBox.png' : './images/icons/Box.png');
   
   
-  const checkedBoxImgPath = './images/icons/checkedBox.png';
-  const boxImgPath = './images/icons/box.png';
+  const checkedBoxImgPath = './images/icons/CheckedBox.png';
+  const boxImgPath = './images/icons/Box.png';
 
 
   useEffect(() => {
@@ -45,12 +44,12 @@ function Task(props) {
     //todo this could be DRYer
     if (showComplete) { //if task was complete and we clicked, we mark UN complete
       setShowComplete(false);
-      setCheckBoxImage('./images/icons/box.png');
+      setCheckBoxImage('./images/icons/Box.png');
       taskToSend.is_complete = false;
     } 
     else { //if task was incomplete and we clicked, mark COMPLETE
       setShowComplete(true);
-      setCheckBoxImage('./images/icons/checkedBox.png');
+      setCheckBoxImage('./images/icons/CheckedBox.png');
       taskToSend.is_complete = true;
     }
 

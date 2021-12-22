@@ -39,20 +39,20 @@ function GoalsPage() {
       </Link>
 
 
-      {goals.map(goal => {
-        return (
-          <div key={goal.id}>
-            {/* <p>{JSON.stringify(goal)}</p> */}
-            <h3>{goal.goal_name}</h3>
-            
-            <Link to="/goal" onClick={() => setSelectedGoal(goal)}>
-              <Button className="thumbnailButton">
-                <img className="plantAvatarThumbnail" src={goal.current_avatar_path} alt={goal.current_avatar_path}/>
-              </Button>
-            </Link>
-          </div>
-          );
-      })}
+      <div className="cards">
+        {goals.map(goal => {
+          return (
+            <div className="cardAreaSmall" key={goal.id}>              
+              <Link to="/goal" onClick={() => setSelectedGoal(goal)}>
+                <Button className="thumbnailButton">
+                  <img className="plantAvatarThumbnail" src={goal.current_avatar_path} alt={goal.current_avatar_path}/>
+                </Button>
+              </Link>
+              <h3 className="thumbnailGoalTitle">{goal.goal_name}</h3>
+            </div>
+            );
+        })}
+      </div>  
 
     </div>
   );

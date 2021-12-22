@@ -37,27 +37,29 @@ function GoalPage(props) {
       <h2 className="pageSubTitle">Goal:</h2>
       <h1 className="pageTitle"><GoalTitle isNew={isNew} goal={selectedGoal} /></h1>
 
-      <div className="cardArea cardYellow">
-        <h3>To Do:</h3> 
-        <Button onClick={addTask}>+</Button>
-        {
-          addingTask 
-          ? <AddNewText placeholderText={'Describe New Task'} onLeaveAdd={()=>setAddingTask(false)}/>
-          : <></>
-        }
+      <div className="cards">
+        <div className="cardArea cardYellow">
+          <h3>To Do:</h3> 
+          <Button onClick={addTask}>+</Button>
+          {
+            addingTask 
+            ? <AddNewText placeholderText={'Describe New Task'} onLeaveAdd={()=>setAddingTask(false)}/>
+            : <></>
+          }
 
-        {tasks.map(task => {
-          return (
-            <div key={task.id}>
-              <Task task={task}/>
-            </div>
-            );
-        })}
-      </div>
+          {tasks.map(task => {
+            return (
+              <div key={task.id}>
+                <Task task={task}/>
+              </div>
+              );
+          })}
+        </div>
 
-      <div className="cardArea cardBlue">  
-        <h3>Progress:</h3>
-        <PlantAvatar isNew={isNew}/>
+        <div className="cardArea cardBlue">  
+          <h3>Progress:</h3>
+          <PlantAvatar isNew={isNew}/>
+        </div>
       </div>
       
     </div>

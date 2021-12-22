@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import ImagePicker from '../ImagePicker/ImagePicker';
 
 function PlantAvatar(props) {
   
@@ -53,32 +52,37 @@ function PlantAvatar(props) {
   }
 
   return (
-    <div> 
+    <div>
       { editingMode 
         ? 
-         <>
-          <Button onClick={backButton}>BACK</Button>
-            <img className="plantAvatarImage" src={plantAvatars[selectedImageIndex].image_path_stage_7}></img>
-          <Button onClick={nextButton}>NEXT</Button>
-
-          <Button onClick={doneButton}>done</Button>
-          <Button onClick={cancelButton}>cancel</Button>
-         </>
+         <div className="cardParent"> 
+            <Button className="plantAvatarButtonBack" onClick={backButton}>Bk</Button>
+              <img className="plantAvatarImage" src={plantAvatars[selectedImageIndex].image_path_stage_7}></img>
+            <Button className="plantAvatarButtonNext" onClick={nextButton}>Nx</Button>
+         </div>
         : 
+         <div className="cardParent"> 
+            <img className="plantAvatarImage" onClick={() => setDisplayEditIcon(true)} src={selectedGoal.current_avatar_path}></img>
+
+              { displayEditIcon 
+                ? 
+                  <>
+                    <Button onClick={editButton}>edit</Button>
+                  </>
+                :
+                  <></>
+              } 
+          </div>
+      }
+
+      { editingMode 
+        ?
           <>
-
-          <img className="plantAvatarImage" onClick={() => setDisplayEditIcon(true)} src={selectedGoal.current_avatar_path}></img>
-
-            { displayEditIcon 
-              ? 
-                <>
-                  <Button onClick={editButton}>edit</Button>
-                </>
-              :
-                <>
-                </>
-            } 
+            <Button onClick={doneButton}>Dn</Button>
+            <Button onClick={cancelButton}>X</Button>
           </>
+        :
+          <></>  
       }
 
     </div>
