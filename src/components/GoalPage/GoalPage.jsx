@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import AddNewText from '../AddNewText/AddNewText';
+import AddNewTask from '../AddNewTask/AddNewTask';
 import GoalTitle from '../GoalTitle/GoalTitle';
 import PlantAvatar from '../PlantAvatar/PlantAvatar';
 import Task from '../Task/Task';
@@ -54,7 +54,7 @@ function GoalPage(props) {
 
           <div className="bottomButtonContainer">
             { addingTask 
-              ? <AddNewText placeholderText={'Describe New Task'} onLeaveAdd={()=>setAddingTask(false)}/>
+              ? <AddNewTask placeholderText={'Describe New Task'} onLeaveAdd={()=>setAddingTask(false)}/>
               : <Button onClick={addTask} className="iconButton addTaskButton">
                   <img className="iconImage addIcon" src='./images/icons/AddIcon.png' alt="Add task"></img>
                 </Button> 

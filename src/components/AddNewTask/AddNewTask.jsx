@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 
-function AddNewText(props) {
+function AddNewTask(props) {
 
   const dispatch = useDispatch();
 
@@ -35,12 +35,12 @@ function AddNewText(props) {
 
 
   return (
-    <div>
+    <>
       <input placeholder={placeholderText} type="text" onChange={ (event) => handleChange(event) }></input>
       <Button onClick={doneButton}>done</Button>
       <Button onClick={cancelButton}>cancel</Button>
-    </div>
+    </>
   );
 }
 
-export default AddNewText;
+export default AddNewTask;
