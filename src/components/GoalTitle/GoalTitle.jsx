@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 function GoalTitle(props) {
 
-  const goal = props.goal;
   const isNew = props.isNew;
 
   const dispatch = useDispatch();
@@ -16,12 +15,10 @@ function GoalTitle(props) {
 
   const [displayIcons, setDisplayIcons] = useState(false);
   const [editingMode, setEditingMode] = useState(isNew || false);
-  const [text, setText] = useState(goal.goal_name || '');
+  const [text, setText] = useState(selectedGoal.goal_name || '');
   const [showDeleteConfirmModal, setShowDeleteConfirmModal] = useState(false);
 
-  useEffect(() => {
-    console.log("text is:", text);
-    
+  useEffect(() => {    
   }, [])
   
   const handleChange = (event) =>{
@@ -43,7 +40,7 @@ function GoalTitle(props) {
 
     const goalToSend = {
       goal_name: textToSend,
-      id: goal.id
+      id: selectedGoal.id
     }
     dispatch({type: 'UPDATE_GOAL_TITLE', payload: goalToSend });
 
@@ -65,9 +62,9 @@ function GoalTitle(props) {
   }
 
   const finalDeleteButton = () => {
-    console.log('->about to send this goal: ', goal);
+    console.log('->about to send this goal: ', selectedGoal);
     //runs when user CONFIRMS deletion in the modal popup - delete goal for real!
-    dispatch({type: 'DELETE_GOAL', payload: goal});
+    dispatch({type: 'DELETE_GOAL', payload: selectedGoal});
   }
 
   const handleDeleteModalClose = () => {
@@ -77,11 +74,13 @@ function GoalTitle(props) {
 
   return (
     <div>
-      <p>editing mode?{JSON.stringify(props)}</p>
+      <p>TITLE's props: {JSON.stringify(props)}</p>
+      <p>title's SG: {JSON.stringify(selectedGoal)}</p>
+
       { editingMode 
         ? 
          <>
-          <input value={text} placeholder={goal.goal_name} type="text" onChange={ (event) => handleChange(event) }></input>
+          <input value={text} placeholder={selectedGoal.goal_name} type="text" onChange={ (event) => handleChange(event) }></input>
           <Button onClick={doneButton}>done</Button>
           <Button onClick={cancelButton}>cancel</Button>
          </>

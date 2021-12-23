@@ -29,6 +29,9 @@ function* deleteThisGoalsTasks(action){
   try {
     const deletedTask = yield axios.delete(`/api/task/thisGoalsTasks/${ap.id}`);
 
+    //no need to FETCH_TASKS here - since the goal is deleted it has no tasks to fetch
+    //todo could unset tasks?
+    
   } catch {
     console.log('delete task error');
   }

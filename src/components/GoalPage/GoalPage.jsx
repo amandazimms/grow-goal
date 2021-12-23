@@ -33,43 +33,43 @@ function GoalPage(props) {
 
   return (
     <div className="container">
-      {/* <h5>tasks for this goal: {JSON.stringify(tasks)}</h5> */}
-      <h2 className="pageSubTitle">Goal:</h2>
-      <h1 className="pageTitle"><GoalTitle isNew={isNew} goal={selectedGoal} /></h1>
+        <p>Page's selected goal: {JSON.stringify(selectedGoal)}</p>
+        <h2 className="pageSubTitle">Goal:</h2>
+        <h1 className="pageTitle"><GoalTitle isNew={isNew} goal={selectedGoal} /></h1>
 
-      <div className="cards">
-        <div className="cardArea cardYellow cardParentTasks">
-          
+        <div className="cards">
+            <div className="cardArea cardYellow cardParentTasks">
+              
 
-          <div className="tasksContainer">
-            <h3>To Do:</h3> 
-            {tasks.map(task => {
-              return (
-                <div key={task.id}>
-                  <Task task={task}/>
-                </div>
-                );
-            })}
-          </div>
+              <div className="tasksContainer">
+                <h3>To Do:</h3> 
+                {tasks.map(task => {
+                  return (
+                    <div key={task.id}>
+                      <Task task={task}/>
+                    </div>
+                    );
+                })}
+              </div>
 
-          <div className="bottomButtonContainer">
-            { addingTask 
-              ? <AddNewTask placeholderText={'Describe New Task'} onLeaveAdd={()=>setAddingTask(false)}/>
-              : <Button onClick={addTask} className="iconButton addTaskButton">
-                  <img className="iconImage addIcon" src='./images/icons/AddIcon.png' alt="Add task"></img>
-                </Button> 
-            }
-          </div>
+              <div className="bottomButtonContainer">
+                { addingTask 
+                  ? <AddNewTask placeholderText={'Describe New Task'} onLeaveAdd={()=>setAddingTask(false)}/>
+                  : <Button onClick={addTask} className="iconButton addTaskButton">
+                      <img className="iconImage addIcon" src='./images/icons/AddIcon.png' alt="Add task"></img>
+                    </Button> 
+                }
+              </div>
 
+            </div>
+
+              
+            <div className="cardArea cardBlue">  
+              <h3>Progress:</h3>
+              <PlantAvatar isNew={isNew}/>
+            </div>
         </div>
 
-          
-        <div className="cardArea cardBlue">  
-          <h3>Progress:</h3>
-          <PlantAvatar isNew={isNew}/>
-        </div>
-      </div>
-      
     </div>
   );
 }
