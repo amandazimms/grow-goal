@@ -40,22 +40,29 @@ function GoalPage(props) {
       <div className="cards">
         <div className="cardArea cardYellow">
           <h3>To Do:</h3> 
-          <Button onClick={addTask}>+</Button>
-          {
-            addingTask 
-            ? <AddNewText placeholderText={'Describe New Task'} onLeaveAdd={()=>setAddingTask(false)}/>
-            : <></>
-          }
 
-          {tasks.map(task => {
-            return (
-              <div key={task.id}>
-                <Task task={task}/>
-              </div>
-              );
-          })}
+          <div className="tasksContainer">
+            {tasks.map(task => {
+              return (
+                <div key={task.id}>
+                  <Task task={task}/>
+                </div>
+                );
+            })}
+          </div>
+
+          <div className="bottomButtonConatiner">
+            { addingTask 
+              ? <AddNewText placeholderText={'Describe New Task'} onLeaveAdd={()=>setAddingTask(false)}/>
+              : <Button onClick={addTask} className="iconButton addTaskButton">
+                  <img className="iconImage addIcon" src='./images/icons/AddIcon.png' alt="Add task"></img>
+                </Button> 
+            }
+          </div>
+
         </div>
 
+          
         <div className="cardArea cardBlue">  
           <h3>Progress:</h3>
           <PlantAvatar isNew={isNew}/>

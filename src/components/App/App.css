@@ -185,6 +185,10 @@ Button
   margin-left: 5px;
 }
 
+.addIcon {
+  height: 45px;
+}
+
 .thumbnailButton {
   /* remove default button styles */
   background: none;
@@ -239,11 +243,11 @@ Image
   margin: auto;
   width: 50%;
   text-align: center;
-  font-size: 48px;
+  font-size: 42px;
 }
 
 .pageSubTitle {
-  font-size: 34px;
+  font-size: 28px;
 }
 
 .cards {
@@ -391,4 +395,14 @@ Image
 
 .taskContent {
   margin-bottom: 4px; 
+}
+
+.tasksContainter{
+
+}
+
+.bottomButtonContainet {
+  display: flex;
+  justify-content: center;
+  align-content: flex-end;
 }
