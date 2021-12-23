@@ -19,7 +19,7 @@ function* updateGoalTitle(action) {
         { goal_name: ap.goal_name });
     
     //need to send a payload for fetch_goals so that we can access the ap.USER    
-    yield put({ type: 'FETCH_GOALS', payload: ap.id });
+    yield put({ type: 'FETCH_GOALS', payload: ap });
 
   } catch {
     console.log('update goal title error');
