@@ -38,10 +38,11 @@ function GoalPage(props) {
       <h1 className="pageTitle"><GoalTitle isNew={isNew} goal={selectedGoal} /></h1>
 
       <div className="cards">
-        <div className="cardArea cardYellow">
-          <h3>To Do:</h3> 
+        <div className="cardArea cardYellow cardParentTasks">
+          
 
           <div className="tasksContainer">
+            <h3>To Do:</h3> 
             {tasks.map(task => {
               return (
                 <div key={task.id}>
@@ -51,7 +52,7 @@ function GoalPage(props) {
             })}
           </div>
 
-          <div className="bottomButtonConatiner">
+          <div className="bottomButtonContainer">
             { addingTask 
               ? <AddNewText placeholderText={'Describe New Task'} onLeaveAdd={()=>setAddingTask(false)}/>
               : <Button onClick={addTask} className="iconButton addTaskButton">

@@ -55,13 +55,13 @@ function PlantAvatar(props) {
     <div>
       { editingMode 
         ? 
-         <div className="cardParent"> 
+         <div className="cardParentPlantAvatar"> 
             <Button className="plantAvatarButtonBack" onClick={backButton}>Bk</Button>
               <img className="plantAvatarImage" src={plantAvatars[selectedImageIndex].image_path_stage_7}></img>
             <Button className="plantAvatarButtonNext" onClick={nextButton}>Nx</Button>
          </div>
         : 
-         <div className="cardParent"> 
+         <div className="cardParentPlantAvatar"> 
             <img className="plantAvatarImage" onClick={() => setDisplayEditIcon(true)} src={selectedGoal.current_avatar_path}></img>
 
               { displayEditIcon 
