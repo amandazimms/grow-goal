@@ -234,6 +234,19 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 8px;
+}
+
+input:hover, input:active, input:focus, input:target, input:focus-visible {
+  margin: 5px;
+  margin-bottom: 10px;
+  border-style: solid;
+  border-color: rgb(30, 117, 45);
+  border-width: 3px;
+  border-radius: 8px;
 }
 
 /* --------------------------------------------------------------------------------

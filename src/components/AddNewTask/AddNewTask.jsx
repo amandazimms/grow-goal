@@ -37,8 +37,14 @@ function AddNewTask(props) {
   return (
     <>
       <input placeholder={placeholderText} type="text" onChange={ (event) => handleChange(event) }></input>
-      <Button onClick={doneButton}>done</Button>
-      <Button onClick={cancelButton}>cancel</Button>
+      
+      <Button onClick={doneButton} className="iconButton confirmButton">
+        <img className="iconImage" src='./images/icons/GreenCheck.png' alt="Confirm new task"></img>
+      </Button>
+
+      <Button onClick={cancelButton} className="iconButton cancelButton">
+        <img className="iconImage" src='./images/icons/RedEx.png' alt="Cancel new task"></img>
+      </Button>
     </>
   );
 }
