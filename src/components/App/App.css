@@ -74,6 +74,7 @@ html,
 body,
 #react-root {
   height: 100%;
+  color: #05381A;
 }
 
 body {
@@ -107,6 +108,7 @@ Container
 
 .container {
   padding: 20px;
+  margin: auto;
 }
 
 /* --------------------------------------------------------------------------------
@@ -235,7 +237,7 @@ input {
   margin: 5px;
   margin-bottom: 10px;
   border-style: solid;
-  border-color: black;
+  border-color:#05381A;
   border-width: 3px;
   border-radius: 8px;
 }
