@@ -12,14 +12,14 @@ function* goalSaga() {
 // worker Saga: will be fired on "UPDATE_GOAL_TITLE" actions
 function* updateGoalTitle(action) {
   const ap = action.payload;
-  console.log('--------_>in update goal title; ap is:', action.payload);
+  //ap.goal.id is goal id
+  //ap.goal_name is the new goal name
+  console.log('---->  in updateGoal title, ap.goal.id:', ap.goal.id);
+  console.log('---->  in updateGoal title, ap.goal_name:', ap.goal_name);
 
   try {
-    const updatedGoal = yield axios.put(`/api/goal/name/${ap.id}`, 
+    const updatedGoal = yield axios.put(`/api/goal/name/${ap.goal.id}`, 
         { goal_name: ap.goal_name });
-    
-    //need to send a payload for fetch_goals so that we can access the ap.USER    
-    yield put({ type: 'FETCH_GOALS', payload: ap });
 
   } catch {
     console.log('update goal title error');
@@ -40,9 +40,6 @@ function* updateGoalProgress(action) {
 
     yield put({ type: 'SET_SELECTED_GOAL_IMAGE', payload: {current_avatar_path: ap.current_image_path} });
 
-    //need to send a payload for fetch_goals so that we can access the ap.USER    
-    yield put({ type: 'FETCH_GOALS', payload: ap.id });
-
   } catch {
     console.log('update goal progresss error');
   } 
@@ -51,16 +48,20 @@ function* updateGoalProgress(action) {
 // worker Saga: will be fired on "DELETE_GOAL" actions
 function* deleteGoal(action) {
   const ap = action.payload;
-  //ap is the goal
+  //ap is the goal (selectedGoal)
   //ap.id is the goal-to-be-deleted 's id
+  //ap.user_id is the user id
+  console.log("*** in delete goal, ap:", ap );
+  console.log("*** in delete goal, ap.id:", ap.id);
+  console.log("*** in delete goal, ap.user_id:", ap.user_id);
 
   try {
     const deletedTask = yield axios.delete(`/api/goal/${ap.id}`);
     
-    yield put({ type: 'DELETE_THIS_GOALS_TASKS', payload: ap });
+    yield put({ type: 'DELETE_THIS_GOALS_TASKS', payload: ap.id });
 
     //need to send a payload for fetch_goals so that we can access the ap.USER    
-    yield put({ type: 'FETCH_GOALS', payload: ap.id });
+    yield put({ type: 'FETCH_GOALS', payload: ap.user_id });
 
   } catch {
     console.log('delete goal error');
@@ -82,7 +83,6 @@ function* addGoal(action) {
     }
 
     const goal = yield axios.post('/api/goal', newGoal);
-              //todo add payload for this user id?
 
     newGoal = { ...newGoal, id: goal.data.id }
 
@@ -92,9 +92,6 @@ function* addGoal(action) {
     //by definition there are no tasks at this point (at the instant of clicking "add new goal"),
     //so set tasks reducer to an empty array
     yield put({ type: 'SET_TASKS', payload: [] });
-
-    //need to send a payload for fetch_goals so that we can access the ap.USER    
-    yield put({ type: 'FETCH_GOALS', payload: ap.id });
     
   } catch {
       console.log('add new goal error');
@@ -104,11 +101,14 @@ function* addGoal(action) {
 // worker Saga: will be fired on "FETCH_GOAL" actions
 function* fetchGoals(action) {
   const ap = action.payload;
-  console.log("*** in fetch goals, ap is:", action.payload);
-  
+  //ap is user.id
+  console.log("*** in fetch goals, ap is:", ap);
+
   try {
     const response = yield axios.get('/api/goal',       
-        { params: { userId: ap.user.id } });
+        { params: { userId: ap } });
+    
+    console.log("*** in fetch goals, response.data is:", response.data);
 
     yield put({ type: 'SET_GOALS', payload: response.data });
 

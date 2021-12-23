@@ -40,8 +40,9 @@ function GoalTitle(props) {
 
     const goalToSend = {
       goal_name: textToSend,
-      id: selectedGoal.id
+      goal: selectedGoal
     }
+
     dispatch({type: 'UPDATE_GOAL_TITLE', payload: goalToSend });
 
     setEditingMode(false);

@@ -24,10 +24,10 @@ function* deleteSingleTask(action){
 
 function* deleteThisGoalsTasks(action){
   const ap = action.payload;
-  //ap.id is the goal's id
+  //ap is the goal's id
 
   try {
-    const deletedTask = yield axios.delete(`/api/task/thisGoalsTasks/${ap.id}`);
+    const deletedTask = yield axios.delete(`/api/task/thisGoalsTasks/${ap}`);
 
     //no need to FETCH_TASKS here - since the goal is deleted it has no tasks to fetch
     //todo could unset tasks?

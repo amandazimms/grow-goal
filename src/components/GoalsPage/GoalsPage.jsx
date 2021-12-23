@@ -11,7 +11,7 @@ function GoalsPage() {
 
   useEffect(() => {
     dispatch( {type: 'UNSET_SELECTED_GOAL', payload: {} });
-    dispatch( {type: 'FETCH_GOALS', payload: {user: user} } );
+    dispatch( {type: 'FETCH_GOALS', payload: user.id });
     dispatch({ type: 'FETCH_PLANT_AVATARS' });
   }, []);
 
