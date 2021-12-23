@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 
 function GoalTitle(props) {
@@ -14,10 +15,9 @@ function GoalTitle(props) {
   const selectedGoal = useSelector(store => store.selectedGoal);
 
   const [displayIcons, setDisplayIcons] = useState(false);
-
   const [editingMode, setEditingMode] = useState(isNew || false);
-
   const [text, setText] = useState(goal.goal_name || '');
+  const [showDeleteConfirmModal, setShowDeleteConfirmModal] = useState(false);
 
   useEffect(() => {
     console.log("text is:", text);
@@ -60,13 +60,19 @@ function GoalTitle(props) {
   }
 
   const deleteButton = () => {
-    if (confirm("delete this ENTIRE GOAL? this action cannot be undone")){
-      // delete this task/goal from the db, and make sure to re-render (get again)
-      
-      dispatch({type: 'DELETE_GOAL', payload: goal});
-    }
+    //runs when first delete icon is clicked - triggers modal popup confirm 
+    setShowDeleteConfirmModal(true);
   }
 
+  const finalDeleteButton = () => {
+    //runs when user CONFIRMS deletion in the modal popup - delete goal for real!
+    dispatch({type: 'DELETE_GOAL', payload: goal});
+  }
+
+  const handleDeleteModalClose = () => {
+    setShowDeleteConfirmModal(false);
+    setEditingMode(false);
+  }
 
   return (
     <div>
@@ -94,6 +100,25 @@ function GoalTitle(props) {
           </>
         
       }
+
+      <Modal show={showDeleteConfirmModal} onHide={handleDeleteModalClose}>
+        <Modal.Header>
+          <Modal.Title>Delete Goal?</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <p>Are you sure you want to delete this ENTIRE GOAL and all its tasks?</p>
+          <p>This action cannot be undone</p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleDeleteModalClose}>No, keep it</Button>
+          <Link to="/goals" onClick={finalDeleteButton}>
+            <Button variant="secondary">Yes, Delete it</Button>
+          </Link>
+        </Modal.Footer>
+      </Modal>
+
 
      
     </div>
