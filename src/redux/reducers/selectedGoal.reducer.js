@@ -2,6 +2,8 @@ const selectedGoalReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_SELECTED_GOAL':
       return action.payload;
+    case 'UNSET_SELECTED_GOAL':
+      return {};
     case 'SET_SELECTED_GOAL_IMAGE':
       return {...state, ...action.payload}
     default:

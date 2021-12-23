@@ -21,8 +21,19 @@ function AddNewTask(props) {
   }
 
   const doneButton = () => {
+    let textToSend = text;
+
+    let allSpaces = true;
+    for (let i=0; i<text.length; i++)
+      if (text[i] != " ")
+        allSpaces = false;
+
+    if (text === "" || allSpaces){
+      textToSend = "New Task"
+    }
+
     dispatch({ type: 'ADD_TASK', payload: {
-      task_name: text,
+      task_name: textToSend,
       is_complete: false,
       goal_id: selectedGoal.id
     }});

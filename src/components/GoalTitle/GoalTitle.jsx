@@ -20,6 +20,7 @@ function GoalTitle(props) {
   const [text, setText] = useState(goal.goal_name || '');
 
   useEffect(() => {
+    console.log("text is:", text);
     
   }, [])
   
@@ -28,8 +29,20 @@ function GoalTitle(props) {
   }
 
   const doneButton = () => {
+    let textToSend = text;
+
+    let allSpaces = true;
+    for (let i=0; i<text.length; i++)
+      if (text[i] != " ")
+        allSpaces = false;
+
+    if (text === "" || allSpaces){
+      textToSend = "New Goal"
+      setText(textToSend);
+    }
+
     const goalToSend = {
-      goal_name: text,
+      goal_name: textToSend,
       id: goal.id
     }
     dispatch({type: 'UPDATE_GOAL_TITLE', payload: goalToSend });
@@ -57,7 +70,7 @@ function GoalTitle(props) {
 
   return (
     <div>
-      {/* <p>editing mode?{JSON.stringify(editingMode)}</p> */}
+      {/* <p>editing mode?{JSON.stringify(props)}</p> */}
       { editingMode 
         ? 
          <>
