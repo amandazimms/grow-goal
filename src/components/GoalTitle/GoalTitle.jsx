@@ -65,6 +65,7 @@ function GoalTitle(props) {
   }
 
   const finalDeleteButton = () => {
+    console.log('->about to send this goal: ', goal);
     //runs when user CONFIRMS deletion in the modal popup - delete goal for real!
     dispatch({type: 'DELETE_GOAL', payload: goal});
   }
@@ -76,7 +77,7 @@ function GoalTitle(props) {
 
   return (
     <div>
-      {/* <p>editing mode?{JSON.stringify(props)}</p> */}
+      <p>editing mode?{JSON.stringify(props)}</p>
       { editingMode 
         ? 
          <>

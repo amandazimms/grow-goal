@@ -64,8 +64,27 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req,res)=> {
+router.delete('/singleTask/:id', (req,res)=> {
   const queryString = `DELETE FROM "task" WHERE id=${req.params.id}`;
+
+  pool.query(queryString)
+    .then(()=>{
+      res.sendStatus(200);
+    }).catch((err) => {
+      console.log('DELETE task failed: ', err);
+      res.sendStatus(500);
+    });
+});
+
+//console.log("!!!");
+
+router.delete('/thisGoalsTasks/:id', (req,res)=> {
+  // console.log('*** in task router DELETE (this goals tasks). req.query:', req.query);
+  // console.log('*** in task router DELETE (this goals tasks). req.body:', req.body);
+  // console.log('*** in task router DELETE (this goals tasks). req.params:', req.params);
+
+  //req.params.id is the goal's id - delete all tasks where this is the goal_id.
+  const queryString = `DELETE FROM "task" WHERE goal_id=${req.params.id}`;
 
   pool.query(queryString)
     .then(()=>{

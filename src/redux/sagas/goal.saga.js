@@ -46,14 +46,17 @@ function* updateGoalProgress(action) {
 // worker Saga: will be fired on "DELETE_GOAL" actions
 function* deleteGoal(action) {
   const ap = action.payload;
+  //ap is the goal
+  //ap.id is the goal-to-be-deleted 's id
 
   try {
     const deletedTask = yield axios.delete(`/api/goal/${ap.id}`);
-
-    //todo navigate to goals page.
+    
+    yield put({ type: 'DELETE_THIS_GOALS_TASKS', payload: ap });
 
   } catch {
     console.log('delete goal error');
+
   }
 
 }
