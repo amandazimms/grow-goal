@@ -5,6 +5,8 @@ const selectedGoalReducer = (state = {}, action) => {
     case 'UNSET_SELECTED_GOAL':
       return {};
     case 'SET_SELECTED_GOAL_IMAGE':
+      return {...state, ...action.payload};
+    case 'SET_SELECTED_GOAL_TITLE':
       return {...state, ...action.payload}
     default:
       return state;

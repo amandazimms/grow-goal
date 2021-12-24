@@ -16,11 +16,11 @@ function Task(props) {
                   //todo what is task.isEditingMode?
   const [editingMode, setEditingMode] = useState(props.isEditingMode || false);
 
-  const [text, setText] = useState(task.task_name || '');
+  const [taskName, setTaskName] = useState(task.task_name || '');
+  const [editingText, setEditingText] = useState(taskName);
 
   const [showComplete, setShowComplete] = useState(task.is_complete);
   const [checkBoxImage, setCheckBoxImage] = useState(showComplete ? './images/icons/CheckedBox.png' : './images/icons/Box.png');
-  
   
   const checkedBoxImgPath = './images/icons/CheckedBox.png';
   const boxImgPath = './images/icons/Box.png';
@@ -30,7 +30,7 @@ function Task(props) {
   }, []);
 
   const handleChange = (event) =>{
-    setText(event.target.value);
+    setEditingText(event.target.value);
   }
 
   const toggleCompleted = () => {
@@ -56,11 +56,11 @@ function Task(props) {
     dispatch({type: 'UPDATE_TASK', payload: taskToSend });
   }
 
+  const confirmButton = () => {
+    setTaskName(editingText);
 
-
-  const doneButton = () => {
     const taskToSend = {
-      task_name: text,
+      task_name: editingText,
       id: task.id,
       is_complete: task.is_complete,
       goal_id: selectedGoal.id
@@ -91,21 +91,27 @@ function Task(props) {
 
   return (
     <div>
+      {/* <p>props.task: {JSON.stringify(props.task)}</p> */}
       { editingMode 
         ? 
          <>
-          <input className="taskContent" value={text} placeholder={task.task_name} type="text" onChange={ (event) => handleChange(event) }></input>
-          <Button className="taskContent" onClick={doneButton}>done</Button>
-          <Button className="taskContent" onClick={cancelButton}>cancel</Button>
+          <input className="taskContent" value={editingText} placeholder={task.task_name} type="text" onChange={ (event) => handleChange(event) }></input>
+          <Button onClick={confirmButton} className="taskContent iconButton confirmButton">
+            <img className="iconImage" src='./images/icons/GreenCheck.png' alt="Confirm editing task"></img>
+          </Button>
+
+          <Button onClick={cancelButton} className="taskContent iconButton cancelButton">
+            <img className="iconImage" src='./images/icons/RedEx.png' alt="Cancel editing task"></img>
+          </Button>
          </>
         : 
           <>
             <Button className="iconButton checkButton taskContent" onClick={() => toggleCompleted()}>
-              <img className="iconImage" src={checkBoxImage} alt="Mark task incomplete"></img>
+              <img className="iconImage" src={checkBoxImage} alt="Toggle task incomplete/complete"></img>
             </Button>
            
             {/* todo also style this text as strikethru vs not if it's complete vs not. */}
-            <p className="taskText taskContent" onClick={() => setDisplayIcons(true)}>{text}</p>
+            <p className="taskText taskContent" onClick={() => setDisplayIcons(true)}>{props.task.task_name}</p>
  
             { displayIcons 
               ? 

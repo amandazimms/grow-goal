@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-
 function GoalTitle(props) {
 
   const isNew = props.isNew;
@@ -15,34 +14,41 @@ function GoalTitle(props) {
 
   const [displayIcons, setDisplayIcons] = useState(false);
   const [editingMode, setEditingMode] = useState(isNew || false);
-  const [text, setText] = useState(selectedGoal.goal_name || '');
+  
+  const [goalName, setGoalName] = useState(selectedGoal.goal_name || '');
+  const [editingText, setEditingText] = useState(goalName);
+
   const [showDeleteConfirmModal, setShowDeleteConfirmModal] = useState(false);
 
   useEffect(() => {    
   }, [])
   
   const handleChange = (event) =>{
-    setText(event.target.value);
+    setEditingText(event.target.value);
   }
 
-  const doneButton = () => {
-    let textToSend = text;
+  const confirmButton = () => {
+    let titleToSend = editingText;
 
+    //check to see if the current title is only spaes
     let allSpaces = true;
-    for (let i=0; i<text.length; i++)
-      if (text[i] != " ")
+    for (let i=0; i<titleToSend.length; i++)
+      if (titleToSend[i] != " ")
         allSpaces = false;
 
-    if (text === "" || allSpaces){
-      textToSend = "New Goal"
-      setText(textToSend);
+    //check to see if the current title is an empty string    
+    if (titleToSend === "" || allSpaces){
+      titleToSend = "New Goal"
     }
 
+    //set the goal name to the new title
+    setGoalName(titleToSend);
+
+    //send it in a dispatch
     const goalToSend = {
-      goal_name: textToSend,
+      goal_name: titleToSend,
       goal: selectedGoal
     }
-
     dispatch({type: 'UPDATE_GOAL_TITLE', payload: goalToSend });
 
     setEditingMode(false);
@@ -77,32 +83,31 @@ function GoalTitle(props) {
     <>
       {/* <p>TITLE's props: {JSON.stringify(props)}</p> */}
       {/* <p>title's SG: {JSON.stringify(selectedGoal)}</p> */}
-
       { editingMode 
         ? 
          <>
-          <input value={text} placeholder={selectedGoal.goal_name} className="goalTitleInput" type="text" onChange={ (event) => handleChange(event) }></input>
+          <input value={editingText} placeholder={selectedGoal.goal_name} className="goalTitleInput" type="text" onChange={ (event) => handleChange(event) }></input>
           
-          <Button onClick={doneButton} className="iconButton confirmButton">
-            <img className="iconImage iconImageLarge" src='./images/icons/GreenCheck.png' alt="Confirm new task"></img>
+          <Button onClick={confirmButton} className="iconButton confirmButton">
+            <img className="iconImage iconImageLarge" src='./images/icons/GreenCheck.png' alt="Confirm goal name"></img>
           </Button>
 
           <Button onClick={cancelButton} className="iconButton cancelButton">
-            <img className="iconImage iconImageLarge" src='./images/icons/RedEx.png' alt="Cancel new task"></img>
+            <img className="iconImage iconImageLarge" src='./images/icons/RedEx.png' alt="Cancel goal name change"></img>
           </Button>
          </>
         : 
           <>
-            <p className="goalTitleText" onClick={() => setDisplayIcons(true)}>{text}</p>
+            <p className="goalTitleText" onClick={() => setDisplayIcons(true)}>{selectedGoal.goal_name}</p>
   
             { displayIcons 
               ? 
                 <>
                   <Button onClick={editButton} className="iconButton editDeleteButton"> 
-                    <img className="iconImage iconImageLarge" src='./images/icons/EditIcon.png' alt="Edit task"></img>
+                    <img className="iconImage iconImageLarge" src='./images/icons/EditIcon.png' alt="Edit goal"></img>
                   </Button>
                   <Button onClick={deleteButton} className="iconButton editDeleteButton">
-                    <img className="iconImage iconImageLarge" src='./images/icons/TrashIcon.png' alt="Delete task"></img>
+                    <img className="iconImage iconImageLarge" src='./images/icons/TrashIcon.png' alt="Delete goal"></img>
                   </Button>
                 </>
               :

@@ -14,12 +14,12 @@ function* updateGoalTitle(action) {
   const ap = action.payload;
   //ap.goal.id is goal id
   //ap.goal_name is the new goal name
-  console.log('---->  in updateGoal title, ap.goal.id:', ap.goal.id);
-  console.log('---->  in updateGoal title, ap.goal_name:', ap.goal_name);
-
+  
   try {
     const updatedGoal = yield axios.put(`/api/goal/name/${ap.goal.id}`, 
         { goal_name: ap.goal_name });
+
+    yield put({ type: 'SET_SELECTED_GOAL_TITLE', payload: {goal_name: ap.goal_name} });
 
   } catch {
     console.log('update goal title error');
@@ -51,9 +51,6 @@ function* deleteGoal(action) {
   //ap is the goal (selectedGoal)
   //ap.id is the goal-to-be-deleted 's id
   //ap.user_id is the user id
-  console.log("*** in delete goal, ap:", ap );
-  console.log("*** in delete goal, ap.id:", ap.id);
-  console.log("*** in delete goal, ap.user_id:", ap.user_id);
 
   try {
     const deletedTask = yield axios.delete(`/api/goal/${ap.id}`);
@@ -102,14 +99,11 @@ function* addGoal(action) {
 function* fetchGoals(action) {
   const ap = action.payload;
   //ap is user.id
-  console.log("*** in fetch goals, ap is:", ap);
 
   try {
     const response = yield axios.get('/api/goal',       
         { params: { userId: ap } });
     
-    console.log("*** in fetch goals, response.data is:", response.data);
-
     yield put({ type: 'SET_GOALS', payload: response.data });
 
   } catch (error) {
