@@ -35,9 +35,13 @@ function GoalsPage() {
     <div className="container">
       <h2 className="pageTitle">GOALS</h2>
 
-      <Link to="/new-goal" onClick={addNewGoal}>
-        <Button>Add New Goal</Button>
-      </Link>
+      <div className="centerFlexContainer">
+        <Link to="/new-goal" onClick={addNewGoal}>
+          <Button className="iconButton">
+            <img className="iconImage iconImageXL" src='./images/icons/AddIcon.png' alt="Add goal"></img>
+          </Button> 
+        </Link>
+      </div>  
 
 
       <div className="cards">

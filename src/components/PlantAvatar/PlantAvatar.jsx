@@ -89,7 +89,7 @@ function PlantAvatar(props) {
 
       { editingMode 
         ?
-          <>
+          <div className="bottomButtonContainer">
             <Button onClick={confirmButton} className="iconButton confirmButton">
               <img className="iconImage iconImageLarge" src='./images/icons/GreenCheck.png' alt="Confirm plant avatar choice"></img>
             </Button>
@@ -97,7 +97,7 @@ function PlantAvatar(props) {
             <Button onClick={cancelButton} className="iconButton cancelButton">
               <img className="iconImage iconImageLarge" src='./images/icons/RedEx.png' alt="Cancel plant avatar choice"></img>
             </Button>
-          </>
+          </div>
         :
           <></>  
       }

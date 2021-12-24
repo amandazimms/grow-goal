@@ -111,6 +111,10 @@ Container
   margin: auto;
 }
 
+.centerFlexContainer {
+  display: flex;
+  justify-content: center;
+}
 /* --------------------------------------------------------------------------------
 Button
 -------------------------------------------------------------------------------- */
@@ -194,10 +198,6 @@ Button
 
 .editDeleteButton {
   margin-left: 5px;
-}
-
-.addIcon {
-  height: 45px;
 }
 
 .thumbnailButton {
@@ -367,7 +367,10 @@ cards
 }
 
 .cardAreaSmall {
-  background-image: url('./BlueBG.png');
+  background-image: url('./BGWatercolor.png');
+  background-color: rgba(125, 218, 255, 0.5);
+  background-blend-mode:soft-light;
+
   background-size: cover;
   border-radius: 25px;
   width: 200px;
@@ -390,11 +393,15 @@ cards
 }
 
 .cardYellow {
-  background-image: url('./YellowBG.png');
+  background-image: url('./BGWatercolor.png');
+  background-color: rgba(230, 199, 21, 0.5);
+  background-blend-mode:overlay;
 }
 
 .cardBlue {
-  background-image: url('./BlueBG.png');
+  background-image: url('./BGWatercolor.png');
+  background-color: rgba(125, 218, 255, 0.5);
+  background-blend-mode:soft-light;
 }
 
 .thumbnailGoalTitle {
@@ -515,4 +522,6 @@ cards
 
   display: flex;
   justify-content: center;
+
+  margin-top: 20px
 }

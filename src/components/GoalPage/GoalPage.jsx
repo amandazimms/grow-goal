@@ -56,7 +56,7 @@ function GoalPage(props) {
                 { addingTask 
                   ? <AddNewTask placeholderText={'Describe New Task'} onLeaveAdd={()=>setAddingTask(false)}/>
                   : <Button onClick={addTask} className="iconButton addTaskButton">
-                      <img className="iconImage addIcon" src='./images/icons/AddIcon.png' alt="Add task"></img>
+                      <img className="iconImage iconImageLarge" src='./images/icons/AddIcon.png' alt="Add task"></img>
                     </Button> 
                 }
               </div>
