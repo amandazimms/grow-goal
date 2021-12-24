@@ -74,16 +74,22 @@ function GoalTitle(props) {
   }
 
   return (
-    <div>
-      <p>TITLE's props: {JSON.stringify(props)}</p>
-      <p>title's SG: {JSON.stringify(selectedGoal)}</p>
+    <>
+      {/* <p>TITLE's props: {JSON.stringify(props)}</p> */}
+      {/* <p>title's SG: {JSON.stringify(selectedGoal)}</p> */}
 
       { editingMode 
         ? 
          <>
-          <input value={text} placeholder={selectedGoal.goal_name} type="text" onChange={ (event) => handleChange(event) }></input>
-          <Button onClick={doneButton}>done</Button>
-          <Button onClick={cancelButton}>cancel</Button>
+          <input value={text} placeholder={selectedGoal.goal_name} className="goalTitleInput" type="text" onChange={ (event) => handleChange(event) }></input>
+          
+          <Button onClick={doneButton} className="iconButton confirmButton">
+            <img className="iconImage iconImageLarge" src='./images/icons/GreenCheck.png' alt="Confirm new task"></img>
+          </Button>
+
+          <Button onClick={cancelButton} className="iconButton cancelButton">
+            <img className="iconImage iconImageLarge" src='./images/icons/RedEx.png' alt="Cancel new task"></img>
+          </Button>
          </>
         : 
           <>
@@ -92,8 +98,12 @@ function GoalTitle(props) {
             { displayIcons 
               ? 
                 <>
-                  <Button onClick={editButton}>edit</Button>
-                  <Button onClick={deleteButton}>delete</Button>
+                  <Button onClick={editButton} className="iconButton editDeleteButton"> 
+                    <img className="iconImage iconImageLarge" src='./images/icons/EditIcon.png' alt="Edit task"></img>
+                  </Button>
+                  <Button onClick={deleteButton} className="iconButton editDeleteButton">
+                    <img className="iconImage iconImageLarge" src='./images/icons/TrashIcon.png' alt="Delete task"></img>
+                  </Button>
                 </>
               :
                 <></>
@@ -122,7 +132,7 @@ function GoalTitle(props) {
 
 
      
-    </div>
+    </>
   );
 }
 
