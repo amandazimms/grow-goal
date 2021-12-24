@@ -42,7 +42,7 @@ function PlantAvatar(props) {
     : setSelectedImageIndex(selectedImageIndex+1);
   }
 
-  const doneButton = () => {
+  const confirmButton = () => {
     //since db is 1-indexed while this array is 0-indexed; add 1 for the next step.
     const plant_avatar_id = selectedImageIndex +1;
 
@@ -56,9 +56,15 @@ function PlantAvatar(props) {
       { editingMode 
         ? 
          <div className="cardParentPlantAvatar"> 
-            <Button className="plantAvatarButtonBack" onClick={backButton}>Bk</Button>
-              <img className="plantAvatarImage" src={plantAvatars[selectedImageIndex].image_path_stage_7}></img>
-            <Button className="plantAvatarButtonNext" onClick={nextButton}>Nx</Button>
+            <Button onClick={backButton} className="iconButton plantAvatarButtonBack"> 
+              <img className="iconImage iconImageXL imageFlip" src='./images/icons/Arrow.png' alt="Next image"></img>
+            </Button>
+
+            <img className="plantAvatarImage" src={plantAvatars[selectedImageIndex].image_path_stage_7}></img>
+            
+            <Button onClick={nextButton} className="iconButton plantAvatarButtonNext"> 
+              <img className="iconImage iconImageXL" src='./images/icons/Arrow.png' alt="Next image"></img>
+            </Button>
          </div>
         : 
          <div className="cardParentPlantAvatar"> 
@@ -67,7 +73,13 @@ function PlantAvatar(props) {
               { displayEditIcon 
                 ? 
                   <>
-                    <Button onClick={editButton}>edit</Button>
+                    {/* empty/fake image to make styling easier and keep plant centered when edit button, below, is displayed */}
+                      <img className="iconImage iconImageLarge fakeImage" src='./images/icons/FakeImage.png' alt=""></img>
+
+                    {/* flex box order makes this appear to the right of the plant */}
+                    <Button onClick={editButton} className="iconButton editDeleteButton plantAvatarButtonEdit"> 
+                      <img className="iconImage iconImageLarge" src='./images/icons/EditIcon.png' alt="Edit task"></img>
+                    </Button>
                   </>
                 :
                   <></>
@@ -78,8 +90,13 @@ function PlantAvatar(props) {
       { editingMode 
         ?
           <>
-            <Button onClick={doneButton}>Dn</Button>
-            <Button onClick={cancelButton}>X</Button>
+            <Button onClick={confirmButton} className="iconButton confirmButton">
+              <img className="iconImage iconImageLarge" src='./images/icons/GreenCheck.png' alt="Confirm plant avatar choice"></img>
+            </Button>
+
+            <Button onClick={cancelButton} className="iconButton cancelButton">
+              <img className="iconImage iconImageLarge" src='./images/icons/RedEx.png' alt="Cancel plant avatar choice"></img>
+            </Button>
           </>
         :
           <></>  

@@ -188,6 +188,10 @@ Button
   margin-bottom: 7px;
 }
 
+.iconImageXL {
+  height: 40px;
+}
+
 .editDeleteButton {
   margin-left: 5px;
 }
@@ -208,6 +212,16 @@ Button
   padding: 28px;
 }
 
+.imageFlip {
+  transform: scaleX(-1);
+	filter: FlipH;
+	-ms-filter: "FlipH";
+	float: none;
+}
+
+.fakeImage {
+  margin: 5px;
+}
 /* --------------------------------------------------------------------------------
 Alert
 -------------------------------------------------------------------------------- */
@@ -409,7 +423,7 @@ cards
   align-items: center;
 }
 
-.plantAvatarButtonBack {
+.plantAvatarButtonBack, .fakeImage {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 0;
@@ -421,10 +435,10 @@ cards
   align-self: auto;
 }
 
-.plantAvatarButtonNext {
-  -webkit-order: 1;
-  -ms-flex-order: 1;
-  order: 2;
+.plantAvatarButtonNext, .plantAvatarButtonEdit {
+  -webkit-order: 3;
+  -ms-flex-order: 3;
+  order: 3;
   -webkit-flex: 0 1 auto;
   -ms-flex: 0 1 auto;
   flex: 0 1 auto;
