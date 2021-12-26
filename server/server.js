@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const goalRouter = require('./routes/goal.router');
 const taskRouter = require('./routes/task.router');
 const plantAvatarRouter = require('./routes/plantAvatar.router');
+const socialRouter = require('./routes/social.router');
 
 
 // Body parser middleware
@@ -30,6 +31,7 @@ app.use('/api/user', userRouter);
 app.use('/api/goal', goalRouter);
 app.use('/api/task', taskRouter);
 app.use('/api/plantAvatar', plantAvatarRouter);
+app.use('/api/social', socialRouter);
 
 // Serve static files
 app.use(express.static('build'));

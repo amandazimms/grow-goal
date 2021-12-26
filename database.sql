@@ -15,15 +15,16 @@ CREATE TABLE "user" (
 CREATE TABLE "goal" (
   "id" SERIAL PRIMARY KEY,
   "goal_name" VARCHAR,
+  "visibility" VARCHAR,
   "progress" DECIMAL, 
   "is_accomplished" BOOLEAN,
   "last_update" TIMESTAMP,
   "user_id" INT,
   "plant_avatar_id" INT
 );
-INSERT INTO "goal" ("goal_name", "progress", "is_accomplished", "last_update", "user_id", "plant_avatar_id")
-VALUES ('Write Novel', .25, FALSE,'1999-01-08 04:05:06', 1, 1);
 
+INSERT INTO "goal" ("goal_name", "visibility", "progress", "is_accomplished", "last_update", "user_id", "plant_avatar_id")
+VALUES ('Write Novel', 'followers' .25, FALSE,'1999-01-08 04:05:06', 1, 1);
 
 CREATE TABLE "task" (
   "id" SERIAL PRIMARY KEY,
@@ -68,3 +69,8 @@ VALUES ('/images/profileAvatars/Profile1.png'),
 ('/images/profileAvatars/Profile3.png'),
 ('/images/profileAvatars/Profile4.png');
 
+CREATE TABLE "followers" (
+  "id" SERIAL PRIMARY KEY,
+  "followee_id" INT,
+  "follower_id" INT
+);

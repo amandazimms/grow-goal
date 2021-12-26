@@ -13,6 +13,10 @@ function Nav() {
       <img id="logo-nav" className="nav-icon nav-logo" src="/images/Logo.png"/>
       
       <div>
+
+        <Link to="/social">
+          <img id="social-nav" className="nav-icon" src="/images/icons/SocialIcon.png"/>
+        </Link>
       
         <Link to="/goals">
           <img id="goals-home-nav" className="nav-icon" src="/images/icons/GrowIcon.png"/>
