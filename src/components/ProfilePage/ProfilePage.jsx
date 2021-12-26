@@ -10,7 +10,7 @@ function ProfilePage() {
       <h2>Profile Page</h2>
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
+      <LogOutButton className="btn testButton" />
     </div>
   );
 }

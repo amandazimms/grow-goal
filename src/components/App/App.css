@@ -147,7 +147,14 @@ Button
 }
 
 .btn:hover {
-  background-color: rgb(53, 173, 59);
+  background-color: rgba(255, 255, 255, 0.445);
+  background-blend-mode:overlay;
+  text-decoration: none;
+}
+
+.btn:active, .btn:focus {
+  background-color: rgba(255, 255, 255, 0.445);
+  background-blend-mode:overlay;
   text-decoration: none;
 }
 
@@ -179,6 +186,24 @@ Button
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+}
+
+.testButton {
+  background-image: url('./BGWatercolor.png');
+  background-color: #007eaf;
+  background-blend-mode:multiply;
+
+  background-size: cover;
+  border-radius: 15px;
+  width: 80px;
+  height: 40px;
+
+  border: none;
+  resize: both;
+  padding: 20px;
+  margin: 20px;
+
+  color: rgb(255, 0, 0);
 }
 
 .iconImage {
