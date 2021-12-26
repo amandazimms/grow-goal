@@ -7,20 +7,24 @@ function RegisterPage() {
   const history = useHistory();
 
   return (
-    <div>
+    <div className="cards cardsColumn">
       <RegisterForm />
 
-      <center>
-        <Button
-          type="button"
-          className="btn btn_asLink"
-          onClick={() => {
-            history.push('/login');
-          }}
-        >
-          Login
-        </Button>
-      </center>
+      <div className="cardArea cardFitContent">
+        <center>
+          <h5>Already Have an Account?</h5>
+          <Button
+            type="button"
+            className="buttonButton"
+            onClick={() => {
+              history.push('/login');
+            }}
+          >
+            Log In
+          </Button>
+        </center>
+      </div>
+
     </div>
   );
 }

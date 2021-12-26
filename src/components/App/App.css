@@ -124,7 +124,7 @@ Button
   padding: 7px 13px;
   border: none;
   border-radius: 7px; 
-  background-color: rgb(36, 143, 42);
+  background-color: #006992;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -188,22 +188,20 @@ Button
 	outline: inherit;
 }
 
-.testButton {
-  background-image: url('./BGWatercolor.png');
-  background-color: #007eaf;
-  background-blend-mode:multiply;
-
-  background-size: cover;
-  border-radius: 15px;
-  width: 80px;
-  height: 40px;
-
+.buttonButton {
+  background-color: #006992;
+  color: #fff;
   border: none;
-  resize: both;
-  padding: 20px;
-  margin: 20px;
+  padding: 7px 12px;
+  border-radius: 12px;
+}
 
-  color: rgb(255, 0, 0);
+.buttonButton:hover, .buttonButton:active, .buttonButton:focus {
+  background-color: #1988b4;
+  color: #fff;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 12px;
 }
 
 .iconImage {
@@ -255,10 +253,10 @@ Alert
   box-sizing: border-box;
   padding: 15px 10px;
   margin: 15px 0;
-  border: 2px solid #e01616;
+  border: 2px solid #970909;
   background-color: #efefef;
   border-radius: 3px;
-  color: #e01616;
+  color: #970909;
   font-size: 0.8rem;
 }
 
@@ -290,7 +288,7 @@ input:hover, input:active, input:focus, input:target, input:focus-visible {
   margin: 5px;
   margin-bottom: 10px;
   border-style: solid;
-  border-color: rgb(30, 117, 45);
+  border-color: #006992;
   border-width: 3px;
   border-radius: 8px;
 }
@@ -347,6 +345,12 @@ cards
   align-items: flex-start;
 }
 
+.cardsColumn {
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column; 
+}
+
 .cardArea {
   background-size: cover;
   border-radius: 25px;
@@ -368,6 +372,11 @@ cards
   -webkit-align-self: auto;
   -ms-flex-item-align: auto;
   align-self: auto;
+}
+
+.cardFitContent {
+  flex: 1 1 auto;
+  min-height: auto;
 }
 
 .taskCardArea {
