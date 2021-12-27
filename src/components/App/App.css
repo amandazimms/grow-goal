@@ -107,8 +107,8 @@ Container
 -------------------------------------------------------------------------------- */
 
 .container {
-  padding: 20px;
-  margin: auto;
+  width: 95%;
+  padding: 0;
 }
 
 .centerFlexContainer {
@@ -558,4 +558,25 @@ cards
   justify-content: center;
 
   margin-top: 20px
+}
+
+.flexParent {
+  display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
 }

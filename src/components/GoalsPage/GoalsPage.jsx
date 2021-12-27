@@ -25,8 +25,8 @@ function GoalsPage() {
         progress: 0,
         is_accomplished: false,
         user_id: user.id,
-        plant_avatar_id: 1
-        //todo add userID
+        plant_avatar_id: 1,
+        visibility: "private"
     }});
     //note that ADD_GOAL sequence ends with SET_SELECTED_GOAL for the new goal
   }

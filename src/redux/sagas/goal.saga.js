@@ -6,7 +6,25 @@ function* goalSaga() {
   yield takeLatest('FETCH_GOALS', fetchGoals);
   yield takeLatest('UPDATE_GOAL_TITLE', updateGoalTitle);
   yield takeLatest('UPDATE_GOAL_PROGRESS', updateGoalProgress); 
+  yield takeLatest('UPDATE_GOAL_VISIBILITY', updateGoalVisibility);
   yield takeLatest('DELETE_GOAL', deleteGoal);
+}
+
+// worker Saga: will be fired on "UPDATE_GOAL_VISIBILITY" actions
+function* updateGoalVisibility(action) {
+  const ap = action.payload;
+  //ap.goal.id is goal id
+  //ap.visibility is goal visibility
+
+  try {
+     const updatedGoal = yield axios.put(`/api/goal/visibility/${ap.goal.id}`,
+        { visibility: ap.visibility });
+
+     yield put({ type: 'SET_SELECTED_GOAL_VISIBILITY', payload: {visibility: ap.visibility} });   
+  
+  } catch {
+    console.log('update goal visibility error');
+  }
 }
 
 // worker Saga: will be fired on "UPDATE_GOAL_TITLE" actions

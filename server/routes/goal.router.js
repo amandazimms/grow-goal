@@ -52,8 +52,6 @@ router.post('/', (req, res) => {
 });
 
 router.put('/name/:id', (req, res) => {
-  //todo specify this as NAME change put, similar to below
-
   // console.log('>>>> in goal router, req.params:', req.params);
   // console.log('>>>> in goal router, req.body:', req.body);
   // console.log('>>>> in goal router, req.query:', req.query);
@@ -68,10 +66,31 @@ router.put('/name/:id', (req, res) => {
       res.sendStatus(200);
 
     }).catch((err) => {
-      console.log('PUT goal failed: ', err);
+      console.log('PUT goal name failed: ', err);
       res.sendStatus(500);
     });
 });
+
+router.put('/visibility/:id', (req, res) => {
+  console.log('>>>> in goal visibility router, req.params:', req.params);
+  console.log('>>>> in goal visibility router, req.body:', req.body);
+  console.log('>>>> in goal visibility router, req.query:', req.query);
+
+  const queryString = `UPDATE "goal" SET 
+        visibility=$1 
+        WHERE id=${req.params.id}`;
+  values = [req.body.visibility];
+
+  pool.query(queryString, values)
+    .then((results)=>{
+      res.sendStatus(200);
+
+    }).catch((err) => {
+      console.log('PUT goal visibility failed: ', err);
+      res.sendStatus(500);
+    });
+});
+
 
 router.put('/progress/:id', (req, res) => {
   // console.log('>>>> in goal progress router, req.params:', req.params);

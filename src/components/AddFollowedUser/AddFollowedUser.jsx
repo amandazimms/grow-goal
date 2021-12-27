@@ -5,9 +5,9 @@ import AddNewTask from '../AddNewTask/AddNewTask';
 import GoalTitle from '../GoalTitle/GoalTitle';
 import PlantAvatar from '../PlantAvatar/PlantAvatar';
 import Task from '../Task/Task';
-import { Button, Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
-function GoalPage(props) {
+function AddFollowedUser(props) {
   //if we arrived here from clicking "new goal", this will be true and will trigger some conditional renders
   const isNew = props.isNew;
 
@@ -20,7 +20,6 @@ function GoalPage(props) {
 
   const [title, setTitle] = useState(selectedGoal.goal_name);
   const [addingTask, setAddingTask] = useState(false);
-  const [visibleToFollowers, setVisibleToFollowers] = useState(selectedGoal.visibility === "followers" ? true : false || false);
 
   useEffect(() => {
     if (!isNew){ //don't try to fetch any tasks if we just opened up a new goal page,since there are none.
@@ -32,30 +31,11 @@ function GoalPage(props) {
     setAddingTask(true);
   }
 
-  const toggleVisibility = () => {
-    const goalToSend = {
-      visibility: visibleToFollowers ? 'private' : 'followers',
-      goal: selectedGoal
-    }
-    dispatch({type: 'UPDATE_GOAL_VISIBILITY', payload: goalToSend });
-
-    setVisibleToFollowers(!visibleToFollowers);
-  };
-
   return (
     <div className="container">
         {/* <p>Page's selected goal: {JSON.stringify(selectedGoal)}</p> */}
-        <h2 className="pageSubTitle">Goal:</h2>
+        <h2 className="pageSubTitle">ADD FOLLOWED USER PAGE:</h2>
         <div className="pageTitle"><GoalTitle isNew={isNew} goal={selectedGoal} /></div>
-
-            <Form.Switch
-              className="flexParent"
-              type="switch"
-              id="custom-switch"
-              label="Visible to Followers"
-              checked={visibleToFollowers}
-              onChange={toggleVisibility}
-            />
 
         <div className="cards">
             <div className="cardArea cardYellow cardParentTasks">
@@ -94,4 +74,4 @@ function GoalPage(props) {
   );
 }
 
-export default GoalPage;
+export default AddFollowedUser;
