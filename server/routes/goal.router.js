@@ -72,9 +72,9 @@ router.put('/name/:id', (req, res) => {
 });
 
 router.put('/visibility/:id', (req, res) => {
-  console.log('>>>> in goal visibility router, req.params:', req.params);
-  console.log('>>>> in goal visibility router, req.body:', req.body);
-  console.log('>>>> in goal visibility router, req.query:', req.query);
+  // console.log('>>>> in goal visibility router, req.params:', req.params);
+  // console.log('>>>> in goal visibility router, req.body:', req.body);
+  // console.log('>>>> in goal visibility router, req.query:', req.query);
 
   const queryString = `UPDATE "goal" SET 
         visibility=$1 

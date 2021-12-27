@@ -7,9 +7,9 @@ import AddFollowee from '../AddFollowee/AddFollowee';
 function SocialPage() {
   const followees = useSelector(store => store.followeeUsers);
   const user = useSelector(store => store.user);
+  const selectedFollowee = useSelector(store => store.selectedFollowee);
 
   const [addingFollowed, setAddingFollowed] = useState(false);
-
 
   const dispatch = useDispatch();
 
@@ -17,8 +17,9 @@ function SocialPage() {
     dispatch({ type: 'FETCH_FOLLOWEE_USERS', payload: user.id }); 
   }, []);
 
-  const setSelectedGoal = (goal) =>{
-    //dispatch( {type: 'SET_SELECTED_GOAL', payload: goal});
+  const setSelectedFollowee = (followie) =>{
+    console.log('will set sf to:', followie);
+    dispatch( {type: 'SET_SELECTED_FOLLOWEE', payload: followie});
   }
 
   const addFollowee = () => {
@@ -27,7 +28,7 @@ function SocialPage() {
 
   return (
     <div className="container">
-      <h2 className="pageTitle">SOCIAL</h2>
+      <h2 className="pageTitle">Social</h2>
 
       <div className="centerFlexContainer">
 
@@ -37,8 +38,6 @@ function SocialPage() {
               <img className="iconImage iconImageXL" src='./images/icons/AddIcon.png' alt="Add followed user"></img>
             </Button> 
         }
-
-
         
       </div>  
 
@@ -46,12 +45,12 @@ function SocialPage() {
       <div className="cards">
         {followees.map(followee => {
           return (
-            <div className="cardAreaSmall" key={followee.id}>              
-              {/* <Link to="/goal" onClick={() => setSelectedGoal(goal)}> */}
+            <div className="cardAreaSmall" key={followee.id}>     
+              <Link to="/follower-goals" onClick={() => setSelectedFollowee(followee)}>
                 <Button className="thumbnailButton">
                   <img className="plantAvatarThumbnail" src={followee.profile_avatar_path} alt={followee.profile_avatar_path}/>
                 </Button>
-              {/* </Link> */}
+              </Link>
               <h3 className="thumbnailGoalTitle">{followee.username}</h3>
             </div>
             );

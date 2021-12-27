@@ -13,16 +13,15 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import AboutPage from '../AboutPage/AboutPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 import GoalsPage from '../GoalsPage/GoalsPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import GoalPage from '../GoalPage/GoalPage';
+import SocialPage from '../SocialPage/SocialPage';
 
 import './App.css';
-import SocialPage from '../SocialPage/SocialPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -44,8 +43,6 @@ function App() {
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           {/* todo when more of the app is together, decide where to reroute this.  */}
           <Redirect exact from="/" to="/home" />
-
-          {/* Visiting localhost:3000/about will show the about page. */}
           
           {/* shows Public Goals page at all times (logged in or not) */}
           {/*todo implement only for stretch goal <Route exact path="/public-goals">
@@ -65,6 +62,11 @@ function App() {
           {/* logged in shows GoalsPage, else shows LoginPage */}
           <ProtectedRoute exact path="/goals">
             <GoalsPage />
+          </ProtectedRoute>
+
+          {/* logged in shows GoalsPage, else shows LoginPage */}
+          <ProtectedRoute exact path="/follower-goals">
+            <GoalsPage isFollowees={true}/>
           </ProtectedRoute>
 
            {/* logged in shows SocialPage, else shows LoginPage */}

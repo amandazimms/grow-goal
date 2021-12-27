@@ -4,11 +4,13 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* socialSaga() {
   yield takeLatest('ADD_FOLLOWEE', addFollowee);
   yield takeLatest('FETCH_FOLLOWEE_USERS', fetchFolloweeUsers);
+  yield takeLatest('FETCH_FOLLOWEE_GOALS', fetchFolloweeGoals);
+
   // yield takeLatest('UPDATE_TASK', updateTask);
   // yield takeLatest('DELETE_TASK', deleteSingleTask);
   // yield takeLatest('DELETE_THIS_GOALS_TASKS', deleteThisGoalsTasks);
 }
-//worker Saga: will be fired on "UPDATE_TASK" actions
+//worker Saga: will be fired on "FETCH_FOLLOWEE_USERS" actions
 // function* deleteSingleTask(action){
 //   const ap = action.payload;
 
@@ -55,7 +57,7 @@ function* socialSaga() {
 //   } 
 // }
 
-// // worker Saga: will be fired on "FETCH_FOLLOWEE_USERS" actions
+// worker Saga: will be fired on "FETCH_FOLLOWEE_USERS" actions
 function* fetchFolloweeUsers(action) {
   const ap = action.payload;
   //ap = user id (user is follower, get followees)
@@ -65,8 +67,29 @@ function* fetchFolloweeUsers(action) {
       { params: { follower_id: ap } });
     
     //RESPONSE.DATA is array of users (followees) that this user (follower) follows
+    console.log('finished fetching followee users, got:', response.data);
     
     yield put({ type: 'SET_FOLLOWEE_USERS', payload: response.data });
+
+  } catch (error) {
+    console.log('followee get request failed', error);
+  }
+}
+
+// worker Saga: will be fired on "FETCH_FOLLOWEE_GOALS" actions
+function* fetchFolloweeGoals(action) {
+  const ap = action.payload;
+  //ap.followee_id is id of selectedFollowee (followee)
+  //ap.follower_id is the id of the currently logged in user (follower)
+  
+  //todo - we didn't need to send the follower id? 
+  try {
+    const followeeGoals = yield axios.get('/api/social/followee_goals', 
+      {params: {followee_id: ap.followee_id, follower_id: ap.follower_id} });
+        
+    console.log('got this back from followeeGoals:', followeeGoals.data);
+
+    yield put({ type: 'SET_FOLLOWEE_GOALS', payload: followeeGoals.data });
 
   } catch (error) {
     console.log('followee get request failed', error);

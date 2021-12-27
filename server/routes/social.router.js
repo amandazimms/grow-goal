@@ -18,7 +18,7 @@ router.get('/followees', (req,res) => {
   // console.log('--->in social followee router get. req.params:', req.params);
   
   //req.query.follower_id is id of the currently logged in user (follower)
-  const queryString = `SELECT username, profile_avatar_path, followers.id FROM 
+  const queryString = `SELECT username, profile_avatar_path, "user".id FROM 
         "followers" JOIN "user" ON "user".id=followee_id
         WHERE follower_id=${req.query.follower_id};`
   
@@ -51,15 +51,35 @@ router.get('/followee_id', (req, res) => {
     });
 })
 
-//TODO TODO TODO use this beautiful query string when getting GOALS for followees
-// const queryString = `SELECT followee_id, goal_name, current_avatar_path FROM 
-//         "followers" JOIN "goal" ON followee_id=goal.user_id 
-//         WHERE goal.visibility='followers' AND follower_id=${req.query.follower_id};`
+router.get('/followee_goals', (req, res) => {
+  console.log('--->in social followee goals router get. req.query:', req.query);
+  console.log('--->in social followee goals router get. req.body:', req.body);
+  console.log('--->in social followee goals router get. req.params:', req.params);
+
+  //req.query.followee_id is the id of the followee (user that was clicked on)
+  //req.query.follower_id is the id of the follower (logged in user)
+
+  //todo not sure which id to send here to avoid "unique key child error"
+  const queryString = `SELECT followee_id, goal_name, current_avatar_path FROM 
+           "followers" JOIN "goal" ON followee_id=goal.user_id 
+           WHERE goal.visibility='followers' 
+              AND follower_id=${req.query.follower_id} 
+              AND followee_id=${req.query.followee_id};`
+  
+  pool.query(queryString)
+    .then((results)=>{
+      console.log('***results.rows:', results.rows);
+      res.send(results.rows);
+    }).catch((err) => {
+      console.log('GET followee goals failed: ', err);
+      res.sendStatus(500);
+    });
+})
 
 router.post('/followee', (req, res) => {
-  console.log('--->in social followee router post. req.query:', req.query);
-  console.log('--->in social followee router post. req.body:', req.body);
-  console.log('--->in social followee router post. req.params:', req.params);
+  // console.log('--->in social followee router post. req.query:', req.query);
+  // console.log('--->in social followee router post. req.body:', req.body);
+  // console.log('--->in social followee router post. req.params:', req.params);
 
   //req.body.followee_id is the followee id
   //req.body.follower_id is the follower id

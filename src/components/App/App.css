@@ -224,7 +224,7 @@ Button
   margin-left: 5px;
 }
 
-.thumbnailButton {
+.thumbnailButton, .thumbnailButton:disabled {
   /* remove default button styles */
   background: none;
 	color: inherit;
