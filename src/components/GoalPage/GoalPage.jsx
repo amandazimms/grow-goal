@@ -49,7 +49,7 @@ function GoalPage(props) {
         <div className="pageTitle"><GoalTitle isNew={isNew} goal={selectedGoal} /></div>
 
             <Form.Switch
-              className="flexParent"
+              className="centerFlexContainer"
               type="switch"
               id="custom-switch"
               label="Visible to Followers"

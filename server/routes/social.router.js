@@ -12,20 +12,29 @@ const router = express.Router();
 // is that the password gets encrypted before being inserted
 //console.log("!");
 
-router.get('/', (req,res) => {
-  // console.log('--->in task router get. req.query:', req.query);
-  // console.log('--->in task router get. req.body:', req.body);
-  // console.log('--->in task router get. req.params:', req.params);
-
-  // const queryString = `SELECT * FROM task WHERE goal_id=${req.query.id} ORDER BY id`;
-
-  // pool.query(queryString).then((results)=>{
-  //   res.send(results.rows);
-  // }).catch((err)=>{
-  //   console.log('error with tasks GET:', err);
-  //   res.sendStatus(500);
-  // })
+router.get('/followees', (req,res) => {
+  // console.log('--->in social followee router get. req.query:', req.query);
+  // console.log('--->in social followee router get. req.body:', req.body);
+  // console.log('--->in social followee router get. req.params:', req.params);
+  
+  //req.query.follower_id is id of the currently logged in user (follower)
+  const queryString = `SELECT username, profile_avatar_path, followers.id FROM 
+        "followers" JOIN "user" ON "user".id=followee_id
+        WHERE follower_id=${req.query.follower_id};`
+  
+  pool.query(queryString).then((results)=>{
+    res.send(results.rows);
+  }).catch((err)=>{
+    console.log('error with followees GET:', err);
+    res.sendStatus(500);
+  })
 })
+
+//TODO TODO TODO use this beautiful query string when getting GOALS for followees
+// const queryString = `SELECT followee_id, goal_name, current_avatar_path FROM 
+//         "followers" JOIN "goal" ON followee_id=goal.user_id 
+//         WHERE goal.visibility='followers' AND follower_id=${req.query.follower_id};`
+
 
 router.post('/', (req, res) => {
   // const queryString = `INSERT INTO "task" (task_name, is_complete, goal_id)

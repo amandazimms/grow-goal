@@ -1,8 +1,8 @@
-const followingUsersReducer = (state = [], action) => {
+const followeeUsersReducer = (state = [], action) => {
   switch (action.type) {
-    case 'SET_FOLLOWING_USERS':
+    case 'SET_FOLLOWEE_USERS':
       return action.payload;
-    case 'UNSET_FOLLOWING_USERS':
+    case 'UNSET_FOLLOWEE_USERS':
       return [];
     default:
       return state;
@@ -11,4 +11,4 @@ const followingUsersReducer = (state = [], action) => {
 
 // user will be on the redux state at:
 // state.user
-export default followingUsersReducer;
+export default followeeUsersReducer;

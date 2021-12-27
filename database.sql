@@ -9,7 +9,7 @@ CREATE TABLE "user" (
   "password" VARCHAR (100) NOT NULL,
   "tasks_completed" INT,
   "goals_achieved" INT,
-  "profile_avatar id" INT
+  "profile_avatar_id" INT
 );
 
 CREATE TABLE "goal" (

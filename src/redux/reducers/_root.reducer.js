@@ -5,8 +5,8 @@ import goal from './goal.reducer';
 import task from './task.reducer';
 import selectedGoal from './selectedGoal.reducer';
 import plantAvatars from './plantAvatars.reducer';
-import followingUsers from './followingUsers.reducer';
-import followingGoals from './followingGoals.reducer';
+import followeeUsers from './followeeUsers.reducer';
+import followeeGoals from './followeeGoals.reducer';
 
 
 
@@ -23,8 +23,8 @@ const rootReducer = combineReducers({
   task,
   selectedGoal,
   plantAvatars,
-  followingUsers,
-  followingGoals,
+  followeeUsers,
+  followeeGoals,
 });
 //our code elsewhere will look like: this.props.store.errors or this.props.store.user or this.props.store.errors.loginMessage
 

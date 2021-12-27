@@ -1,8 +1,8 @@
 const followingGoalsReducer = (state = [], action) => {
   switch (action.type) {
-    case 'SET_FOLLOWING_GOALS':
+    case 'SET_FOLLOWEE_GOALS':
       return action.payload;
-    case 'UNSET_FOLLOWING_GOALS':
+    case 'UNSET_FOLLOWEE_GOALS':
       return [];
     default:
       return state;

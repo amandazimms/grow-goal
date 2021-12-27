@@ -3,7 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* socialSaga() {
   // yield takeLatest('ADD_TASK', addTask);
-  // yield takeLatest('FETCH_TASKS', fetchTasks);
+  yield takeLatest('FETCH_FOLLOWEE_USERS', fetchFolloweeUsers);
   // yield takeLatest('UPDATE_TASK', updateTask);
   // yield takeLatest('DELETE_TASK', deleteSingleTask);
   // yield takeLatest('DELETE_THIS_GOALS_TASKS', deleteThisGoalsTasks);
@@ -55,26 +55,23 @@ function* socialSaga() {
 //   } 
 // }
 
-// // worker Saga: will be fired on "FETCH_TASKS" actions
-// function* fetchTasks(action) {
-//   const ap = action.payload;
+// // worker Saga: will be fired on "FETCH_FOLLOWEE_USERS" actions
+function* fetchFolloweeUsers(action) {
+  const ap = action.payload;
+  //ap = user id (user is follower, get followees)
 
-//   try {
-//     const response = yield axios.get('/api/task', 
-//       { params: { id: ap } });
-//     //AP is goal id.
-//     //RESPONSE.DATA is array of tasks with all properties.
+  try {
+    const response = yield axios.get('/api/social/followees', 
+      { params: { follower_id: ap } });
     
-//     const completedTasks = response.data.filter(task => task.is_complete);
-//     const progress = completedTasks.length/response.data.length || 0;
+    //RESPONSE.DATA is array of users (followees) that this user (follower) follows
+    
+    yield put({ type: 'SET_FOLLOWEE_USERS', payload: response.data });
 
-//     yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: {progress: progress, id: ap} });
-//     yield put({ type: 'SET_TASKS', payload: response.data });
-
-//   } catch (error) {
-//     console.log('Task get request failed', error);
-//   }
-// }
+  } catch (error) {
+    console.log('followee get request failed', error);
+  }
+}
 
 // // worker Saga: will be fired on "ADD_TASKS" actions
 // function* addTask(action) {
