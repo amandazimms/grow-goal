@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 
 function AddFollowee(props) {
 
- // const store = useSelector(store => store);
+  const user = useSelector(store => store.user);
   const dispatch = useDispatch();
 
   const [text, setText] = useState(props.text || '');
@@ -15,18 +15,10 @@ function AddFollowee(props) {
 
   const handleChange = (event) =>{
     setText(event.target.value);
-    console.log('text:', text);
   }
 
   const doneButton = () => {
-    // dispatch({ type: 'ADD_GOAL', payload: {
-    //     goal_name: '',
-    //     progress: 0,
-    //     is_accomplished: false,
-    //     user_id: user.id,
-    //     plant_avatar_id: 1
-    //     //todo add userID
-    //  }});
+    dispatch({ type: 'ADD_FOLLOWEE', payload: {followee: text, follower: user.id} });
     props.onLeaveAdd();
   }
 

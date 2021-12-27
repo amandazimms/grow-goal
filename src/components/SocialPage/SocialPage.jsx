@@ -5,13 +5,6 @@ import { Button } from 'react-bootstrap';
 import AddFollowee from '../AddFollowee/AddFollowee';
 
 function SocialPage() {
-  
-  // const followees = [
-  //   { id: 1, username: "mike" },
-  //   { id: 2, username: "bethany" },
-  //   { id: 3, username: "lib12" }
-  // ]
-
   const followees = useSelector(store => store.followeeUsers);
   const user = useSelector(store => store.user);
 

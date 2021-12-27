@@ -2,7 +2,7 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 function* socialSaga() {
-  // yield takeLatest('ADD_TASK', addTask);
+  yield takeLatest('ADD_FOLLOWEE', addFollowee);
   yield takeLatest('FETCH_FOLLOWEE_USERS', fetchFolloweeUsers);
   // yield takeLatest('UPDATE_TASK', updateTask);
   // yield takeLatest('DELETE_TASK', deleteSingleTask);
@@ -73,21 +73,25 @@ function* fetchFolloweeUsers(action) {
   }
 }
 
-// // worker Saga: will be fired on "ADD_TASKS" actions
-// function* addTask(action) {
-//   const ap = action.payload;
+// worker Saga: will be fired on "ADD_FOLLOWEE" actions
+function* addFollowee(action) {
+  const ap = action.payload;
+  //ap.followee is the username of the user to be followed (followee)
+  //ap.follower is the id of the currently logged in user (follower)
 
-//   try {
-//     const task = yield axios.post('/api/task', 
-//         { task_name: ap.task_name, 
-//           is_complete: ap.is_complete, 
-//           goal_id: ap.goal_id });
-          
-//     yield put({ type: 'FETCH_TASKS', payload: ap.goal_id });
+  try {
+    const followeeID = yield axios.get('/api/social/followee_id', 
+        { params: {followee_username: ap.followee} }); 
+    //followeeID.data.id is the followee's user ID.
 
-//   } catch {
-//     console.log('add new task error');
-//   }
-// }
+    yield axios.post('/api/social/followee', { followee_id: followeeID.data.id, follower_id: ap.follower });
+    
+    
+    yield put({ type: 'FETCH_FOLLOWEE_USERS', payload: ap.follower });
+
+  } catch {
+    console.log('add new followee error');
+  }
+}
 
 export default socialSaga;

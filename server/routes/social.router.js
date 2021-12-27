@@ -30,24 +30,50 @@ router.get('/followees', (req,res) => {
   })
 })
 
+router.get('/followee_id', (req, res) => {
+  //getting the ID of a user (followee) that the logged in user (followee) desires to follow
+  //(since users won't know other users' ids.)
+
+  // console.log('--->in social followee ID router get. req.query:', req.query);
+  // console.log('--->in social followee ID router get. req.body:', req.body);
+  // console.log('--->in social followee ID router get. req.params:', req.params);
+
+  //req.query.followee_username is the username of the followee (to be followed)
+    const queryString = `SELECT "user".id FROM "user" WHERE "username"='${req.query.followee_username}';`
+
+    pool.query(queryString)
+    .then((results)=>{
+      //send back the ID of that user
+      res.send(results.rows[0]);
+    }).catch((err) => {
+      console.log('GET followee_id failed: ', err);
+      res.sendStatus(500);
+    });
+})
+
 //TODO TODO TODO use this beautiful query string when getting GOALS for followees
 // const queryString = `SELECT followee_id, goal_name, current_avatar_path FROM 
 //         "followers" JOIN "goal" ON followee_id=goal.user_id 
 //         WHERE goal.visibility='followers' AND follower_id=${req.query.follower_id};`
 
+router.post('/followee', (req, res) => {
+  console.log('--->in social followee router post. req.query:', req.query);
+  console.log('--->in social followee router post. req.body:', req.body);
+  console.log('--->in social followee router post. req.params:', req.params);
 
-router.post('/', (req, res) => {
-  // const queryString = `INSERT INTO "task" (task_name, is_complete, goal_id)
-  //   VALUES ($1, $2, $3)`;
-  //   values = [req.body.task_name, req.body.is_complete, req.body.goal_id];
+  //req.body.followee_id is the followee id
+  //req.body.follower_id is the follower id
+  const queryString = `INSERT INTO "followers" (followee_id, follower_id)
+    VALUES ($1, $2)`;
+    values = [req.body.followee_id, req.body.follower_id];
   
-  //   pool.query(queryString, values)
-  //   .then((results)=>{
-  //     res.sendStatus(200);
-  //   }).catch((err) => {
-  //     console.log('POST task failed: ', err);
-  //     res.sendStatus(500);
-  //   });
+    pool.query(queryString, values)
+    .then((results)=>{
+      res.sendStatus(200);
+    }).catch((err) => {
+      console.log('POST followee failed: ', err);
+      res.sendStatus(500);
+    });
 });
 
 router.put('/:id', (req, res) => {
