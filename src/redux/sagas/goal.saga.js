@@ -7,7 +7,30 @@ function* goalSaga() {
   yield takeLatest('UPDATE_GOAL_TITLE', updateGoalTitle);
   yield takeLatest('UPDATE_GOAL_PROGRESS', updateGoalProgress); 
   yield takeLatest('UPDATE_GOAL_VISIBILITY', updateGoalVisibility);
+  yield takeLatest('UPDATE_GOAL_LIKE_COUNT', updateGoalLikeCount);
   yield takeLatest('DELETE_GOAL', deleteGoal);
+}
+
+// worker Saga: will be fired on "UPDATE_GOAL_LIKE_COUNT" actions
+function* updateGoalLikeCount(action) {
+  //used to update SOMEONE ELSE'S GOAL's like count (you would never update your own)
+  
+  const ap = action.payload;
+  //ap.direction = "increment" or "decrement"
+  //ap.goal_id is the goal id 
+  //ap.followee_id / follower_id are as expected
+  console.log('update goal like count ap:', ap);
+
+  try {
+     const updatedGoal = yield axios.put(`/api/goal/like_count/${ap.goal_id}`,
+        { direction: ap.direction });
+
+    yield put({ type: 'FETCH_FOLLOWEE_GOALS', payload: {followee_id: ap.followee_id, follower_id: ap.follower_id} });
+
+  
+  } catch {
+    console.log('update goal like count error');
+  }
 }
 
 // worker Saga: will be fired on "UPDATE_GOAL_VISIBILITY" actions

@@ -29,12 +29,12 @@ function GoalsPage(props) {
     if (isLiked) { //if goal was liked and we clicked, we mark UN liked
       setIsLiked(false);
       setLikeImage('./images/icons/HeartEmpty.png');
-      dispatch({type: 'DELETE_LIKE', payload: {goal_id: goal.goal_id, follower_like_status: false, follower_id: user.id} });
+      dispatch({type: 'DELETE_LIKE', payload: {goal_id: goal.goal_id, follower_like_status: false, follower_id: user.id, followee_id: selectedFollowee.id} });
     } 
     else { //if goal was unliked and we clicked, mark LIKED
       setIsLiked(true);
       setLikeImage('./images/icons/HeartFilled.png');
-      dispatch({type: 'ADD_LIKE', payload: {goal_id: goal.goal_id, follower_like_status: true, follower_id: user.id} });
+      dispatch({type: 'ADD_LIKE', payload: {goal_id: goal.goal_id, follower_like_status: true, follower_id: user.id, followee_id: selectedFollowee.id} });
     }
   }
 

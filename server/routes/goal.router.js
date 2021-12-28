@@ -91,6 +91,32 @@ router.put('/visibility/:id', (req, res) => {
     });
 });
 
+router.put('/like_count/:id', (req, res) => {
+  // console.log('>>>> in goal like count router, req.params:', req.params);
+  // console.log('>>>> in goal like count router, req.body:', req.body);
+  // console.log('>>>> in goal like count router, req.query:', req.query);
+
+  //req.params.id is goal id
+  //req.body.direction is "increment" or "decrement"
+  let incOrDecString = 'like_count + 1';
+  if (req.body.direction === "decrement"){
+    incOrDecString = 'like_count - 1';
+  }
+
+  const queryString = `UPDATE "goal" SET 
+        like_count=${incOrDecString} 
+        WHERE id=${req.params.id}`;
+
+  pool.query(queryString)
+    .then((results)=>{
+      res.sendStatus(200);
+
+    }).catch((err) => {
+      console.log('PUT goal visibility failed: ', err);
+      res.sendStatus(500);
+    });
+});
+
 
 router.put('/progress/:id', (req, res) => {
   // console.log('>>>> in goal progress router, req.params:', req.params);

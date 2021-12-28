@@ -51,8 +51,13 @@ function* addLike(action){
   try {
     yield axios.post('/api/social/follower_like', 
         { goal_id: ap.goal_id, follower_id: ap.follower_id });    
-         
-   //todo payload? yield put({ type: 'FETCH_FOLLOWEE_GOALS', payload: ap.follower });
+    
+    yield put({ type: 'UPDATE_GOAL_LIKE_COUNT', 
+        payload: {  direction: "increment", 
+                    goal_id: ap.goal_id, 
+                    followee_id: ap.followee_id,
+                    follower_id: ap.follower_id 
+                  } });
 
   } catch {
     console.log('add new followee error');
