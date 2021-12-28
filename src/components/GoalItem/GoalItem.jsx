@@ -43,6 +43,7 @@ function GoalsPage(props) {
 
   return (
     <div className="cardAreaSmall"> 
+        <p>likes:{JSON.stringify(goal.like_count)}</p>
         { isFollowees
           ?  <Button className="thumbnailButton" disabled>
               <img className="plantAvatarThumbnail" src={goal.current_avatar_path} alt={goal.current_avatar_path}/>
@@ -57,9 +58,12 @@ function GoalsPage(props) {
         <h3 className="thumbnailGoalTitle">{goal.goal_name}</h3>
         {
           isFollowees
-          ? <Button onClick={toggleLiked} className="iconButton">
-              <img className="iconImage iconImageXL" src={likeImage} alt="Like this goal"></img>
-            </Button>
+          ? <div className="likesContainer">
+              <Button onClick={toggleLiked} className="iconButton">
+                <img className="iconImage iconImageXL" src={likeImage} alt="Like this goal"></img>
+              </Button>
+              <h4>{goal.like_count}</h4>
+            </div>              
           : <></>
         }
     </div>

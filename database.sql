@@ -20,11 +20,12 @@ CREATE TABLE "goal" (
   "is_accomplished" BOOLEAN,
   "last_update" TIMESTAMP,
   "user_id" INT,
-  "plant_avatar_id" INT
+  "plant_avatar_id" INT,
+  "like_count" INT
 );
 
-INSERT INTO "goal" ("goal_name", "visibility", "progress", "is_accomplished", "last_update", "user_id", "plant_avatar_id")
-VALUES ('Write Novel', 'followers' .25, FALSE,'1999-01-08 04:05:06', 1, 1);
+INSERT INTO "goal" ("goal_name", "visibility", "progress", "is_accomplished", "last_update", "user_id", "plant_avatar_id", "like_count")
+VALUES ('Write Novel', 'followers' .25, FALSE,'1999-01-08 04:05:06', 1, 1, 17);
 
 CREATE TABLE "task" (
   "id" SERIAL PRIMARY KEY,

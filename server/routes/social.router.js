@@ -23,7 +23,7 @@ router.get('/likes', (req,res) => {
   pool.query(queryString).then((results)=>{
     console.log('results:', results.rows[0]);
     res.send(results.rows[0]);
-    
+
   }).catch((err)=>{
     console.log('error with likes GET:', err);
     res.sendStatus(500);
@@ -76,9 +76,7 @@ router.get('/followee_goals', (req, res) => {
 
   //req.query.followee_id is the id of the followee (user that was clicked on)
   //req.query.follower_id is the id of the follower (logged in user)
-
-  //todo not sure which id to send here to avoid "unique key child error"
-  const queryString = `SELECT followee_id, "goal".id AS "goal_id", goal_name, current_avatar_path FROM 
+  const queryString = `SELECT followee_id, "goal".id AS "goal_id", goal_name, like_count, current_avatar_path FROM 
            "followers" JOIN "goal" ON followee_id=goal.user_id 
            WHERE goal.visibility='followers' 
               AND follower_id=${req.query.follower_id} 
@@ -86,7 +84,7 @@ router.get('/followee_goals', (req, res) => {
   
   pool.query(queryString)
     .then((results)=>{
-      console.log('***results.rows:', results.rows);
+      //console.log('***results.rows:', results.rows);
       res.send(results.rows);
     }).catch((err) => {
       console.log('GET followee goals failed: ', err);

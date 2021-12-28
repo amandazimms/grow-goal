@@ -560,3 +560,9 @@ cards
 
   margin-top: 20px
 }
+
+.likesContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
