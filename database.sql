@@ -74,3 +74,10 @@ CREATE TABLE "followers" (
   "followee_id" INT,
   "follower_id" INT
 );
+-- todo add placeholder/beginning data to followers, likes tables
+
+CREATE TABLE "likes" (
+  "id" SERIAL PRIMARY KEY,
+  "goal_id" INT,
+  "liked_by" INT
+);

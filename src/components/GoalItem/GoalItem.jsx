@@ -41,7 +41,6 @@ function GoalsPage(props) {
 
   return (
     <div className="cardAreaSmall" key={uuidv4()}> 
-    {/* <p>props:{JSON.stringify(props)}</p> */}
       {/* //key={goal.id}>  */}
         { isFollowees
           ?  <Button className="thumbnailButton" disabled>
