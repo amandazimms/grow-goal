@@ -74,27 +74,6 @@ router.delete('/follower_like', (req,res) => {
     });
 })
 
-router.get('/like_count', (req,res) => {
-  //TODO not used in current setup 
-
-  // console.log('--->in social like router get. req.query:', req.query);
-  // console.log('--->in social like router get. req.body:', req.body);
-  // console.log('--->in social like router get. req.params:', req.params);
-  
-  // //req.query.goal_id is the id of the current goal
-  // const queryString = `SELECT COUNT(liked_by) FROM
-  //     "likes" WHERE "goal_id"=${req.query.goal_id};`
-  
-  // pool.query(queryString).then((results)=>{
-  //   console.log('results:', results.rows[0]);
-  //   res.send(results.rows[0]);
-
-  // }).catch((err)=>{
-  //   console.log('error with likes GET:', err);
-  //   res.sendStatus(500);
-  // })
-})
-
 router.get('/followees', (req,res) => {
   // console.log('--->in social followee router get. req.query:', req.query);
   // console.log('--->in social followee router get. req.body:', req.body);
@@ -145,7 +124,8 @@ router.get('/followee_goals', (req, res) => {
            "followers" JOIN "goal" ON followee_id=goal.user_id 
            WHERE goal.visibility='followers' 
               AND follower_id=${req.query.follower_id} 
-              AND followee_id=${req.query.followee_id};`
+              AND followee_id=${req.query.followee_id}
+              ORDER BY goal_id;`
   
   pool.query(queryString)
     .then((results)=>{
