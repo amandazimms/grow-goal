@@ -51,7 +51,7 @@ CREATE TABLE "goal" (
   "last_update" TIMESTAMP,
   "user_id" INT REFERENCES "user" (id),
   "plant_avatar_id" INT REFERENCES "plant_avatar" (id),
-  "like_count" INT
+  "like_count" INT DEFAULT 0
 );
 INSERT INTO "goal" ("goal_name", "visibility", "progress", "is_accomplished", "last_update", "user_id", "plant_avatar_id", "like_count")
 VALUES ('Write Novel', 'followers' .25, FALSE,'1999-01-08 04:05:06', 1, 1, 17);
