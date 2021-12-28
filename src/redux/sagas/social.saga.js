@@ -92,21 +92,30 @@ function* fetchFolloweeGoals(action) {
     const goalIDs = followeeGoals.data.map(item => item.goal_id);
     //goalIDs are the goal ids (only) of the fetched followee goals
     
-    console.log('goal IDs:', goalIDs);
-
     let likeStatusArray = [];
 
+    //todo refactor to combine this and next loop
     for(let i=0; i<goalIDs.length; i++){
       let likeStatusThisGoal = yield axios.get('/api/social/follower_like_status',
         {params: {goal_id: goalIDs[i], follower_id: ap.follower_id} });
 
-      console.log('like status for i=', i, ':', likeStatusThisGoal.data);
       likeStatusThisGoal.data.length === 0 ? likeStatusArray.push(false) : likeStatusArray.push(true);
     }
-    console.log('likeStatusArray', likeStatusArray);
    
+    let followeeGoalsToSet = [];
 
-    yield put({ type: 'SET_FOLLOWEE_GOALS', payload: followeeGoals.data });
+    for (let i=0; i<followeeGoals.data.length; i++){
+      let thisGoal = {  current_avatar_path: followeeGoals.data[i].current_avatar_path,
+                        followee_id: followeeGoals.data[i].followee_id,
+                        goal_id: followeeGoals.data[i].goal_id,
+                        goal_name: followeeGoals.data[i].goal_name,
+                        like_count: followeeGoals.data[i].like_count,
+                        follower_like_status: likeStatusArray[i]
+                      }
+      followeeGoalsToSet.push(thisGoal);                
+    }                  
+
+    yield put({ type: 'SET_FOLLOWEE_GOALS', payload: followeeGoalsToSet });
 
   } catch (error) {
     console.log('followee get request failed', error);

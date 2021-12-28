@@ -12,18 +12,16 @@ const router = express.Router();
 // is that the password gets encrypted before being inserted
 
 router.get ('/follower_like_status', (req,res) => {
-  console.log('--->in social f.like.s router get. req.query:', req.query);
-  console.log('--->in social f.like.s router get. req.body:', req.body);
-  console.log('--->in social f.like.s router get. req.params:', req.params);
+  // console.log('--->in social f.like.s router get. req.query:', req.query);
+  // console.log('--->in social f.like.s router get. req.body:', req.body);
+  // console.log('--->in social f.like.s router get. req.params:', req.params);
   
   //req.query.goal_id a goal IDs.
   //req.query.follower_id is the follower's id.
-
   const queryString = `SELECT * FROM "likes"
       WHERE "goal_id"=${req.query.goal_id} AND "liked_by"=${req.query.follower_id};`
     
     pool.query(queryString).then((results)=>{
-      console.log('results.rows:', results.rows);
       res.send(results.rows);
 
     }).catch((err)=>{
