@@ -52,6 +52,28 @@ router.post('/follower_like', (req,res) => {
     });
 })
 
+router.delete('/follower_like', (req,res) => {
+  // console.log('*** in follower-like router DELETE. req.query:', req.query);
+  // console.log('*** in follower-like router DELETE. req.body:', req.body);
+  // console.log('*** in follower-like router DELETE. req.params:', req.params);
+
+  //req.query.goal_id is the goal id
+  //req.query.follower_id is the follower id
+  const queryString = `DELETE FROM "likes" WHERE 
+          goal_id=$1 AND
+          liked_by=$2;`;
+  values = [req.query.goal_id, req.query.follower_id];
+
+  pool.query(queryString, values)
+    .then(()=>{
+      res.sendStatus(200);
+
+    }).catch((err) => {
+      console.log('DELETE like failed: ', err);
+      res.sendStatus(500);
+    });
+})
+
 router.get('/like_count', (req,res) => {
   //TODO not used in current setup 
 

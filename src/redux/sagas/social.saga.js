@@ -6,7 +6,7 @@ function* socialSaga() {
   yield takeLatest('FETCH_FOLLOWEE_USERS', fetchFolloweeUsers);
   yield takeLatest('FETCH_FOLLOWEE_GOALS', fetchFolloweeGoals);
   yield takeLatest('ADD_LIKE', addLike);
-  // yield takeLatest('DELETE_LIKE', deleteLike);
+  yield takeLatest('DELETE_LIKE', deleteLike);
 
   // yield takeLatest('UPDATE_TASK', updateTask);
   // yield takeLatest('DELETE_TASK', deleteSingleTask);
@@ -60,7 +60,30 @@ function* addLike(action){
                   } });
 
   } catch {
-    console.log('add new followee error');
+    console.log('add like error');
+  }
+}
+
+// //worker Saga: will be fired on "Delete_LIKE" actions
+function* deleteLike(action){
+  const ap = action.payload;
+  //ap.goal_id is goal id
+  //ap.follower_like_status is t/f: whether follower likes this goal (now, after clicking heart to like/unlike)
+  //ap.follower_id is follower (current user) 's id
+  
+  try {
+    yield axios.delete('/api/social/follower_like', 
+        { params: {goal_id: ap.goal_id, follower_id: ap.follower_id} });    
+    
+    yield put({ type: 'UPDATE_GOAL_LIKE_COUNT', 
+        payload: {  direction: "decrement", 
+                    goal_id: ap.goal_id, 
+                    followee_id: ap.followee_id,
+                    follower_id: ap.follower_id 
+                  } });
+
+  } catch {
+    console.log('delete like error');
   }
 }
 
