@@ -59,9 +59,9 @@ function GoalsPage(props) {
 
         
       <div className="cards">
-      {goals.map(goal => (
+        {goals.map(goal => (
             <GoalItem goal={goal} isFollowees={isFollowees}/>
-      ))}
+        ))}
       </div>  
 
     </div>
