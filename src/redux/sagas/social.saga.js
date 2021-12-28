@@ -5,8 +5,7 @@ function* socialSaga() {
   yield takeLatest('ADD_FOLLOWEE', addFollowee);
   yield takeLatest('FETCH_FOLLOWEE_USERS', fetchFolloweeUsers);
   yield takeLatest('FETCH_FOLLOWEE_GOALS', fetchFolloweeGoals);
-  yield takeLatest('FETCH_LIKE_STATUS', fetchLikeStatus);
-
+  
   // yield takeLatest('UPDATE_TASK', updateTask);
   // yield takeLatest('DELETE_TASK', deleteSingleTask);
   // yield takeLatest('DELETE_THIS_GOALS_TASKS', deleteThisGoalsTasks);
@@ -60,24 +59,6 @@ function* socialSaga() {
 
 // worker Saga: will be fired on "FETCH_FOLLOWEE_USERS" actions
 
-//worker Saga: will be fired on "FETCH_LIKE_STATUS" actions
-function* fetchLikeStatus(action){
-  const ap = action.payload;
-  //ap.goal_id = goal id
-
-  console.log('fetch like status ap is:', ap);
-
-  try {
-    const response = yield axios.get('/api/social/likes', 
-        { params: {goal_id: ap.goal_id} });
-
-    console.log('got this back from fetch like status for goal', ap.goal_id, ':', response.data);
-    
-  } catch (err) {
-    console.log('like status fetch failed:', err);
-  }
-}
-
 function* fetchFolloweeUsers(action) {
   const ap = action.payload;
   //ap = user id (user is follower, get followees)
@@ -101,11 +82,30 @@ function* fetchFolloweeGoals(action) {
   //ap.followee_id is id of selectedFollowee (followee)
   //ap.follower_id is the id of the currently logged in user (follower)
   
-  //todo - we didn't need to send the follower id? 
   try {
     const followeeGoals = yield axios.get('/api/social/followee_goals', 
       {params: {followee_id: ap.followee_id, follower_id: ap.follower_id} });
-        
+    
+    //followeeGoals.data[i] have properties: current_avatar_path, followee_id, goal_id, goal_name, like_count
+    //e.g., followeeGoals.data[0].goal_id is first goal's id.
+
+    const goalIDs = followeeGoals.data.map(item => item.goal_id);
+    //goalIDs are the goal ids (only) of the fetched followee goals
+    
+    console.log('goal IDs:', goalIDs);
+
+    let likeStatusArray = [];
+
+    for(let i=0; i<goalIDs.length; i++){
+      let likeStatusThisGoal = yield axios.get('/api/social/follower_like_status',
+        {params: {goal_id: goalIDs[i], follower_id: ap.follower_id} });
+
+      console.log('like status for i=', i, ':', likeStatusThisGoal.data);
+      likeStatusThisGoal.data.length === 0 ? likeStatusArray.push(false) : likeStatusArray.push(true);
+    }
+    console.log('likeStatusArray', likeStatusArray);
+   
+
     yield put({ type: 'SET_FOLLOWEE_GOALS', payload: followeeGoals.data });
 
   } catch (error) {

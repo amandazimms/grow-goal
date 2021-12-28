@@ -11,23 +11,46 @@ const router = express.Router();
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
 
-router.get('/likes', (req,res) => {
-  console.log('--->in social like router get. req.query:', req.query);
-  console.log('--->in social like router get. req.body:', req.body);
-  console.log('--->in social like router get. req.params:', req.params);
+router.get ('/follower_like_status', (req,res) => {
+  console.log('--->in social f.like.s router get. req.query:', req.query);
+  console.log('--->in social f.like.s router get. req.body:', req.body);
+  console.log('--->in social f.like.s router get. req.params:', req.params);
   
-  //req.query.goal_id is the id of the current goal
-  const queryString = `SELECT COUNT(liked_by) FROM
-      "likes" WHERE "goal_id"=${req.query.goal_id};`
-  
-  pool.query(queryString).then((results)=>{
-    console.log('results:', results.rows[0]);
-    res.send(results.rows[0]);
+  //req.query.goal_id a goal IDs.
+  //req.query.follower_id is the follower's id.
 
-  }).catch((err)=>{
-    console.log('error with likes GET:', err);
-    res.sendStatus(500);
-  })
+  const queryString = `SELECT * FROM "likes"
+      WHERE "goal_id"=${req.query.goal_id} AND "liked_by"=${req.query.follower_id};`
+    
+    pool.query(queryString).then((results)=>{
+      console.log('results.rows:', results.rows);
+      res.send(results.rows);
+
+    }).catch((err)=>{
+      console.log('error with likes GET:', err);
+      res.sendStatus(500);
+    })
+})
+
+router.get('/like_count', (req,res) => {
+  //TODO not used in current setup 
+
+  // console.log('--->in social like router get. req.query:', req.query);
+  // console.log('--->in social like router get. req.body:', req.body);
+  // console.log('--->in social like router get. req.params:', req.params);
+  
+  // //req.query.goal_id is the id of the current goal
+  // const queryString = `SELECT COUNT(liked_by) FROM
+  //     "likes" WHERE "goal_id"=${req.query.goal_id};`
+  
+  // pool.query(queryString).then((results)=>{
+  //   console.log('results:', results.rows[0]);
+  //   res.send(results.rows[0]);
+
+  // }).catch((err)=>{
+  //   console.log('error with likes GET:', err);
+  //   res.sendStatus(500);
+  // })
 })
 
 router.get('/followees', (req,res) => {

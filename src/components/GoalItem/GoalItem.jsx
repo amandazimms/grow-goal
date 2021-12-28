@@ -15,7 +15,6 @@ function GoalsPage(props) {
 
   useEffect(() => {
     if (isFollowees) {
-      dispatch( {type: 'FETCH_LIKE_STATUS', payload: goal} );
     }
   }, []);
 
@@ -43,7 +42,15 @@ function GoalsPage(props) {
 
   return (
     <div className="cardAreaSmall"> 
-        <p>likes:{JSON.stringify(goal.like_count)}</p>
+        { isFollowees
+          ? <div className="centerFlexContainer onTop">
+              <Button onClick={toggleLiked} className="iconButton">
+                <img className="iconImage iconImageXL" src={likeImage} alt="Like this goal"></img>
+              </Button>
+              <h4>{goal.like_count}</h4>
+            </div>              
+          : <></>
+        }
         { isFollowees
           ?  <Button className="thumbnailButton" disabled>
               <img className="plantAvatarThumbnail" src={goal.current_avatar_path} alt={goal.current_avatar_path}/>
@@ -56,16 +63,6 @@ function GoalsPage(props) {
             </Link>
         }             
         <h3 className="thumbnailGoalTitle">{goal.goal_name}</h3>
-        {
-          isFollowees
-          ? <div className="likesContainer">
-              <Button onClick={toggleLiked} className="iconButton">
-                <img className="iconImage iconImageXL" src={likeImage} alt="Like this goal"></img>
-              </Button>
-              <h4>{goal.like_count}</h4>
-            </div>              
-          : <></>
-        }
     </div>
   );
 }

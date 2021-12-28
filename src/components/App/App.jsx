@@ -65,7 +65,7 @@ function App() {
           </ProtectedRoute>
 
           {/* logged in shows GoalsPage, else shows LoginPage */}
-          <ProtectedRoute exact path="/follower-goals">
+          <ProtectedRoute exact path="/followee-goals">
             <GoalsPage isFollowees={true}/>
           </ProtectedRoute>
 

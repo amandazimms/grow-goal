@@ -46,7 +46,7 @@ function SocialPage() {
         {followees.map(followee => {
           return (
             <div className="cardAreaSmall" key={followee.id}>     
-              <Link to="/follower-goals" onClick={() => setSelectedFollowee(followee)}>
+              <Link to="/followee-goals" onClick={() => setSelectedFollowee(followee)}>
                 <Button className="thumbnailButton">
                   <img className="plantAvatarThumbnail" src={followee.profile_avatar_path} alt={followee.profile_avatar_path}/>
                 </Button>

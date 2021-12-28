@@ -557,12 +557,9 @@ cards
 
   display: flex;
   justify-content: center;
-
   margin-top: 20px
 }
 
-.likesContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.onTop {
+  position: absolute;
 }
