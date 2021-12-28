@@ -12,34 +12,6 @@ function* socialSaga() {
   // yield takeLatest('DELETE_TASK', deleteSingleTask);
   // yield takeLatest('DELETE_THIS_GOALS_TASKS', deleteThisGoalsTasks);
 }
-//worker Saga: will be fired on "FETCH_FOLLOWEE_USERS" actions
-// function* deleteSingleTask(action){
-//   const ap = action.payload;
-
-//   try {
-//     const deletedTask = yield axios.delete(`/api/task/singleTask/${ap.id}`);
-
-//     yield put({ type: 'FETCH_TASKS', payload: ap.goal_id });
-
-//   } catch {
-//     console.log('delete task error');
-//   }
-// }
-
-// function* deleteThisGoalsTasks(action){
-//   const ap = action.payload;
-//   //ap is the goal's id
-
-//   try {
-//     const deletedTask = yield axios.delete(`/api/task/thisGoalsTasks/${ap}`);
-
-//     //no need to FETCH_TASKS here - since the goal is deleted it has no tasks to fetch
-//     //todo could unset tasks?
-    
-//   } catch {
-//     console.log('delete task error');
-//   }
-// }
 
 // //worker Saga: will be fired on "ADD_LIKE" actions
 function* addLike(action){

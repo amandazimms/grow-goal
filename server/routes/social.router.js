@@ -80,9 +80,11 @@ router.get('/followees', (req,res) => {
   // console.log('--->in social followee router get. req.params:', req.params);
   
   //req.query.follower_id is id of the currently logged in user (follower)
-  const queryString = `SELECT username, profile_avatar_path, "user".id FROM 
-        "followers" JOIN "user" ON "user".id=followee_id
-        WHERE follower_id=${req.query.follower_id};`
+  const queryString = `SELECT username, image_path, "user".id 
+          FROM "followers" 
+          JOIN "user" ON "user".id=followee_id 
+          JOIN "profile_avatar" ON profile_avatar.id="user".profile_avatar_id 
+          WHERE follower_id=${req.query.follower_id};`
   
   pool.query(queryString).then((results)=>{
     res.send(results.rows);

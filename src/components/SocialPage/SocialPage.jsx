@@ -48,7 +48,7 @@ function SocialPage() {
             <div className="cardAreaSmall" key={followee.id}>     
               <Link to="/followee-goals" onClick={() => setSelectedFollowee(followee)}>
                 <Button className="thumbnailButton">
-                  <img className="plantAvatarThumbnail" src={followee.profile_avatar_path} alt={followee.profile_avatar_path}/>
+                  <img className="plantAvatarThumbnail" src={followee.image_path} alt="followee's profile image"/>
                 </Button>
               </Link>
               <h3 className="thumbnailGoalTitle">{followee.username}</h3>

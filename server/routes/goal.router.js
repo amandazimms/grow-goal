@@ -112,7 +112,7 @@ router.put('/like_count/:id', (req, res) => {
       res.sendStatus(200);
 
     }).catch((err) => {
-      console.log('PUT goal visibility failed: ', err);
+      console.log('PUT goal like count failed: ', err);
       res.sendStatus(500);
     });
 });
