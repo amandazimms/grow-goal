@@ -5,7 +5,9 @@ function* socialSaga() {
   yield takeLatest('ADD_FOLLOWEE', addFollowee);
   yield takeLatest('FETCH_FOLLOWEE_USERS', fetchFolloweeUsers);
   yield takeLatest('FETCH_FOLLOWEE_GOALS', fetchFolloweeGoals);
-  
+  yield takeLatest('ADD_LIKE', addLike);
+  // yield takeLatest('DELETE_LIKE', deleteLike);
+
   // yield takeLatest('UPDATE_TASK', updateTask);
   // yield takeLatest('DELETE_TASK', deleteSingleTask);
   // yield takeLatest('DELETE_THIS_GOALS_TASKS', deleteThisGoalsTasks);
@@ -39,26 +41,25 @@ function* socialSaga() {
 //   }
 // }
 
-// //worker Saga: will be fired on "UPDATE_TASK" actions
-// function* updateTask(action){
-//   const ap = action.payload;
+// //worker Saga: will be fired on "ADD_LIKE" actions
+function* addLike(action){
+  const ap = action.payload;
+  //ap.goal_id is goal id
+  //ap.follower_like_status is t/f: whether follower likes this goal (now, after clicking heart to like/unlike)
+  //ap.follower_id is follower (current user) 's id
+  
+  try {
+    yield axios.post('/api/social/follower_like', 
+        { goal_id: ap.goal_id, follower_id: ap.follower_id });    
+         
+   //todo payload? yield put({ type: 'FETCH_FOLLOWEE_GOALS', payload: ap.follower });
 
-//   try {
-//     const updatedTask = yield axios.put(`/api/task/${ap.id}`, 
-//         { task_name: ap.task_name, 
-//           is_complete: ap.is_complete, 
-//           goal_id: ap.goal_id });
-    
-
-//     yield put({ type: 'FETCH_TASKS', payload: ap.goal_id });
-
-//   } catch {
-//     console.log('update task error');
-//   } 
-// }
+  } catch {
+    console.log('add new followee error');
+  }
+}
 
 // worker Saga: will be fired on "FETCH_FOLLOWEE_USERS" actions
-
 function* fetchFolloweeUsers(action) {
   const ap = action.payload;
   //ap = user id (user is follower, get followees)

@@ -11,7 +11,7 @@ const router = express.Router();
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
 
-router.get ('/follower_like_status', (req,res) => {
+router.get('/follower_like_status', (req,res) => {
   // console.log('--->in social f.like.s router get. req.query:', req.query);
   // console.log('--->in social f.like.s router get. req.body:', req.body);
   // console.log('--->in social f.like.s router get. req.params:', req.params);
@@ -28,6 +28,28 @@ router.get ('/follower_like_status', (req,res) => {
       console.log('error with likes GET:', err);
       res.sendStatus(500);
     })
+})
+
+router.post('/follower_like', (req,res) => {
+  // console.log('*** in follower-like router PUT. req.query:', req.query);
+  // console.log('*** in follower-like router PUT. req.body:', req.body);
+  // console.log('*** in follower-like router PUT. req.params:', req.params);
+
+  //req.body.goal_id is goal id
+  //req.body.follower_id is follower id
+  const queryString = `INSERT INTO "likes" (goal_id, liked_by)
+      VALUES ($1, $2);`;
+
+  values = [req.body.goal_id, req.body.follower_id];
+
+  pool.query(queryString, values)
+    .then(()=>{
+      res.sendStatus(200);
+
+    }).catch((err) => {
+      console.log('PUT task failed: ', err);
+      res.sendStatus(500);
+    });
 })
 
 router.get('/like_count', (req,res) => {

@@ -8,7 +8,7 @@ function GoalsPage(props) {
   const isFollowees = props.isFollowees;
   const goal = props.goal;
 
-  //const user = useSelector((store) => store.user);
+  const user = useSelector(store => store.user);
   const selectedFollowee = useSelector(store => store.selectedFollowee);
 
   const dispatch = useDispatch();
@@ -29,14 +29,13 @@ function GoalsPage(props) {
     if (isLiked) { //if goal was liked and we clicked, we mark UN liked
       setIsLiked(false);
       setLikeImage('./images/icons/HeartEmpty.png');
-      //todo something like this for dispatch: taskToSend.is_complete = false;
+      dispatch({type: 'DELETE_LIKE', payload: {goal_id: goal.goal_id, follower_like_status: false, follower_id: user.id} });
     } 
-    else { //if task was incomplete and we clicked, mark COMPLETE
+    else { //if goal was unliked and we clicked, mark LIKED
       setIsLiked(true);
       setLikeImage('./images/icons/HeartFilled.png');
-      //todo something like this for dispatch: taskToSend.is_complete = true;
+      dispatch({type: 'ADD_LIKE', payload: {goal_id: goal.goal_id, follower_like_status: true, follower_id: user.id} });
     }
-    //todo dispatch
   }
 
   return (
