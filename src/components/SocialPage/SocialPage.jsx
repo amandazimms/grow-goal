@@ -10,7 +10,7 @@ function SocialPage() {
   const selectedFollowee = useSelector(store => store.selectedFollowee);
 
   const [addingFollowed, setAddingFollowed] = useState(false);
-
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,6 +43,7 @@ function SocialPage() {
 
 
       <div className="cards">
+        {/* todo we reused some css classes that could be updated - "goal" and "plant" verbage below */}
         {followees.map(followee => {
           return (
             <div className="cardAreaSmall" key={followee.id}>     

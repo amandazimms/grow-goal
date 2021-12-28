@@ -14,6 +14,10 @@ function GoalsPage(props) {
 
   const dispatch = useDispatch();
 
+  //todo v - import (via props?) goal.isLiked (by this user)
+  const [isLiked, setIsLiked] = useState(false);
+  const [likeImage, setLikeImage] = useState(isLiked ? './images/icons/HeartFilled.png' : './images/icons/HeartEmpty.png');                
+
   useEffect(() => {
     if (isFollowees) {
       console.log('sf.id:', selectedFollowee.id, "user.id:", user.id);
@@ -42,8 +46,18 @@ function GoalsPage(props) {
     //note that ADD_GOAL sequence ends with SET_SELECTED_GOAL for the new goal
   }
 
-  const getRand = () => {
-    return Math.floor(Math.random() * 10000);
+  const toggleLiked = () => {
+    if (isLiked) { //if goal was liked and we clicked, we mark UN liked
+      setIsLiked(false);
+      setLikeImage('./images/icons/HeartEmpty.png');
+      //todo something like this for dispatch: taskToSend.is_complete = false;
+    } 
+    else { //if task was incomplete and we clicked, mark COMPLETE
+      setIsLiked(true);
+      setLikeImage('./images/icons/HeartFilled.png');
+      //todo something like this for dispatch: taskToSend.is_complete = true;
+    }
+    //todo dispatch
   }
 
   return (
@@ -81,6 +95,13 @@ function GoalsPage(props) {
                   </Link>
               }             
               <h3 className="thumbnailGoalTitle">{goal.goal_name}</h3>
+              {
+                isFollowees
+                ? <Button onClick={toggleLiked} className="iconButton">
+                    <img className="iconImage iconImageXL" src={likeImage} alt="Like this goal"></img>
+                  </Button>
+                : <></>
+              }
             </div>
             );
         })}
