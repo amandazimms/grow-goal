@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
+import GoalItem from '../GoalItem/GoalItem';
 
 function GoalsPage(props) {
   //if we reach this page via social, it will trigger 'isFollowees=true', meaning we are looking at a followee's page
@@ -14,25 +15,18 @@ function GoalsPage(props) {
 
   const dispatch = useDispatch();
 
-  //todo v - import (via props?) goal.isLiked (by this user)
-  const [isLiked, setIsLiked] = useState(false);
-  const [likeImage, setLikeImage] = useState(isLiked ? './images/icons/HeartFilled.png' : './images/icons/HeartEmpty.png');                
-
   useEffect(() => {
     if (isFollowees) {
       console.log('sf.id:', selectedFollowee.id, "user.id:", user.id);
       dispatch( {type: 'FETCH_FOLLOWEE_GOALS', payload: { followee_id: selectedFollowee.id, follower_id: user.id } })
     }
     else {
+      console.log('three dispatches');
       dispatch( {type: 'UNSET_SELECTED_GOAL', payload: {} });
       dispatch( {type: 'FETCH_GOALS', payload: user.id });
       dispatch( {type: 'FETCH_PLANT_AVATARS' });
     } 
   }, []);
-
-  const setSelectedGoal = (goal) =>{
-    dispatch( {type: 'SET_SELECTED_GOAL', payload: goal});
-  }
 
   const addNewGoal = () => {
     dispatch({ type: 'ADD_GOAL', payload: {
@@ -44,20 +38,6 @@ function GoalsPage(props) {
         visibility: "private"
     }});
     //note that ADD_GOAL sequence ends with SET_SELECTED_GOAL for the new goal
-  }
-
-  const toggleLiked = () => {
-    if (isLiked) { //if goal was liked and we clicked, we mark UN liked
-      setIsLiked(false);
-      setLikeImage('./images/icons/HeartEmpty.png');
-      //todo something like this for dispatch: taskToSend.is_complete = false;
-    } 
-    else { //if task was incomplete and we clicked, mark COMPLETE
-      setIsLiked(true);
-      setLikeImage('./images/icons/HeartFilled.png');
-      //todo something like this for dispatch: taskToSend.is_complete = true;
-    }
-    //todo dispatch
   }
 
   return (
@@ -77,34 +57,11 @@ function GoalsPage(props) {
           </div>
       }
 
-
+        
       <div className="cards">
-        {goals.map(goal => {
-          return (
-            <div className="cardAreaSmall" key={uuidv4()}> 
-            {/* //key={goal.id}>  */}
-              { isFollowees
-                ?  <Button className="thumbnailButton" disabled>
-                    <img className="plantAvatarThumbnail" src={goal.current_avatar_path} alt={goal.current_avatar_path}/>
-                  </Button>
-                  //todo add logic for liking
-                : <Link to="/goal" onClick={() => setSelectedGoal(goal)}>
-                    <Button className="thumbnailButton">
-                      <img className="plantAvatarThumbnail" src={goal.current_avatar_path} alt={goal.current_avatar_path}/>
-                    </Button>
-                  </Link>
-              }             
-              <h3 className="thumbnailGoalTitle">{goal.goal_name}</h3>
-              {
-                isFollowees
-                ? <Button onClick={toggleLiked} className="iconButton">
-                    <img className="iconImage iconImageXL" src={likeImage} alt="Like this goal"></img>
-                  </Button>
-                : <></>
-              }
-            </div>
-            );
-        })}
+      {goals.map(goal => (
+            <GoalItem goal={goal} isFollowees={isFollowees}/>
+      ))}
       </div>  
 
     </div>
