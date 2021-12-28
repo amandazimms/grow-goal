@@ -18,8 +18,7 @@ function GoalsPage(props) {
     }
   }, []);
 
-                                    //todo v - import (via props?) goal.isLiked (by this user)
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(goal.follower_like_status || false);
   const [likeImage, setLikeImage] = useState(isLiked ? './images/icons/HeartFilled.png' : './images/icons/HeartEmpty.png');                
 
   const setSelectedGoal = (goal) =>{
