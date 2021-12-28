@@ -1,4 +1,5 @@
 const followeeUsersReducer = (state = [], action) => {
+  //holds the users that you follow
   switch (action.type) {
     case 'SET_FOLLOWEE_USERS':
       return action.payload;

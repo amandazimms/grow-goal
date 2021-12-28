@@ -10,7 +10,7 @@ function SocialPage() {
   const selectedFollowee = useSelector(store => store.selectedFollowee);
 
   const [addingFollowed, setAddingFollowed] = useState(false);
-  
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,7 +18,6 @@ function SocialPage() {
   }, []);
 
   const setSelectedFollowee = (followie) =>{
-    console.log('will set sf to:', followie);
     dispatch( {type: 'SET_SELECTED_FOLLOWEE', payload: followie});
   }
 

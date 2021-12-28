@@ -10,7 +10,25 @@ const router = express.Router();
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
-//console.log("!");
+
+router.get('/likes', (req,res) => {
+  console.log('--->in social like router get. req.query:', req.query);
+  console.log('--->in social like router get. req.body:', req.body);
+  console.log('--->in social like router get. req.params:', req.params);
+  
+  //req.query.goal_id is the id of the current goal
+  const queryString = `SELECT COUNT(liked_by) FROM
+      "likes" WHERE "goal_id"=${req.query.goal_id};`
+  
+  pool.query(queryString).then((results)=>{
+    console.log('results:', results.rows[0]);
+    res.send(results.rows[0]);
+    
+  }).catch((err)=>{
+    console.log('error with likes GET:', err);
+    res.sendStatus(500);
+  })
+})
 
 router.get('/followees', (req,res) => {
   // console.log('--->in social followee router get. req.query:', req.query);
@@ -52,15 +70,15 @@ router.get('/followee_id', (req, res) => {
 })
 
 router.get('/followee_goals', (req, res) => {
-  console.log('--->in social followee goals router get. req.query:', req.query);
-  console.log('--->in social followee goals router get. req.body:', req.body);
-  console.log('--->in social followee goals router get. req.params:', req.params);
+  // console.log('--->in social followee goals router get. req.query:', req.query);
+  // console.log('--->in social followee goals router get. req.body:', req.body);
+  // console.log('--->in social followee goals router get. req.params:', req.params);
 
   //req.query.followee_id is the id of the followee (user that was clicked on)
   //req.query.follower_id is the id of the follower (logged in user)
 
   //todo not sure which id to send here to avoid "unique key child error"
-  const queryString = `SELECT followee_id, goal_name, current_avatar_path FROM 
+  const queryString = `SELECT followee_id, "goal".id AS "goal_id", goal_name, current_avatar_path FROM 
            "followers" JOIN "goal" ON followee_id=goal.user_id 
            WHERE goal.visibility='followers' 
               AND follower_id=${req.query.follower_id} 

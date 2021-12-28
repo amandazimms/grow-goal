@@ -5,6 +5,7 @@ function* socialSaga() {
   yield takeLatest('ADD_FOLLOWEE', addFollowee);
   yield takeLatest('FETCH_FOLLOWEE_USERS', fetchFolloweeUsers);
   yield takeLatest('FETCH_FOLLOWEE_GOALS', fetchFolloweeGoals);
+  yield takeLatest('FETCH_LIKE_STATUS', fetchLikeStatus);
 
   // yield takeLatest('UPDATE_TASK', updateTask);
   // yield takeLatest('DELETE_TASK', deleteSingleTask);
@@ -58,6 +59,25 @@ function* socialSaga() {
 // }
 
 // worker Saga: will be fired on "FETCH_FOLLOWEE_USERS" actions
+
+//worker Saga: will be fired on "FETCH_LIKE_STATUS" actions
+function* fetchLikeStatus(action){
+  const ap = action.payload;
+  //ap.goal_id = goal id
+
+  console.log('fetch like status ap is:', ap);
+
+  try {
+    const response = yield axios.get('/api/social/likes', 
+        { params: {goal_id: ap.goal_id} });
+
+    console.log('got this back from fetch like status for goal', ap.goal_id, ':', response.data);
+    
+  } catch (err) {
+    console.log('like status fetch failed:', err);
+  }
+}
+
 function* fetchFolloweeUsers(action) {
   const ap = action.payload;
   //ap = user id (user is follower, get followees)
@@ -67,7 +87,6 @@ function* fetchFolloweeUsers(action) {
       { params: { follower_id: ap } });
     
     //RESPONSE.DATA is array of users (followees) that this user (follower) follows
-    console.log('finished fetching followee users, got:', response.data);
     
     yield put({ type: 'SET_FOLLOWEE_USERS', payload: response.data });
 
@@ -87,8 +106,6 @@ function* fetchFolloweeGoals(action) {
     const followeeGoals = yield axios.get('/api/social/followee_goals', 
       {params: {followee_id: ap.followee_id, follower_id: ap.follower_id} });
         
-    console.log('got this back from followeeGoals:', followeeGoals.data);
-
     yield put({ type: 'SET_FOLLOWEE_GOALS', payload: followeeGoals.data });
 
   } catch (error) {

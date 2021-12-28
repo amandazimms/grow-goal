@@ -1,4 +1,5 @@
-const followingGoalsReducer = (state = [], action) => {
+const followeeGoalsReducer = (state = [], action) => {
+  //holds the goals of one of your followees
   switch (action.type) {
     case 'SET_FOLLOWEE_GOALS':
       return action.payload;
@@ -11,4 +12,4 @@ const followingGoalsReducer = (state = [], action) => {
 
 // user will be on the redux state at:
 // state.user
-export default followingGoalsReducer;
+export default followeeGoalsReducer;

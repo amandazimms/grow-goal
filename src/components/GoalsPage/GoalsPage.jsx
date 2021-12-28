@@ -17,11 +17,9 @@ function GoalsPage(props) {
 
   useEffect(() => {
     if (isFollowees) {
-      console.log('sf.id:', selectedFollowee.id, "user.id:", user.id);
       dispatch( {type: 'FETCH_FOLLOWEE_GOALS', payload: { followee_id: selectedFollowee.id, follower_id: user.id } })
     }
     else {
-      console.log('three dispatches');
       dispatch( {type: 'UNSET_SELECTED_GOAL', payload: {} });
       dispatch( {type: 'FETCH_GOALS', payload: user.id });
       dispatch( {type: 'FETCH_PLANT_AVATARS' });
@@ -60,7 +58,7 @@ function GoalsPage(props) {
         
       <div className="cards">
         {goals.map(goal => (
-            <GoalItem goal={goal} isFollowees={isFollowees}/>
+            <GoalItem goal={goal} isFollowees={isFollowees} key={uuidv4()}/>
         ))}
       </div>  
 
