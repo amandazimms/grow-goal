@@ -111,12 +111,15 @@ function* deleteGoal(action) {
 // worker Saga: will be fired on "ADD_GOAL" actions
 function* addGoal(action) {  
   const ap = action.payload;
+  console.log('add goal ap:', ap);
+
   try {
     let newGoal = {
       goal_name: ap.goal_name, 
       progress: ap.progress, 
       is_accomplished: ap.is_accomplished, 
       user_id: ap.user_id, 
+      visibility: ap.visibility,
       plant_avatar_id: ap.plant_avatar_id 
     }
 

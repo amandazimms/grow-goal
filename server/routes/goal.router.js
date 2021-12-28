@@ -32,9 +32,10 @@ router.get('/', (req,res) => {
 })
 
 router.post('/', (req, res) => {
-  const queryString = `INSERT INTO "goal" ("goal_name", "progress", "is_accomplished", "user_id", "plant_avatar_id")
-    VALUES ($1, $2, $3, $4, $5) RETURNING id`;
+  const queryString = `INSERT INTO "goal" ("goal_name", "visibility", "progress", "is_accomplished", "user_id", "plant_avatar_id")
+    VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`;
     values = [req.body.goal_name, 
+              req.body.visibility,
               req.body.progress, 
               req.body.is_accomplished, 
               req.body.user_id, 
