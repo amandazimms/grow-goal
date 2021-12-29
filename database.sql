@@ -19,7 +19,7 @@ CREATE TABLE "user" (
   "password" VARCHAR (100) NOT NULL,
   "tasks_completed" INT,
   "goals_achieved" INT,
-  "profile_avatar_id" INT REFERENCES profile_avatar (id)
+  "profile_avatar_id" INT REFERENCES profile_avatar (id) DEFAULT 1
 );
 
 CREATE TABLE "plant_avatar" (

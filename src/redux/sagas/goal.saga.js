@@ -96,8 +96,6 @@ function* deleteGoal(action) {
   try {
     const deletedTask = yield axios.delete(`/api/goal/${ap.id}`);
     
-    yield put({ type: 'DELETE_THIS_GOALS_TASKS', payload: ap.id });
-
     //need to send a payload for fetch_goals so that we can access the ap.USER    
     yield put({ type: 'FETCH_GOALS', payload: ap.user_id });
 

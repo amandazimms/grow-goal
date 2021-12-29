@@ -18,7 +18,17 @@ function* fetchUser() {
     // now that the session has given us a user object
     // with an id and username set the client-side user object to let
     // the client-side code know the user is logged in
-    yield put({ type: 'SET_USER', payload: response.data });
+
+    //response.data.id is user id
+    const profileAvatar = yield axios.get('/api/user/profile_avatar', 
+      {params: {user_id: response.data.id} })
+
+    //response.data gets all the columns from "user"; profileAvatar.data[0] gets the path of the profile image
+    //combine these to set our User reducer so the image path will be handy for use  
+    let userToSet = {...response.data, ...profileAvatar.data[0]}
+
+    yield put({ type: 'SET_USER', payload: userToSet });
+    
   } catch (error) {
     console.log('User get request failed', error);
   }

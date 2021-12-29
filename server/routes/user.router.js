@@ -14,6 +14,25 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
+
+router.get('/profile_avatar', (req,res) => {
+  //req.query.user_id is user id
+  const queryString = `SELECT image_path 
+        FROM "user" 
+        JOIN "profile_avatar" ON profile_avatar.id="user".profile_avatar_id 
+        WHERE "user".id=${req.query.user_id};`
+  
+  pool.query(queryString).then((results)=>{
+    console.log('results:', results);
+    res.send(results.rows);
+
+  }).catch((err)=>{
+    console.log('error with followees GET:', err);
+    res.sendStatus(500);
+  })
+})
+
+
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
