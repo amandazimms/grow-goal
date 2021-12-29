@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
-function GoalsPage(props) {
+function GoalItem(props) {
   //if we reach this page via social, it will trigger 'isFollowees=true', meaning we are looking at a followee's page
   const isFollowees = props.isFollowees;
   const goal = props.goal;
@@ -18,7 +18,7 @@ function GoalsPage(props) {
     }
   }, []);
 
-  const [isLiked, setIsLiked] = useState(goal.follower_like_status || true);
+  const [isLiked, setIsLiked] = useState(isFollowees ? goal.follower_like_status : true);
   const [likeImage, setLikeImage] = useState(isLiked ? './images/icons/HeartFilled.png' : './images/icons/HeartEmpty.png');                
 
   const setSelectedGoal = (goal) =>{
@@ -40,7 +40,6 @@ function GoalsPage(props) {
 
   return (
     <div className="cardAreaSmall"> 
-        
            <div className="centerFlexContainer onTop">
               <Button onClick={toggleLiked} className="iconButton" disabled={isFollowees ? false : true}>
                 <img className="iconImage iconImageXL" src={likeImage} alt="Like this goal"></img>
@@ -65,4 +64,4 @@ function GoalsPage(props) {
   );
 }
 
-export default GoalsPage;
+export default GoalItem;
