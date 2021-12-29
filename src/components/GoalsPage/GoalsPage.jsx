@@ -28,7 +28,7 @@ function GoalsPage(props) {
 
   const addNewGoal = () => {
     dispatch({ type: 'ADD_GOAL', payload: {
-        goal_name: '',
+        goal_name: 'New Goal',
         progress: 0,
         is_accomplished: false,
         user_id: user.id,
