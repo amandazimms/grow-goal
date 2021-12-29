@@ -6,7 +6,6 @@ function* taskSaga() {
   yield takeLatest('FETCH_TASKS', fetchTasks);
   yield takeLatest('UPDATE_TASK', updateTask);
   yield takeLatest('DELETE_TASK', deleteSingleTask);
-  yield takeLatest('DELETE_THIS_GOALS_TASKS', deleteThisGoalsTasks);
 }
 //worker Saga: will be fired on "UPDATE_TASK" actions
 function* deleteSingleTask(action){
@@ -17,21 +16,6 @@ function* deleteSingleTask(action){
 
     yield put({ type: 'FETCH_TASKS', payload: ap.goal_id });
 
-  } catch {
-    console.log('delete task error');
-  }
-}
-
-function* deleteThisGoalsTasks(action){
-  const ap = action.payload;
-  //ap is the goal's id
-
-  try {
-    const deletedTask = yield axios.delete(`/api/task/thisGoalsTasks/${ap}`);
-
-    //no need to FETCH_TASKS here - since the goal is deleted it has no tasks to fetch
-    //todo could unset tasks?
-    
   } catch {
     console.log('delete task error');
   }

@@ -50,7 +50,7 @@ CREATE TABLE "goal" (
   "is_accomplished" BOOLEAN,
   "last_update" TIMESTAMP,
   "user_id" INT REFERENCES "user" (id),
-  "plant_avatar_id" INT REFERENCES "plant_avatar" (id),
+  "plant_avatar_id" INT REFERENCES "plant_avatar" (id) ON DELETE RESTRICT,
   "like_count" INT DEFAULT 0
 );
 INSERT INTO "goal" ("goal_name", "visibility", "progress", "is_accomplished", "last_update", "user_id", "plant_avatar_id", "like_count")
@@ -60,7 +60,7 @@ CREATE TABLE "task" (
   "id" SERIAL PRIMARY KEY,
   "task_name" VARCHAR,
   "is_complete" BOOLEAN,
-  "goal_id" INT REFERENCES "goal" (id)
+  "goal_id" INT REFERENCES "goal" (id) ON DELETE CASCADE,
 );
 INSERT INTO "task" ("task_name", "is_complete", "goal_id")
 VALUES ('Do prewriting research', TRUE, 1),
@@ -70,13 +70,13 @@ VALUES ('Do prewriting research', TRUE, 1),
 
 CREATE TABLE "followers" (
   "id" SERIAL PRIMARY KEY,
-  "followee_id" INT REFERENCES "user" (id),
-  "follower_id" INT REFERENCES "user" (id)
+  "followee_id" INT REFERENCES "user" (id) ON DELETE CASCADE,
+  "follower_id" INT REFERENCES "user" (id) ON DELETE CASCADE
 );
 
 CREATE TABLE "likes" (
   "id" SERIAL PRIMARY KEY,
-  "goal_id" INT REFERENCES "goal" (id),
-  "liked_by" INT REFERENCES "user" (id)
+  "goal_id" INT REFERENCES "goal" (id) ON DELETE CASCADE,
+  "liked_by" INT REFERENCES "user" (id) ON DELETE CASCADE
 );
 -- todo add placeholder/beginning data to followers, likes tables
