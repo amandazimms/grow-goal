@@ -176,7 +176,7 @@ Button
   color: #054b02;
 }
 
-.iconButton {
+.iconButton, .iconButton:disabled {
   display: inline;
   margin-right: 5px;
   /* remove default button styles */

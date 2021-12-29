@@ -18,7 +18,7 @@ function GoalsPage(props) {
     }
   }, []);
 
-  const [isLiked, setIsLiked] = useState(goal.follower_like_status || false);
+  const [isLiked, setIsLiked] = useState(goal.follower_like_status || true);
   const [likeImage, setLikeImage] = useState(isLiked ? './images/icons/HeartFilled.png' : './images/icons/HeartEmpty.png');                
 
   const setSelectedGoal = (goal) =>{
@@ -40,15 +40,15 @@ function GoalsPage(props) {
 
   return (
     <div className="cardAreaSmall"> 
-        { isFollowees
-          ? <div className="centerFlexContainer onTop">
-              <Button onClick={toggleLiked} className="iconButton">
+        
+           <div className="centerFlexContainer onTop">
+              <Button onClick={toggleLiked} className="iconButton" disabled={isFollowees ? false : true}>
                 <img className="iconImage iconImageXL" src={likeImage} alt="Like this goal"></img>
               </Button>
               <h4>{goal.like_count}</h4>
             </div>              
-          : <></>
-        }
+          
+        
         { isFollowees
           ?  <Button className="thumbnailButton" disabled>
               <img className="plantAvatarThumbnail" src={goal.current_avatar_path} alt={goal.current_avatar_path}/>
