@@ -58,7 +58,7 @@ function GoalPage(props) {
             />
 
         <div className="cards">
-            <div className="cardArea cardYellow cardParentTasks">
+            <div className="cardArea cardYellow cardParent cardParentTasks">
               
 
               <div className="tasksContainer">

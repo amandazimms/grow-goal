@@ -3,6 +3,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { useEffect } from 'react';
+import ImagePicker from '../ImagePicker/ImagePicker';
 
 function ProfilePage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -10,6 +11,16 @@ function ProfilePage() {
 
   const [randomQuote, setRandomQuote] = useState('Default Quote Here');
   
+  const bodyImages = [
+    '/images/profileAvatars/Body1.png',
+    '/images/profileAvatars/Body2.png'
+  ]
+
+  const headImages = [
+    '/images/profileAvatars/Head1.png',
+    '/images/profileAvatars/Head2.png'
+  ]
+
   let quotesArray = [
         'Way to go!',
         'Nice work!',
@@ -33,14 +44,18 @@ function ProfilePage() {
     <div className="container">
 
       <div className="centerFlexContainer">
-        <div className="cardAreaSmall">
-          <Button className="thumbnailButton" disabled>
-            <img className="plantAvatarThumbnail" src={user.image_path} alt="user's profile avatar"/>
-          </Button>
-
-          <h3 className="thumbnailGoalTitle">{user.username}</h3>
+        <div className="cardArea cardBlue">
+          <div style={{position:"relative"}}className="cardParent cardParentProfileAvatar">
+              <ImagePicker topDistance={"130px"} images={headImages}/>
+              <ImagePicker topDistance={"230px"} images={bodyImages}/>
+          </div>      
         </div>
       </div>
+        
+      <div className="centerFlexContainer">
+        <h3 className="thumbnailGoalTitle">{user.username}</h3>
+      </div>
+
 
       <div className="centerFlexContainer">
         <h4>Goals Achieved:</h4>
