@@ -199,6 +199,7 @@ Button
 
 .floatTopButton {
   position: abolute;
+  height: 30px;
 }
 
 .buttonButton:hover, .buttonButton:active, .buttonButton:focus {
@@ -525,15 +526,6 @@ cards
   -webkit-align-self: auto;
   -ms-flex-item-align: auto;
   align-self: auto;
-}
-
-.profileAvatarButtonBack {
-  position: "absolute";
-  left: 0
-}
-.profileAvatarButtonNext {
-  position: "absolute";
-  right: 0
 }
 
 .plantAvatarImage {
