@@ -11,14 +11,18 @@ function ProfilePage() {
 
   const [randomQuote, setRandomQuote] = useState('Default Quote Here');
   
-  const bodyImages = [
-    '/images/profileAvatars/Body1.png',
-    '/images/profileAvatars/Body2.png'
-  ]
 
+  const hairImages = [
+    '/images/profileAvatars/Hair1.png',
+    '/images/profileAvatars/Hair2.png'
+  ]
   const headImages = [
     '/images/profileAvatars/Head1.png',
     '/images/profileAvatars/Head2.png'
+  ]
+  const bodyImages = [
+    '/images/profileAvatars/Body1.png',
+    '/images/profileAvatars/Body2.png'
   ]
 
   let quotesArray = [
@@ -46,8 +50,9 @@ function ProfilePage() {
       <div className="centerFlexContainer">
         <div className="cardArea cardBlue">
           <div style={{position:"relative"}}className="cardParent cardParentProfileAvatar">
-              <ImagePicker topDistance={"130px"} images={headImages}/>
-              <ImagePicker topDistance={"230px"} images={bodyImages}/>
+              {/*HAIR*/} <ImagePicker topDistance={"110px"} images={hairImages} zIndex={10}/>
+              {/*HEAD*/} <ImagePicker topDistance={"160px"} images={headImages} zIndex={1}/>
+              {/*BODY*/} <ImagePicker topDistance={"230px"} images={bodyImages} zIndex={0}/>
           </div>      
         </div>
       </div>

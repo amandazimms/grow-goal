@@ -503,7 +503,7 @@ cards
 }
 
 
-.plantAvatarButtonBack, .fakeImage {
+.avatarButtonBack, .fakeImage {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 0;
@@ -515,7 +515,7 @@ cards
   align-self: auto;
 }
 
-.plantAvatarButtonNext, .plantAvatarButtonEdit {
+.avatarButtonNext, .plantAvatarButtonEdit {
   -webkit-order: 3;
   -ms-flex-order: 3;
   order: 3;
@@ -525,6 +525,15 @@ cards
   -webkit-align-self: auto;
   -ms-flex-item-align: auto;
   align-self: auto;
+}
+
+.profileAvatarButtonBack {
+  position: "absolute";
+  left: 0
+}
+.profileAvatarButtonNext {
+  position: "absolute";
+  right: 0
 }
 
 .plantAvatarImage {

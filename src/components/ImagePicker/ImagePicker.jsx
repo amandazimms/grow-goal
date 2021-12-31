@@ -13,16 +13,15 @@ function PlantAvatar(props) {
   useEffect(() => {
   }, []);
 
+  
+  const profileImageStyle = {
+    zIndex: props.zIndex
+  }
   const buttonStyleBack = {
-    position: "absolute",
     top: props.topDistance,
-    left: 0
   };
-
   const buttonStyleNext = {
-    position: "absolute",
     top: props.topDistance,
-    right: 0
   };
 
   const backButton = () => {
@@ -41,13 +40,13 @@ function PlantAvatar(props) {
 
   return (
     <>
-        <Button onClick={backButton} style={buttonStyleBack} className="floatTopButton iconButton plantAvatarButtonBack"> 
+        <Button onClick={backButton} style={buttonStyleBack} className="floatTopButton iconButton avatarButtonBack profileAvatarButtonBack"> 
           <img className="iconImage iconImageXL imageFlip" src='./images/icons/Arrow.png' alt="Next image"></img>
         </Button>
 
-        <img className="avatarImagePiece" src={images[selectedImageIndex]} alt="profile avatar image piece"/>
+        <img className="avatarImagePiece" style={profileImageStyle} src={images[selectedImageIndex]} alt="profile avatar image piece"/>
       
-        <Button onClick={nextButton} style={buttonStyleNext} className="floatTopButton iconButton plantAvatarButtonNext"> 
+        <Button onClick={nextButton} style={buttonStyleNext} className="floatTopButton iconButton avatarButtonNext profileAvatarButtonNext"> 
           <img className="iconImage iconImageXL" src='./images/icons/Arrow.png' alt="Next image"></img>
         </Button>
     </>
