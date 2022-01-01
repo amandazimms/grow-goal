@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { useEffect } from 'react';
-import ImagePicker from '../ImagePicker/ImagePicker';
+import ImagePiece from '../ImagePiece/ImagePiece';
 
 function ProfilePage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -99,16 +99,25 @@ function ProfilePage() {
       <div className="centerFlexContainer">
         <div className="cardArea cardBlue">
           <div style={{position:"relative"}}className="cardParent cardParentProfileAvatar">
-              {/*HAT*/} <ImagePicker images={hatImages} topDistance={"0px"} zIndex={10}/>
-              {/*HAIR*/} <ImagePicker images={hairImages} topDistance={"25px"} zIndex={9}/>
-              {/*EYEBROWS*/} <ImagePicker images={eyebrowsImages} topDistance={"60px"} zIndex={6}/>
-              {/*EYES*/} <ImagePicker images={eyesImages} topDistance={"90px"} zIndex={3}/>
-              {/*DETAIL*/} <ImagePicker images={detailImages} topDistance={"115px"} zIndex={2}/>
-              {/*NOSE*/} <ImagePicker images={noseImages} topDistance={"145px"} zIndex={2}/>
-              {/*MOUTH*/} <ImagePicker images={mouthImages} topDistance={"180px"} zIndex={2}/>
-              {/*HEAD*/} <ImagePicker images={headImages} topDistance={"220px"} zIndex={1}/>
-              {/*BODY*/} <ImagePicker images={bodyImages} topDistance={"265px"} zIndex={0}/>
-          </div>      
+              {/*HAT*/} <ImagePiece images={hatImages} topDistance={"0px"} zIndex={10} isEdit={true}/>
+              {/*HAIR*/} <ImagePiece images={hairImages} topDistance={"25px"} zIndex={9} isEdit={true}/>
+              {/*EYEBROWS*/} <ImagePiece images={eyebrowsImages} topDistance={"60px"} zIndex={6} isEdit={false}/>
+              {/*EYES*/} <ImagePiece images={eyesImages} topDistance={"90px"} zIndex={3} isEdit={false}/>
+              {/*DETAIL*/} <ImagePiece images={detailImages} topDistance={"115px"} zIndex={2} isEdit={false}/>
+              {/*NOSE*/} <ImagePiece images={noseImages} topDistance={"145px"} zIndex={2} isEdit={true}/>
+              {/*MOUTH*/} <ImagePiece images={mouthImages} topDistance={"180px"} zIndex={2} isEdit={true}/>
+              {/*HEAD*/} <ImagePiece images={headImages} topDistance={"220px"} zIndex={1} isEdit={true}/>
+              {/*BODY*/} <ImagePiece images={bodyImages} topDistance={"265px"} zIndex={0} isEdit={true}/>
+          </div>  
+
+          <Form.Switch
+              className="centerFlexContainer"
+              type="switch"
+              id="custom-switch"
+              label="Visible to Followers"
+              // checked={}
+              // onChange={}
+            />    
         </div>
       </div>
         

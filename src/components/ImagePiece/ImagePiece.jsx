@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 
-function PlantAvatar(props) {
+function ImagePiece(props) {
 
   const images = props.images;
+  const isEdit = props.isEdit
   
   const dispatch = useDispatch();
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(1);
+  const [editingMode, setEditingMode] = useState(isEdit || false);
 
   useEffect(() => {
   }, []);
@@ -44,17 +46,24 @@ function PlantAvatar(props) {
 
   return (
     <>
-        <Button onClick={backButton} style={buttonStyleBack} className="floatTopButton iconButton avatarButtonBack"> 
-          <img className="iconImageLarge imageFlip" src='./images/icons/Arrow.png' alt="Next image"></img>
-        </Button>
+        { editingMode
+          ?  <Button onClick={backButton} style={buttonStyleBack} className="floatTopButton iconButton avatarButtonBack"> 
+              <img className="iconImageLarge imageFlip" src='./images/icons/Arrow.png' alt="Next image"></img>
+            </Button>
+          : <></>  
+        }
 
         <img className="avatarImagePiece" style={profileImageStyle} src={images[selectedImageIndex]} alt="profile avatar image piece"/>
       
-        <Button onClick={nextButton} style={buttonStyleNext} className="floatTopButton iconButton avatarButtonNext"> 
-          <img className="iconImageLarge" src='./images/icons/Arrow.png' alt="Next image"></img>
-        </Button>
+        { editingMode
+          ?   <Button onClick={nextButton} style={buttonStyleNext} className="floatTopButton iconButton avatarButtonNext"> 
+                <img className="iconImageLarge" src='./images/icons/Arrow.png' alt="Next image"></img>
+              </Button>
+          : <></>  
+        }
+       
     </>
   );
 }
 
-export default PlantAvatar;
+export default ImagePiece;
