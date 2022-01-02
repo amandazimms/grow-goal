@@ -200,6 +200,7 @@ Button
 .floatTopButton {
   position: abolute;
   height: 30px;
+  margin: 0;
 }
 
 .buttonButton:hover, .buttonButton:active, .buttonButton:focus {
@@ -481,6 +482,12 @@ cards
   align-items: flex-start;
 }
 
+.cardParentProfileAvatar {
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
 .cardParentPlantAvatar {
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
@@ -502,6 +509,7 @@ cards
   pointer-events: none; 
   position: absolute;
   top: 0;
+  right: 10px;
   width: 280px;
   object-fit: cover;
   /* object-position: 50% -150%; */
@@ -509,7 +517,9 @@ cards
 }
 
 .avatarImagePieceZoomed {
-  height: 500px;
+  height: 450px;
+  object-position: 63% -50%;
+  transform: translate(0%, -20%);
 }
 
 
@@ -524,6 +534,8 @@ cards
   -webkit-align-self: auto;
   -ms-flex-item-align: auto;
   align-self: auto;
+
+  z-index: 99;
 }
 
 .avatarButtonNext, .plantAvatarButtonEdit {
@@ -536,6 +548,8 @@ cards
   -webkit-align-self: auto;
   -ms-flex-item-align: auto;
   align-self: auto;
+
+  z-index: 99;
 }
 
 .plantAvatarImage {
