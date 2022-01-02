@@ -10,14 +10,18 @@ function ProfilePage() {
   const user = useSelector(store => store.user);
 
   const [randomQuote, setRandomQuote] = useState('Default Quote Here');
+
+  const [detailMode, setDetailMode] = useState(false);
+  const [toggleDetailImage, setDetailToggleImage] = useState(detailMode ? './images/icons/DetailsMainToggleD.png' : './images/icons/DetailsMainToggleM.png');
   
+  //#region imageArrays
   const hatImages = [
     '/images/profileAvatars/Hat1.png',
     '/images/profileAvatars/Hat2.png',
     '/images/profileAvatars/Hat3.png',
     '/images/profileAvatars/Hat4.png',
     '/images/profileAvatars/Blank.png'
-  ]
+  ];
   const hairImages = [
     '/images/profileAvatars/Hair1.png',
     '/images/profileAvatars/Hair2.png',
@@ -27,53 +31,52 @@ function ProfilePage() {
     '/images/profileAvatars/Hair6.png',
     '/images/profileAvatars/Hair7.png',
     '/images/profileAvatars/Hair8.png'
-  ]
+  ];
   const eyebrowsImages = [
     '/images/profileAvatars/Eyebrows1.png',
     '/images/profileAvatars/Eyebrows2.png',
     '/images/profileAvatars/Eyebrows3.png',
     '/images/profileAvatars/Blank.png'
-  ]
+  ];
   const eyesImages = [
     '/images/profileAvatars/Eyes1.png',
     '/images/profileAvatars/Eyes2.png',
     '/images/profileAvatars/Eyes3.png',
     '/images/profileAvatars/Eyes4.png',
     '/images/profileAvatars/Eyes5.png',
-  ]
+  ];
   const detailImages = [
     '/images/profileAvatars/Detail1.png',
     '/images/profileAvatars/Detail2.png',
     '/images/profileAvatars/Detail3.png',
     '/images/profileAvatars/Blank.png'
-  ]
+  ];
   const mouthImages = [
     '/images/profileAvatars/Mouth1.png',
     '/images/profileAvatars/Mouth2.png',
     '/images/profileAvatars/Mouth3.png',
     '/images/profileAvatars/Mouth4.png',
     '/images/profileAvatars/Mouth5.png'
-  ]
+  ];
   const noseImages = [
     '/images/profileAvatars/Nose1.png',
     '/images/profileAvatars/Nose2.png',
     '/images/profileAvatars/Nose3.png',
     '/images/profileAvatars/Nose4.png'
-  ]
+  ];
   const headImages = [
     '/images/profileAvatars/Head1.png',
     '/images/profileAvatars/Head2.png',
     '/images/profileAvatars/Head3.png',
     '/images/profileAvatars/Head4.png'
-  ]
+  ];
   const bodyImages = [
     '/images/profileAvatars/Body1.png',
     '/images/profileAvatars/Body2.png',
     '/images/profileAvatars/Body3.png',
     '/images/profileAvatars/Body4.png',
     '/images/profileAvatars/Body5.png'
-  ]
-
+  ];
   let quotesArray = [
         'Way to go!',
         'Nice work!',
@@ -82,6 +85,7 @@ function ProfilePage() {
         'Impressive!',
         "Crushin' it"
     ];
+    //#endregion  
 
   const quoteRandomizer = () => {
     let index = Math.floor(Math.random() * quotesArray.length);
@@ -93,32 +97,47 @@ function ProfilePage() {
     quoteRandomizer();
   }, []);
 
+  const toggleDetailMode = () => {
+    if (detailMode) { //if we were previously in detailMode, switch to Main mode
+      setDetailMode(false);
+      setDetailToggleImage('./images/icons/DetailsMainToggleM.png');
+    } 
+    else { //if we were previously in Main mode, switch to detailMode
+      setDetailMode(true);
+      setDetailToggleImage('./images/icons/DetailsMainToggleD.png');
+    }
+  }
+
   return (
     <div className="container">
+      <p>detailMode?: {JSON.stringify(detailMode)}</p>
 
       <div className="centerFlexContainer">
-        <div className="cardArea cardBlue">
-          <div style={{position:"relative"}}className="cardParent cardParentProfileAvatar">
-              {/*HAT*/} <ImagePiece images={hatImages} topDistance={"0px"} zIndex={10} isEdit={true}/>
-              {/*HAIR*/} <ImagePiece images={hairImages} topDistance={"25px"} zIndex={9} isEdit={true}/>
-              {/*EYEBROWS*/} <ImagePiece images={eyebrowsImages} topDistance={"60px"} zIndex={6} isEdit={false}/>
-              {/*EYES*/} <ImagePiece images={eyesImages} topDistance={"90px"} zIndex={3} isEdit={false}/>
-              {/*DETAIL*/} <ImagePiece images={detailImages} topDistance={"115px"} zIndex={2} isEdit={false}/>
-              {/*NOSE*/} <ImagePiece images={noseImages} topDistance={"145px"} zIndex={2} isEdit={true}/>
-              {/*MOUTH*/} <ImagePiece images={mouthImages} topDistance={"180px"} zIndex={2} isEdit={true}/>
-              {/*HEAD*/} <ImagePiece images={headImages} topDistance={"220px"} zIndex={1} isEdit={true}/>
-              {/*BODY*/} <ImagePiece images={bodyImages} topDistance={"265px"} zIndex={0} isEdit={true}/>
+
+        <div style={{height: "380px", position: "relative"}} className="cardArea cardBlue cardParent cardParentProfileAvatar"> 
+
+          <div>
+              {/*HAT*/} <ImagePiece images={hatImages} topDistance={"0px"} zIndex={10} isEditingMode={!detailMode}/>
+              {/*HAIR*/} <ImagePiece images={hairImages} topDistance={"25px"} zIndex={9} isEditingMode={!detailMode}/>
+
+              {/*EYEBROWS*/} <ImagePiece images={eyebrowsImages} topDistance={"60px"} zIndex={6} isEditingMode={detailMode}/>
+              {/*EYES*/} <ImagePiece images={eyesImages} topDistance={"90px"} zIndex={3} isEditingMode={detailMode}/>
+              {/*DETAIL*/} <ImagePiece images={detailImages} topDistance={"115px"} zIndex={2} isEditingMode={detailMode}/>
+              {/*NOSE*/} <ImagePiece images={noseImages} topDistance={"145px"} zIndex={2} isEditingMode={detailMode}/>
+              {/*MOUTH*/} <ImagePiece images={mouthImages} topDistance={"180px"} zIndex={2} isEditingMode={detailMode}/>
+
+              {/*HEAD*/} <ImagePiece images={headImages} topDistance={"220px"} zIndex={1} isEditingMode={!detailMode}/>
+              {/*BODY*/} <ImagePiece images={bodyImages} topDistance={"265px"} zIndex={0} isEditingMode={!detailMode}/>
           </div>  
 
-          <Form.Switch
-              className="centerFlexContainer"
-              type="switch"
-              id="custom-switch"
-              label="Visible to Followers"
-              // checked={}
-              // onChange={}
-            />    
+          <div className="bottomButtonContainer">
+            <Button onClick={toggleDetailMode} className="iconButton"> 
+              <img className="iconImageToggle" src={toggleDetailImage} alt="toggle edit details/main"></img>
+            </Button> 
+          </div>
+
         </div>
+
       </div>
         
       <div className="centerFlexContainer">

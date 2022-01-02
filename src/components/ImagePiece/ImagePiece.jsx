@@ -5,12 +5,11 @@ import { Button } from 'react-bootstrap';
 function ImagePiece(props) {
 
   const images = props.images;
-  const isEdit = props.isEdit
+  const isEditingMode = props.isEditingMode;
   
   const dispatch = useDispatch();
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(1);
-  const [editingMode, setEditingMode] = useState(isEdit || false);
 
   useEffect(() => {
   }, []);
@@ -46,7 +45,8 @@ function ImagePiece(props) {
 
   return (
     <>
-        { editingMode
+        {/* <p>editing?{JSON.stringify(editingMode)}</p> */}
+        { isEditingMode
           ?  <Button onClick={backButton} style={buttonStyleBack} className="floatTopButton iconButton avatarButtonBack"> 
               <img className="iconImageLarge imageFlip" src='./images/icons/Arrow.png' alt="Next image"></img>
             </Button>
@@ -55,7 +55,7 @@ function ImagePiece(props) {
 
         <img className="avatarImagePiece" style={profileImageStyle} src={images[selectedImageIndex]} alt="profile avatar image piece"/>
       
-        { editingMode
+        { isEditingMode
           ?   <Button onClick={nextButton} style={buttonStyleNext} className="floatTopButton iconButton avatarButtonNext"> 
                 <img className="iconImageLarge" src='./images/icons/Arrow.png' alt="Next image"></img>
               </Button>

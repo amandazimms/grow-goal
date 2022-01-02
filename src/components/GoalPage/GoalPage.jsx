@@ -58,9 +58,9 @@ function GoalPage(props) {
             />
 
         <div className="cards">
+
             <div className="cardArea cardYellow cardParent cardParentTasks">
               
-
               <div className="tasksContainer">
                 <h3>To Do:</h3> 
                 {tasks.map(task => {

@@ -225,6 +225,10 @@ Button
   height: 40px;
 }
 
+.iconImageToggle {
+  height: 45px;
+}
+
 .editDeleteButton {
   margin-left: 5px;
 }
