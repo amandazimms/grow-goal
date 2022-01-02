@@ -116,7 +116,8 @@ function ProfilePage() {
 
         <div style={{height: "380px", position: "relative"}} className="cardArea cardBlue cardParent cardParentProfileAvatar"> 
 
-          <div>
+
+          <div className="avatarImagePieceParent">
               {/*HAT*/} <ImagePiece images={hatImages} topDistance={"0px"} zIndex={10} isEditingMode={!detailMode}/>
               {/*HAIR*/} <ImagePiece images={hairImages} topDistance={"25px"} zIndex={9} isEditingMode={!detailMode}/>
 

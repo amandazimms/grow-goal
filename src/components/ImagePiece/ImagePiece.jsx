@@ -53,8 +53,10 @@ function ImagePiece(props) {
           : <></>  
         }
 
-        <img className="avatarImagePiece" style={profileImageStyle} src={images[selectedImageIndex]} alt="profile avatar image piece"/>
-      
+        <div className="">
+          <img className="avatarImagePiece" style={profileImageStyle} src={images[selectedImageIndex]} alt="profile avatar image piece"/>
+        </div>
+
         { isEditingMode
           ?   <Button onClick={nextButton} style={buttonStyleNext} className="floatTopButton iconButton avatarButtonNext"> 
                 <img className="iconImageLarge" src='./images/icons/Arrow.png' alt="Next image"></img>
