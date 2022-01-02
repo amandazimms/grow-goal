@@ -5,7 +5,8 @@ import { Button } from 'react-bootstrap';
 function ImagePiece(props) {
 
   const images = props.images;
-  const isEditingMode = props.isEditingMode;
+  const detailEditingMode = props.detailEditingMode;
+  const zoomedClassNameToPass = props.zoomedClassNameToPass;
   
   const dispatch = useDispatch();
 
@@ -46,22 +47,24 @@ function ImagePiece(props) {
   return (
     <>
         {/* <p>editing?{JSON.stringify(editingMode)}</p> */}
-        { isEditingMode
-          ?  <Button onClick={backButton} style={buttonStyleBack} className="floatTopButton iconButton avatarButtonBack"> 
-              <img className="iconImageLarge imageFlip" src='./images/icons/Arrow.png' alt="Next image"></img>
-            </Button>
-          : <></>  
-        }
+        { detailEditingMode
+          ? <>
+              <Button onClick={backButton} style={buttonStyleBack} className="floatTopButton iconButton avatarButtonBack"> 
+                <img className="iconImageLarge imageFlip" src='./images/icons/Arrow.png' alt="Next image"></img>
+              </Button>
 
-        <div className="">
-          <img className="avatarImagePiece" style={profileImageStyle} src={images[selectedImageIndex]} alt="profile avatar image piece"/>
-        </div>
+              <div>
+                <img className={`avatarImagePiece ${zoomedClassNameToPass}`} style={profileImageStyle} src={images[selectedImageIndex]} alt="profile avatar image piece"/>
+              </div>
 
-        { isEditingMode
-          ?   <Button onClick={nextButton} style={buttonStyleNext} className="floatTopButton iconButton avatarButtonNext"> 
+              <Button onClick={nextButton} style={buttonStyleNext} className="floatTopButton iconButton avatarButtonNext"> 
                 <img className="iconImageLarge" src='./images/icons/Arrow.png' alt="Next image"></img>
               </Button>
-          : <></>  
+            </>  
+          : 
+            <div>
+              <img className={`avatarImagePiece ${zoomedClassNameToPass}`} style={profileImageStyle} src={images[selectedImageIndex]} alt="profile avatar image piece"/>
+            </div>
         }
        
     </>

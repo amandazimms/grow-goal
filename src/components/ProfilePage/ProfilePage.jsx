@@ -110,25 +110,23 @@ function ProfilePage() {
 
   return (
     <div className="container">
-      <p>detailMode?: {JSON.stringify(detailMode)}</p>
-
       <div className="centerFlexContainer">
 
         <div style={{height: "380px", position: "relative"}} className="cardArea cardBlue cardParent cardParentProfileAvatar"> 
 
 
           <div className="avatarImagePieceParent">
-              {/*HAT*/} <ImagePiece images={hatImages} topDistance={"0px"} zIndex={10} isEditingMode={!detailMode}/>
-              {/*HAIR*/} <ImagePiece images={hairImages} topDistance={"25px"} zIndex={9} isEditingMode={!detailMode}/>
+              {/*HAT*/} <ImagePiece images={hatImages} topDistance={"0px"} zIndex={10} zoomedClassNameToPass={detailMode ? "avatarImagePieceZoomed" : ""} detailEditingMode={!detailMode}/>
+              {/*HAIR*/} <ImagePiece images={hairImages} topDistance={"25px"} zIndex={9} zoomedClassNameToPass={detailMode ? "avatarImagePieceZoomed" : ""} detailEditingMode={!detailMode}/>
 
-              {/*EYEBROWS*/} <ImagePiece images={eyebrowsImages} topDistance={"60px"} zIndex={6} isEditingMode={detailMode}/>
-              {/*EYES*/} <ImagePiece images={eyesImages} topDistance={"90px"} zIndex={3} isEditingMode={detailMode}/>
-              {/*DETAIL*/} <ImagePiece images={detailImages} topDistance={"115px"} zIndex={2} isEditingMode={detailMode}/>
-              {/*NOSE*/} <ImagePiece images={noseImages} topDistance={"145px"} zIndex={2} isEditingMode={detailMode}/>
-              {/*MOUTH*/} <ImagePiece images={mouthImages} topDistance={"180px"} zIndex={2} isEditingMode={detailMode}/>
+              {/*EYEBROWS*/} <ImagePiece images={eyebrowsImages} topDistance={"60px"} zIndex={6} zoomedClassNameToPass={detailMode ? "avatarImagePieceZoomed" : ""} detailEditingMode={detailMode}/>
+              {/*EYES*/} <ImagePiece images={eyesImages} topDistance={"90px"} zIndex={3} zoomedClassNameToPass={detailMode ? "avatarImagePieceZoomed" : ""} detailEditingMode={detailMode}/>
+              {/*DETAIL*/} <ImagePiece images={detailImages} topDistance={"115px"} zIndex={2} zoomedClassNameToPass={detailMode ? "avatarImagePieceZoomed" : ""} detailEditingMode={detailMode}/>
+              {/*NOSE*/} <ImagePiece images={noseImages} topDistance={"145px"} zIndex={2} zoomedClassNameToPass={detailMode ? "avatarImagePieceZoomed" : ""} detailEditingMode={detailMode}/>
+              {/*MOUTH*/} <ImagePiece images={mouthImages} topDistance={"180px"} zIndex={2} zoomedClassNameToPass={detailMode ? "avatarImagePieceZoomed" : ""} detailEditingMode={detailMode}/>
 
-              {/*HEAD*/} <ImagePiece images={headImages} topDistance={"220px"} zIndex={1} isEditingMode={!detailMode}/>
-              {/*BODY*/} <ImagePiece images={bodyImages} topDistance={"265px"} zIndex={0} isEditingMode={!detailMode}/>
+              {/*HEAD*/} <ImagePiece images={headImages} topDistance={"220px"} zIndex={1} zoomedClassNameToPass={detailMode ? "avatarImagePieceZoomed" : ""} detailEditingMode={!detailMode}/>
+              {/*BODY*/} <ImagePiece images={bodyImages} topDistance={"265px"} zIndex={0} zoomedClassNameToPass={detailMode ? "avatarImagePieceZoomed" : ""} detailEditingMode={!detailMode}/>
           </div>  
 
           <div className="bottomButtonContainer">
