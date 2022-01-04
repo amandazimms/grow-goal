@@ -15,12 +15,8 @@ function AddFollowee(props) {
   useEffect(() => {
   }, []);
 
-  const handleChange = (event) =>{
-    setSearchText(event.target.value);
-  }
-
-  const searchButton = () => {
-    dispatch({ type:'SEARCH_FOR_FOLLOWEE', payload: {search_text: searchText, follower_id: user.id} });
+  const doSearch = (event) => {
+    dispatch({ type:'SEARCH_FOR_FOLLOWEE', payload: {search_text: event.target.value, follower_id: user.id} });
   }
 
   const cancelButton = () => {
@@ -32,9 +28,9 @@ function AddFollowee(props) {
     <>
         <h4 className="pageSubTitle">Find User:</h4>
 
-        <input type="text" onChange={ (event) => handleChange(event) }></input>
+        <input type="text" onChange={ (event) => doSearch(event) }></input>
       
-        <Button onClick={searchButton} className="iconButton confirmButton">
+        <Button onClick={doSearch} className="iconButton confirmButton">
           <img className="iconImage" src='./images/icons/GreenCheck.png' alt="Confirm new task"></img>
         </Button>
 

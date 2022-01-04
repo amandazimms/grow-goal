@@ -60,7 +60,10 @@ function SocialPage() {
       {/* <p>searchResults:{JSON.stringify(searchResults)}</p> */}
 
       { searchOpen
-        ? <div className="cards">
+        ? 
+          <>
+          <h3 className="pageSubTitle">Search Results</h3>
+          <div className="cards">
             {/* todo we reused some css classes that could be updated - "goal" and "plant" verbage below */}
             {searchResults.map(foundUser => {
               return (
@@ -81,8 +84,12 @@ function SocialPage() {
                 );
             })}
           </div>  
+          </>
 
-        : <div className="cards">
+        : 
+          <>
+          <h3 className="pageSubTitle">Users I Follow</h3>
+          <div className="cards">
             {/* todo we reused some css classes that could be updated - "goal" and "plant" verbage below */}
             {followees.map(followee => {
               return (
@@ -97,6 +104,7 @@ function SocialPage() {
                 );
             })}
           </div>  
+          </>
       }
       
 
