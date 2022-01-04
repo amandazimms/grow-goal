@@ -30,10 +30,17 @@ function SocialPage() {
     setSearchOpen(true);
   }
 
-  const addThisFollowee = (foundUser) => {
-    dispatch({ type: 'ADD_FOLLOWEE', payload: {followee: foundUser.id, follower: user.id} });
+  const closeSearch = () => {
+    dispatch({ type: 'UNSET_SEARCH_RESULTS' });
     setSearchOpen(false);
   }
+
+  const addThisFollowee = (foundUser) => {
+    dispatch({ type: 'ADD_FOLLOWEE', payload: {followee: foundUser.id, follower: user.id} });
+    closeSearch();
+  }
+
+
 
   return (
     <div className="container">
@@ -42,7 +49,7 @@ function SocialPage() {
       <div className="centerFlexContainer">
 
         { searchOpen 
-          ? <AddFollowee onLeaveAdd={()=>setSearchOpen(false)}/>
+          ? <AddFollowee onLeaveAdd={closeSearch}/>
           : <Button onClick={openSearch} className="iconButton">
               <img className="iconImage iconImageXL" src='./images/icons/AddIcon.png' alt="Add followed user"></img>
             </Button> 
