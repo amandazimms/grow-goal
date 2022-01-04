@@ -15,6 +15,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 
+//todo move this to profileAvatar router
 router.get('/profile_avatar', (req,res) => {
   //req.query.user_id is user id
   const queryString = `SELECT image_path 
@@ -23,7 +24,6 @@ router.get('/profile_avatar', (req,res) => {
         WHERE "user".id=${req.query.user_id};`
   
   pool.query(queryString).then((results)=>{
-    console.log('results:', results);
     res.send(results.rows);
 
   }).catch((err)=>{

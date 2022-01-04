@@ -7,10 +7,6 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
-// Handles POST request with new user data
-// The only thing different from this and every other post we've seen
-// is that the password gets encrypted before being inserted
-
 router.get('/selected', (req,res) => {
   // console.log('*** in pa router GET. req.params:', req.params);
   // console.log('*** in pa router GET. req.query:', req.query);

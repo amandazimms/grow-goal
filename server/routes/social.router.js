@@ -7,10 +7,6 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
-// Handles POST request with new user data
-// The only thing different from this and every other post we've seen
-// is that the password gets encrypted before being inserted
-
 router.get('/follower_like_status', (req,res) => {
   // console.log('--->in social f.like.s router get. req.query:', req.query);
   // console.log('--->in social f.like.s router get. req.body:', req.body);

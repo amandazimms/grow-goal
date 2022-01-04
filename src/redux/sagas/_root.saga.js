@@ -5,6 +5,7 @@ import taskSaga from './task.saga';
 import goalSaga from './goal.saga';
 import userSaga from './user.saga';
 import plantAvatarsSaga from './plantAvatars.saga';
+import profileAvatarSaga from './profileAvatars.saga';
 import socialSaga from './social.saga';
 
 // rootSaga is the primary saga.
@@ -22,6 +23,7 @@ export default function* rootSaga() {
     goalSaga(),
     taskSaga(),
     plantAvatarsSaga(),
+    profileAvatarSaga(),
     socialSaga(),
   ]);
 }

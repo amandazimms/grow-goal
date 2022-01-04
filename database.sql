@@ -49,7 +49,7 @@ CREATE TABLE "goal" (
   "progress" DECIMAL, 
   "is_accomplished" BOOLEAN,
   "last_update" TIMESTAMP,
-  "user_id" INT REFERENCES "user" (id),
+  "user_id" INT REFERENCES "user" (id) ON DELETE CASCADE,
   "plant_avatar_id" INT REFERENCES "plant_avatar" (id) ON DELETE RESTRICT,
   "like_count" INT DEFAULT 0
 );

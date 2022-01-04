@@ -4,13 +4,8 @@ const {
 } = require('../modules/authentication-middleware');
 const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
-//todo do we need a goal strategy?
 
 const router = express.Router();
-
-// Handles POST request with new user data
-// The only thing different from this and every other post we've seen
-// is that the password gets encrypted before being inserted
 
 router.get('/', (req,res) => {
   // console.log('>>>> in goal router, req.params:', req.params);

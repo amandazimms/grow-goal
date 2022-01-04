@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 import { useEffect } from 'react';
 import ImagePiece from '../ImagePiece/ImagePiece';
@@ -8,6 +8,8 @@ import ImagePiece from '../ImagePiece/ImagePiece';
 function ProfilePage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector(store => store.user);
+
+  const dispatch = useDispatch();
 
   const [randomQuote, setRandomQuote] = useState('Default Quote Here');
 
@@ -98,6 +100,8 @@ function ProfilePage() {
 
   useEffect(() => {
     quoteRandomizer();
+    dispatch({ type: 'FETCH_ALL_PROFILE_AVATARS' });
+
   }, []);
 
   const toggleDetailMode = () => {

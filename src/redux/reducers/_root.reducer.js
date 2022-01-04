@@ -5,11 +5,11 @@ import goal from './goal.reducer';
 import task from './task.reducer';
 import selectedGoal from './selectedGoal.reducer';
 import plantAvatars from './plantAvatars.reducer';
+import profileAvatars from './profileAvatars.reducer';
 import followeeUsers from './followeeUsers.reducer';
 import followeeGoals from './followeeGoals.reducer';
 import selectedFollowee from './selectedFollowee.reducer';
 import search from './search.reducer';
-
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -26,6 +26,7 @@ const rootReducer = combineReducers({
   selectedGoal,
   selectedFollowee,
   plantAvatars,
+  profileAvatars,
   followeeUsers,
   followeeGoals,
 });
