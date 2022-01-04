@@ -519,13 +519,18 @@ cards
   /* transform: scale(0.5) translate(0, 5%)  */
 }
 
-.avatarImagePieceZoomed {
-  height: 450px;
-  object-position: 63% -50%;
-  transform: translate(0%, -20%);
+.avatarImgPieceDivZoomed {
+  position: relative;
+  width: 250px;
+  margin: auto;
 }
 
-
+.avatarImagePieceZoomed {
+  height: 500px;
+  right: 1px;
+  object-position: 70% -50%;
+  transform: translate(0%, -30%);
+}
 
 .avatarButtonBack, .fakeImage {
   -webkit-order: 1;

@@ -6,8 +6,9 @@ function ImagePiece(props) {
 
   const images = props.images;
   const detailEditingMode = props.detailEditingMode;
-  const zoomedClassNameToPass = props.zoomedClassNameToPass;
-  
+  const zoomedImgClass = props.zoomedImgClass;
+  const zoomedDivClass = props.zoomedDivClass;
+
   const dispatch = useDispatch();
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(1);
@@ -53,8 +54,8 @@ function ImagePiece(props) {
                 <img className="iconImageLarge imageFlip" src='./images/icons/Arrow.png' alt="Next image"></img>
               </Button>
 
-              <div>
-                <img className={`avatarImagePiece ${zoomedClassNameToPass}`} style={profileImageStyle} src={images[selectedImageIndex]} alt="profile avatar image piece"/>
+              <div className={`${zoomedDivClass}`}>
+                <img className={`avatarImagePiece ${zoomedImgClass}`} style={profileImageStyle} src={images[selectedImageIndex]} alt="profile avatar image piece"/>
               </div>
 
               <Button onClick={nextButton} style={buttonStyleNext} className="floatTopButton iconButton avatarButtonNext"> 
@@ -62,8 +63,8 @@ function ImagePiece(props) {
               </Button>
             </>  
           : 
-            <div>
-              <img className={`avatarImagePiece ${zoomedClassNameToPass}`} style={profileImageStyle} src={images[selectedImageIndex]} alt="profile avatar image piece"/>
+            <div className={`${zoomedDivClass}`}>
+              <img className={`avatarImagePiece ${zoomedImgClass}`} style={profileImageStyle} src={images[selectedImageIndex]} alt="profile avatar image piece"/>
             </div>
         }
        

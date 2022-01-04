@@ -41,7 +41,6 @@ function SocialPage() {
   }
 
 
-
   return (
     <div className="container">
       <h2 className="pageTitle">Social</h2>
