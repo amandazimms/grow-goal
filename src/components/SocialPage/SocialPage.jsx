@@ -45,23 +45,40 @@ function SocialPage() {
         
       </div>  
 
-      <p>searchResults:{JSON.stringify(searchResults)}</p>
+      {/* <p>searchResults:{JSON.stringify(searchResults)}</p> */}
 
-      <div className="cards">
-        {/* todo we reused some css classes that could be updated - "goal" and "plant" verbage below */}
-        {followees.map(followee => {
-          return (
-            <div className="cardAreaSmall" key={followee.id}>     
-              <Link to="/followee-goals" onClick={() => setSelectedFollowee(followee)}>
-                <Button className="thumbnailButton">
-                  <img className="plantAvatarThumbnail" src={followee.image_path} alt="followee's profile image"/>
-                </Button>
-              </Link>
-              <h3 className="thumbnailGoalTitle">{followee.username}</h3>
-            </div>
-            );
-        })}
-      </div>  
+      { addingFollowed
+        ? <div className="cards">
+            {/* todo we reused some css classes that could be updated - "goal" and "plant" verbage below */}
+            {searchResults.map(foundUser => {
+              return (
+                <div className="cardAreaSmall" key={foundUser.id}>     
+                  <Button className="thumbnailButton">
+                    <img className="plantAvatarThumbnail" src={foundUser.image_path} alt="followee's profile image"/>
+                  </Button>
+                  <h3 className="thumbnailGoalTitle">{foundUser.username}</h3>
+                </div>
+                );
+            })}
+          </div>  
+
+        : <div className="cards">
+            {/* todo we reused some css classes that could be updated - "goal" and "plant" verbage below */}
+            {followees.map(followee => {
+              return (
+                <div className="cardAreaSmall" key={followee.id}>     
+                  <Link to="/followee-goals" onClick={() => setSelectedFollowee(followee)}>
+                    <Button className="thumbnailButton">
+                      <img className="plantAvatarThumbnail" src={followee.image_path} alt="followee's profile image"/>
+                    </Button>
+                  </Link>
+                  <h3 className="thumbnailGoalTitle">{followee.username}</h3>
+                </div>
+                );
+            })}
+          </div>  
+      }
+      
 
     </div>
   );

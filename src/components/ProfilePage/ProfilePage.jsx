@@ -110,6 +110,10 @@ function ProfilePage() {
 
   return (
     <div className="container">
+      <h2 className="pageTitle">Profile</h2>
+
+      <h3 className="pageSubTitle">{user.username}</h3>
+
       <div className="centerFlexContainer">
 
         <div style={{height: "380px", position: "relative"}} className="cardArea cardBlue cardParent cardParentProfileAvatar"> 
@@ -139,24 +143,17 @@ function ProfilePage() {
 
       </div>
         
-      <div className="centerFlexContainer">
-        <h3 className="thumbnailGoalTitle">{user.username}</h3>
-      </div>
+     
 
 
-      <div className="centerFlexContainer">
-        <h4>Goals Achieved:</h4>
-      </div>
-      <div className="centerFlexContainer">
-        <h4>Tasks Completed:</h4>
-      </div>  
-      <div className="centerFlexContainer">
-        <h4>{randomQuote}</h4>
-      </div>  
+      <h4 className="centerText">Goals Achieved:</h4>
+      <h4 className="centerText">Tasks Completed:</h4>
+      <h4 className="centerText">{randomQuote}</h4>
 
       <div className="centerFlexContainer">
         <LogOutButton className="buttonButton"/>
       </div>
+      
     </div>
   );
 }

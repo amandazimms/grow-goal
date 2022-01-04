@@ -95,14 +95,16 @@ router.get('/followees', (req,res) => {
 })
 
 router.get('/search', (req,res) => {
-  console.log('--->in social followee SEARCH router get. req.query:', req.query);
-  console.log('--->in social followee SEARCH router get. req.body:', req.body);
-  console.log('--->in social followee SEARCH router get. req.params:', req.params);
+  // console.log('--->in social followee SEARCH router get. req.query:', req.query);
+  // console.log('--->in social followee SEARCH router get. req.body:', req.body);
+  // console.log('--->in social followee SEARCH router get. req.params:', req.params);
   
   //req.query.search_text is search text
   //req.query.follower_id is the follower's id
-  const queryString =  `SELECT "user".id, "username" 
-      FROM "user" WHERE "username" ILIKE '%${req.query.search_text}%';`
+  const queryString =  `SELECT username, image_path, "user".id  
+      FROM "user" 
+      JOIN "profile_avatar" ON profile_avatar.id="user".profile_avatar_id 
+      WHERE "username" ILIKE '%${req.query.search_text}%';`
   
   pool.query(queryString).then((results)=>{
     res.send(results.rows);

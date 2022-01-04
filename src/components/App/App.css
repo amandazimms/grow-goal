@@ -315,10 +315,13 @@ input:hover, input:active, input:focus, input:target, input:focus-visible {
 /* --------------------------------------------------------------------------------
 Image
 -------------------------------------------------------------------------------- */
-.pageTitle, .pageSubTitle {
+.pageTitle, .pageSubTitle, .centerText {
   margin: auto;
   width: 100%;
   text-align: center;
+}
+
+.pageTitle {
   font-size: 42px;
 }
 

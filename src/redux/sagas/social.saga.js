@@ -130,14 +130,12 @@ function* searchForFollowee(action) {
   //ap.follower_id is follower id
   //ap.search_text is searchText
 
-  console.log('In searchForFollowee, ap:', action.payload);
   try {  
-
     const search = yield axios.get('/api/social/search',
         {params: {search_text: ap.search_text, follower_id: ap.follower_id} })
 
     yield put({ type: 'SET_SEARCH_RESULTS', payload: search.data });
-    
+
     } 
     catch (error) {
       console.log('followee search request failed', error);
