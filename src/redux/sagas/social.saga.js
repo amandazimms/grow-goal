@@ -136,9 +136,8 @@ function* searchForFollowee(action) {
     const search = yield axios.get('/api/social/search',
         {params: {search_text: ap.search_text, follower_id: ap.follower_id} })
 
-    console.log('searched items, found:', search.data);
-
-    //yield put({ type: 'SET_ITEMS', payload: search.data});
+    yield put({ type: 'SET_SEARCH_RESULTS', payload: search.data });
+    
     } 
     catch (error) {
       console.log('followee search request failed', error);

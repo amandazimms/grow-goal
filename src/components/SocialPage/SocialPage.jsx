@@ -5,9 +5,14 @@ import { Button } from 'react-bootstrap';
 import AddFollowee from '../AddFollowee/AddFollowee';
 
 function SocialPage() {
-  const followees = useSelector(store => store.followeeUsers);
+
+  const store = useSelector(store => store);
   const user = useSelector(store => store.user);
+
+  const searchResults = useSelector(store => store.search);
+
   const selectedFollowee = useSelector(store => store.selectedFollowee);
+  const followees = useSelector(store => store.followeeUsers);
 
   const [addingFollowed, setAddingFollowed] = useState(false);
 
@@ -40,6 +45,7 @@ function SocialPage() {
         
       </div>  
 
+      <p>searchResults:{JSON.stringify(searchResults)}</p>
 
       <div className="cards">
         {/* todo we reused some css classes that could be updated - "goal" and "plant" verbage below */}

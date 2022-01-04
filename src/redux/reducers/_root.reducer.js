@@ -8,6 +8,7 @@ import plantAvatars from './plantAvatars.reducer';
 import followeeUsers from './followeeUsers.reducer';
 import followeeGoals from './followeeGoals.reducer';
 import selectedFollowee from './selectedFollowee.reducer';
+import search from './search.reducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   goal,
   task,
+  search,
   selectedGoal,
   selectedFollowee,
   plantAvatars,
