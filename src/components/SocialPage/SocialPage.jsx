@@ -20,6 +20,8 @@ function SocialPage() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_FOLLOWEE_USERS', payload: user.id }); 
+    dispatch({ type: 'FETCH_ALL_PROFILE_AVATARS' });
+
   }, []);
 
   const setSelectedFollowee = (followie) =>{
@@ -55,8 +57,6 @@ function SocialPage() {
         }
         
       </div>  
-
-      {/* <p>searchResults:{JSON.stringify(searchResults)}</p> */}
 
       { searchOpen
         ? 

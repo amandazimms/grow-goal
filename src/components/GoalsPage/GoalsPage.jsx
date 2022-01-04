@@ -24,6 +24,8 @@ function GoalsPage(props) {
       dispatch( {type: 'FETCH_GOALS', payload: user.id });
       dispatch( {type: 'FETCH_PLANT_AVATARS' });
     } 
+
+    dispatch({ type: 'FETCH_ALL_PROFILE_AVATARS' });
   }, []);
 
   const addNewGoal = () => {

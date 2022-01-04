@@ -12,6 +12,8 @@ function ImagePiece(props) {
   const dispatch = useDispatch();
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(1);
+  const [selectedImagePath, setSelectedImagePath] = useState(images[1].image_path);
+  // const [selectedImagePath, setSelectedImagePath] = useState("");
 
   useEffect(() => {
   }, []);
@@ -32,42 +34,51 @@ function ImagePiece(props) {
   };
 
   const backButton = () => {
-    console.log("!");
-    selectedImageIndex === 0 ?
-      setSelectedImageIndex(images.length-1)
-    : setSelectedImageIndex(selectedImageIndex-1);
+    if (selectedImageIndex === 0) { 
+      setSelectedImageIndex(images.length-1);
+      setSelectedImagePath(images[images.length-1].image_path);
+    } 
+    else {
+      setSelectedImageIndex(selectedImageIndex-1);
+      setSelectedImagePath(images[selectedImageIndex-1].image_path);
+    }
+
   }
 
   const nextButton = () => {
-    console.log("!!");
-    selectedImageIndex === images.length-1 ?
+    if (selectedImageIndex === images.length-1) {
       setSelectedImageIndex(0)
-    : setSelectedImageIndex(selectedImageIndex+1);
+      setSelectedImagePath(images[0].image_path);
+    } 
+    else {
+      setSelectedImageIndex(selectedImageIndex+1);
+      setSelectedImagePath(images[selectedImageIndex+1].image_path);
+    }
   }
 
   return (
     <>
-        {/* <p>editing?{JSON.stringify(editingMode)}</p> */}
-        { detailEditingMode
-          ? <>
-              <Button onClick={backButton} style={buttonStyleBack} className="floatTopButton iconButton avatarButtonBack"> 
-                <img className="iconImageLarge imageFlip" src='./images/icons/Arrow.png' alt="Next image"></img>
-              </Button>
+    { 
+      detailEditingMode
+      ? 
+        <>
+        <Button onClick={backButton} style={buttonStyleBack} className="floatTopButton iconButton avatarButtonBack"> 
+          <img className="iconImageLarge imageFlip" src='./images/icons/Arrow.png' alt="Next image"></img>
+        </Button>
 
-              <div className={`${zoomedDivClass}`}>
-                <img className={`avatarImagePiece ${zoomedImgClass}`} style={profileImageStyle} src={images[selectedImageIndex]} alt="profile avatar image piece"/>
-              </div>
+        <div className={`${zoomedDivClass}`}>
+          <img className={`avatarImagePiece ${zoomedImgClass}`} style={profileImageStyle} src={selectedImagePath} alt="profile avatar image piece"/>
+        </div>
 
-              <Button onClick={nextButton} style={buttonStyleNext} className="floatTopButton iconButton avatarButtonNext"> 
-                <img className="iconImageLarge" src='./images/icons/Arrow.png' alt="Next image"></img>
-              </Button>
-            </>  
-          : 
-            <div className={`${zoomedDivClass}`}>
-              <img className={`avatarImagePiece ${zoomedImgClass}`} style={profileImageStyle} src={images[selectedImageIndex]} alt="profile avatar image piece"/>
-            </div>
-        }
-       
+        <Button onClick={nextButton} style={buttonStyleNext} className="floatTopButton iconButton avatarButtonNext"> 
+          <img className="iconImageLarge" src='./images/icons/Arrow.png' alt="Next image"></img>
+        </Button>
+        </>  
+      : 
+        <div className={`${zoomedDivClass}`}>
+          <img className={`avatarImagePiece ${zoomedImgClass}`} style={profileImageStyle} src={selectedImagePath} alt="profile avatar image piece"/>
+        </div>
+    }
     </>
   );
 }

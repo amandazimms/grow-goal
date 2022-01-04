@@ -16,6 +16,9 @@ function* registerUser(action) {
     // set to 'login' mode so they see the login screen
     // after registration or after they log out
     yield put({ type: 'SET_TO_LOGIN_MODE' });
+
+    yield put({ type: 'FETCH_ALL_PROFILE_AVATARS' });
+
   } catch (error) {
     console.log('Error with user registration:', error);
     yield put({ type: 'REGISTRATION_FAILED' });

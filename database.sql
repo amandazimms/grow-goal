@@ -1,17 +1,103 @@
 
--- USER is a reserved keyword with Postgres
--- You must use double quotes in every query that user is in:
--- ex. SELECT * FROM "user";
--- Otherwise you will have errors!
-CREATE TABLE "profile_avatar" (
+CREATE TABLE "profile_avatar_hat"  (
   "id" SERIAL PRIMARY KEY,
   "image_path" VARCHAR
 );
-INSERT INTO "profile_avatar" ("image_path")
-VALUES ('/images/profileAvatars/Profile1.png'),
-('/images/profileAvatars/Profile2.png'),
-('/images/profileAvatars/Profile3.png'),
-('/images/profileAvatars/Profile4.png');
+INSERT INTO "profile_avatar_hat" ("image_path")
+VALUES  ('/images/profileAvatars/Blank.png'), 
+        ('/images/profileAvatars/Hat1.png'),
+        ('/images/profileAvatars/Hat2.png'),
+        ('/images/profileAvatars/Hat3.png'),
+        ('/images/profileAvatars/Hat4.png');
+
+CREATE TABLE "profile_avatar_hair"  (
+  "id" SERIAL PRIMARY KEY,
+  "image_path" VARCHAR
+);
+INSERT INTO "profile_avatar_hair" ("image_path")
+VALUES  ('/images/profileAvatars/Blank.png'), 
+        ('/images/profileAvatars/Hair1.png'),
+        ('/images/profileAvatars/Hair2.png'),
+        ('/images/profileAvatars/Hair3.png'),
+        ('/images/profileAvatars/Hair4.png'),
+        ('/images/profileAvatars/Hair5.png'),
+        ('/images/profileAvatars/Hair6.png'),
+        ('/images/profileAvatars/Hair7.png'),
+        ('/images/profileAvatars/Hair8.png');
+
+CREATE TABLE "profile_avatar_eyebrows"  (
+  "id" SERIAL PRIMARY KEY,
+  "image_path" VARCHAR
+);
+INSERT INTO "profile_avatar_eyebrows" ("image_path")
+VALUES  ('/images/profileAvatars/Blank.png'), 
+        ('/images/profileAvatars/Eyebrows1.png'),
+        ('/images/profileAvatars/Eyebrows2.png'),
+        ('/images/profileAvatars/Eyebrows3.png');
+
+CREATE TABLE "profile_avatar_eyes"  (
+  "id" SERIAL PRIMARY KEY,
+  "image_path" VARCHAR
+);
+INSERT INTO "profile_avatar_eyes" ("image_path")
+VALUES  ('/images/profileAvatars/Eyes1.png'),
+        ('/images/profileAvatars/Eyes2.png'),
+        ('/images/profileAvatars/Eyes3.png'),
+        ('/images/profileAvatars/Eyes4.png'),
+        ('/images/profileAvatars/Eyes5.png');
+
+CREATE TABLE "profile_avatar_nose"  (
+  "id" SERIAL PRIMARY KEY,
+  "image_path" VARCHAR
+);
+INSERT INTO "profile_avatar_nose" ("image_path")
+VALUES  ('/images/profileAvatars/Blank.png'),
+        ('/images/profileAvatars/Nose1.png'),
+        ('/images/profileAvatars/Nose2.png'),
+        ('/images/profileAvatars/Nose3.png'),
+        ('/images/profileAvatars/Nose4.png');
+
+CREATE TABLE "profile_avatar_detail"  (
+  "id" SERIAL PRIMARY KEY,
+  "image_path" VARCHAR
+);
+INSERT INTO "profile_avatar_detail" ("image_path")
+VALUES  ('/images/profileAvatars/Blank.png'),
+        ('/images/profileAvatars/Detail1.png'),
+        ('/images/profileAvatars/Detail2.png'),
+        ('/images/profileAvatars/Detail3.png');
+
+CREATE TABLE "profile_avatar_mouth"  (
+  "id" SERIAL PRIMARY KEY,
+  "image_path" VARCHAR
+);
+INSERT INTO "profile_avatar_mouth" ("image_path")
+VALUES  ('/images/profileAvatars/Mouth1.png'),
+        ('/images/profileAvatars/Mouth2.png'),
+        ('/images/profileAvatars/Mouth3.png'),
+        ('/images/profileAvatars/Mouth4.png'),
+        ('/images/profileAvatars/Mouth5.png');
+
+CREATE TABLE "profile_avatar_head"  (
+  "id" SERIAL PRIMARY KEY,
+  "image_path" VARCHAR
+);
+INSERT INTO "profile_avatar_head" ("image_path")
+VALUES  ('/images/profileAvatars/Head1.png'),
+        ('/images/profileAvatars/Head2.png'),
+        ('/images/profileAvatars/Head3.png'),
+        ('/images/profileAvatars/Head4.png');  
+
+CREATE TABLE "profile_avatar_body"  (
+  "id" SERIAL PRIMARY KEY,
+  "image_path" VARCHAR
+);
+INSERT INTO "profile_avatar_body" ("image_path")
+VALUES  ('/images/profileAvatars/Body1.png'),
+        ('/images/profileAvatars/Body2.png'),
+        ('/images/profileAvatars/Body3.png'),
+        ('/images/profileAvatars/Body4.png');               
+        
 
 CREATE TABLE "user" (
   "id" SERIAL PRIMARY KEY,
