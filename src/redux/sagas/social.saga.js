@@ -3,6 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* socialSaga() {
   yield takeLatest('ADD_FOLLOWEE', addFollowee);
+  yield takeLatest('SEARCH_FOR_FOLLOWEE', searchForFollowee);
   yield takeLatest('FETCH_FOLLOWEE_USERS', fetchFolloweeUsers);
   yield takeLatest('FETCH_FOLLOWEE_GOALS', fetchFolloweeGoals);
   yield takeLatest('ADD_LIKE', addLike);
@@ -123,25 +124,46 @@ function* fetchFolloweeGoals(action) {
   }
 }
 
+// worker Saga: will be fired on "SEARCH_FOR_FOLLOWEE" actions
+function* searchForFollowee(action) {
+  const ap = action.payload;
+  //ap.follower_id is follower id
+  //ap.search_text is searchText
+
+  console.log('In searchForFollowee, ap:', action.payload);
+  try {  
+
+    const search = yield axios.get('/api/social/search',
+        {params: {search_text: ap.search_text, follower_id: ap.follower_id} })
+
+    console.log('searched items, found:', search.data);
+
+    //yield put({ type: 'SET_ITEMS', payload: search.data});
+    } 
+    catch (error) {
+      console.log('followee search request failed', error);
+    }     
+  };
+
 // worker Saga: will be fired on "ADD_FOLLOWEE" actions
 function* addFollowee(action) {
-  const ap = action.payload;
-  //ap.followee is the username of the user to be followed (followee)
-  //ap.follower is the id of the currently logged in user (follower)
+  // const ap = action.payload;
+  // //ap.followee is the username of the user to be followed (followee)
+  // //ap.follower is the id of the currently logged in user (follower)
 
-  try {
-    const followeeID = yield axios.get('/api/social/followee_id', 
-        { params: {followee_username: ap.followee} }); 
-    //followeeID.data.id is the followee's user ID.
+  // try {
+  //   const followeeID = yield axios.get('/api/social/followee_id', 
+  //       { params: {followee_username: ap.followee} }); 
+  //   //followeeID.data.id is the followee's user ID.
 
-    yield axios.post('/api/social/followee', { followee_id: followeeID.data.id, follower_id: ap.follower });
+  //   yield axios.post('/api/social/followee', { followee_id: followeeID.data.id, follower_id: ap.follower });
     
     
-    yield put({ type: 'FETCH_FOLLOWEE_USERS', payload: ap.follower });
+  //   yield put({ type: 'FETCH_FOLLOWEE_USERS', payload: ap.follower });
 
-  } catch {
-    console.log('add new followee error');
-  }
+  // } catch {
+  //   console.log('add new followee error');
+  // }
 }
 
 export default socialSaga;

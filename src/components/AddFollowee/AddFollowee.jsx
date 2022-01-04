@@ -8,17 +8,18 @@ function AddFollowee(props) {
   const user = useSelector(store => store.user);
   const dispatch = useDispatch();
 
-  const [text, setText] = useState(props.text || '');
+  const [searchText, setSearchText] = useState(props.text || '');
 
   useEffect(() => {
   }, []);
 
   const handleChange = (event) =>{
-    setText(event.target.value);
+    setSearchText(event.target.value);
   }
 
-  const doneButton = () => {
-    dispatch({ type: 'ADD_FOLLOWEE', payload: {followee: text, follower: user.id} });
+  const searchButton = () => {
+    dispatch({ type:'SEARCH_FOR_FOLLOWEE', payload: {search_text: searchText, follower_id: user.id} });
+    //dispatch({ type: 'ADD_FOLLOWEE', payload: {followee: searchText, follower: user.id} });
     props.onLeaveAdd();
   }
 
@@ -33,7 +34,7 @@ function AddFollowee(props) {
 
         <input type="text" onChange={ (event) => handleChange(event) }></input>
         
-        <Button onClick={doneButton} className="iconButton confirmButton">
+        <Button onClick={searchButton} className="iconButton confirmButton">
           <img className="iconImage" src='./images/icons/GreenCheck.png' alt="Confirm new task"></img>
         </Button>
 
