@@ -144,23 +144,18 @@ function* searchForFollowee(action) {
 
 // worker Saga: will be fired on "ADD_FOLLOWEE" actions
 function* addFollowee(action) {
-  // const ap = action.payload;
-  // //ap.followee is the username of the user to be followed (followee)
-  // //ap.follower is the id of the currently logged in user (follower)
+  const ap = action.payload;
+  //ap.followee is the id of the user to be followed (followee)
+  //ap.follower is the id of the currently logged in user (follower)
 
-  // try {
-  //   const followeeID = yield axios.get('/api/social/followee_id', 
-  //       { params: {followee_username: ap.followee} }); 
-  //   //followeeID.data.id is the followee's user ID.
-
-  //   yield axios.post('/api/social/followee', { followee_id: followeeID.data.id, follower_id: ap.follower });
+  try {
+    yield axios.post('/api/social/followee', { followee_id: ap.followee, follower_id: ap.follower });
     
-    
-  //   yield put({ type: 'FETCH_FOLLOWEE_USERS', payload: ap.follower });
+    yield put({ type: 'FETCH_FOLLOWEE_USERS', payload: ap.follower });
 
-  // } catch {
-  //   console.log('add new followee error');
-  // }
+  } catch {
+    console.log('add new followee error');
+  }
 }
 
 export default socialSaga;

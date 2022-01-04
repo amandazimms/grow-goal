@@ -14,7 +14,7 @@ function SocialPage() {
   const selectedFollowee = useSelector(store => store.selectedFollowee);
   const followees = useSelector(store => store.followeeUsers);
 
-  const [addingFollowed, setAddingFollowed] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -26,8 +26,13 @@ function SocialPage() {
     dispatch( {type: 'SET_SELECTED_FOLLOWEE', payload: followie});
   }
 
-  const addFollowee = () => {
-    setAddingFollowed(true);
+  const openSearch = () => {
+    setSearchOpen(true);
+  }
+
+  const addThisFollowee = (foundUser) => {
+    dispatch({ type: 'ADD_FOLLOWEE', payload: {followee: foundUser.id, follower: user.id} });
+    setSearchOpen(false);
   }
 
   return (
@@ -36,9 +41,9 @@ function SocialPage() {
 
       <div className="centerFlexContainer">
 
-        { addingFollowed 
-          ? <AddFollowee onLeaveAdd={()=>setAddingFollowed(false)}/>
-          : <Button onClick={addFollowee} className="iconButton">
+        { searchOpen 
+          ? <AddFollowee onLeaveAdd={()=>setSearchOpen(false)}/>
+          : <Button onClick={openSearch} className="iconButton">
               <img className="iconImage iconImageXL" src='./images/icons/AddIcon.png' alt="Add followed user"></img>
             </Button> 
         }
@@ -47,7 +52,7 @@ function SocialPage() {
 
       {/* <p>searchResults:{JSON.stringify(searchResults)}</p> */}
 
-      { addingFollowed
+      { searchOpen
         ? <div className="cards">
             {/* todo we reused some css classes that could be updated - "goal" and "plant" verbage below */}
             {searchResults.map(foundUser => {
@@ -56,7 +61,15 @@ function SocialPage() {
                   <Button className="thumbnailButton">
                     <img className="plantAvatarThumbnail" src={foundUser.image_path} alt="followee's profile image"/>
                   </Button>
+
                   <h3 className="thumbnailGoalTitle">{foundUser.username}</h3>
+
+                  <div className="centerFlexContainer">
+                    <Button onClick={() => addThisFollowee(foundUser)} className="iconButton">
+                      <img className="iconImage iconImageXL" src='./images/icons/AddIcon.png' alt="Add followed user"></img>
+                    </Button> 
+                  </div>
+
                 </div>
                 );
             })}

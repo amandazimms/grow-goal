@@ -21,12 +21,7 @@ function AddFollowee(props) {
 
   const searchButton = () => {
     dispatch({ type:'SEARCH_FOR_FOLLOWEE', payload: {search_text: searchText, follower_id: user.id} });
-    //dispatch({ type: 'ADD_FOLLOWEE', payload: {followee: searchText, follower: user.id} });
-    //
   }
-
-  //todo add a done button that runs a function that adds the followee, and also
-  //props.onLeaveAdd();
 
   const cancelButton = () => {
     props.onLeaveAdd();

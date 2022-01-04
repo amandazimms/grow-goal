@@ -115,28 +115,6 @@ router.get('/search', (req,res) => {
   })
 })
 
-
-router.get('/followee_id', (req, res) => {
-  //getting the ID of a user (followee) that the logged in user (followee) desires to follow
-  //(since users won't know other users' ids.)
-
-  // console.log('--->in social followee ID router get. req.query:', req.query);
-  // console.log('--->in social followee ID router get. req.body:', req.body);
-  // console.log('--->in social followee ID router get. req.params:', req.params);
-
-  //req.query.followee_username is the username of the followee (to be followed)
-    const queryString = `SELECT "user".id FROM "user" WHERE "username"='${req.query.followee_username}';`
-
-    pool.query(queryString)
-    .then((results)=>{
-      //send back the ID of that user
-      res.send(results.rows[0]);
-    }).catch((err) => {
-      console.log('GET followee_id failed: ', err);
-      res.sendStatus(500);
-    });
-})
-
 router.get('/followee_goals', (req, res) => {
   // console.log('--->in social followee goals router get. req.query:', req.query);
   // console.log('--->in social followee goals router get. req.body:', req.body);
