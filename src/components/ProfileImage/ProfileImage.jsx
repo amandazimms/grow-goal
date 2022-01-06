@@ -21,6 +21,7 @@ function ProfileImage() {
 
   const dispatch = useDispatch();
 
+  const [displayEditIcon, setDisplayEditIcon] = useState(true);
   const [editingMode, setEditingMode] = useState(false); //(isNew || false);
 
   const [detailMode, setDetailMode] = useState(false);
@@ -32,6 +33,11 @@ function ProfileImage() {
   useEffect(() => {
     dispatch({ type: 'FETCH_ALL_PROFILE_AVATARS' });
   }, []);
+
+  const editButton = () => {
+    setEditingMode(true);
+    setDisplayEditIcon(false);
+  }
 
   const toggleDetailMode = () => {
     if (detailMode) { //if we were previously in detailMode, switch to Main mode
@@ -51,6 +57,16 @@ function ProfileImage() {
 
   return (
     <>
+      {/* if user has clicked the image, display the edit icon. if not, don't display anything */}
+      { displayEditIcon 
+        ? 
+          <Button onClick={editButton} className="iconButton editDeleteButton avatarButtonEdit profileAvatarButtonEdit"> 
+            <img className="iconImage iconImageLarge" src='./images/icons/EditIcon.png' alt="Edit task"></img>
+          </Button>
+        :
+          <></>
+      }
+
       <div className="avatarImagePieceParent">
           {/*HAT*/} <ImagePiece images={hats} topDistance={"40px"} zIndex={10} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} detailEditingMode={!detailMode}/>
           {/*HAIR*/} <ImagePiece images={hairs} topDistance={"90px"} zIndex={9} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} detailEditingMode={!detailMode}/>

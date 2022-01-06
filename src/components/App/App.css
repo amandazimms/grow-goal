@@ -253,9 +253,6 @@ Button
 	float: none;
 }
 
-.fakeImage {
-  margin: 5px;
-}
 /* --------------------------------------------------------------------------------
 Alert
 -------------------------------------------------------------------------------- */
@@ -535,7 +532,7 @@ cards
   transform: translate(0%, -30%);
 }
 
-.avatarButtonBack, .fakeImage {
+.avatarButtonBack {
   -webkit-order: 1;
   -ms-flex-order: 1;
   order: 0;
@@ -549,7 +546,7 @@ cards
   z-index: 99;
 }
 
-.avatarButtonNext, .plantAvatarButtonEdit {
+.avatarButtonNext {
   -webkit-order: 3;
   -ms-flex-order: 3;
   order: 3;
@@ -561,6 +558,17 @@ cards
   align-self: auto;
 
   z-index: 99;
+}
+
+.avatarButtonEdit {
+  position: absolute;
+  right: 0;
+  top: 100px;
+}
+
+.profileAvatarButtonEdit {
+  right: 20px;
+  top: 170px;
 }
 
 .plantAvatarImage {

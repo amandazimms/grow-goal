@@ -74,17 +74,12 @@ function PlantAvatar(props) {
 
             <img className="plantAvatarImage" onClick={() => setDisplayEditIcon(true)} src={selectedGoal.current_avatar_path}></img>
 
+              {/* if user has clicked the image, display the edit icon. if not, don't display anything */}
               { displayEditIcon 
                 ? 
-                  <>
-                    {/* empty/fake image to make styling easier and keep plant centered when edit button, below, is displayed */}
-                      <img className="iconImage iconImageLarge fakeImage" src='./images/icons/FakeImage.png' alt=""></img>
-
-                    {/* flex box order makes this appear to the right of the plant */}
-                    <Button onClick={editButton} className="iconButton editDeleteButton plantAvatarButtonEdit"> 
-                      <img className="iconImage iconImageLarge" src='./images/icons/EditIcon.png' alt="Edit task"></img>
-                    </Button>
-                  </>
+                  <Button onClick={editButton} className="iconButton editDeleteButton avatarButtonEdit"> 
+                    <img className="iconImage iconImageLarge" src='./images/icons/EditIcon.png' alt="Edit task"></img>
+                  </Button>
                 :
                   <></>
               } 
