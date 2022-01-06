@@ -62,7 +62,7 @@ router.put('/:id', (req, res) => {
       res.send(results.rows[0])
 
     }).catch((err) => {
-      console.log('PUT task failed: ', err);
+      console.log('PUT goal plant avatar failed: ', err);
       res.sendStatus(500);
     });
 });

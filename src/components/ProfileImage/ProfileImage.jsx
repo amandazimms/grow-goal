@@ -59,11 +59,17 @@ function ProfileImage() {
     dispatch({type: 'UPDATE_PROFILE_AVATAR', payload: { profileAvatar: currentSelections, userId: user.id } });
     
     setEditingMode(false);
+    if (detailMode){
+      toggleDetailMode();
+    }
     setIsEditingClass("");
   }
 
   const cancelButton = () => {
     setEditingMode(false);
+    if (detailMode){
+      toggleDetailMode();
+    }
     setIsEditingClass("");
   }
 

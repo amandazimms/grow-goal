@@ -42,15 +42,15 @@ function ImagePiece(props) {
       setSelectedImageIndex(images.length-1);
       setSelectedImagePath(images[images.length-1].image_path);
 
-      //sends the chosen image piece up via props to ProfileImage component
-      updateCurrentSelections(images[images.length-1].image_path);
+      //sends the chosen image piece up via props to ProfileImage component (+1 to account for 1-indexed DB)
+      updateCurrentSelections(pieceName, images.length-1 +1);
     } 
     else {
       setSelectedImageIndex(selectedImageIndex-1);
       setSelectedImagePath(images[selectedImageIndex-1].image_path);
 
-      //sends the chosen image piece up via props to ProfileImage component
-      updateCurrentSelections(images[selectedImageIndex-1].image_path);
+      //sends the chosen image piece up via props to ProfileImage component (+1 to account for 1-indexed DB)
+      updateCurrentSelections(pieceName, selectedImageIndex-1 +1);
     }
   }
 
@@ -59,15 +59,15 @@ function ImagePiece(props) {
       setSelectedImageIndex(0)
       setSelectedImagePath(images[0].image_path);
 
-      //sends the chosen image piece up via props to ProfileImage component
-      updateCurrentSelections(images[0].image_path);
+      //sends the chosen image piece up via props to ProfileImage component (+1 to account for 1-indexed DB)
+      updateCurrentSelections(pieceName, 0 +1);
     } 
     else {
       setSelectedImageIndex(selectedImageIndex+1);
       setSelectedImagePath(images[selectedImageIndex+1].image_path);
 
-      //sends the chosen image piece up via props to ProfileImage component
-      updateCurrentSelections(pieceName, selectedImageIndex+2);
+      //sends the chosen image piece up via props to ProfileImage component (+1 to account for 1-indexed DB)
+      updateCurrentSelections(pieceName, selectedImageIndex+1 +1);
     }
   }
 

@@ -16,6 +16,8 @@ function* updateProfileAvatar(action) {
     yield axios.put(`/api/profileAvatar/${ap.userId}`, 
         { profile_avatar: ap.profileAvatar });
 
+    //todo fetch user stuff, including profile avatar? also do this at login?
+
   } catch (error) {
     console.log('set user profile Avatar request failed', error);
   }
