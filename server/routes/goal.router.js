@@ -27,14 +27,15 @@ router.get('/', (req,res) => {
 })
 
 router.post('/', (req, res) => {
-  const queryString = `INSERT INTO "goal" ("goal_name", "visibility", "progress", "is_accomplished", "user_id", "plant_avatar_id")
-    VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`;
+  const queryString = `INSERT INTO "goal" ("goal_name", "visibility", "progress", "is_accomplished", "user_id", "plant_avatar_id", "current_avatar_path")
+    VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`;
     values = [req.body.goal_name, 
               req.body.visibility,
               req.body.progress, 
               req.body.is_accomplished, 
               req.body.user_id, 
-              req.body.plant_avatar_id];
+              req.body.plant_avatar_id,
+              req.body.current_avatar_path];
   
     pool.query(queryString, values)
     .then((results)=>{

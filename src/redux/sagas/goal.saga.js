@@ -118,7 +118,8 @@ function* addGoal(action) {
       is_accomplished: ap.is_accomplished, 
       user_id: ap.user_id, 
       visibility: ap.visibility,
-      plant_avatar_id: ap.plant_avatar_id 
+      plant_avatar_id: ap.plant_avatar_id ,
+      current_avatar_path: ap.current_avatar_path
     }
 
     const goal = yield axios.post('/api/goal', newGoal);

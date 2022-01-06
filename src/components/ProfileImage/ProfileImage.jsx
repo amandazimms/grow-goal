@@ -139,7 +139,7 @@ function ProfileImage() {
 
           {/*EYES*/} <ImagePiece  images={eyes} updateCurrentSelections={updateCurrentSelections} 
                                   pieceName={"eyes"} defaultIndex={user.profile_avatar_eyes_id}
-                                  topDistance={"90px"} zIndex={3} 
+                                  topDistance={"90px"} zIndex={4} 
                                   zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
                                   editMode={editingMode} detailEditingMode={detailMode}/>
 
@@ -157,7 +157,7 @@ function ProfileImage() {
 
           {/*MOUTH*/} <ImagePiece images={mouths} updateCurrentSelections={updateCurrentSelections} 
                                   pieceName={"mouth"} defaultIndex={user.profile_avatar_mouth_id}
-                                  topDistance={"185px"} zIndex={2} 
+                                  topDistance={"185px"} zIndex={3} 
                                   zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
                                   editMode={editingMode} detailEditingMode={detailMode}/>
 

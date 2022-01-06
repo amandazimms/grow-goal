@@ -243,7 +243,13 @@ Button
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
-  padding: 28px;
+  /* padding: 28px; */
+  
+  margin: 0;
+  width: 100%;
+  height: auto;
+  min-height: 68%;
+  min-width: 80%;
 }
 
 .imageFlip {
@@ -588,18 +594,22 @@ cards
   z-index: 2;
 }
 
-.plantAvatarThumbnail, .profileAvatarThumbnail {
-  width: 100px;
-}
-
-.profileThumbnailParent {
-  width: 100px;
+.plantAvatarThumbnail {
   position: relative;
 }
 
+.profileThumbnailParent {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  height: 150px;
+}
 
 .profileAvatarThumbnail {
   position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 
 .sunImage {

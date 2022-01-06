@@ -35,7 +35,8 @@ function GoalsPage(props) {
         is_accomplished: false,
         user_id: user.id,
         plant_avatar_id: 1,
-        visibility: "private"
+        visibility: "private",
+        current_avatar_path: "/images/plantAvatars/PinkVine1.png"
     }});
     //note that ADD_GOAL sequence ends with SET_SELECTED_GOAL for the new goal
   }

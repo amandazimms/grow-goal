@@ -69,9 +69,20 @@ function SocialPage() {
               return (
                 <div className="cardAreaSmall" key={foundUser.id}>     
                   <Button className="thumbnailButton">
+                    <div className="profileThumbnailParent">
+                      <img className="profileAvatarThumbnail" style={{zIndex: 10}} src={foundUser.hat_image_path} alt="followee's profile image"/>
+                      <img className="profileAvatarThumbnail" style={{zIndex: 9}} src={foundUser.hair_image_path} alt="followee's profile image"/>
+                      
+                      <img className="profileAvatarThumbnail" style={{zIndex: 6}} src={foundUser.eyebrows_image_path} alt="followee's profile image"/>
+                      <img className="profileAvatarThumbnail" style={{zIndex: 4}} src={foundUser.eyes_image_path} alt="followee's profile image"/>
 
-                    <img className="plantAvatarThumbnail" src={foundUser.image_path} alt="followee's profile image"/>
-                  
+                      <img className="profileAvatarThumbnail" style={{zIndex: 2}} src={foundUser.nose_image_path} alt="followee's profile image"/>
+                      <img className="profileAvatarThumbnail" style={{zIndex: 2}} src={foundUser.detail_image_path} alt="followee's profile image"/>
+                      <img className="profileAvatarThumbnail" style={{zIndex: 3}} src={foundUser.mouth_image_path} alt="followee's profile image"/>
+
+                      <img className="profileAvatarThumbnail" style={{zIndex: 1}} src={foundUser.head_image_path} alt="followee's profile image"/>
+                      <img className="profileAvatarThumbnail" style={{zIndex: 0}} src={foundUser.body_image_path} alt="followee's profile image"/>
+                    </div>
                   </Button>
 
                   <h3 className="thumbnailGoalTitle">{foundUser.username}</h3>
@@ -101,12 +112,18 @@ function SocialPage() {
                   <Link to="/followee-goals" onClick={() => setSelectedFollowee(followee)}>
                     <Button className="thumbnailButton">
                       <div className="profileThumbnailParent">
-                        {/* todo also repeat same logic above, within 'searchOpen' */}
-                        {/* <img className="plantAvatarThumbnail" src={followee.image_path} alt="followee's profile image"/> */}
-                        <img className="profileAvatarThumbnail" src={followee.body_image_path} alt="followee's profile image"/>
-                        <img className="profileAvatarThumbnail" src={followee.eyes_image_path} alt="followee's profile image"/>
-                        <img className="profileAvatarThumbnail" src={followee.hair_image_path} alt="followee's profile image"/>
-                        <img className="profileAvatarThumbnail" src={followee.head_image_path} alt="followee's profile image"/>
+                        <img className="profileAvatarThumbnail" style={{zIndex: 10}} src={followee.hat_image_path} alt="followee's profile image"/>
+                        <img className="profileAvatarThumbnail" style={{zIndex: 9}} src={followee.hair_image_path} alt="followee's profile image"/>
+                        
+                        <img className="profileAvatarThumbnail" style={{zIndex: 6}} src={followee.eyebrows_image_path} alt="followee's profile image"/>
+                        <img className="profileAvatarThumbnail" style={{zIndex: 4}} src={followee.eyes_image_path} alt="followee's profile image"/>
+
+                        <img className="profileAvatarThumbnail" style={{zIndex: 2}} src={followee.nose_image_path} alt="followee's profile image"/>
+                        <img className="profileAvatarThumbnail" style={{zIndex: 2}} src={followee.detail_image_path} alt="followee's profile image"/>
+                        <img className="profileAvatarThumbnail" style={{zIndex: 3}} src={followee.mouth_image_path} alt="followee's profile image"/>
+
+                        <img className="profileAvatarThumbnail" style={{zIndex: 1}} src={followee.head_image_path} alt="followee's profile image"/>
+                        <img className="profileAvatarThumbnail" style={{zIndex: 0}} src={followee.body_image_path} alt="followee's profile image"/>
                       </div>
                     </Button>
                   </Link>
