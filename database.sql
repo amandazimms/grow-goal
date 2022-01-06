@@ -8,7 +8,9 @@ VALUES  ('/images/profileAvatars/Blank.png'),
         ('/images/profileAvatars/Hat1.png'),
         ('/images/profileAvatars/Hat2.png'),
         ('/images/profileAvatars/Hat3.png'),
-        ('/images/profileAvatars/Hat4.png');
+        ('/images/profileAvatars/Hat4.png'),
+        ('/images/profileAvatars/Hat5.png'),
+        ('/images/profileAvatars/Hat6.png');
 
 CREATE TABLE "profile_avatar_hair"  (
   "id" SERIAL PRIMARY KEY,
@@ -23,7 +25,23 @@ VALUES  ('/images/profileAvatars/Blank.png'),
         ('/images/profileAvatars/Hair5.png'),
         ('/images/profileAvatars/Hair6.png'),
         ('/images/profileAvatars/Hair7.png'),
-        ('/images/profileAvatars/Hair8.png');
+        ('/images/profileAvatars/Hair8.png'),
+        ('/images/profileAvatars/Hair1b.png'),
+        ('/images/profileAvatars/Hair2b.png'),
+        ('/images/profileAvatars/Hair3b.png'),
+        ('/images/profileAvatars/Hair2c.png'),
+        ('/images/profileAvatars/Hair9b.png'),
+        ('/images/profileAvatars/Hair3c.png'),
+        ('/images/profileAvatars/Hair4c.png'),
+        ('/images/profileAvatars/Hair5b.png'),
+        ('/images/profileAvatars/Hair4b.png'),
+        ('/images/profileAvatars/Hair6b.png'),
+        ('/images/profileAvatars/Hair7b.png'),
+        ('/images/profileAvatars/Hair8b.png'),
+        ('/images/profileAvatars/Hair9c.png'),
+        ('/images/profileAvatars/Hair10.png'),
+        ('/images/profileAvatars/Hair10b.png');
+
 
 CREATE TABLE "profile_avatar_eyebrows"  (
   "id" SERIAL PRIMARY KEY,
@@ -33,7 +51,9 @@ INSERT INTO "profile_avatar_eyebrows" ("image_path")
 VALUES  ('/images/profileAvatars/Blank.png'), 
         ('/images/profileAvatars/Eyebrows1.png'),
         ('/images/profileAvatars/Eyebrows2.png'),
-        ('/images/profileAvatars/Eyebrows3.png');
+        ('/images/profileAvatars/Eyebrows3.png'),
+        ('/images/profileAvatars/Eyebrows4.png'),
+        ('/images/profileAvatars/Eyebrows5.png');
 
 CREATE TABLE "profile_avatar_eyes"  (
   "id" SERIAL PRIMARY KEY,
@@ -44,7 +64,11 @@ VALUES  ('/images/profileAvatars/Eyes1.png'),
         ('/images/profileAvatars/Eyes2.png'),
         ('/images/profileAvatars/Eyes3.png'),
         ('/images/profileAvatars/Eyes4.png'),
-        ('/images/profileAvatars/Eyes5.png');
+        ('/images/profileAvatars/Eyes8.png'),
+        ('/images/profileAvatars/Eyes5.png'),
+        ('/images/profileAvatars/Eyes6.png'),
+        ('/images/profileAvatars/Eyes7.png'),
+        ('/images/profileAvatars/Eyes9.png');
 
 CREATE TABLE "profile_avatar_nose"  (
   "id" SERIAL PRIMARY KEY,
@@ -55,6 +79,7 @@ VALUES  ('/images/profileAvatars/Blank.png'),
         ('/images/profileAvatars/Nose1.png'),
         ('/images/profileAvatars/Nose2.png'),
         ('/images/profileAvatars/Nose3.png'),
+        ('/images/profileAvatars/Nose5.png'),
         ('/images/profileAvatars/Nose4.png');
 
 CREATE TABLE "profile_avatar_detail"  (
@@ -65,6 +90,7 @@ INSERT INTO "profile_avatar_detail" ("image_path")
 VALUES  ('/images/profileAvatars/Blank.png'),
         ('/images/profileAvatars/Detail1.png'),
         ('/images/profileAvatars/Detail2.png'),
+        ('/images/profileAvatars/Detail4.png'),
         ('/images/profileAvatars/Detail3.png');
 
 CREATE TABLE "profile_avatar_mouth"  (
@@ -76,6 +102,7 @@ VALUES  ('/images/profileAvatars/Mouth1.png'),
         ('/images/profileAvatars/Mouth2.png'),
         ('/images/profileAvatars/Mouth3.png'),
         ('/images/profileAvatars/Mouth4.png'),
+        ('/images/profileAvatars/Mouth6.png'),
         ('/images/profileAvatars/Mouth5.png');
 
 CREATE TABLE "profile_avatar_head"  (
@@ -86,7 +113,10 @@ INSERT INTO "profile_avatar_head" ("image_path")
 VALUES  ('/images/profileAvatars/Head1.png'),
         ('/images/profileAvatars/Head2.png'),
         ('/images/profileAvatars/Head3.png'),
-        ('/images/profileAvatars/Head4.png');  
+        ('/images/profileAvatars/Head4.png'),
+        ('/images/profileAvatars/Head5.png'),
+        ('/images/profileAvatars/Head6.png'),
+        ('/images/profileAvatars/Head7.png');
 
 CREATE TABLE "profile_avatar_body"  (
   "id" SERIAL PRIMARY KEY,
@@ -96,7 +126,15 @@ INSERT INTO "profile_avatar_body" ("image_path")
 VALUES  ('/images/profileAvatars/Body1.png'),
         ('/images/profileAvatars/Body2.png'),
         ('/images/profileAvatars/Body3.png'),
-        ('/images/profileAvatars/Body4.png');               
+        ('/images/profileAvatars/Body4.png'),
+        ('/images/profileAvatars/Body5.png'),
+        ('/images/profileAvatars/Body6.png'),
+        ('/images/profileAvatars/Body7.png'),
+        ('/images/profileAvatars/Body8.png'),
+        ('/images/profileAvatars/Body9.png'),
+        ('/images/profileAvatars/Body10.png'),
+        ('/images/profileAvatars/Body11.png'),
+        ('/images/profileAvatars/Body12.png');              
         
 
 CREATE TABLE "user" (
