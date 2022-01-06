@@ -68,17 +68,17 @@ function ProfileImage() {
       }
 
       <div className="avatarImagePieceParent">
-          {/*HAT*/} <ImagePiece images={hats} topDistance={"40px"} zIndex={10} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} detailEditingMode={!detailMode}/>
-          {/*HAIR*/} <ImagePiece images={hairs} topDistance={"90px"} zIndex={9} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} detailEditingMode={!detailMode}/>
+          {/*HAT*/} <ImagePiece images={hats} topDistance={"40px"} zIndex={10} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={!detailMode}/>
+          {/*HAIR*/} <ImagePiece images={hairs} topDistance={"90px"} zIndex={9} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={!detailMode}/>
 
-          {/*EYEBROWS*/} <ImagePiece images={eyebrows} topDistance={"60px"} zIndex={6} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} detailEditingMode={detailMode}/>
-          {/*EYES*/} <ImagePiece images={eyes} topDistance={"90px"} zIndex={3} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} detailEditingMode={detailMode}/>
-          {/*NOSE*/} <ImagePiece images={noses} topDistance={"120px"} zIndex={2} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} detailEditingMode={detailMode}/>
-          {/*DETAIL*/} <ImagePiece images={faceDetails} topDistance={"155px"} zIndex={2} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} detailEditingMode={detailMode}/>
-          {/*MOUTH*/} <ImagePiece images={mouths} topDistance={"185px"} zIndex={2} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} detailEditingMode={detailMode}/>
+          {/*EYEBROWS*/} <ImagePiece images={eyebrows} topDistance={"60px"} zIndex={6} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={detailMode}/>
+          {/*EYES*/} <ImagePiece images={eyes} topDistance={"90px"} zIndex={3} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={detailMode}/>
+          {/*NOSE*/} <ImagePiece images={noses} topDistance={"120px"} zIndex={2} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={detailMode}/>
+          {/*DETAIL*/} <ImagePiece images={faceDetails} topDistance={"155px"} zIndex={2} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={detailMode}/>
+          {/*MOUTH*/} <ImagePiece images={mouths} topDistance={"185px"} zIndex={2} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={detailMode}/>
 
-          {/*HEAD*/} <ImagePiece images={heads} topDistance={"150px"} zIndex={1} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} detailEditingMode={!detailMode}/>
-          {/*BODY*/} <ImagePiece images={bodies} topDistance={"200px"} zIndex={0} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} detailEditingMode={!detailMode}/>
+          {/*HEAD*/} <ImagePiece images={heads} topDistance={"150px"} zIndex={1} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={!detailMode}/>
+          {/*BODY*/} <ImagePiece images={bodies} topDistance={"200px"} zIndex={0} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={!detailMode}/>
       </div>  
 
       <div className="bottomButtonContainer">
