@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import ImagePiece from '../ImagePiece/ImagePiece';
 
 function ProfileImage() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector(store => store.user);
 
   const hats = useSelector(store => store.profileAvatars.hats);

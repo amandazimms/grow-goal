@@ -588,8 +588,18 @@ cards
   z-index: 2;
 }
 
-.plantAvatarThumbnail {
+.plantAvatarThumbnail, .profileAvatarThumbnail {
   width: 100px;
+}
+
+.profileThumbnailParent {
+  width: 100px;
+  position: relative;
+}
+
+
+.profileAvatarThumbnail {
+  position: absolute;
 }
 
 .sunImage {

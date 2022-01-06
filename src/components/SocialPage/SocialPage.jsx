@@ -65,10 +65,13 @@ function SocialPage() {
           <div className="cards">
             {/* todo we reused some css classes that could be updated - "goal" and "plant" verbage below */}
             {searchResults.map(foundUser => {
+              
               return (
                 <div className="cardAreaSmall" key={foundUser.id}>     
                   <Button className="thumbnailButton">
+
                     <img className="plantAvatarThumbnail" src={foundUser.image_path} alt="followee's profile image"/>
+                  
                   </Button>
 
                   <h3 className="thumbnailGoalTitle">{foundUser.username}</h3>
@@ -82,6 +85,7 @@ function SocialPage() {
                 </div>
                 );
             })}
+
           </div>  
           </>
 
@@ -91,17 +95,26 @@ function SocialPage() {
           <div className="cards">
             {/* todo we reused some css classes that could be updated - "goal" and "plant" verbage below */}
             {followees.map(followee => {
+              
               return (
                 <div className="cardAreaSmall" key={followee.id}>     
                   <Link to="/followee-goals" onClick={() => setSelectedFollowee(followee)}>
                     <Button className="thumbnailButton">
-                      <img className="plantAvatarThumbnail" src={followee.image_path} alt="followee's profile image"/>
+                      <div className="profileThumbnailParent">
+                        {/* todo also repeat same logic above, within 'searchOpen' */}
+                        {/* <img className="plantAvatarThumbnail" src={followee.image_path} alt="followee's profile image"/> */}
+                        <img className="profileAvatarThumbnail" src={followee.body_image_path} alt="followee's profile image"/>
+                        <img className="profileAvatarThumbnail" src={followee.eyes_image_path} alt="followee's profile image"/>
+                        <img className="profileAvatarThumbnail" src={followee.hair_image_path} alt="followee's profile image"/>
+                        <img className="profileAvatarThumbnail" src={followee.head_image_path} alt="followee's profile image"/>
+                      </div>
                     </Button>
                   </Link>
                   <h3 className="thumbnailGoalTitle">{followee.username}</h3>
                 </div>
                 );
             })}
+
           </div>  
           </>
       }
