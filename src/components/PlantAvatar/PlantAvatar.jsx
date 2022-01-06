@@ -18,6 +18,8 @@ function PlantAvatar(props) {
   const [editingMode, setEditingMode] = useState(isNew || false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
+  const [sunImagePath, setSunImagePath] = useState("./images/suns/SunT.png");
+
   useEffect(() => {
   }, []);
 
@@ -53,6 +55,7 @@ function PlantAvatar(props) {
 
   return (
     <div>
+      <img className="sunImage" src={sunImagePath}></img>
       { editingMode 
         ? 
          <div className="cardParent cardParentPlantAvatar"> 
@@ -68,6 +71,7 @@ function PlantAvatar(props) {
          </div>
         : 
          <div className="cardParent cardParentPlantAvatar"> 
+
             <img className="plantAvatarImage" onClick={() => setDisplayEditIcon(true)} src={selectedGoal.current_avatar_path}></img>
 
               { displayEditIcon 

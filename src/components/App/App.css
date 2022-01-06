@@ -371,6 +371,7 @@ cards
   width: 350px;
   min-height: 350px;
 
+  position: relative;
 
   border: none;
   resize: both;
@@ -499,6 +500,8 @@ cards
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+
+  position: relative;
 }
 
 .avatarImagePieceParent {
@@ -571,10 +574,19 @@ cards
   -webkit-align-self: auto;
   -ms-flex-item-align: auto;
   align-self: auto;
+  z-index: 2;
 }
 
 .plantAvatarThumbnail {
   width: 100px;
+}
+
+.sunImage {
+  position: absolute;
+  width: 140px;
+  z-index: 1;
+  right: 10px; 
+  top: 10px;
 }
 
 .taskContent {

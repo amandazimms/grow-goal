@@ -11,6 +11,8 @@
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
   padding: 10px;
+
+  z-index: 100;
 }
 
 .nav a {
