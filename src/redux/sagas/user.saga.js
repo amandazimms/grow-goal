@@ -23,7 +23,7 @@ function* fetchUser() {
     const profileAvatar = yield axios.get('/api/user/profile_avatar', 
       {params: {user_id: response.data.id} })
 
-    //response.data gets all the columns from "user"; profileAvatar.data[0] gets the path of the profile image
+    //response.data gets all the columns from "user"; profileAvatar.data[0] gets the path of the profile images
     //combine these to set our User reducer so the image path will be handy for use  
     let userToSet = {...response.data, ...profileAvatar.data[0]}
 

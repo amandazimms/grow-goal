@@ -5,7 +5,8 @@ import { Button } from 'react-bootstrap';
 function ImagePiece(props) {
 
   const images = props.images;
-  const pieceName = props.pieceName
+  const pieceName = props.pieceName;
+  const defaultImageIndex = props.defaultIndex;
 
   const editingMode = props.editMode;
   const showMyArrows = props.detailEditingMode;
@@ -16,10 +17,13 @@ function ImagePiece(props) {
 
   const dispatch = useDispatch();
 
-  const [selectedImageIndex, setSelectedImageIndex] = useState(1);
-  const [selectedImagePath, setSelectedImagePath] = useState(images[1].image_path);
+                                                          //-1 beccause DB is 1 indexed
+  const [selectedImageIndex, setSelectedImageIndex] = useState(defaultImageIndex-1);
+  const [selectedImagePath, setSelectedImagePath] = useState(images[defaultImageIndex-1].image_path);
 
   useEffect(() => {
+                                          //(+1 to account for 1-indexed DB)
+    updateCurrentSelections(pieceName, defaultImageIndex-1 +1);
   }, []);
 
   

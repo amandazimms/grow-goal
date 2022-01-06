@@ -26,10 +26,15 @@ function ProfileImage() {
   const [isEditingClass, setIsEditingClass] = useState('');
 
   const [currentSelections, setCurrentSelections] = useState({
-                            hat: 1, hair: 1,
-                            eyebrows: 1, eyes: 1,
-                            nose: 1, details: 1, mouth: 1,
-                            head: 1,body: 1,
+                            hat: user.profile_avatar_hat_id, 
+                            hair: user.profile_avatar_hair_id,
+                            eyebrows: user.profile_avatar_eyebrows_id, 
+                            eyes: user.profile_avatar_eyes_id,
+                            nose: user.profile_avatar_nose_id, 
+                            details: user.profile_avatar_detail_id, 
+                            mouth: user.profile_avatar_mouth_id,
+                            head: user.profile_avatar_head_id,
+                            body: user.profile_avatar_body_id
                           })
 
   const [detailMode, setDetailMode] = useState(false);
@@ -95,6 +100,8 @@ function ProfileImage() {
     let newProperty = {[newKey]: newValue};
     let newSelections = {...currentSelections, ...newProperty};
     
+    console.log('setting new selections. current:', currentSelections, 'new property:', newProperty);
+
     setCurrentSelections(newSelections);
   }
 
@@ -113,47 +120,56 @@ function ProfileImage() {
 
       <div className="avatarImagePieceParent" onClick={clickImage}>
 
-          {/*HAT*/} <ImagePiece   images={hats} updateCurrentSelections={updateCurrentSelections} pieceName={"hat"}
+          {/*HAT*/} <ImagePiece   images={hats} updateCurrentSelections={updateCurrentSelections} 
+                                  pieceName={"hat"} defaultIndex={user.profile_avatar_hat_id}
                                   topDistance={"40px"} zIndex={10} 
                                   zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
                                   editMode={editingMode} detailEditingMode={!detailMode}/>
 
-          {/*HAIR*/} <ImagePiece  images={hairs} updateCurrentSelections={updateCurrentSelections} pieceName={"hair"}
+          {/*HAIR*/} <ImagePiece  images={hairs} updateCurrentSelections={updateCurrentSelections} 
+                                  pieceName={"hair"} defaultIndex={user.profile_avatar_hair_id}
                                   topDistance={"90px"} zIndex={9} 
                                   zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
                                   editMode={editingMode} detailEditingMode={!detailMode}/>
 
-          {/*BROWS*/} <ImagePiece images={eyebrows} updateCurrentSelections={updateCurrentSelections} pieceName={"eyebrows"}
+          {/*BROWS*/} <ImagePiece images={eyebrows} updateCurrentSelections={updateCurrentSelections} 
+                                  pieceName={"eyebrows"} defaultIndex={user.profile_avatar_eyebrows_id}
                                   topDistance={"60px"} zIndex={6} 
                                   zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
                                   editMode={editingMode} detailEditingMode={detailMode}/>
 
-          {/*EYES*/} <ImagePiece  images={eyes} updateCurrentSelections={updateCurrentSelections} pieceName={"eyes"}
+          {/*EYES*/} <ImagePiece  images={eyes} updateCurrentSelections={updateCurrentSelections} 
+                                  pieceName={"eyes"} defaultIndex={user.profile_avatar_eyes_id}
                                   topDistance={"90px"} zIndex={3} 
                                   zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
                                   editMode={editingMode} detailEditingMode={detailMode}/>
 
-          {/*NOSE*/} <ImagePiece  images={noses} updateCurrentSelections={updateCurrentSelections} pieceName={"nose"}
+          {/*NOSE*/} <ImagePiece  images={noses} updateCurrentSelections={updateCurrentSelections} 
+                                  pieceName={"nose"} defaultIndex={user.profile_avatar_nose_id}
                                   topDistance={"120px"} zIndex={2} 
                                   zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
                                   editMode={editingMode} detailEditingMode={detailMode}/>
 
-          {/*DEET*/} <ImagePiece  images={faceDetails} updateCurrentSelections={updateCurrentSelections} pieceName={"details"}
+          {/*DEET*/} <ImagePiece  images={faceDetails} updateCurrentSelections={updateCurrentSelections} 
+                                  pieceName={"details"} defaultIndex={user.profile_avatar_detail_id}
                                   topDistance={"155px"} zIndex={2} 
                                   zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
                                   editMode={editingMode} detailEditingMode={detailMode}/>
 
-          {/*MOUTH*/} <ImagePiece images={mouths} updateCurrentSelections={updateCurrentSelections} pieceName={"mouth"}
+          {/*MOUTH*/} <ImagePiece images={mouths} updateCurrentSelections={updateCurrentSelections} 
+                                  pieceName={"mouth"} defaultIndex={user.profile_avatar_mouth_id}
                                   topDistance={"185px"} zIndex={2} 
                                   zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
                                   editMode={editingMode} detailEditingMode={detailMode}/>
 
-          {/*HEAD*/} <ImagePiece  images={heads} updateCurrentSelections={updateCurrentSelections} pieceName={"head"}
+          {/*HEAD*/} <ImagePiece  images={heads} updateCurrentSelections={updateCurrentSelections} 
+                                  pieceName={"head"} defaultIndex={user.profile_avatar_head_id}
                                   topDistance={"150px"} zIndex={1} 
                                   zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
                                   editMode={editingMode} detailEditingMode={!detailMode}/>
 
-          {/*BODY*/} <ImagePiece  images={bodies} updateCurrentSelections={updateCurrentSelections} pieceName={"body"}
+          {/*BODY*/} <ImagePiece  images={bodies} updateCurrentSelections={updateCurrentSelections} 
+                                  pieceName={"body"} defaultIndex={user.profile_avatar_body_id}
                                   topDistance={"200px"} zIndex={0} 
                                   zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
                                   editMode={editingMode} detailEditingMode={!detailMode}/>
