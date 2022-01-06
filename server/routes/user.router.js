@@ -18,16 +18,41 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 //todo move this to profileAvatar router
 router.get('/profile_avatar', (req,res) => {
   //req.query.user_id is user id
-  const queryString = `SELECT image_path 
-        FROM "user" 
-        JOIN "profile_avatar" ON profile_avatar.id="user".profile_avatar_id 
-        WHERE "user".id=${req.query.user_id};`
+  // const queryString = `SELECT image_path 
+  //       FROM "user" 
+  //       JOIN "profile_avatar" ON profile_avatar.id="user".profile_avatar_id 
+  //       WHERE "user".id=${req.query.user_id};`
+
+  const queryString = `SELECT 
+            profile_avatar_hat.image_path AS hat_image_path,
+            profile_avatar_hair.image_path AS hair_image_path,
+            profile_avatar_eyebrows.image_path AS eyebrows_image_path,
+            profile_avatar_eyes.image_path AS eyes_image_path,
+            profile_avatar_nose.image_path AS nose_image_path,
+            profile_avatar_detail.image_path AS detail_image_path,
+            profile_avatar_mouth.image_path AS mouth_image_path,
+            profile_avatar_head.image_path AS head_image_path,
+            profile_avatar_body.image_path AS body_image_path
+
+            FROM "user"
+            
+            JOIN profile_avatar_hat ON profile_avatar_hat.id="user".profile_avatar_hat_id
+            JOIN profile_avatar_hair ON profile_avatar_hair.id="user".profile_avatar_hair_id
+            JOIN profile_avatar_eyebrows ON profile_avatar_eyebrows.id="user".profile_avatar_eyebrows_id
+            JOIN profile_avatar_eyes ON profile_avatar_eyes.id="user".profile_avatar_eyes_id
+            JOIN profile_avatar_nose ON profile_avatar_nose.id="user".profile_avatar_nose_id
+            JOIN profile_avatar_detail ON profile_avatar_detail.id="user".profile_avatar_detail_id
+            JOIN profile_avatar_mouth ON profile_avatar_mouth.id="user".profile_avatar_mouth_id
+            JOIN profile_avatar_head ON profile_avatar_head.id="user".profile_avatar_head_id
+            JOIN profile_avatar_body ON profile_avatar_body.id="user".profile_avatar_body_id
+
+            WHERE "user".id=${req.query.user_id}`;
   
   pool.query(queryString).then((results)=>{
     res.send(results.rows);
 
   }).catch((err)=>{
-    console.log('error with followees GET:', err);
+    console.log('error with profile avatar GET:', err);
     res.sendStatus(500);
   })
 })
