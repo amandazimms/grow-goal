@@ -562,13 +562,9 @@ cards
 
 .avatarButtonEdit {
   position: absolute;
-  right: 0;
-  top: 100px;
-}
-
-.profileAvatarButtonEdit {
   right: 20px;
   top: 170px;
+  z-index: 30;
 }
 
 .plantAvatarImage {

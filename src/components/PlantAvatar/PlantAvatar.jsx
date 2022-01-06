@@ -56,9 +56,21 @@ function PlantAvatar(props) {
   return (
     <div>
       <img className="sunImage" src={sunImagePath}></img>
+
+      {/* if user has clicked the image, display the edit icon. if not, don't display anything */}
+      { displayEditIcon 
+        ? 
+          <Button onClick={editButton} className="iconButton editDeleteButton avatarButtonEdit"> 
+            <img className="iconImage iconImageLarge" src='./images/icons/EditIcon.png' alt="Edit task"></img>
+          </Button>
+        :
+          <></>
+      } 
+
       { editingMode 
         ? 
-         <div className="cardParent cardParentPlantAvatar"> 
+          <>
+          <div className="cardParent cardParentPlantAvatar"> 
             <Button onClick={backButton} className="iconButton avatarButtonBack"> 
               <img className="iconImage iconImageXL imageFlip" src='./images/icons/Arrow.png' alt="Next image"></img>
             </Button>
@@ -68,26 +80,8 @@ function PlantAvatar(props) {
             <Button onClick={nextButton} className="iconButton avatarButtonNext"> 
               <img className="iconImage iconImageXL" src='./images/icons/Arrow.png' alt="Next image"></img>
             </Button>
-         </div>
-        : 
-         <div className="cardParent cardParentPlantAvatar"> 
-
-            <img className="plantAvatarImage" onClick={() => setDisplayEditIcon(true)} src={selectedGoal.current_avatar_path}></img>
-
-              {/* if user has clicked the image, display the edit icon. if not, don't display anything */}
-              { displayEditIcon 
-                ? 
-                  <Button onClick={editButton} className="iconButton editDeleteButton avatarButtonEdit"> 
-                    <img className="iconImage iconImageLarge" src='./images/icons/EditIcon.png' alt="Edit task"></img>
-                  </Button>
-                :
-                  <></>
-              } 
           </div>
-      }
 
-      { editingMode 
-        ?
           <div className="bottomButtonContainer">
             <Button onClick={confirmButton} className="iconButton confirmButton">
               <img className="iconImage iconImageLarge" src='./images/icons/GreenCheck.png' alt="Confirm plant avatar choice"></img>
@@ -97,9 +91,13 @@ function PlantAvatar(props) {
               <img className="iconImage iconImageLarge" src='./images/icons/RedEx.png' alt="Cancel plant avatar choice"></img>
             </Button>
           </div>
-        :
-          <></>  
+          </>
+        : 
+          <div className="cardParent cardParentPlantAvatar"> 
+            <img className="plantAvatarImage" onClick={() => setDisplayEditIcon(true)} src={selectedGoal.current_avatar_path}></img>
+          </div>
       }
+
 
     </div>
   );

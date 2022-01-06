@@ -60,7 +60,7 @@ function ProfileImage() {
       {/* if user has clicked the image, display the edit icon. if not, don't display anything */}
       { displayEditIcon 
         ? 
-          <Button onClick={editButton} className="iconButton editDeleteButton avatarButtonEdit profileAvatarButtonEdit"> 
+          <Button onClick={editButton} className="iconButton editDeleteButton avatarButtonEdit"> 
             <img className="iconImage iconImageLarge" src='./images/icons/EditIcon.png' alt="Edit task"></img>
           </Button>
         :
