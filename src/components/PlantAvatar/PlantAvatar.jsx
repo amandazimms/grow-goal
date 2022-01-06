@@ -23,6 +23,12 @@ function PlantAvatar(props) {
   useEffect(() => {
   }, []);
 
+  const clickImage = () => {
+    if (!editingMode) {
+      setDisplayEditIcon(true);
+    }
+  }
+
   const cancelButton = () => {
     setEditingMode(false);
   }
@@ -94,7 +100,7 @@ function PlantAvatar(props) {
           </>
         : 
           <div className="cardParent cardParentPlantAvatar"> 
-            <img className="plantAvatarImage" onClick={() => setDisplayEditIcon(true)} src={selectedGoal.current_avatar_path}></img>
+            <img className="plantAvatarImage" onClick={clickImage} src={selectedGoal.current_avatar_path}></img>
           </div>
       }
 

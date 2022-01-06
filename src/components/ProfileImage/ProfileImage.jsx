@@ -21,8 +21,9 @@ function ProfileImage() {
 
   const dispatch = useDispatch();
 
-  const [displayEditIcon, setDisplayEditIcon] = useState(true);
-  const [editingMode, setEditingMode] = useState(false); //(isNew || false);
+  const [displayEditIcon, setDisplayEditIcon] = useState(false);
+  const [editingMode, setEditingMode] = useState(false); 
+  const [isEditingClass, setIsEditingClass] = useState('');
 
   const [detailMode, setDetailMode] = useState(false);
   const [toggleDetailImage, setDetailToggleImage] = useState(detailMode ? './images/icons/DetailsMainToggleD.png' : './images/icons/DetailsMainToggleM.png');
@@ -34,9 +35,32 @@ function ProfileImage() {
     dispatch({ type: 'FETCH_ALL_PROFILE_AVATARS' });
   }, []);
 
+  const clickImage = () => {
+    if (!editingMode) {
+      setDisplayEditIcon(true);
+    }
+  }
+
   const editButton = () => {
     setEditingMode(true);
+    setIsEditingClass("cardParentProfileAvatarEditMode");
+
     setDisplayEditIcon(false);
+  }
+
+  const confirmButton = () => {
+    //since db is 1-indexed while this array is 0-indexed; add 1 for the next step.
+    const plant_avatar_id = selectedImageIndex +1;
+
+    dispatch({type: 'UPDATE_SELECTED_PLANT_AVATAR', payload: { plant_avatar_id: plant_avatar_id, goal_id: selectedGoal.id} });
+    
+    setEditingMode(false);
+    setIsEditingClass("");
+  }
+
+  const cancelButton = () => {
+    setEditingMode(false);
+    setIsEditingClass("");
   }
 
   const toggleDetailMode = () => {
@@ -56,7 +80,8 @@ function ProfileImage() {
 
 
   return (
-    <>
+    <div className={`cardArea cardBlue cardParent cardParentProfileAvatar ${isEditingClass}`}> 
+
       {/* if user has clicked the image, display the edit icon. if not, don't display anything */}
       { displayEditIcon 
         ? 
@@ -67,7 +92,7 @@ function ProfileImage() {
           <></>
       }
 
-      <div className="avatarImagePieceParent">
+      <div className="avatarImagePieceParent" onClick={clickImage}>
           {/*HAT*/} <ImagePiece images={hats} topDistance={"40px"} zIndex={10} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={!detailMode}/>
           {/*HAIR*/} <ImagePiece images={hairs} topDistance={"90px"} zIndex={9} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={!detailMode}/>
 
@@ -81,13 +106,31 @@ function ProfileImage() {
           {/*BODY*/} <ImagePiece images={bodies} topDistance={"200px"} zIndex={0} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={!detailMode}/>
       </div>  
 
-      <div className="bottomButtonContainer">
-        <Button onClick={toggleDetailMode} className="iconButton"> 
-          <img className="iconImageToggle" src={toggleDetailImage} alt="toggle edit details/main"></img>
-        </Button> 
-      </div>
+      {
+        editingMode
+        ?
+          <>
+          <div className="bottomButtonContainer">
+            <Button onClick={toggleDetailMode} className="iconButton"> 
+              <img className="iconImageToggle" src={toggleDetailImage} alt="toggle edit details/main"></img>
+            </Button> 
+          </div>
 
-    </>
+          <div className="bottomButtonContainer">
+            <Button onClick={confirmButton} className="iconButton confirmButton">
+              <img className="iconImage iconImageLarge" src='./images/icons/GreenCheck.png' alt="Confirm plant avatar choice"></img>
+            </Button>
+
+            <Button onClick={cancelButton} className="iconButton cancelButton">
+              <img className="iconImage iconImageLarge" src='./images/icons/RedEx.png' alt="Cancel plant avatar choice"></img>
+            </Button>
+          </div>
+          </>
+
+        :
+          <></>
+      }  
+    </div>
   );
 }
 

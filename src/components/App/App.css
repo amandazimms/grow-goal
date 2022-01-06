@@ -483,10 +483,17 @@ cards
   align-items: flex-start;
 }
 
-.cardParentProfileAvatar {
+.cardParentProfileAvatar  {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+
+  height: 380px;
+  position: relative;
+}
+
+.cardParentProfileAvatarEditMode {
+  height: 420px;
 }
 
 .cardParentPlantAvatar {

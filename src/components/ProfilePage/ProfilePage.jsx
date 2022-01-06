@@ -44,12 +44,7 @@ function ProfilePage() {
       <h3 className="pageSubTitle">{user.username}</h3>
 
       <div className="centerFlexContainer">
-        <div style={{height: "380px", position: "relative"}} className="cardArea cardBlue cardParent cardParentProfileAvatar"> 
-
-          <ProfileImage/>
-
-        </div>
-
+        <ProfileImage />
       </div>
         
      
