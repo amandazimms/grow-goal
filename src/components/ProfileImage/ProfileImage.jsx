@@ -25,6 +25,13 @@ function ProfileImage() {
   const [editingMode, setEditingMode] = useState(false); 
   const [isEditingClass, setIsEditingClass] = useState('');
 
+  const [currentSelections, setCurrentSelections] = useState({
+                            hat: 1, hair: 1,
+                            eyebrows: 1, eyes: 1,
+                            nose: 1, details: 1, mouth: 1,
+                            head: 1,body: 1,
+                          })
+
   const [detailMode, setDetailMode] = useState(false);
   const [toggleDetailImage, setDetailToggleImage] = useState(detailMode ? './images/icons/DetailsMainToggleD.png' : './images/icons/DetailsMainToggleM.png');
   
@@ -49,10 +56,7 @@ function ProfileImage() {
   }
 
   const confirmButton = () => {
-    //since db is 1-indexed while this array is 0-indexed; add 1 for the next step.
-    const plant_avatar_id = selectedImageIndex +1;
-
-    dispatch({type: 'UPDATE_SELECTED_PLANT_AVATAR', payload: { plant_avatar_id: plant_avatar_id, goal_id: selectedGoal.id} });
+    dispatch({type: 'UPDATE_PROFILE_AVATAR', payload: { profileAvatar: currentSelections, userId: user.id } });
     
     setEditingMode(false);
     setIsEditingClass("");
@@ -78,6 +82,15 @@ function ProfileImage() {
     }
   }
 
+  const updateCurrentSelections = (newKey, newValue) => {
+    //function passed down to each ImagePiece as props. 
+    //spreads the new property (e.g. hat: 6) into the currentSelections array.
+
+    let newProperty = {[newKey]: newValue};
+    let newSelections = {...currentSelections, ...newProperty};
+    
+    setCurrentSelections(newSelections);
+  }
 
   return (
     <div className={`cardArea cardBlue cardParent cardParentProfileAvatar ${isEditingClass}`}> 
@@ -93,17 +106,51 @@ function ProfileImage() {
       }
 
       <div className="avatarImagePieceParent" onClick={clickImage}>
-          {/*HAT*/} <ImagePiece images={hats} topDistance={"40px"} zIndex={10} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={!detailMode}/>
-          {/*HAIR*/} <ImagePiece images={hairs} topDistance={"90px"} zIndex={9} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={!detailMode}/>
 
-          {/*EYEBROWS*/} <ImagePiece images={eyebrows} topDistance={"60px"} zIndex={6} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={detailMode}/>
-          {/*EYES*/} <ImagePiece images={eyes} topDistance={"90px"} zIndex={3} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={detailMode}/>
-          {/*NOSE*/} <ImagePiece images={noses} topDistance={"120px"} zIndex={2} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={detailMode}/>
-          {/*DETAIL*/} <ImagePiece images={faceDetails} topDistance={"155px"} zIndex={2} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={detailMode}/>
-          {/*MOUTH*/} <ImagePiece images={mouths} topDistance={"185px"} zIndex={2} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={detailMode}/>
+          {/*HAT*/} <ImagePiece   images={hats} updateCurrentSelections={updateCurrentSelections} pieceName={"hat"}
+                                  topDistance={"40px"} zIndex={10} 
+                                  zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
+                                  editMode={editingMode} detailEditingMode={!detailMode}/>
 
-          {/*HEAD*/} <ImagePiece images={heads} topDistance={"150px"} zIndex={1} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={!detailMode}/>
-          {/*BODY*/} <ImagePiece images={bodies} topDistance={"200px"} zIndex={0} zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} editMode={editingMode} detailEditingMode={!detailMode}/>
+          {/*HAIR*/} <ImagePiece  images={hairs} updateCurrentSelections={updateCurrentSelections} pieceName={"hair"}
+                                  topDistance={"90px"} zIndex={9} 
+                                  zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
+                                  editMode={editingMode} detailEditingMode={!detailMode}/>
+
+          {/*BROWS*/} <ImagePiece images={eyebrows} updateCurrentSelections={updateCurrentSelections} pieceName={"eyebrows"}
+                                  topDistance={"60px"} zIndex={6} 
+                                  zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
+                                  editMode={editingMode} detailEditingMode={detailMode}/>
+
+          {/*EYES*/} <ImagePiece  images={eyes} updateCurrentSelections={updateCurrentSelections} pieceName={"eyes"}
+                                  topDistance={"90px"} zIndex={3} 
+                                  zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
+                                  editMode={editingMode} detailEditingMode={detailMode}/>
+
+          {/*NOSE*/} <ImagePiece  images={noses} updateCurrentSelections={updateCurrentSelections} pieceName={"nose"}
+                                  topDistance={"120px"} zIndex={2} 
+                                  zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
+                                  editMode={editingMode} detailEditingMode={detailMode}/>
+
+          {/*DEET*/} <ImagePiece  images={faceDetails} updateCurrentSelections={updateCurrentSelections} pieceName={"details"}
+                                  topDistance={"155px"} zIndex={2} 
+                                  zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
+                                  editMode={editingMode} detailEditingMode={detailMode}/>
+
+          {/*MOUTH*/} <ImagePiece images={mouths} updateCurrentSelections={updateCurrentSelections} pieceName={"mouth"}
+                                  topDistance={"185px"} zIndex={2} 
+                                  zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
+                                  editMode={editingMode} detailEditingMode={detailMode}/>
+
+          {/*HEAD*/} <ImagePiece  images={heads} updateCurrentSelections={updateCurrentSelections} pieceName={"head"}
+                                  topDistance={"150px"} zIndex={1} 
+                                  zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
+                                  editMode={editingMode} detailEditingMode={!detailMode}/>
+
+          {/*BODY*/} <ImagePiece  images={bodies} updateCurrentSelections={updateCurrentSelections} pieceName={"body"}
+                                  topDistance={"200px"} zIndex={0} 
+                                  zoomedImgClass={zoomedImageClass} zoomedDivClass={zoomedDividerClass} 
+                                  editMode={editingMode} detailEditingMode={!detailMode}/>
       </div>  
 
       {

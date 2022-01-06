@@ -25,29 +25,30 @@ router.get('/all', (req,res) => {
   })
 })
 
-// router.put('/:id', (req, res) => {
-//   // console.log('*** in pa router PUT. req.query:', req.query);
-//   // console.log('*** in pa router PUT. req.body:', req.body);
-//   // console.log('*** in pa router PUT. req.params:', req.params);
+router.put('/:id', (req, res) => {
+  console.log('*** in pa router PUT. req.query:', req.query);
+  console.log('*** in pa router PUT. req.body:', req.body);
+  console.log('*** in pa router PUT. req.params:', req.params);
 
-//   // req.body.plant_avatar_id is our plant avatar id
-//   // req.params.id is our goal id
+  // req.body.profile_avatar is the object with all properties and paths
+  //   e.g. req.body.profile_avatar.hat is 9
+  // req.params.id is our userId
 
-//   const queryString = `UPDATE "goal" SET 
-//       plant_avatar_id=$1 
-//       WHERE id=${req.params.id} 
-//       RETURNING "progress"`;
+  // const queryString = `UPDATE "goal" SET 
+  //     plant_avatar_id=$1 
+  //     WHERE id=${req.params.id} 
+  //     RETURNING "progress"`;
 
-//   values = [req.body.plant_avatar_id];
+  // values = [req.body.plant_avatar_id];
 
-//   pool.query(queryString, values)
-//     .then((results)=>{
-//       res.send(results.rows[0])
+  // pool.query(queryString, values)
+  //   .then((results)=>{
+  //     res.send(results.rows[0])
 
-//     }).catch((err) => {
-//       console.log('PUT task failed: ', err);
-//       res.sendStatus(500);
-//     });
-// });
+  //   }).catch((err) => {
+  //     console.log('PUT task failed: ', err);
+  //     res.sendStatus(500);
+  //   });
+});
 
 module.exports = router;

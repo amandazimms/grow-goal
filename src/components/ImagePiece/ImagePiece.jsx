@@ -5,17 +5,19 @@ import { Button } from 'react-bootstrap';
 function ImagePiece(props) {
 
   const images = props.images;
+  const pieceName = props.pieceName
 
   const editingMode = props.editMode;
   const showMyArrows = props.detailEditingMode;
   const zoomedImgClass = props.zoomedImgClass;
   const zoomedDivClass = props.zoomedDivClass;
 
+  const updateCurrentSelections = props.updateCurrentSelections;
+
   const dispatch = useDispatch();
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(1);
   const [selectedImagePath, setSelectedImagePath] = useState(images[1].image_path);
-  // const [selectedImagePath, setSelectedImagePath] = useState("");
 
   useEffect(() => {
   }, []);
@@ -39,22 +41,33 @@ function ImagePiece(props) {
     if (selectedImageIndex === 0) { 
       setSelectedImageIndex(images.length-1);
       setSelectedImagePath(images[images.length-1].image_path);
+
+      //sends the chosen image piece up via props to ProfileImage component
+      updateCurrentSelections(images[images.length-1].image_path);
     } 
     else {
       setSelectedImageIndex(selectedImageIndex-1);
       setSelectedImagePath(images[selectedImageIndex-1].image_path);
-    }
 
+      //sends the chosen image piece up via props to ProfileImage component
+      updateCurrentSelections(images[selectedImageIndex-1].image_path);
+    }
   }
 
   const nextButton = () => {
     if (selectedImageIndex === images.length-1) {
       setSelectedImageIndex(0)
       setSelectedImagePath(images[0].image_path);
+
+      //sends the chosen image piece up via props to ProfileImage component
+      updateCurrentSelections(images[0].image_path);
     } 
     else {
       setSelectedImageIndex(selectedImageIndex+1);
       setSelectedImagePath(images[selectedImageIndex+1].image_path);
+
+      //sends the chosen image piece up via props to ProfileImage component
+      updateCurrentSelections(pieceName, selectedImageIndex+2);
     }
   }
 

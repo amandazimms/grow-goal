@@ -143,7 +143,15 @@ CREATE TABLE "user" (
   "password" VARCHAR (100) NOT NULL,
   "tasks_completed" INT,
   "goals_achieved" INT,
-  "profile_avatar_id" INT REFERENCES profile_avatar (id) DEFAULT 1
+  "profile_avatar_hat_id" INT REFERENCES profile_avatar_hat (id) DEFAULT 1,
+  "profile_avatar_hair_id" INT REFERENCES profile_avatar_hair (id) DEFAULT 1,
+  "profile_avatar_eyebrows_id" INT REFERENCES profile_avatar_eyebrows (id) DEFAULT 1,
+  "profile_avatar_eyes_id" INT REFERENCES profile_avatar_eyes (id) DEFAULT 1,
+  "profile_avatar_mouth_id" INT REFERENCES profile_avatar_mouth (id) DEFAULT 1,
+  "profile_avatar_nose_id" INT REFERENCES profile_avatar_nose (id) DEFAULT 1,
+  "profile_avatar_detail_id" INT REFERENCES profile_avatar_detail (id) DEFAULT 1,
+  "profile_avatar_head_id" INT REFERENCES profile_avatar_head (id) DEFAULT 1,
+  "profile_avatar_body_id" INT REFERENCES profile_avatar_body (id) DEFAULT 1
 );
 
 CREATE TABLE "plant_avatar" (

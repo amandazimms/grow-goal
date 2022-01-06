@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 const hats = (state = [], action) => {
   switch (action.type) {
-    case 'SET_PROFILE_AVATAR_HATS':
+    case 'SET_PROFILE_AVATARS_HATS':
       return action.payload;
     default:
       return state;
@@ -11,7 +11,7 @@ const hats = (state = [], action) => {
 
 const hairs = (state = [], action) => {
   switch (action.type) {
-    case 'SET_PROFILE_AVATAR_HAIRS':
+    case 'SET_PROFILE_AVATARS_HAIRS':
       return action.payload;
     default:
       return state;
@@ -20,7 +20,7 @@ const hairs = (state = [], action) => {
 
 const eyebrows = (state = [], action) => {
   switch (action.type) {
-    case 'SET_PROFILE_AVATAR_EYEBROWS':
+    case 'SET_PROFILE_AVATARS_EYEBROWS':
       return action.payload;
     default:
       return state;
@@ -29,7 +29,7 @@ const eyebrows = (state = [], action) => {
 
 const eyes = (state = [], action) => {
   switch (action.type) {
-    case 'SET_PROFILE_AVATAR_EYES':
+    case 'SET_PROFILE_AVATARS_EYES':
       return action.payload;
     default:
       return state;
@@ -38,7 +38,7 @@ const eyes = (state = [], action) => {
 
 const noses = (state = [], action) => {
   switch (action.type) {
-    case 'SET_PROFILE_AVATAR_NOSES':
+    case 'SET_PROFILE_AVATARS_NOSES':
       return action.payload;
     default:
       return state;
@@ -47,7 +47,7 @@ const noses = (state = [], action) => {
 
 const details = (state = [], action) => {
   switch (action.type) {
-    case 'SET_PROFILE_AVATAR_DETAILS':
+    case 'SET_PROFILE_AVATARS_DETAILS':
       return action.payload;
     default:
       return state;
@@ -56,7 +56,7 @@ const details = (state = [], action) => {
 
 const mouths = (state = [], action) => {
   switch (action.type) {
-    case 'SET_PROFILE_AVATAR_MOUTHS':
+    case 'SET_PROFILE_AVATARS_MOUTHS':
       return action.payload;
     default:
       return state;
@@ -65,7 +65,7 @@ const mouths = (state = [], action) => {
 
 const heads = (state = [], action) => {
   switch (action.type) {
-    case 'SET_PROFILE_AVATAR_HEADS':
+    case 'SET_PROFILE_AVATARS_HEADS':
       return action.payload;
     default:
       return state;
@@ -74,7 +74,7 @@ const heads = (state = [], action) => {
 
 const bodies = (state = [], action) => {
   switch (action.type) {
-    case 'SET_PROFILE_AVATAR_BODIES':
+    case 'SET_PROFILE_AVATARS_BODIES':
       return action.payload;
     default:
       return state;

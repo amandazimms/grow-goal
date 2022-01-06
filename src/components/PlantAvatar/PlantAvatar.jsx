@@ -104,7 +104,6 @@ function PlantAvatar(props) {
           </div>
       }
 
-
     </div>
   );
 }
