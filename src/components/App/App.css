@@ -369,6 +369,8 @@ cards
 }
 
 .cardArea {
+  background-image: url('./BGPaper.png');
+
   background-size: cover;
   border-radius: 25px;
   width: 350px;
@@ -401,25 +403,29 @@ cards
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
+
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+
   -webkit-align-content: stretch;
   -ms-flex-line-pack: stretch;
   align-content: stretch;
+
   -webkit-align-items: flex-start;
   -ms-flex-align: start;
   align-items: flex-start;
 }
 
 .cardAreaSmall {
-  background-image: url('./BGWatercolor.png');
   background-color: rgba(125, 218, 255, 0.5);
   background-blend-mode:soft-light;
 
@@ -444,16 +450,48 @@ cards
   align-self: auto;
 }
 
+
+.cardAreaNavIcon {
+  background-image: url('./BGPaperHC.png');
+  background-size: cover;
+
+  border-radius: 16px;
+  border: none;
+
+  margin: 0 5px;
+  padding: 6px; 
+
+  width: 70px;
+  height: 70px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .cardYellow {
-  background-image: url('./BGWatercolor.png');
   background-color: rgba(230, 199, 21, 0.5);
   background-blend-mode:overlay;
 }
 
+.cardYellowVivid {
+  background-color: rgba(134, 115, 4, 0.493);
+  background-blend-mode: overlay;
+}
+
 .cardBlue {
-  background-image: url('./BGWatercolor.png');
   background-color: rgba(125, 218, 255, 0.5);
-  background-blend-mode:soft-light;
+  background-blend-mode: soft-light;
+}
+
+.cardBlueVivid {
+  background-color: rgba(53, 111, 138, 0.521);
+  background-blend-mode: overlay;
+}
+
+.cardRedVivid {
+  background-color: rgba(148, 0, 0, 0.712);
+  background-blend-mode: soft-light;
 }
 
 .thumbnailGoalTitle {
@@ -608,15 +646,11 @@ cards
 }
 
 .profileThumbnailParent {
+  /* /todo hope to delete this after implementing ProfileImageThumbnail component instead */
   position: relative;
   width: 100%;
   min-height: 100%;
   height: 150px;
-}
-
-.profileNavThumbnailParent {
-  width: 100px;
-  height: 100px;
 }
 
 .profileAvatarThumbnail {

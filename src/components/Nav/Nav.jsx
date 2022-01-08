@@ -16,15 +16,21 @@ function Nav() {
       <div className="nav-right">
 
         <Link to="/social">
-          <img id="social-nav" className="nav-icon" src="/images/icons/SocialIcon.png"/>
+          <div className="cardAreaNavIcon cardRedVivid">
+            <img id="social-nav" className="nav-icon" src="/images/icons/SocialIcon.png"/>
+          </div>
         </Link>
       
         <Link to="/goals">
-          <img id="goals-home-nav" className="nav-icon" src="/images/icons/GrowIcon.png"/>
+          <div className="cardAreaNavIcon cardBlueVivid">
+            <img id="goals-home-nav" className="nav-icon" src="/images/icons/GrowIcon.png"/>
+          </div>
         </Link>
 
         <Link to="/profile">
-          <ProfileImageThumbnail className="nav-icon" userToDisplay={user} containerWidth={"70px"} />
+          <div className="cardAreaNavIcon cardYellowVivid" style={{padding: "0 0 10px 0"}}>
+            <ProfileImageThumbnail className="nav-icon" userToDisplay={user} containerWidth={"70px"} />
+          </div>
         </Link>
 
       </div>
