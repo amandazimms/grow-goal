@@ -83,8 +83,6 @@ function GoalPage(props) {
               </div>
 
             </div>
-
-            <ProfileImageThumbnail userToDisplay={store.user} containerWidth={"100px"} containerHeight={"auto"}/>
               
             <div className="cardArea cardBlue">  
               <h3>Progress:</h3>

@@ -19,6 +19,20 @@
   text-decoration: none;
 }
 
+.nav-right {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+
+  -webkit-align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+}
+
 .nav-title {
   font-size: 24px;
   font-weight: 700;
