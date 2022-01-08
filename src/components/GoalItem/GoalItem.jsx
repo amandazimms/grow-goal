@@ -39,7 +39,7 @@ function GoalItem(props) {
   }
 
   return (
-    <div className="cardAreaSmall"> 
+    <div className="cardArea cardAreaSmall"> 
            <div className="centerFlexContainer onTop">
               <Button onClick={toggleLiked} className="iconButton" disabled={isFollowees ? false : true}>
                 <img className="iconImage iconImageXL" src={likeImage} alt="Like this goal"></img>

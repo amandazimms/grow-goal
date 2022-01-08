@@ -370,6 +370,8 @@ cards
 
 .cardArea {
   background-image: url('./BGPaper.png');
+  background-color: rgba(125, 218, 255, 0.5);
+  background-blend-mode:soft-light;
 
   background-size: cover;
   border-radius: 25px;
@@ -386,13 +388,24 @@ cards
   -webkit-order: 0;
   -ms-flex-order: 0;
   order: 0;
+
   -webkit-flex: 0 1 auto;
   -ms-flex: 0 1 auto;
   flex: 0 1 auto;
+
   -webkit-align-self: auto;
   -ms-flex-item-align: auto;
   align-self: auto;
 }
+
+
+.cardAreaSmall {
+  width: 200px;
+  height: 275px;
+
+  min-height: 275px;
+}
+
 
 .cardFitContent {
   flex: 1 1 auto;
@@ -425,31 +438,6 @@ cards
   align-items: flex-start;
 }
 
-.cardAreaSmall {
-  background-color: rgba(125, 218, 255, 0.5);
-  background-blend-mode:soft-light;
-
-  background-size: cover;
-  border-radius: 25px;
-  width: 200px;
-  height: 275px;
-
-  border: none;
-  resize: both;
-  padding: 20px;
-  margin: 20px;
-
-  -webkit-order: 0;
-  -ms-flex-order: 0;
-  order: 0;
-  -webkit-flex: 0 1 auto;
-  -ms-flex: 0 1 auto;
-  flex: 0 1 auto;
-  -webkit-align-self: auto;
-  -ms-flex-item-align: auto;
-  align-self: auto;
-}
-
 .cardAreaNavIcon {
   background-image: url('./BGPaperHC.png');
   background-size: cover;
@@ -469,7 +457,7 @@ cards
 }
 
 .cardYellow {
-  background-color: rgba(230, 199, 21, 0.5);
+  background-color: rgba(255, 208, 0, 0.5);
   background-blend-mode:overlay;
 }
 
@@ -484,7 +472,7 @@ cards
 }
 
 .cardBlueVivid {
-  background-color: rgba(53, 111, 138, 0.521);
+  background-color: rgba(54, 104, 128, 0.521);
   background-blend-mode: overlay;
 }
 
