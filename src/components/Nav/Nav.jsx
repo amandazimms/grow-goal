@@ -23,7 +23,20 @@ function Nav() {
         </Link>
 
         <Link to="/profile">
-          <img id="profile-nav" className="nav-icon" src="/images/icons/ProfilePH.png"/>
+          <div className="profileNavThumbnailParent">
+            <img className="profileAvatarThumbnail" style={{zIndex: 10}} src={user.hat_image_path} alt="your profile image"/>
+            <img className="profileAvatarThumbnail" style={{zIndex: 9}} src={user.hair_image_path} alt="your profile image"/>
+            
+            <img className="profileAvatarThumbnail" style={{zIndex: 6}} src={user.eyebrows_image_path} alt="your profile image"/>
+            <img className="profileAvatarThumbnail" style={{zIndex: 4}} src={user.eyes_image_path} alt="your profile image"/>
+
+            <img className="profileAvatarThumbnail" style={{zIndex: 2}} src={user.nose_image_path} alt="your profile image"/>
+            <img className="profileAvatarThumbnail" style={{zIndex: 2}} src={user.detail_image_path} alt="your profile image"/>
+            <img className="profileAvatarThumbnail" style={{zIndex: 3}} src={user.mouth_image_path} alt="your profile image"/>
+
+            <img className="profileAvatarThumbnail" style={{zIndex: 1}} src={user.head_image_path} alt="your profile image"/>
+            <img className="profileAvatarThumbnail" style={{zIndex: 0}} src={user.body_image_path} alt="your profile image"/>
+          </div>
         </Link>
 
 

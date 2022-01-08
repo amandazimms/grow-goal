@@ -6,12 +6,13 @@ import GoalTitle from '../GoalTitle/GoalTitle';
 import PlantAvatar from '../PlantAvatar/PlantAvatar';
 import Task from '../Task/Task';
 import { Button, Form } from 'react-bootstrap';
+import ProfileImageThumbnail from '../ProfileImageThumbnail/ProfileImageThumbnail';
 
 function GoalPage(props) {
   //if we arrived here from clicking "new goal", this will be true and will trigger some conditional renders
   const isNew = props.isNew;
 
-  const store = useSelector(store => store);
+  const store = useSelector(store => store); //todo delete this?
   const dispatch = useDispatch();
 
   const tasks = useSelector(store => store.task);
@@ -83,6 +84,7 @@ function GoalPage(props) {
 
             </div>
 
+            <ProfileImageThumbnail userToDisplay={store.user} containerWidth={"100px"} containerHeight={"auto"}/>
               
             <div className="cardArea cardBlue">  
               <h3>Progress:</h3>
