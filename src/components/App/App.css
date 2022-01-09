@@ -539,11 +539,14 @@ cards
   -ms-flex-align: center;
   align-items: center;
 
-  height: 380px;
+  width: 260px;
+  height: 290px;
+  min-height: 290px;
   position: relative;
 }
 
 .cardParentProfileAvatarEditMode {
+  width: 350px;
   height: 420px;
 }
 
@@ -632,7 +635,7 @@ cards
 .avatarButtonEdit {
   position: absolute;
   right: 20px;
-  top: 170px;
+  top: 20px;
   z-index: 30;
 }
 

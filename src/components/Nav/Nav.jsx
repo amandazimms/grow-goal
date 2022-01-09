@@ -28,7 +28,7 @@ function Nav() {
         </Link>
 
         <Link to="/profile">
-          <div className="cardAreaNavIcon cardYellowVivid" style={{padding: "0 0 10px 0"}}>
+          <div className="cardAreaNavIcon cardYellowVivid" style={{padding: "3px 0"}}>
             <ProfileImageThumbnail className="nav-icon" userToDisplay={user} containerWidth={"70px"} />
           </div>
         </Link>
