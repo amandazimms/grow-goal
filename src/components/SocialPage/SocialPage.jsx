@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import AddFollowee from '../AddFollowee/AddFollowee';
+import ProfileImageThumbnail from '../ProfileImageThumbnail/ProfileImageThumbnail';
 
 function SocialPage() {
 
@@ -67,23 +68,8 @@ function SocialPage() {
             {searchResults.map(foundUser => {
               
               return (
-                <div className="cardAreaSmall" key={foundUser.id}>     
-                  <Button className="thumbnailButton">
-                    <div className="profileThumbnailParent">
-                      <img className="profileAvatarThumbnail" style={{zIndex: 10}} src={foundUser.hat_image_path} alt="followee's profile image"/>
-                      <img className="profileAvatarThumbnail" style={{zIndex: 9}} src={foundUser.hair_image_path} alt="followee's profile image"/>
-                      
-                      <img className="profileAvatarThumbnail" style={{zIndex: 6}} src={foundUser.eyebrows_image_path} alt="followee's profile image"/>
-                      <img className="profileAvatarThumbnail" style={{zIndex: 4}} src={foundUser.eyes_image_path} alt="followee's profile image"/>
-
-                      <img className="profileAvatarThumbnail" style={{zIndex: 2}} src={foundUser.nose_image_path} alt="followee's profile image"/>
-                      <img className="profileAvatarThumbnail" style={{zIndex: 2}} src={foundUser.detail_image_path} alt="followee's profile image"/>
-                      <img className="profileAvatarThumbnail" style={{zIndex: 3}} src={foundUser.mouth_image_path} alt="followee's profile image"/>
-
-                      <img className="profileAvatarThumbnail" style={{zIndex: 1}} src={foundUser.head_image_path} alt="followee's profile image"/>
-                      <img className="profileAvatarThumbnail" style={{zIndex: 0}} src={foundUser.body_image_path} alt="followee's profile image"/>
-                    </div>
-                  </Button>
+                <div className="cardArea cardAreaSmall cardBlue" style={{padding: "0 0 10px 0"}} key={foundUser.id}>  
+                  <ProfileImageThumbnail userToDisplay={foundUser} containerWidth={"160px"}/>
 
                   <h3 className="thumbnailGoalTitle">{foundUser.username}</h3>
 
@@ -108,27 +94,15 @@ function SocialPage() {
             {followees.map(followee => {
               
               return (
-                <div className="cardAreaSmall" key={followee.id}>     
+                <div className="cardArea cardAreaSmall cardBlue" style={{padding: "0 0 10px 0"}} key={followee.id}>  
                   <Link to="/followee-goals" onClick={() => setSelectedFollowee(followee)}>
                     <Button className="thumbnailButton">
-                      <div className="profileThumbnailParent">
-                        <img className="profileAvatarThumbnail" style={{zIndex: 10}} src={followee.hat_image_path} alt="followee's profile image"/>
-                        <img className="profileAvatarThumbnail" style={{zIndex: 9}} src={followee.hair_image_path} alt="followee's profile image"/>
-                        
-                        <img className="profileAvatarThumbnail" style={{zIndex: 6}} src={followee.eyebrows_image_path} alt="followee's profile image"/>
-                        <img className="profileAvatarThumbnail" style={{zIndex: 4}} src={followee.eyes_image_path} alt="followee's profile image"/>
-
-                        <img className="profileAvatarThumbnail" style={{zIndex: 2}} src={followee.nose_image_path} alt="followee's profile image"/>
-                        <img className="profileAvatarThumbnail" style={{zIndex: 2}} src={followee.detail_image_path} alt="followee's profile image"/>
-                        <img className="profileAvatarThumbnail" style={{zIndex: 3}} src={followee.mouth_image_path} alt="followee's profile image"/>
-
-                        <img className="profileAvatarThumbnail" style={{zIndex: 1}} src={followee.head_image_path} alt="followee's profile image"/>
-                        <img className="profileAvatarThumbnail" style={{zIndex: 0}} src={followee.body_image_path} alt="followee's profile image"/>
-                      </div>
+                      <ProfileImageThumbnail userToDisplay={followee} containerWidth={"160px"}/>
                     </Button>
-                  </Link>
-                  <h3 className="thumbnailGoalTitle">{followee.username}</h3>
+                  </Link>  
+                    <h3 className="thumbnailGoalTitle">{followee.username}</h3>
                 </div>
+
                 );
             })}
 
