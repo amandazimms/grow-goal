@@ -47,8 +47,8 @@ function* fetchSelectedPlantAvatar(action) {
     //response.data comes back like {image_path_stage_7: '/images/plantAvatars/BlueBramble8.png'}
     //and we want only the value, not the key. this will produce the value:
     const rdValue = Object.values(response.data)[0];
-
     yield put({ type: 'UPDATE_GOAL_PROGRESS', payload: { progress: ap.progress, id: ap.id, current_image_path: rdValue } });
+
  
   } catch (error) {
     console.log('plant Avatar get request failed', error);

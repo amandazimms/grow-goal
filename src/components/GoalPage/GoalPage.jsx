@@ -120,7 +120,7 @@ function GoalPage(props) {
               </Modal.Footer>
             </Modal>
           : 
-          <p>keep at it</p>
+          <></>
         }
  
     </div>

@@ -75,13 +75,15 @@ function* updateGoalProgress(action) {
   //AP.current_image_path is the url to this growth stage of the plant avatar
 
   try {
+    let isAccomplished = ap.progress === 1 //isAccomplished will be either true or false
+
     //we want to update the selected goal's progress and current_avatar_path columns
     const updatedGoal = yield axios.put(`/api/goal/progress/${ap.id}`, 
-        { progress: ap.progress, current_image_path: ap.current_image_path });
+        { progress: ap.progress, current_image_path: ap.current_image_path, is_accomplished: isAccomplished });
 
     yield put({ type: 'SET_SELECTED_GOAL_IMAGE', payload: {current_avatar_path: ap.current_image_path} });
-    yield put({ type: 'SET_SELECTED_GOAL_PROGRESS', payload: {progress: ap.progress} });
-
+    yield put({ type: 'SET_SELECTED_GOAL_PROGRESS_ACCOMPLISHED', payload: {progress: ap.progress, is_accomplished: isAccomplished} });
+    
   } catch {
     console.log('update goal progresss error');
   } 

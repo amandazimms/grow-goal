@@ -123,11 +123,13 @@ router.put('/progress/:id', (req, res) => {
   //req.params.id is the goal id
   //req.body.progress is the goal progress percentage
   //req.body.current_image_path is image path's url
+  //req.body.is_accomoplished is true/false, is the goal accomplished?
   const queryString = `UPDATE "goal" SET 
         "progress"=$1,
-        "current_avatar_path"=$2 
+        "current_avatar_path"=$2,
+        "is_accomplished"=$3 
         WHERE id=${req.params.id}`;
-  values = [req.body.progress, req.body.current_image_path];
+  values = [req.body.progress, req.body.current_image_path, req.body.is_accomplished];
 
   pool.query(queryString, values)
     .then((results)=>{
