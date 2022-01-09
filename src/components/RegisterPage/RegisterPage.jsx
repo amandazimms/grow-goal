@@ -10,7 +10,7 @@ function RegisterPage() {
     <div className="cards cardsColumn">
       <RegisterForm />
 
-      <div className="cardArea cardFitContent">
+      <div className="cardArea cardAreaBlank cardFitContent">
         <center>
           <h5>Already Have an Account?</h5>
           <Button

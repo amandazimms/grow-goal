@@ -10,7 +10,7 @@ function LoginPage() {
       <div className="cards cardsColumn">
         <LoginForm />
 
-        <div className="cardArea cardFitContent">
+        <div className="cardArea cardAreaBlank cardFitContent">
           <center>
             <h5>Don't Have an Account Yet?</h5>
             <Button

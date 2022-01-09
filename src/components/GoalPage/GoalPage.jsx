@@ -85,7 +85,9 @@ function GoalPage(props) {
             </div>
               
             <div className="cardArea cardBlue">  
-              <h3>Progress:</h3>
+              <div className="titleLeft">
+                <h3>Progress:</h3>
+              </div>
               <PlantAvatar isNew={isNew}/>
             </div>
         </div>
