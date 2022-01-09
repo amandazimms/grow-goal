@@ -126,9 +126,10 @@ function GoalTitle(props) {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" onClick={handleDeleteModalClose}>No, keep it</Button>
+          <Button className="buttonButton" variant="primary" onClick={handleDeleteModalClose}>No, keep it</Button>
+          
           <Link to="/goals" onClick={finalDeleteButton}>
-            <Button variant="secondary">Yes, Delete it</Button>
+            <Button variant="secondary" className="buttonButton">Yes, Delete it</Button>
           </Link>
         </Modal.Footer>
       </Modal>

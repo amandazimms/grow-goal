@@ -8,6 +8,8 @@ function ImagePiece(props) {
   const pieceName = props.pieceName;
   const defaultImageIndex = props.defaultIndex;
 
+  const myRandom = props.random || 0;
+
   const editingMode = props.editMode;
   const showMyArrows = props.detailEditingMode;
   const zoomedImgClass = props.zoomedImgClass;
@@ -16,7 +18,6 @@ function ImagePiece(props) {
   const updateCurrentSelections = props.updateCurrentSelections;
 
   const dispatch = useDispatch();
-
                                                           //-1 beccause DB is 1 indexed
   const [selectedImageIndex, setSelectedImageIndex] = useState(defaultImageIndex-1);
   const [selectedImagePath, setSelectedImagePath] = useState(images[defaultImageIndex-1].image_path);
@@ -35,6 +36,7 @@ function ImagePiece(props) {
     top: props.topDistance,
     left: 0
   };
+
   const buttonStyleNext = {
     position: "absolute",
     top: props.topDistance,

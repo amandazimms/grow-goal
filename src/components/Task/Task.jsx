@@ -13,7 +13,7 @@ function Task(props) {
 
   const [displayIcons, setDisplayIcons] = useState(false);
 
-                  //todo what is task.isEditingMode?
+                  //todo what is task.isEditingMode? - looks like an old prop that is no longer passed - try deleting and testing
   const [editingMode, setEditingMode] = useState(props.isEditingMode || false);
 
   const [taskName, setTaskName] = useState(task.task_name || '');
@@ -52,7 +52,6 @@ function Task(props) {
       setCheckBoxImage('./images/icons/CheckedBox.png');
       taskToSend.is_complete = true;
     }
-
     dispatch({type: 'UPDATE_TASK', payload: taskToSend });
   }
 
@@ -66,9 +65,11 @@ function Task(props) {
       goal_id: selectedGoal.id
     }
     dispatch({type: 'UPDATE_TASK', payload: taskToSend });
-
+    
     setEditingMode(false);
   }
+
+ 
 
   const cancelButton = () => {
     setEditingMode(false);
@@ -80,13 +81,11 @@ function Task(props) {
   }
 
   const deleteButton = () => {
-    if (confirm("delete this task?")){
-      // delete this task/goal from the db, and make sure to re-render (get again)
-      setDisplayIcons(false);
-      setEditingMode(false);
-      
-      dispatch({type: 'DELETE_TASK', payload: task});
-    }
+    // delete this task/goal from the db, and make sure to re-render (get again)
+    setDisplayIcons(false);
+    setEditingMode(false);
+    
+    dispatch({type: 'DELETE_TASK', payload: task});
   }
 
   return (
@@ -110,7 +109,6 @@ function Task(props) {
               <img className="iconImage" src={checkBoxImage} alt="Toggle task incomplete/complete"></img>
             </Button>
            
-            {/* todo also style this text as strikethru vs not if it's complete vs not. */}
             <p className="taskText taskContent" onClick={() => setDisplayIcons(true)}>{props.task.task_name}</p>
  
             { displayIcons 

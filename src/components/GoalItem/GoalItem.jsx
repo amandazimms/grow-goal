@@ -11,6 +11,8 @@ function GoalItem(props) {
   const user = useSelector(store => store.user);
   const selectedFollowee = useSelector(store => store.selectedFollowee);
 
+  const [addAccomplishedBackground, setAddAccomplishedBackground] = useState(goal.is_accomplished);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,7 +41,8 @@ function GoalItem(props) {
   }
 
   return (
-    <div className="cardArea cardAreaSmall"> 
+    <>
+     <div className={ addAccomplishedBackground ? 'accomplishedGoalBackground cardArea cardAreaSmall' : 'cardArea cardAreaSmall'}> 
            <div className="centerFlexContainer like">
               <Button onClick={toggleLiked} className="iconButton" disabled={isFollowees ? false : true}>
                 <img className="iconImage iconImageXL" src={likeImage} alt="Like this goal"></img>
@@ -60,7 +63,8 @@ function GoalItem(props) {
             </Link>
         }             
         <h3 className="thumbnailGoalTitle">{goal.goal_name}</h3>
-    </div>
+      </div>
+    </>
   );
 }
 

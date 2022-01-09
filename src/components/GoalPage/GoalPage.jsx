@@ -5,8 +5,9 @@ import AddNewTask from '../AddNewTask/AddNewTask';
 import GoalTitle from '../GoalTitle/GoalTitle';
 import PlantAvatar from '../PlantAvatar/PlantAvatar';
 import Task from '../Task/Task';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Modal } from 'react-bootstrap';
 import ProfileImageThumbnail from '../ProfileImageThumbnail/ProfileImageThumbnail';
+import { Link } from 'react-router-dom';
 
 function GoalPage(props) {
   //if we arrived here from clicking "new goal", this will be true and will trigger some conditional renders
@@ -22,6 +23,8 @@ function GoalPage(props) {
   const [title, setTitle] = useState(selectedGoal.goal_name);
   const [addingTask, setAddingTask] = useState(false);
   const [visibleToFollowers, setVisibleToFollowers] = useState(selectedGoal.visibility === "followers" ? true : false || false);
+
+  const [showGoalAchievedModal, setShowGoalAchievedModal] = useState(true);
 
   useEffect(() => {
     if (!isNew){ //don't try to fetch any tasks if we just opened up a new goal page,since there are none.
@@ -42,6 +45,14 @@ function GoalPage(props) {
 
     setVisibleToFollowers(!visibleToFollowers);
   };
+
+  const checkForGoalCompletion = () => {
+    console.log('checking! progress is:', selectedGoal.progress);
+  }
+
+  const handleAchieveGoalModalClose = () => {
+    setShowGoalAchievedModal(false);
+  }
 
   return (
     <div className="container">
@@ -92,6 +103,26 @@ function GoalPage(props) {
             </div>
         </div>
 
+        {
+          selectedGoal.progress === 1
+          ?
+            <Modal show={showGoalAchievedModal} onHide={handleAchieveGoalModalClose}>
+              <Modal.Header>
+                <Modal.Title>YOU DID IT!</Modal.Title>
+              </Modal.Header>
+
+              <Modal.Body>
+                <p>YOU ACHIEVED YOUR GOAL!</p>
+              </Modal.Body>
+
+              <Modal.Footer>
+                <Button className="buttonButton" variant="primary" onClick={handleAchieveGoalModalClose}>Yay I did it!</Button>
+              </Modal.Footer>
+            </Modal>
+          : 
+          <p>keep at it</p>
+        }
+ 
     </div>
   );
 }

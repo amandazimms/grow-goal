@@ -80,6 +80,7 @@ function* updateGoalProgress(action) {
         { progress: ap.progress, current_image_path: ap.current_image_path });
 
     yield put({ type: 'SET_SELECTED_GOAL_IMAGE', payload: {current_avatar_path: ap.current_image_path} });
+    yield put({ type: 'SET_SELECTED_GOAL_PROGRESS', payload: {progress: ap.progress} });
 
   } catch {
     console.log('update goal progresss error');
