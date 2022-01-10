@@ -77,7 +77,7 @@ function GoalTitle(props) {
 
   return (
     <>
-      {/* <p>selectedGoal: {JSON.stringify(selectedGoal)}</p> */}
+      {/* <p>editingMode?: {JSON.stringify(editingMode)}</p> */}
       { editingMode 
         ? 
          <>

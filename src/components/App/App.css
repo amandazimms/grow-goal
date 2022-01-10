@@ -589,7 +589,7 @@ cards
 
 .accomplishedGoalBackground {
   background-image: url('./BGPaperStars.png');
-  background-color: rgba(255, 208, 0, 0.562);
+  background-color: rgba(255, 213, 28, 0.562);
   background-blend-mode: overlay;
 
 }
@@ -661,12 +661,12 @@ cards
 }
 
 .cardYellow {
-  background-color: rgba(255, 208, 0, 0.5);
+  background-color: rgba(255, 213, 28, 0.562);
   background-blend-mode:overlay;
 }
 
 .cardYellowVivid {
-  background-color: rgba(119, 101, 0, 0.603);
+  background-color: rgba(139, 120, 11, 0.603);
   background-blend-mode: overlay;
 }
 

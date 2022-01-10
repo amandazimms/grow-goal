@@ -85,7 +85,7 @@ function GoalPage(props) {
 
   return (
     <div className='container'>
-        {/* <p>Page's selected goal: {JSON.stringify(selectedGoal)}</p> */}
+        {/* <p>isNew: {JSON.stringify(isNew)} adding task: {JSON.stringify(addingTask)} </p> */}
         <h2 className="pageSubTitle">Goal:</h2>
         { selectedGoal.is_accomplished 
           ?   
@@ -110,14 +110,14 @@ function GoalPage(props) {
             </div>
         }
         
-            <Form.Switch
-              className="centerFlexContainer"
-              type="switch"
-              id="custom-switch"
-              label="Visible to Followers"
-              checked={visibleToFollowers}
-              onChange={toggleVisibility}
-            />
+        <Form.Switch
+          className="centerFlexContainer"
+          type="switch"
+          id="custom-switch"
+          label="Visible to Followers"
+          checked={visibleToFollowers}
+          onChange={toggleVisibility}
+        />
 
         <div className={`${animateClass} cards`}>
 
