@@ -84,7 +84,9 @@ function PlantAvatar(props) {
           </div>
           </>
         : 
-          <div className="cardParent cardParentPlantAvatar"> 
+          <div className={  displayEditIcon 
+                            ? `cardParent cardParentPlantAvatar`
+                            : `cardParent cardParentPlantAvatar clickable`}> 
             <img className="plantAvatarImage" onClick={clickImage} src={selectedGoal.current_avatar_path}></img>
           </div>
       }

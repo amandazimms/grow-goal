@@ -67,7 +67,7 @@ function GoalItem(props) {
             : <Link to="/goal" onClick={() => setSelectedGoal(goal)}>
                 <img className="plantAvatarThumbnail" src={goal.current_avatar_path} alt={goal.current_avatar_path}/>
               </Link>
-          }             
+          } 
           <h3 className="thumbnailGoalTitle">{goal.goal_name}</h3>
       </div>
     </>

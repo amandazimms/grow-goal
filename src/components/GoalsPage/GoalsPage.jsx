@@ -42,7 +42,8 @@ function GoalsPage(props) {
   }
 
   return (
-    <div className="container">
+    <div className="container">      
+      
       <h2 className="pageTitle">
             { isFollowees ? selectedFollowee.username + "'s Goals" : 'Goals'}
       </h2> 

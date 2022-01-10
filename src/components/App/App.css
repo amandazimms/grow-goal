@@ -62,6 +62,10 @@ a {
   color: #05381A;
   text-decoration: none;
 }
+
+a:hover {
+  color: #05381A;
+}
 /* --------------------------------------------------------------------------------
 Text
 -------------------------------------------------------------------------------- */
@@ -69,6 +73,13 @@ Text
   display: inline;
 }
 
+.smallInput  {
+  width: 220px;
+}
+
+.largeInput {
+  width: 400px;
+}
 /* --------------------------------------------------------------------------------
 Container
 -------------------------------------------------------------------------------- */
@@ -566,8 +577,14 @@ cards
 }
 
 .thumbnailGoalTitle {
+  width: 100%; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+
   font-size: 24px;
   text-align: center;
+
+  padding: 0 10px;
 }
 
 .cardParent {

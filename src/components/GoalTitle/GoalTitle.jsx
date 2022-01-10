@@ -84,7 +84,7 @@ function GoalTitle(props) {
       { editingMode 
         ? 
          <>
-          <input value={editingText} placeholder={selectedGoal.goal_name} className="goalTitleInput" type="text" onChange={ (event) => handleChange(event) }></input>
+          <input value={editingText} placeholder={selectedGoal.goal_name} className="goalTitleInput largeInput" type="text" onChange={ (event) => handleChange(event) }></input>
           
           <img onClick={confirmButton} className="iconImage iconImageLarge confirmButton clickableSmall iconNudgeHigher iconAddSideMargins" src='./images/icons/GreenCheck.png' alt="Confirm goal name"></img>
           <img onClick={cancelButton} className="iconImage iconImageLarge cancelButton clickableSmall iconNudgeHigher iconAddSideMargins" src='./images/icons/RedEx.png' alt="Cancel goal name change"></img>

@@ -26,9 +26,8 @@ function AddFollowee(props) {
 
   return (
     <>
-        <h4 className="pageSubTitle">Find User:</h4>
-
-        <input type="text" onChange={ (event) => doSearch(event) }></input>
+      <div className="centerFlexContainer">
+        <input type="text" className="smallInput" placeholder="Enter user to search for" onChange={ (event) => doSearch(event) }></input>
       
         <Button onClick={doSearch} className="iconButton confirmButton">
           <img className="iconImage" src='./images/icons/GreenCheck.png' alt="Confirm new task"></img>
@@ -37,7 +36,7 @@ function AddFollowee(props) {
         <Button onClick={cancelButton} className="iconButton cancelButton">
           <img className="iconImage" src='./images/icons/RedEx.png' alt="Cancel new task"></img>
         </Button>
-
+      </div>
     </>
   );
 }

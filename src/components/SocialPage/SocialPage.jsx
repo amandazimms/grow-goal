@@ -48,14 +48,14 @@ function SocialPage() {
     <div className="container">
       <h2 className="pageTitle">Social</h2>
 
-      <div className="centerFlexContainer">
 
-        { searchOpen 
-          ? <AddFollowee onLeaveAdd={closeSearch}/>
-          : <img onClick={openSearch} className="iconImage iconImageXL clickableSmall" src='./images/icons/AddIcon.png' alt="Add followed user"></img>
-        }
-        
-      </div>  
+      { searchOpen 
+        ? <AddFollowee onLeaveAdd={closeSearch}/>
+        : <div className="centerFlexContainer">
+            <img onClick={openSearch} className="iconImage iconImageXL clickableSmall" src='./images/icons/AddIcon.png' alt="Add followed user"></img>
+          </div>
+      }
+      
 
       { searchOpen
         ? 

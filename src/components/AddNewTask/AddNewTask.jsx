@@ -47,7 +47,7 @@ function AddNewTask(props) {
 
   return (
     <>
-      <input placeholder={placeholderText} type="text" onChange={ (event) => handleChange(event) }></input>
+      <input placeholder={placeholderText} type="text" className="smallInput" onChange={ (event) => handleChange(event) }></input>
       
       <img onClick={doneButton} className="iconImage confirmButton clickableSmall" src='./images/icons/GreenCheck.png' alt="Confirm new task"></img>
 
