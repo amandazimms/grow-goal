@@ -34,6 +34,27 @@ function* fetchUser() {
   }
 }
 
+//worker saga fires on UPDATE_GOALS_ACHIEVED_COUNT
+function* updateGoalsAchievedCount(action) {
+  //used to ultimately update the USER table to reflect the current # of completed goals
+  
+  const ap = action.payload;
+  //ap.user_id is user id
+
+  try {
+    const achievedGoals = yield axios.get(`/api/goal/achieved_count`, 
+           { params: {user_id: ap.user_id} });
+
+    yield axios.put(`/api/user/goal_count/${ap.user_id}`, { goals_achieved: achievedGoals.data.length });       
+
+    //todo something
+    
+  } catch (error) {
+    console.log('update goal achieved count error:', error);
+  }
+}  
+
+//worker saga fires on UPDATE_TASKS_COMPLETED_COUNT
 function* updateTasksCompletedCount(action) {
   const ap = action.payload;
   //ap.is_complete is true or false, true representing an ++ to tasks_completed, and false a --
@@ -53,6 +74,7 @@ function* updateTasksCompletedCount(action) {
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeLatest('UPDATE_TASKS_COMPLETED_COUNT', updateTasksCompletedCount);
+  yield takeLatest('UPDATE_GOALS_ACHIEVED_COUNT', updateGoalsAchievedCount);
 }
 
 export default userSaga;

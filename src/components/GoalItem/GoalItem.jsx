@@ -62,7 +62,6 @@ function GoalItem(props) {
           
           { isFollowees
             ?  <img className="plantAvatarThumbnail" src={goal.current_avatar_path} alt={goal.current_avatar_path}/>
-              //todo add logic for liking
             : <Link to="/goal" onClick={() => setSelectedGoal(goal)}>
                 <img className="plantAvatarThumbnail" src={goal.current_avatar_path} alt={goal.current_avatar_path}/>
               </Link>

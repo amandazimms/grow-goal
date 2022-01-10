@@ -10,9 +10,10 @@ function AddNewTask(props) {
   const [text, setText] = useState(props.text || '');
 
   const selectedGoal = useSelector(store => store.selectedGoal);
+  const user = useSelector(store => store.user);
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_TASKS', payload: selectedGoal.id }); 
+    dispatch({ type: 'FETCH_TASKS', payload: {goal_id: selectedGoal.id, user_id: user.id}  }); 
   }, []);
 
   const handleChange = (event) =>{
@@ -32,9 +33,12 @@ function AddNewTask(props) {
     }
 
     dispatch({ type: 'ADD_TASK', payload: {
-      task_name: textToSend,
-      is_complete: false,
-      goal_id: selectedGoal.id
+      task: {
+        task_name: textToSend,
+        is_complete: false,
+        goal_id: selectedGoal.id
+        },
+      user_id: user.id
     }});
     props.onLeaveAdd();
   }

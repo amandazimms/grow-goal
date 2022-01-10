@@ -52,7 +52,7 @@ function Task(props) {
       setCheckBoxImage('./images/icons/CheckedBox.png');
       taskToSend.is_complete = true;
     }
-    dispatch({type: 'UPDATE_TASK', payload: taskToSend });
+    dispatch({type: 'UPDATE_TASK', payload: {task: taskToSend, user_id: store.user.id} });
   }
 
   const confirmButton = () => {
@@ -64,7 +64,7 @@ function Task(props) {
       is_complete: task.is_complete,
       goal_id: selectedGoal.id
     }
-    dispatch({type: 'UPDATE_TASK', payload: taskToSend });
+    dispatch({type: 'UPDATE_TASK', payload: {task: taskToSend, user_id: store.user.id} });
 
     setEditingMode(false);
   }
@@ -85,7 +85,7 @@ function Task(props) {
     setDisplayIcons(false);
     setEditingMode(false);
     
-    dispatch({type: 'DELETE_TASK', payload: task});
+    dispatch({type: 'DELETE_TASK', payload: {task: task, user_id: store.user.id} });
     dispatch({ type: 'UPDATE_TASKS_COMPLETED_COUNT', payload: {is_complete: false, user_id: store.user.id} });
 
   }

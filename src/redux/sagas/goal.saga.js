@@ -8,6 +8,7 @@ function* goalSaga() {
   yield takeLatest('UPDATE_GOAL_PROGRESS', updateGoalProgress); 
   yield takeLatest('UPDATE_GOAL_VISIBILITY', updateGoalVisibility);
   yield takeLatest('UPDATE_GOAL_LIKE_COUNT', updateGoalLikeCount);
+  
   yield takeLatest('DELETE_GOAL', deleteGoal);
 }
 
@@ -19,7 +20,6 @@ function* updateGoalLikeCount(action) {
   //ap.direction = "increment" or "decrement"
   //ap.goal_id is the goal id 
   //ap.followee_id / follower_id are as expected
-  console.log('update goal like count ap:', ap);
 
   try {
      const updatedGoal = yield axios.put(`/api/goal/like_count/${ap.goal_id}`,
@@ -70,24 +70,22 @@ function* updateGoalTitle(action) {
 //worker Saga: will be fired on "UPDATE_GOAL_PROGRESS" actions
 function* updateGoalProgress(action) { 
   const ap = action.payload;
-  //AP.progress is PROGRESS percentage (eg .5)
-  //AP.id is selected Goal id.
-  //AP.current_image_path is the url to this growth stage of the plant avatar
+  //ap.progress is PROGRESS percentage (eg .5)
+  //ap.goal_id is selected Goal id.
+  //ap.current_image_path is the url to this growth stage of the plant avatar
+  //ap.user_id is user id
 
   try {
     let isAccomplished = ap.progress === 1 //isAccomplished will be either true or false
 
     //we want to update the selected goal's progress and current_avatar_path columns
-    const updatedGoal = yield axios.put(`/api/goal/progress/${ap.id}`, 
+    const updatedGoal = yield axios.put(`/api/goal/progress/${ap.goal_id}`, 
         { progress: ap.progress, current_image_path: ap.current_image_path, is_accomplished: isAccomplished });
    
+    yield put({ type: 'UPDATE_GOALS_ACHIEVED_COUNT', payload: {user_id: ap.user_id} });    
+
     yield put({ type: 'SET_SELECTED_GOAL_IMAGE', payload: {current_avatar_path: ap.current_image_path} });
     yield put({ type: 'SET_SELECTED_GOAL_PROGRESS_ACCOMPLISHED', payload: {progress: ap.progress, is_accomplished: isAccomplished} });
-    
-    if (isAccomplished){
-      //todo make an update_goals_achieved_count put here, similar to this tasks disparch vv : yield put({ type:'UPDATE_GOALS_ACHIEVED_COUNT', payload:  })
-     //(todo delete this line - an example only) dispatch({ type: 'UPDATE_TASKS_COMPLETED_COUNT', payload: {is_complete: false, user_id: store.user.id} });
-    }
 
   } catch {
     console.log('update goal progresss error');
@@ -97,27 +95,23 @@ function* updateGoalProgress(action) {
 // worker Saga: will be fired on "DELETE_GOAL" actions
 function* deleteGoal(action) {
   const ap = action.payload;
-  //ap is the goal (selectedGoal)
-  //ap.id is the goal-to-be-deleted 's id
+  //ap.goal_id is the goal-to-be-deleted 's id
   //ap.user_id is the user id
 
   try {
-    const deletedTask = yield axios.delete(`/api/goal/${ap.id}`);
+    const deletedTask = yield axios.delete(`/api/goal/${ap.goal_id}`);
     
     //need to send a payload for fetch_goals so that we can access the ap.USER    
     yield put({ type: 'FETCH_GOALS', payload: ap.user_id });
 
   } catch {
     console.log('delete goal error');
-
   }
-
 }
 
 // worker Saga: will be fired on "ADD_GOAL" actions
 function* addGoal(action) {  
   const ap = action.payload;
-  console.log('add goal ap:', ap);
 
   try {
     let newGoal = {

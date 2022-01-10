@@ -11,6 +11,9 @@ function* plantAvatarsSaga() {
 function* fetchSelectedPlantAvatar(action) {
   //fetch current plant avatar growth stage to display for this goal's id
   const ap = action.payload;
+  //ap.progress
+  //ap.goal_id is goal id
+  //ap.user_id
 
   let growthStage = 0;
 
@@ -42,13 +45,12 @@ function* fetchSelectedPlantAvatar(action) {
 
   try {
     const response = yield axios.get(`/api/plantAvatar/selected`, 
-        { params: {growthStage: growthStage, id: ap.id} });
+        { params: {growthStage: growthStage, id: ap.goal_id} });
     
     //response.data comes back like {image_path_stage_7: '/images/plantAvatars/BlueBramble8.png'}
     //and we want only the value, not the key. this will produce the value:
     const rdValue = Object.values(response.data)[0];
-    yield put({ type: 'UPDATE_GOAL_PROGRESS', payload: { progress: ap.progress, id: ap.id, current_image_path: rdValue } });
-
+    yield put({ type: 'UPDATE_GOAL_PROGRESS', payload: { progress: ap.progress, goal_id: ap.goal_id, current_image_path: rdValue, user_id: ap.user_id } });
  
   } catch (error) {
     console.log('plant Avatar get request failed', error);
@@ -60,6 +62,7 @@ function* updateSelectedPlantAvatar(action){
   const ap = action.payload;
   //ap.plant_avatar_id is the chosen plant avatar's id
   //ap.goal_id is the selectedGoal's id
+  //ap.user_id
 
   try {
     const updatedAvatar = yield axios.put(`/api/plantAvatar/${ap.goal_id}`, 
@@ -68,7 +71,7 @@ function* updateSelectedPlantAvatar(action){
     //progress for this goal, which we sent back in the router via RETURNING    
     const progress = updatedAvatar.data.progress;    
     
-    yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: { progress: progress, id: ap.goal_id} });
+    yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: {progress: progress, goal_id: ap.goal_id, user_id: ap.user_id} });
 
   } catch (error) {
     console.log("update Plant Avatar error", error);

@@ -57,6 +57,28 @@ router.get('/profile_avatar', (req,res) => {
   })
 })
 
+router.put('/goal_count/:id', (req, res) => {
+  // console.log('>>>> in user router goal count, req.params:', req.params);
+  // console.log('>>>> in user router goal count, req.body:', req.body);
+  // console.log('>>>> in user router goal count, req.query:', req.query);
+
+  //req.params.id is user id
+  //req.body.goals_achieved is the new count for completed goals
+  const queryString = `UPDATE "user" SET 
+        goals_achieved=${req.body.goals_achieved} 
+        WHERE id=${req.params.id}`;
+
+  pool.query(queryString)
+    .then((results)=>{
+      res.sendStatus(200);
+
+    }).catch((err) => {
+      console.log('PUT user goals_achieved count failed: ', err);
+      res.sendStatus(500);
+
+   });
+})
+
 router.put('/task_count/:id', (req, res) => {
   // console.log('>>>> in user task count router, req.params:', req.params);
   // console.log('>>>> in user task count router, req.body:', req.body);
@@ -80,7 +102,7 @@ router.put('/task_count/:id', (req, res) => {
     }).catch((err) => {
       console.log('PUT user tasks_completed count failed: ', err);
       res.sendStatus(500);
-      
+
     });
 })
 
@@ -92,7 +114,6 @@ router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
 
-  //todo for stretch goal, will need to add additional 3rd field of avatar image id
   const queryText = `INSERT INTO "user" (username, password)
     VALUES ($1, $2) RETURNING id`;
   pool

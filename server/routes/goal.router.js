@@ -7,6 +7,28 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+
+
+router.get('/achieved_count', (req,res) => {
+  // console.log('>>>> in goal router achieved count, req.params:', req.params);
+  // console.log('>>>> in goal router achieved count, req.body:', req.body);
+  // console.log('>>>> in goal router achieved count, req.query:', req.query);
+
+  //req.query.user_id is the user id
+  const queryString = `SELECT "goal_name" FROM "goal" 
+      WHERE "user_id"=${req.query.user_id}  
+      AND "is_accomplished"=true
+      ORDER BY id`;
+  
+  pool.query(queryString).then((results)=>{
+    res.send(results.rows);
+    
+  }).catch((err)=>{
+    console.log('error with goals achieved count GET:', err);
+    res.sendStatus(500);
+  })
+})
+
 router.get('/', (req,res) => {
   // console.log('>>>> in goal router, req.params:', req.params);
   // console.log('>>>> in goal router, req.body:', req.body);

@@ -70,7 +70,7 @@ function GoalTitle(props) {
 
   const finalDeleteButton = () => {
     //runs when user CONFIRMS deletion in the modal popup - delete goal for real!
-    dispatch({type: 'DELETE_GOAL', payload: selectedGoal});
+    dispatch({type: 'DELETE_GOAL', payload: {goal_id: selectedGoal.id, user_id: store.user.id} });
   }
 
   const handleDeleteModalClose = () => {
