@@ -86,31 +86,23 @@ function GoalTitle(props) {
          <>
           <input value={editingText} placeholder={selectedGoal.goal_name} className="goalTitleInput" type="text" onChange={ (event) => handleChange(event) }></input>
           
-          <Button onClick={confirmButton} className="iconButton confirmButton">
-            <img className="iconImage iconImageLarge" src='./images/icons/GreenCheck.png' alt="Confirm goal name"></img>
-          </Button>
-
-          <Button onClick={cancelButton} className="iconButton cancelButton">
-            <img className="iconImage iconImageLarge" src='./images/icons/RedEx.png' alt="Cancel goal name change"></img>
-          </Button>
+          <img onClick={confirmButton} className="iconImage iconImageLarge confirmButton clickableSmall iconNudgeHigher iconAddSideMargins" src='./images/icons/GreenCheck.png' alt="Confirm goal name"></img>
+          <img onClick={cancelButton} className="iconImage iconImageLarge cancelButton clickableSmall iconNudgeHigher iconAddSideMargins" src='./images/icons/RedEx.png' alt="Cancel goal name change"></img>
          </>
         : 
           <>
+          
+          <div className={ displayIcons ? `inlineBlock` : `clickable inlineBlock`}>
             <p className="goalTitleText" onClick={() => setDisplayIcons(true)}>{selectedGoal.goal_name}</p>
-  
-            { displayIcons 
-              ? 
-                <>
-                  <Button onClick={editButton} className="iconButton editDeleteButton"> 
-                    <img className="iconImage iconImageLarge" src='./images/icons/EditIcon.png' alt="Edit goal"></img>
-                  </Button>
-                  <Button onClick={deleteButton} className="iconButton editDeleteButton">
-                    <img className="iconImage iconImageLarge" src='./images/icons/TrashIcon.png' alt="Delete goal"></img>
-                  </Button>
-                </>
-              :
-                <></>
-            } 
+          </div>
+          { displayIcons 
+            ? <>
+                <img onClick={editButton} className="iconImage iconImageLarge clickableSmall iconNudgeHigher iconAddSideMargins" src='./images/icons/EditIcon.png' alt="Edit goal"></img>
+                <img onClick={deleteButton} className="iconImage iconImageLarge clickableSmall iconNudgeHigher iconAddSideMargins" src='./images/icons/TrashIcon.png' alt="Delete goal"></img>
+              </>
+            :<></>
+          } 
+
           </>
         
       }

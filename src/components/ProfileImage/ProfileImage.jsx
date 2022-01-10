@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector} from 'react-redux';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useEffect } from 'react';
 import ImagePiece from '../ImagePiece/ImagePiece';
 
@@ -24,7 +24,6 @@ function ProfileImage() {
 
   const [displayEditIcon, setDisplayEditIcon] = useState(false);
   const [editingMode, setEditingMode] = useState(false); 
-  const [isEditingClass, setIsEditingClass] = useState('');
 
   const [currentSelections, setCurrentSelections] = useState({
                             hat: user.profile_avatar_hat_id, 
@@ -51,15 +50,13 @@ function ProfileImage() {
   }, []);
 
   const clickImage = () => {
-    if (!editingMode) {
+    if (!displayEditIcon && !editingMode) {
       setDisplayEditIcon(true);
-    }
+    } 
   }
 
   const editButton = () => {
     setEditingMode(true);
-    setIsEditingClass("cardParentProfileAvatarEditMode");
-
     setDisplayEditIcon(false);
   }
 
@@ -79,7 +76,6 @@ function ProfileImage() {
     if (detailMode){
       toggleDetailMode();
     }
-    setIsEditingClass("");
   }
 
   const cancelButton = () => {
@@ -87,7 +83,6 @@ function ProfileImage() {
     if (detailMode){
       toggleDetailMode();
     }
-    setIsEditingClass("");
   }
 
   const toggleDetailMode = () => {
@@ -118,19 +113,19 @@ function ProfileImage() {
   }
 
   return (
-    <div className={`cardArea cardBlue cardParent cardParentProfileAvatar ${isEditingClass}`}> 
-
+    <div onClick={clickImage} className={ editingMode
+                                          ?   `cardArea cardBlue cardParent cardParentProfileAvatar cardParentProfileAvatarEditMode`
+                                          :   displayEditIcon 
+                                              ?   `cardArea cardBlue cardParent cardParentProfileAvatar`
+                                              :   `cardArea cardBlue cardParent cardParentProfileAvatar clickable` } > 
+                                                    
       {/* if user has clicked the image, display the edit icon. if not, don't display anything */}
       { displayEditIcon 
-        ? 
-          <Button onClick={editButton} className="iconButton editDeleteButton avatarButtonEdit"> 
-            <img className="iconImage iconImageLarge" src='./images/icons/EditIcon.png' alt="Edit task"></img>
-          </Button>
-        :
-          <></>
+        ? <img onClick={editButton} className="iconImage iconImageLarge iconAddSideMargins avatarButtonEdit profileAvatarButtonEdit clickableSmall" src='./images/icons/EditIcon.png' alt="Edit task"></img>
+        : <></>
       }
 
-      <div className="avatarImagePieceParent" onClick={clickImage}>
+      <div className="avatarImagePieceParent" >
 
           {/*HAT*/} <ImagePiece   random={randoms[0]} images={hats} updateCurrentSelections={updateCurrentSelections} 
                                   pieceName={"hat"} defaultIndex={user.profile_avatar_hat_id}
@@ -192,26 +187,18 @@ function ProfileImage() {
         ?
           <>
           <div className="bottomButtonContainer">
-            <Button onClick={toggleDetailMode} className="iconButton"> 
-              <img className="iconImageToggle" src={toggleDetailImage} alt="toggle edit details/main"></img>
-            </Button> 
+            <img onClick={toggleDetailMode} className="iconImageToggle clickable" src={toggleDetailImage} alt="toggle edit details/main"></img>
           </div>
 
           <div className="bottomButtonContainer">
             {/* <Button onClick={randomizeButton} className="iconButton confirmButton">
               <img className="iconImage iconImageLarge" src='./images/icons/DiceIcon.png' alt="Randomize profile avatar choice"></img>
             </Button> */}
+            <img onClick={cancelButton} className="iconImage iconImageLarge cancelButton clickableSmall iconAddSideMargins" src='./images/icons/RedEx.png' alt="Cancel profile avatar choice"></img>
+            <img onClick={confirmButton} className="iconImage iconImageLarge confirmButton clickableSmall iconAddSideMargins" src='./images/icons/GreenCheck.png' alt="Confirm profile avatar choice"></img>
 
-            <Button onClick={cancelButton} className="iconButton cancelButton">
-              <img className="iconImage iconImageLarge" src='./images/icons/RedEx.png' alt="Cancel profile avatar choice"></img>
-            </Button>
-
-            <Button onClick={confirmButton} className="iconButton confirmButton">
-              <img className="iconImage iconImageLarge" src='./images/icons/GreenCheck.png' alt="Confirm profile avatar choice"></img>
-            </Button>
           </div>
           </>
-
         :
           <></>
       }  

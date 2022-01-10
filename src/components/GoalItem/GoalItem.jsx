@@ -28,6 +28,8 @@ function GoalItem(props) {
   }
 
   const toggleLiked = () => {
+    console.log('toggle liked');
+    
     if (isLiked) { //if goal was liked and we clicked, we mark UN liked
       setIsLiked(false);
       setLikeImage('./images/icons/HeartEmpty.png');
@@ -40,29 +42,33 @@ function GoalItem(props) {
     }
   }
 
+  const doNothing = () => {  }
+
   return (
     <>
-     <div className={ addAccomplishedBackground ? 'accomplishedGoalBackground cardArea cardAreaSmall' : 'cardArea cardAreaSmall'}> 
-           <div className="centerFlexContainer like">
-              <Button onClick={toggleLiked} className="iconButton" disabled={isFollowees ? false : true}>
-                <img className="iconImage iconImageXL" src={likeImage} alt="Like this goal"></img>
-              </Button>
-              <h4>{goal.like_count}</h4>
-            </div>              
+      <div className={  addAccomplishedBackground 
+                        ?   isFollowees 
+                            ? `accomplishedGoalBackground cardArea cardAreaSmall` 
+                            : `accomplishedGoalBackground cardArea cardAreaSmall clickable`
+                        :   isFollowees
+                            ? `cardArea cardAreaSmall`
+                            : `cardArea cardAreaSmall clickable` }> 
+            
+          {/* "like" heart */}
+          <div className={ isFollowees ? `centerFlexContainer like clickable` : `centerFlexContainer like` }>
+            <img className="iconImage iconImageXL" onClick={isFollowees ? toggleLiked : doNothing} src={likeImage} alt="Like this goal"></img>
+            <h4>{goal.like_count}</h4>
+          </div>              
+            
           
-        
-        { isFollowees
-          ?  <Button className="thumbnailButton" disabled>
-              <img className="plantAvatarThumbnail" src={goal.current_avatar_path} alt={goal.current_avatar_path}/>
-            </Button>
-            //todo add logic for liking
-          : <Link to="/goal" onClick={() => setSelectedGoal(goal)}>
-              <Button className="thumbnailButton">
+          { isFollowees
+            ?  <img className="plantAvatarThumbnail" src={goal.current_avatar_path} alt={goal.current_avatar_path}/>
+              //todo add logic for liking
+            : <Link to="/goal" onClick={() => setSelectedGoal(goal)}>
                 <img className="plantAvatarThumbnail" src={goal.current_avatar_path} alt={goal.current_avatar_path}/>
-              </Button>
-            </Link>
-        }             
-        <h3 className="thumbnailGoalTitle">{goal.goal_name}</h3>
+              </Link>
+          }             
+          <h3 className="thumbnailGoalTitle">{goal.goal_name}</h3>
       </div>
     </>
   );

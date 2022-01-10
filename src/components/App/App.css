@@ -1,56 +1,24 @@
 @font-face {
-  font-family: 'bakso sapi';
-  src:  url('../../fonts/baksosapi-webfont.woff2') format('woff2'),
-        url('../../fonts/baksosapi-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'mungil';
-  src:  url('../../fonts/mungil-regular_2-webfont.woff2') format('woff2'),
-        url('../../fonts/mungil-regular_2-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'averia serif bold';
-  src:  url('../../fonts/averiaserif-bold-webfont.woff2') format('woff2'),
-        url('../../fonts/averiaserif-bold-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'averia serif light';
-  src:  url('../../fonts/averiaserif-light-webfont.woff2') format('woff2'),
-        url('../../fonts/averiaserif-light-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'averia serif';
-  src:  url('../../fonts/averiaserif-regular-webfont.woff2') format('woff2'),
-        url('../../fonts/averiaserif-regular-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
   font-family: 'averia bold';
   src:  url('../../fonts/averia-bold-webfont.woff2') format('woff2'),
         url('../../fonts/averia-bold-webfont.woff') format('woff');
-  font-weight: normal;
+  font-weight: bold;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'averia bold italic';
+  src:  url('../../fonts/averia-bolditalic-webfont.woff2') format('woff2'),
+        url('../../fonts/averia-bolditalic-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
 }
 
 @font-face {
   font-family: 'averia light';
   src:  url('../../fonts/averia-light-webfont.woff2') format('woff2'),
         url('../../fonts/averia-light-webfont.woff') format('woff');
-  font-weight: normal;
+  font-weight: lighter;
   font-style: normal;
 }
 
@@ -58,14 +26,6 @@
   font-family: 'averia';
   src:  url('../../fonts/averia-regular-webfont.woff2') format('woff2'),
         url('../../fonts/averia-regular-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'roble';
-  src:  url('../../fonts/roblefont-webfont.woff2') format('woff2'),
-        url('../../fonts/roblefont-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -98,6 +58,10 @@ img {
   max-width: 100%;
 }
 
+a {
+  color: #05381A;
+  text-decoration: none;
+}
 /* --------------------------------------------------------------------------------
 Text
 -------------------------------------------------------------------------------- */
@@ -122,6 +86,7 @@ Container
 /* --------------------------------------------------------------------------------
 Button
 -------------------------------------------------------------------------------- */
+
 
 .btn {
   display: inline-block;
@@ -179,6 +144,10 @@ Button
   color: #054b02;
 }
 
+.inlineBlock {
+  display: inline-block;
+}
+
 .iconButton, .iconButton:disabled {
   display: inline;
   margin-right: 5px;
@@ -202,13 +171,15 @@ Button
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
-.floatTopButton {
-  position: abolute;
-  height: 30px;
-  margin: 0;
+.buttonButton:hover, .buttonButton:focus {
+  transform: scale(1.05);
 }
 
-.buttonButton:hover, .buttonButton:active, .buttonButton:focus {
+.buttonButton:active, .buttonButton:target {
+  transform: scale(1.08);
+}
+
+.buttonButton:hover, .buttonButton:active, .buttonButton:focus, .buttonButton:target {
   background-color: #1988b4;
   color: #fff;
   border: none;
@@ -216,15 +187,20 @@ Button
   border-radius: 12px;
 }
 
+.floatTopButton {
+  position: abolute;
+  height: 30px;
+  margin: 0;
+}
+
 .iconImage {
-  height: 20px;
-  padding: 0;
-  margin: 0 0 3px 0;
+  height: 23px;
+  margin: 2px;
 }
 
 .iconImageLarge{
   height: 30px;
-  margin-bottom: 7px;
+  margin: 2px;
 }
 
 .iconImageXL {
@@ -235,8 +211,13 @@ Button
   height: 45px;
 }
 
-.editDeleteButton {
-  margin-left: 5px;
+.iconNudgeHigher {
+  margin-bottom: 10px;
+}
+
+.iconAddSideMargins {
+  margin-left: 8px;
+  margin-right: 8px;
 }
 
 .thumbnailButton, .thumbnailButton:disabled {
@@ -296,7 +277,6 @@ Form Treatment
 
 input {
   margin: 5px;
-  margin-bottom: 10px;
   border-style: solid;
   border-color:#05381A;
   border-width: 3px;
@@ -329,12 +309,34 @@ Image
   text-align: center;
 }
 
+.pageTitleNarrow {
+  font-size: 42px;
+  text-align: center;
+  font-family: "averia bold";
+}
+
 .pageTitle {
   font-size: 42px;
+  font-family: "averia bold";
+
+  margin-top: 20px;
+
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .pageSubTitle {
   font-size: 28px;
+}
+
+.secondarySubtitle {
+  font-size: 20px;
+  font-family: "averia light";
 }
 
 .goalTitleArea {
@@ -344,6 +346,37 @@ Image
 .titleLeft {
   text-align: left;
   width: 100%;
+}
+
+.textEmojiBookends {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emoji {
+  height: 30px;
+  margin: 0 15px;  
 }
 
 /*----
@@ -639,8 +672,10 @@ cards
   -webkit-align-self: auto;
   -ms-flex-item-align: auto;
   align-self: auto;
+  
+  margin-top: 50%;
 
-  z-index: 99;
+  z-index: 30;
 }
 
 .avatarButtonNext {
@@ -654,14 +689,24 @@ cards
   -ms-flex-item-align: auto;
   align-self: auto;
 
-  z-index: 99;
+  margin-top: 50%;
+
+  z-index: 30;
+}
+
+.profileAvatarBackNext {
+  margin-top: 0;
 }
 
 .avatarButtonEdit {
   position: absolute;
   right: 20px;
-  top: 20px;
+  top: 50%;
   z-index: 30;
+}
+
+.profileAvatarButtonEdit {
+  top: 20px;
 }
 
 .plantAvatarImage {
@@ -725,13 +770,20 @@ cards
   -webkit-order: 2;
   -ms-flex-order: 2;
   order: 2;
+
   width: 100%;
+
   -webkit-flex: 0 1 auto;
   -ms-flex: 0 1 auto;
   flex: 0 1 auto;
+  
   -webkit-align-self: flex-end;
   -ms-flex-item-align: end;
   align-self: flex-end;
+
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 
   display: flex;
   justify-content: center;
@@ -742,14 +794,25 @@ cards
   position: absolute;
   top: 20px;
   left: 20px;
+  z-index: 10;
+}
+
+.modal-dialog {
+  margin-top: 100px;
+}
+
+.modal {
+  font-size: 22px;
 }
 
 .modal-content {
   border-radius: 25px;
   border: none;
 
+  height: auto;
+
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  background-image: url('./BGPaper.png');
+  background-image: url('./BGPaperStars.png');
 
   background-color: rgba(255, 255, 255, 0.5);
   background-blend-mode:soft-light;
@@ -758,5 +821,71 @@ cards
 }
 
 .modal-header, .modal-body, .modal-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+
   border: none;
+}
+
+.modal-body {
+  padding: 0;
+}
+
+.modalBodyItem {
+}
+
+.modalImage {
+  width: 150px;
+}
+
+.modal-title {
+  font-size: 36px;
+}
+
+
+/* --------------------------------------------------------------------------------
+Clickable
+-------------------------------------------------------------------------------- */
+
+.clickable {
+  /* should I have just used buttons instead? probably */
+}
+
+.clickable:hover, .clickable:focus {
+  transform: scale(1.05);
+}
+
+.clickable:active, .clickable:target {
+  transform: scale(1.08);
+}
+
+.clickableSmall {
+
+}
+
+.clickableSmall:hover, .clickableSmall:focus {
+  transform: scale(1.12);
+}
+
+.clickableSmall:active, .clickableSmall:target {
+  transform: scale(1.2);
+}
+
+/* for images where we re-use the same .png facing the opposite direction, need to scale X axis as 'negative' */
+.clickable:hover.imageFlip, .clickable:focus.imageFlip {
+  transform: scale(-1.05, 1.05);
+}
+.clickable:active.imageFlip, .clickable:target.imageFlip {
+  transform: scale(-1.08, 1.08);
+}
+.clickableSmall:hover.imageFlip, .clickableSmall:focus.imageFlip {
+  transform: scale(-1.12, 1.12);
+}
+.clickableSmall:active.imageFlip, .clickableSmall:target.imageFlip {
+  transform: scale(-1.2, 1.2);
 }

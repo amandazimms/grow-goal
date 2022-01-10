@@ -10,7 +10,9 @@ VALUES  ('/images/profileAvatars/Blank.png'),
         ('/images/profileAvatars/Hat3.png'),
         ('/images/profileAvatars/Hat4.png'),
         ('/images/profileAvatars/Hat5.png'),
-        ('/images/profileAvatars/Hat6.png');
+        ('/images/profileAvatars/Hat6.png'),
+        ('/images/profileAvatars/Hat7.png');
+
 
 CREATE TABLE "profile_avatar_hair"  (
   "id" SERIAL PRIMARY KEY,

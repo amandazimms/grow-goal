@@ -65,7 +65,7 @@ function Task(props) {
       goal_id: selectedGoal.id
     }
     dispatch({type: 'UPDATE_TASK', payload: taskToSend });
-    
+
     setEditingMode(false);
   }
 
@@ -95,34 +95,23 @@ function Task(props) {
         ? 
          <>
           <input className="taskContent" value={editingText} placeholder={task.task_name} type="text" onChange={ (event) => handleChange(event) }></input>
-          <Button onClick={confirmButton} className="taskContent iconButton confirmButton">
-            <img className="iconImage" src='./images/icons/GreenCheck.png' alt="Confirm editing task"></img>
-          </Button>
-
-          <Button onClick={cancelButton} className="taskContent iconButton cancelButton">
-            <img className="iconImage" src='./images/icons/RedEx.png' alt="Cancel editing task"></img>
-          </Button>
+          <img onClick={confirmButton} className="iconImage taskContent confirmButton clickableSmall iconAddSideMargins" src='./images/icons/GreenCheck.png' alt="Confirm editing task"></img>
+          <img onClick={cancelButton} className="iconImage taskContent cancelButton clickableSmall iconAddSideMargins" src='./images/icons/RedEx.png' alt="Cancel editing task"></img>
          </>
         : 
           <>
-            <Button className="iconButton checkButton taskContent" onClick={() => toggleCompleted()}>
-              <img className="iconImage" src={checkBoxImage} alt="Toggle task incomplete/complete"></img>
-            </Button>
-           
-            <p className="taskText taskContent" onClick={() => setDisplayIcons(true)}>{props.task.task_name}</p>
- 
+            <img onClick={() => toggleCompleted()} className="iconImage checkButton taskContent clickableSmall iconAddSideMargins" src={checkBoxImage} alt="Toggle task incomplete/complete"></img>
+            
+            <div className={ displayIcons ? `inlineBlock` : `clickable inlineBlock`}> 
+              <p className="taskText taskContent" onClick={() => setDisplayIcons(true)}>{props.task.task_name}</p>
+            </div>
+
             { displayIcons 
-              ? 
-                <>
-                  <Button onClick={editButton} className="iconButton editDeleteButton"> 
-                    <img className="iconImage" src='./images/icons/EditIcon.png' alt="Edit task"></img>
-                  </Button>
-                  <Button onClick={deleteButton} className="iconButton editDeleteButton">
-                    <img className="iconImage" src='./images/icons/TrashIcon.png' alt="Delete task"></img>
-                  </Button>
+              ? <>
+                <img onClick={editButton} className="iconImage iconNudgeHigher iconAddSideMargins clickableSmall" src='./images/icons/EditIcon.png' alt="Edit task"></img>
+                <img onClick={deleteButton} className="iconImage iconNudgeHigher iconAddSideMargins clickableSmall" src='./images/icons/TrashIcon.png' alt="Delete task"></img>
                 </>
-              :
-                <></>
+              : <></>
             } 
           </>
       }

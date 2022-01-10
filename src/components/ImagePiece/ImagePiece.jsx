@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from 'react-bootstrap';
 
 function ImagePiece(props) {
 
@@ -88,13 +87,8 @@ function ImagePiece(props) {
         showMyArrows && editingMode 
         ?
           <>
-            <Button onClick={backButton} style={buttonStyleBack} className="floatTopButton iconButton avatarButtonBack"> 
-              <img className="iconImageLarge imageFlip" src='./images/icons/Arrow.png' alt="Next image"></img>
-            </Button>
-
-            <Button onClick={nextButton} style={buttonStyleNext} className="floatTopButton iconButton avatarButtonNext"> 
-              <img className="iconImageLarge" src='./images/icons/Arrow.png' alt="Next image"></img>
-            </Button>
+            <img onClick={backButton} style={buttonStyleBack} className="iconImageLarge imageFlip floatTopButton avatarButtonBack profileAvatarBackNext clickableSmall" src='./images/icons/Arrow.png' alt="Next image"></img>
+            <img onClick={nextButton} style={buttonStyleNext} className="iconImageLarge floatTopButton avatarButtonNext profileAvatarBackNext clickableSmall" src='./images/icons/Arrow.png' alt="Next image"></img>
           </>
         :
           <></>

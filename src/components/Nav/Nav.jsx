@@ -16,19 +16,19 @@ function Nav() {
       <div className="nav-right">
 
         <Link to="/social">
-          <div className="cardAreaNavIcon cardRedVivid">
+          <div className="cardAreaNavIcon cardRedVivid clickable">
             <img id="social-nav" className="nav-icon" src="/images/icons/SocialIcon.png"/>
           </div>
         </Link>
       
         <Link to="/goals">
-          <div className="cardAreaNavIcon cardBlueVivid">
+          <div className="cardAreaNavIcon cardBlueVivid clickable">
             <img id="goals-home-nav" className="nav-icon" src="/images/icons/GrowIcon.png"/>
           </div>
         </Link>
 
         <Link to="/profile">
-          <div className="cardAreaNavIcon cardYellowVivid" style={{padding: "3px 0"}}>
+          <div className="cardAreaNavIcon cardYellowVivid clickable" style={{padding: "3px 0"}}>
             <ProfileImageThumbnail className="nav-icon" userToDisplay={user} containerWidth={"70px"} />
           </div>
         </Link>

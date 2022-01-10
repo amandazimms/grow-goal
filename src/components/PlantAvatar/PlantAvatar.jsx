@@ -65,37 +65,22 @@ function PlantAvatar(props) {
 
       {/* if user has clicked the image, display the edit icon. if not, don't display anything */}
       { displayEditIcon 
-        ? 
-          <Button onClick={editButton} className="iconButton editDeleteButton avatarButtonEdit"> 
-            <img className="iconImage iconImageLarge" src='./images/icons/EditIcon.png' alt="Edit task"></img>
-          </Button>
-        :
-          <></>
+        ? <img onClick={editButton} className="iconImage iconImageLarge avatarButtonEdit iconAddSideMargins clickableSmall" src='./images/icons/EditIcon.png' alt="Edit task"></img>
+        : <></>
       } 
 
       { editingMode 
         ? 
           <>
           <div className="cardParent cardParentPlantAvatar"> 
-            <Button onClick={backButton} className="iconButton avatarButtonBack"> 
-              <img className="iconImage iconImageXL imageFlip" src='./images/icons/Arrow.png' alt="Next image"></img>
-            </Button>
-
+            <img onClick={backButton} className="iconImage iconImageXL imageFlip avatarButtonBack clickableSmall" src='./images/icons/Arrow.png' alt="Next image"></img>
             <img className="plantAvatarImage" src={plantAvatars[selectedImageIndex].image_path_stage_7}></img>
-            
-            <Button onClick={nextButton} className="iconButton avatarButtonNext"> 
-              <img className="iconImage iconImageXL" src='./images/icons/Arrow.png' alt="Next image"></img>
-            </Button>
+            <img onClick={nextButton} className="iconImage iconImageXL avatarButtonNext clickableSmall" src='./images/icons/Arrow.png' alt="Next image"></img>
           </div>
 
           <div className="bottomButtonContainer">
-            <Button onClick={confirmButton} className="iconButton confirmButton">
-              <img className="iconImage iconImageLarge" src='./images/icons/GreenCheck.png' alt="Confirm plant avatar choice"></img>
-            </Button>
-
-            <Button onClick={cancelButton} className="iconButton cancelButton">
-              <img className="iconImage iconImageLarge" src='./images/icons/RedEx.png' alt="Cancel plant avatar choice"></img>
-            </Button>
+            <img onClick={confirmButton} className="iconImage iconImageLarge confirmButton iconAddSideMargins clickableSmall" src='./images/icons/GreenCheck.png' alt="Confirm plant avatar choice"></img>
+            <img onClick={cancelButton} className="iconImage iconImageLarge cancelButton iconAddSideMargins clickableSmall" src='./images/icons/RedEx.png' alt="Cancel plant avatar choice"></img>
           </div>
           </>
         : 

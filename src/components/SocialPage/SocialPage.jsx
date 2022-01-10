@@ -52,9 +52,7 @@ function SocialPage() {
 
         { searchOpen 
           ? <AddFollowee onLeaveAdd={closeSearch}/>
-          : <Button onClick={openSearch} className="iconButton">
-              <img className="iconImage iconImageXL" src='./images/icons/AddIcon.png' alt="Add followed user"></img>
-            </Button> 
+          : <img onClick={openSearch} className="iconImage iconImageXL clickableSmall" src='./images/icons/AddIcon.png' alt="Add followed user"></img>
         }
         
       </div>  
@@ -68,15 +66,13 @@ function SocialPage() {
             {searchResults.map(foundUser => {
               
               return (
-                <div className="cardArea cardAreaSmall cardBlue" style={{padding: "0 0 10px 0"}} key={foundUser.id}>  
+                <div className="cardArea cardAreaSmall cardBlue clickable" style={{padding: "0 0 10px 0"}} key={foundUser.id}>  
                   <ProfileImageThumbnail userToDisplay={foundUser} containerWidth={"160px"}/>
 
                   <h3 className="thumbnailGoalTitle">{foundUser.username}</h3>
 
                   <div className="centerFlexContainer">
-                    <Button onClick={() => addThisFollowee(foundUser)} className="iconButton">
-                      <img className="iconImage iconImageXL" src='./images/icons/AddIcon.png' alt="Add followed user"></img>
-                    </Button> 
+                    <img onClick={() => addThisFollowee(foundUser)} className="iconImage iconImageXL clickableSmall" src='./images/icons/AddIcon.png' alt="Add followed user"></img>
                   </div>
 
                 </div>
@@ -94,15 +90,13 @@ function SocialPage() {
             {followees.map(followee => {
               
               return (
-                <div className="cardArea cardAreaSmall cardBlue" style={{padding: "0 0 10px 0"}} key={followee.id}>  
-                  <Link to="/followee-goals" onClick={() => setSelectedFollowee(followee)}>
-                    <Button className="thumbnailButton">
-                      <ProfileImageThumbnail userToDisplay={followee} containerWidth={"160px"}/>
-                    </Button>
-                  </Link>  
+                <Link to="/followee-goals" key={followee.id}>
+                  <div  onClick={() => setSelectedFollowee(followee)} 
+                        className="cardArea cardAreaSmall cardBlue clickable" style={{padding: "0 0 10px 0"}}>  
+                    <ProfileImageThumbnail userToDisplay={followee} containerWidth={"160px"}/>
                     <h3 className="thumbnailGoalTitle">{followee.username}</h3>
-                </div>
-
+                  </div>
+                </Link>  
                 );
             })}
 

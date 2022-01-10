@@ -50,10 +50,8 @@ function GoalsPage(props) {
       { isFollowees 
         ? <></> 
         : <div className="centerFlexContainer">
-            <Link to="/new-goal" onClick={addNewGoal}>
-              <Button className="iconButton">
-                <img className="iconImage iconImageXL" src='./images/icons/AddIcon.png' alt="Add goal"></img>
-              </Button> 
+            <Link to="/new-goal" onClick={addNewGoal} className="clickable">
+              <img className="iconImage iconImageXL" src='./images/icons/AddIcon.png' alt="Add goal"></img>
             </Link>
           </div>
       }

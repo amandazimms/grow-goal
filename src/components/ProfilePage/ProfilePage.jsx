@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector} from 'react-redux';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useEffect } from 'react';
 import ImagePiece from '../ImagePiece/ImagePiece';
 import ProfileImage from '../ProfileImage/ProfileImage';
@@ -11,11 +11,11 @@ function ProfilePage() {
   const user = useSelector(store => store.user);
 
   const dispatch = useDispatch();
-
-  const [randomQuote, setRandomQuote] = useState('Default Quote Here');
   
   const [zoomedImageClass, setZoomedImageClass] = useState("");
   const [zoomedDividerClass, setZoomedDividerClass] = useState("");
+
+  const [randomQuote, setRandomQuote] = useState('Default Quote Here');
 
   let quotesArray = [
     'Way to go!',
