@@ -7,7 +7,7 @@ function* taskSaga() {
   yield takeLatest('UPDATE_TASK', updateTask);
   yield takeLatest('DELETE_TASK', deleteSingleTask);
 }
-//worker Saga: will be fired on "UPDATE_TASK" actions
+//worker Saga: will be fired on "DELETE_TASK" actions
 function* deleteSingleTask(action){
   const ap = action.payload;
 
@@ -24,6 +24,8 @@ function* deleteSingleTask(action){
 //worker Saga: will be fired on "UPDATE_TASK" actions
 function* updateTask(action){
   const ap = action.payload;
+  //ap.user_id is user id
+  //ap.task_name, etc. are as expected (see below)
 
   try {
     const updatedTask = yield axios.put(`/api/task/${ap.id}`, 
@@ -31,6 +33,7 @@ function* updateTask(action){
           is_complete: ap.is_complete, 
           goal_id: ap.goal_id });
     
+    yield put({ type: 'UPDATE_TASKS_COMPLETED', payload: {is_complete: ap.is_complete, user_id: ap.user_id} });
 
     yield put({ type: 'FETCH_TASKS', payload: ap.goal_id });
 

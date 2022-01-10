@@ -16,7 +16,7 @@ function Nav() {
       <div className="nav-right">
 
         <Link to="/social">
-          <div className="cardAreaNavIcon cardRedVivid clickable">
+          <div className="cardAreaNavIcon cardGreenVivid clickable">
             <img id="social-nav" className="nav-icon" src="/images/icons/SocialIcon.png"/>
           </div>
         </Link>

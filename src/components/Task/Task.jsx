@@ -37,7 +37,8 @@ function Task(props) {
     let taskToSend = {
       task_name: task.task_name,
       id: task.id,
-      goal_id: selectedGoal.id
+      goal_id: selectedGoal.id,
+      user_id: store.user.id
       //is_complete gets add in the next step, depending if true/false
     }
 
@@ -86,6 +87,8 @@ function Task(props) {
     setEditingMode(false);
     
     dispatch({type: 'DELETE_TASK', payload: task});
+    dispatch({ type: 'UPDATE_TASKS_COMPLETED', payload: {is_complete: false, user_id: store.user.id} });
+
   }
 
   return (

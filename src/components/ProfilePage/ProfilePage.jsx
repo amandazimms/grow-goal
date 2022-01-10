@@ -7,7 +7,6 @@ import ImagePiece from '../ImagePiece/ImagePiece';
 import ProfileImage from '../ProfileImage/ProfileImage';
 
 function ProfilePage() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector(store => store.user);
 
   const dispatch = useDispatch();
@@ -23,7 +22,9 @@ function ProfilePage() {
     'GET IT!',
     'Keep it up!',
     'Impressive!',
-    "Crushin' it"
+    "Crushin' it",
+    'Wowza!',
+    'Good work'
   ];
 
   const quoteRandomizer = () => {
@@ -50,9 +51,14 @@ function ProfilePage() {
      
 
 
-      <h4 className="centerText">Goals Achieved:</h4>
+      <h4 className="centerText">Goals Achieved:</h4>      
       <h4 className="centerText">Tasks Completed:</h4>
+
+      <div className="fortyPxSpacer"></div>
+
       <h4 className="centerText">{randomQuote}</h4>
+
+      <div className="fortyPxSpacer"></div>
 
       <div className="centerFlexContainer">
         <LogOutButton className="buttonButton"/>

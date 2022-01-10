@@ -8,10 +8,6 @@ function* socialSaga() {
   yield takeLatest('FETCH_FOLLOWEE_GOALS', fetchFolloweeGoals);
   yield takeLatest('ADD_LIKE', addLike);
   yield takeLatest('DELETE_LIKE', deleteLike);
-
-  // yield takeLatest('UPDATE_TASK', updateTask);
-  // yield takeLatest('DELETE_TASK', deleteSingleTask);
-  // yield takeLatest('DELETE_THIS_GOALS_TASKS', deleteThisGoalsTasks);
 }
 
 // //worker Saga: will be fired on "ADD_LIKE" actions

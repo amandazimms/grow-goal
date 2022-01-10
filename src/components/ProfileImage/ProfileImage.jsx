@@ -107,8 +107,6 @@ function ProfileImage() {
     let newProperty = {[newKey]: newValue};
     let newSelections = {...currentSelections, ...newProperty};
     
-    console.log('setting new selections. current:', currentSelections, 'new property:', newProperty);
-
     setCurrentSelections(newSelections);
   }
 

@@ -34,8 +34,25 @@ function* fetchUser() {
   }
 }
 
+function* updateTasksCompleted(action) {
+  const ap = action.payload;
+  //ap.is_complete is true or false, true representing an ++ to tasks_completed, and false a --
+  //ap.user_id is user ID
+
+  try {
+    const response = yield axios.put(`/api/user/task_count/${ap.user_id}`, 
+      { is_complete: ap.is_complete });
+
+  yield put({ type: 'FETCH_USER' });
+
+  } catch (error) {
+    console.log('update tasks completed request failed', error);
+  }
+}    
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('UPDATE_TASKS_COMPLETED', updateTasksCompleted);
 }
 
 export default userSaga;

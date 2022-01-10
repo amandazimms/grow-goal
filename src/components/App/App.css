@@ -215,6 +215,10 @@ Button
   margin-bottom: 10px;
 }
 
+.fortyPxSpacer {
+  height: 40px;
+}
+
 .iconAddSideMargins {
   margin-left: 8px;
   margin-right: 8px;
@@ -472,6 +476,8 @@ cards
 .cardAreaBlank {
   background-image: none;
   background-color: rgba(255, 255, 255, 0);
+
+  box-shadow: none;
 }
 
 
@@ -554,8 +560,8 @@ cards
   background-blend-mode: overlay;
 }
 
-.cardRedVivid {
-  background-color: rgba(97, 0, 0, 0.774);
+.cardGreenVivid {
+  background-color: rgba(0, 82, 20, 0.589);
   background-blend-mode: overlay;
 }
 

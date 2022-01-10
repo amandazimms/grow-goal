@@ -57,6 +57,33 @@ router.get('/profile_avatar', (req,res) => {
   })
 })
 
+router.put('/task_count/:id', (req, res) => {
+  // console.log('>>>> in user task count router, req.params:', req.params);
+  // console.log('>>>> in user task count router, req.body:', req.body);
+  // console.log('>>>> in user task count router, req.query:', req.query);
+
+  //req.params.id is user id
+  //req.body.is_complete is true (for ++) or false (for --)
+  let incOrDecString = 'tasks_completed + 1';
+  if (!req.body.is_complete){
+    incOrDecString = 'tasks_completed - 1';
+  }
+
+  const queryString = `UPDATE "user" SET 
+        tasks_completed=${incOrDecString} 
+        WHERE id=${req.params.id}`;
+
+  pool.query(queryString)
+    .then((results)=>{
+      res.sendStatus(200);
+
+    }).catch((err) => {
+      console.log('PUT user tasks_completed count failed: ', err);
+      res.sendStatus(500);
+      
+    });
+})
+
 
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
