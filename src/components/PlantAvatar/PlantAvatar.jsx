@@ -17,8 +17,6 @@ function PlantAvatar(props) {
   const [editingMode, setEditingMode] = useState(isNew || false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
-  const [sunImagePath, setSunImagePath] = useState("./images/suns/SunT.png");
-
   const clickImage = () => {
     if (!editingMode) {
       setDisplayEditIcon(true);
@@ -57,7 +55,7 @@ function PlantAvatar(props) {
 
   return (
     <div>
-      <img className="sunImage" src={sunImagePath}></img>
+      <img className="sunImage" src={selectedGoal.current_sun_path}></img>
 
       {/* if user has clicked the image, display the edit icon. if not, don't display anything */}
       { displayEditIcon 

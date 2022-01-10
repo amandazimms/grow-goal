@@ -85,7 +85,11 @@ function* updateGoalProgress(action) {
    
     yield put({ type: 'UPDATE_GOALS_ACHIEVED_COUNT', payload: {user_id: ap.user_id} });    
 
+    console.log('----------------------------------------------------------> will use this as current sun path:', ap.current_sun_path);
+
     yield put({ type: 'SET_SELECTED_GOAL_IMAGE', payload: {current_avatar_path: ap.current_image_path} });
+    yield put({ type: 'SET_SELECTED_GOAL_SUN_IMAGE', payload: {current_sun_path: ap.current_sun_path} });
+
     yield put({ type: 'SET_SELECTED_GOAL_PROGRESS_ACCOMPLISHED', payload: {progress: ap.progress, is_accomplished: isAccomplished} });
 
   } catch {
