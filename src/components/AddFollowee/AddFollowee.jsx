@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function AddFollowee(props) {
@@ -25,19 +24,12 @@ function AddFollowee(props) {
 
 
   return (
-    <>
       <div className="centerFlexContainer">
-        <input type="text" className="smallInput" placeholder="Enter user to search for" onChange={ (event) => doSearch(event) }></input>
-      
-        <Button onClick={doSearch} className="iconButton confirmButton">
-          <img className="iconImage" src='./images/icons/GreenCheck.png' alt="Confirm new task"></img>
-        </Button>
-
-        <Button onClick={cancelButton} className="iconButton cancelButton">
-          <img className="iconImage" src='./images/icons/RedEx.png' alt="Cancel new task"></img>
-        </Button>
+        <div className="searchInputContainer">
+          <input type="text" className="mediumInput" placeholder="Enter user to search for" onChange={ (event) => doSearch(event) }></input>
+          <img onClick={cancelButton} className="iconImage cancelButton searchCancelButton" src='./images/icons/RedEx.png' alt="Cancel search"></img>
+        </div>
       </div>
-    </>
   );
 }
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector} from 'react-redux';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import ImagePiece from '../ImagePiece/ImagePiece';
 
 function ProfileImageThumbnail(props) {

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 
 function GoalItem(props) {
   //if we reach this page via social, it will trigger 'isFollowees=true', meaning we are looking at a followee's page

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 import GoalItem from '../GoalItem/GoalItem';
+import PageMessage from '../PageMessage/PageMessage';
 
 function GoalsPage(props) {
   //if we reach this page via social, it will trigger 'isFollowees=true', meaning we are looking at a followee's page
@@ -59,9 +59,19 @@ function GoalsPage(props) {
 
         
       <div className="cards">
-        {goals.map(goal => (
-            <GoalItem goal={goal} isFollowees={isFollowees} key={uuidv4()}/>
-        ))}
+        { goals.length === 0 
+          ? <PageMessage 
+                title="No Goals Yet" 
+                message1='Click the "+" above to make a new goal!'
+                image1="./images/profileAvatars/Eyes2.png"
+                image2="./images/profileAvatars/Eyes3.png"
+                paddingRight="22px"/> 
+          : <>
+             { goals.map(goal => (
+              <GoalItem goal={goal} isFollowees={isFollowees} key={uuidv4()}/>
+             ))}
+            </> 
+        }
       </div>  
 
     </div>

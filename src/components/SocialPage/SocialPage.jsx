@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 import AddFollowee from '../AddFollowee/AddFollowee';
+import PageMessage from '../PageMessage/PageMessage';
 import ProfileImageThumbnail from '../ProfileImageThumbnail/ProfileImageThumbnail';
 
 function SocialPage() {
@@ -84,22 +84,31 @@ function SocialPage() {
 
         : 
           <>
-          <h3 className="pageSubTitle">Users I Follow</h3>
           <div className="cards">
             {/* todo we reused some css classes that could be updated - "goal" and "plant" verbage below */}
-            {followees.map(followee => {
-              
-              return (
-                <Link to="/followee-goals" key={followee.id}>
-                  <div  onClick={() => setSelectedFollowee(followee)} 
-                        className="animate__animated animate__fadeIn cardArea cardAreaSmall cardBlue clickable" style={{padding: "0 0 10px 0"}}>  
-                    <ProfileImageThumbnail userToDisplay={followee} containerWidth={"160px"}/>
-                    <h3 className="thumbnailGoalTitle">{followee.username}</h3>
-                  </div>
-                </Link>  
-                );
-            })}
-
+            { followees.length === 0 
+              ? <PageMessage 
+                    title="No One Followed Yet" 
+                    message1='Click the "+" above to find people to follow!'
+                    image1="./images/profileAvatars/Eyes2.png"
+                    image2="./images/profileAvatars/Eyes3.png"
+                    paddingRight="22px"/> 
+              : <>
+                  <h3 className="pageSubTitle">Users I Follow</h3>
+                  {followees.map(followee => {
+                  
+                    return (
+                      <Link to="/followee-goals" key={followee.id}>
+                        <div  onClick={() => setSelectedFollowee(followee)} 
+                              className="animate__animated animate__fadeIn cardArea cardAreaSmall cardBlue clickable" style={{padding: "0 0 10px 0"}}>  
+                          <ProfileImageThumbnail userToDisplay={followee} containerWidth={"160px"}/>
+                          <h3 className="thumbnailGoalTitle">{followee.username}</h3>
+                        </div>
+                      </Link>  
+                      );
+                  })}
+                </> 
+              }            
           </div>  
           </>
       }

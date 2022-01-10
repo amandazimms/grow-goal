@@ -77,9 +77,14 @@ Text
   width: 220px;
 }
 
+.mediumInput  {
+  width: 300px;
+}
+
 .largeInput {
   width: 400px;
 }
+
 /* --------------------------------------------------------------------------------
 Container
 -------------------------------------------------------------------------------- */
@@ -92,6 +97,20 @@ Container
 .centerFlexContainer {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.centerFlexContainerColumn {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+
+  -webkit-align-items: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 /* --------------------------------------------------------------------------------
@@ -222,6 +241,19 @@ Button
   height: 45px;
 }
 
+.searchInputContainer {
+  position: relative;
+  display: inline-flex;
+}
+
+.searchCancelButton {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  width: 15px;
+  height: 15px;
+}
+
 .iconNudgeHigher {
   margin-bottom: 10px;
 }
@@ -275,6 +307,83 @@ Alert
   font-size: 0.8rem;
 }
 
+.idleAnimateImgParent {
+  position: relative;
+  width: 200px;
+}
+
+@keyframes blink1 {
+  /* open from 0-88 */
+  0% {
+    opacity:1;
+  }
+  88% {
+    opacity:1;
+  }
+  /* closed from 89-92 */
+  89% {
+    opacity:0;
+  }
+  92% {
+    opacity:0;
+  }
+  /* open from 93-96 */
+  93% {
+    opacity:1;
+  }
+  96% {
+    opacity:1;
+  }
+  /* closed from 97-100 */
+  97% {
+    opacity:0;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@keyframes blink2 {
+  /* closed from 0-88 */
+  0% {
+    opacity:0;
+  }
+  88% {
+    opacity:0;
+  }
+  /* open from 89-92 */
+  89% {
+    opacity:1;
+  }
+  92% {
+    opacity:1;
+  }
+  /* closed from 93-96 */
+  93% {
+    opacity:0;
+  }
+  96% {
+    opacity:0;
+  }
+  /* open from 97-100 */
+  97% {
+    opacity:1;
+  }
+  100% {
+    opacity:1;
+  }
+}
+.idleAnimateImg1 {
+  /* open eyes */
+  animation: blink1 3s linear infinite;
+}
+.idleAnimateImg2 {
+  /* closed eyes */
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: blink2 3s linear infinite;
+}
 /* --------------------------------------------------------------------------------
 Form Treatment
 -------------------------------------------------------------------------------- */
