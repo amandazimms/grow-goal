@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -19,9 +19,6 @@ function GoalTitle(props) {
   const [editingText, setEditingText] = useState(goalName);
 
   const [showDeleteConfirmModal, setShowDeleteConfirmModal] = useState(false);
-
-  useEffect(() => {    
-  }, [])
   
   const handleChange = (event) =>{
     setEditingText(event.target.value);

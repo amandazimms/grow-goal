@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 function PlantAvatar(props) {
@@ -18,9 +18,6 @@ function PlantAvatar(props) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const [sunImagePath, setSunImagePath] = useState("./images/suns/SunT.png");
-
-  useEffect(() => {
-  }, []);
 
   const clickImage = () => {
     if (!editingMode) {

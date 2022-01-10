@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -13,11 +13,6 @@ function GoalItem(props) {
   const [addAccomplishedBackground, setAddAccomplishedBackground] = useState(goal.is_accomplished);
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (isFollowees) {
-    }
-  }, []);
 
   const [isLiked, setIsLiked] = useState(isFollowees ? goal.follower_like_status : true);
   const [likeImage, setLikeImage] = useState(isLiked ? './images/icons/HeartFilled.png' : './images/icons/HeartEmpty.png');                

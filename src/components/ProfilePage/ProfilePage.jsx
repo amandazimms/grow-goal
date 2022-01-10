@@ -30,12 +30,16 @@ function ProfilePage() {
   const quoteRandomizer = () => {
     let index = Math.floor(Math.random() * quotesArray.length);
     setRandomQuote(quotesArray[index]);
+
+    // 
+
     //floor rounds the number down, random privides a number between 0-1, 
   }
 
   useEffect(() => {
     quoteRandomizer();
 
+    //dispatch({ type: 'FETCH_USER' });
   }, []);
 
   return (
@@ -51,8 +55,8 @@ function ProfilePage() {
      
 
 
-      <h4 className="centerText">Goals Achieved:</h4>      
-      <h4 className="centerText">Tasks Completed:</h4>
+      <h4 className="centerText">Goals Achieved: {user.goals_achieved}</h4>      
+      <h4 className="centerText">Tasks Completed: {user.tasks_completed}</h4>
 
       <div className="fortyPxSpacer"></div>
 

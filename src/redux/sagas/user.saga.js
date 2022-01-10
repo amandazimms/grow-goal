@@ -47,7 +47,10 @@ function* updateGoalsAchievedCount(action) {
 
     yield axios.put(`/api/user/goal_count/${ap.user_id}`, { goals_achieved: achievedGoals.data.length });       
 
-    //todo something
+    //todo if we run the line below, it causes an infinite loop when visiting the GOAL page 
+    //because the useEffect on that component runs (why?? because User reducer was updated?) 
+    //and a fetch_tasks is within that useEffect (which triggers the beginning of the loop)
+    //yield put({ type:'SET_USER_GOALS_ACHIEVED', payload: { goals_achieved: achievedGoals.data.length } });
     
   } catch (error) {
     console.log('update goal achieved count error:', error);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 function Task(props) {
@@ -23,10 +23,6 @@ function Task(props) {
   
   const checkedBoxImgPath = './images/icons/CheckedBox.png';
   const boxImgPath = './images/icons/Box.png';
-
-
-  useEffect(() => {
-  }, []);
 
   const handleChange = (event) =>{
     setEditingText(event.target.value);

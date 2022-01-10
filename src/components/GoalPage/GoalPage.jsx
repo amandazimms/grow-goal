@@ -46,17 +46,12 @@ function GoalPage(props) {
     //floor rounds the number down, random privides a number between 0-1, 
   }
 
-  const delay = (n) => {
-    return new Promise(function(resolve){
-        setTimeout(resolve,n*1000);
-    });
-  }
-
   useEffect(() => {
+    console.log('GOAL PAGE USE EFFECT IS NOW RUNNING');
+
     if (!isNew){ //don't try to fetch any tasks if we just opened up a new goal page,since there are none.
       dispatch({ type: 'FETCH_TASKS', payload: {goal_id: selectedGoal.id, user_id: store.user.id} }); 
     }
-
     //todo was trying to set the default of animateClass to animateFadeIn to,
     // then shortly after the page loads (using timer), set it to '' 
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -10,9 +10,6 @@ function AddFollowee(props) {
   const searchResults = useSelector(store => store.search);
 
   const [searchText, setSearchText] = useState(props.text || '');
-
-  useEffect(() => {
-  }, []);
 
   const doSearch = (event) => {
     dispatch({ type:'SEARCH_FOR_FOLLOWEE', payload: {search_text: event.target.value, follower_id: user.id} });
