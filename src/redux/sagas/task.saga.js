@@ -60,7 +60,11 @@ function* fetchTasks(action) {
     const completedTasks = response.data.filter(task => task.is_complete);
     const progress = completedTasks.length/response.data.length || 0;
 
-    yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: {progress: progress, goal_id: ap.goal_id, user_id: ap.user_id} });
+    let doSun = false;
+    if (response.data.length > 8){
+      doSun = true;
+    }
+    yield put({ type: 'FETCH_SELECTED_PLANT_AVATAR', payload: {progress: progress, goal_id: ap.goal_id, user_id: ap.user_id, doSun: doSun} });
     yield put({ type: 'SET_TASKS', payload: response.data });
 
   } catch (error) {

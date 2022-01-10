@@ -73,6 +73,7 @@ function* updateGoalProgress(action) {
   //ap.progress is PROGRESS percentage (eg .5)
   //ap.goal_id is selected Goal id.
   //ap.current_image_path is the url to this growth stage of the plant avatar
+  //ap.current_sun_path is the url to the sun image at this correct progress stage
   //ap.user_id is user id
 
   try {
@@ -80,7 +81,7 @@ function* updateGoalProgress(action) {
 
     //we want to update the selected goal's progress and current_avatar_path columns
     const updatedGoal = yield axios.put(`/api/goal/progress/${ap.goal_id}`, 
-        { progress: ap.progress, current_image_path: ap.current_image_path, is_accomplished: isAccomplished });
+        { progress: ap.progress, current_image_path: ap.current_image_path, current_sun_path: ap.current_sun_path, is_accomplished: isAccomplished });
    
     yield put({ type: 'UPDATE_GOALS_ACHIEVED_COUNT', payload: {user_id: ap.user_id} });    
 

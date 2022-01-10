@@ -42,6 +42,48 @@ function* fetchSelectedPlantAvatar(action) {
     default:
       growthStage = 0;
   }
+  
+  const suns = [
+    '/images/suns/Sun0.png',
+    '/images/suns/Sun1.png',
+    '/images/suns/Sun2.png',
+    '/images/suns/Sun3.png',
+    '/images/suns/Sun4.png',
+    '/images/suns/Sun5.png',
+    '/images/suns/Sun6.png',
+    '/images/suns/Sun7.png',
+    '/images/suns/Sun8.png',
+    '/images/suns/Sun9.png',
+    '/images/suns/Sun10.png',
+    '/images/suns/Sun11.png',
+    '/images/suns/Sun12.png',
+    '/images/suns/Sun13.png',
+    '/images/suns/Sun14.png',
+    '/images/suns/Sun15.png',
+    '/images/suns/Sun16.png',
+    '/images/suns/Sun17.png',
+    '/images/suns/Sun18.png',
+    '/images/suns/Sun19.png',
+    '/images/suns/Sun20.png',
+    '/images/suns/Sun21.png',
+    '/images/suns/Sun22.png'
+    ]
+  const sunIndex = Math.round((ap.progress % .125) * 220);
+
+  let sunPathToSend = suns[sunIndex];
+
+  if (!ap.doSun){
+    sunPathToSend = '/images/suns/Sun22.png';
+  }
+
+  // const progRem125 = ap.progress % .125;
+  // console.log("ap.progress % .125:", progRem125);
+
+  // const times220 = progRem125 * 220;
+  // console.log("that * 220:", times220);
+
+  // const rounded = Math.round(times220);
+  // console.log("that rounded:", rounded);
 
   try {
     const response = yield axios.get(`/api/plantAvatar/selected`, 
@@ -50,7 +92,7 @@ function* fetchSelectedPlantAvatar(action) {
     //response.data comes back like {image_path_stage_7: '/images/plantAvatars/BlueBramble8.png'}
     //and we want only the value, not the key. this will produce the value:
     const rdValue = Object.values(response.data)[0];
-    yield put({ type: 'UPDATE_GOAL_PROGRESS', payload: { progress: ap.progress, goal_id: ap.goal_id, current_image_path: rdValue, user_id: ap.user_id } });
+    yield put({ type: 'UPDATE_GOAL_PROGRESS', payload: { progress: ap.progress, goal_id: ap.goal_id, current_image_path: rdValue,current_sun_path: sunPathToSend, user_id: ap.user_id } });
  
   } catch (error) {
     console.log('plant Avatar get request failed', error);

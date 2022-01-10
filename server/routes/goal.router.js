@@ -149,9 +149,10 @@ router.put('/progress/:id', (req, res) => {
   const queryString = `UPDATE "goal" SET 
         "progress"=$1,
         "current_avatar_path"=$2,
-        "is_accomplished"=$3 
+        "current_sun_path"=$3,
+        "is_accomplished"=$4 
         WHERE id=${req.params.id}`;
-  values = [req.body.progress, req.body.current_image_path, req.body.is_accomplished];
+  values = [req.body.progress, req.body.current_image_path, req.body.current_sun_path, req.body.is_accomplished];
 
   pool.query(queryString, values)
     .then((results)=>{
