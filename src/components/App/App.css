@@ -816,14 +816,19 @@ cards
   border: none;
 
   height: auto;
+  padding: 20px;
 
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  background-image: url('./BGPaperStars.png');
 
+  background-image: url('./BGPaper.png');
   background-color: rgba(255, 255, 255, 0.5);
   background-blend-mode:soft-light;
   
   background-size: cover;
+}
+
+.achieveModal .modal-content {
+  background-image: url('./BGPaperStars.png');
 }
 
 .modal-header, .modal-body, .modal-footer {
@@ -894,4 +899,40 @@ Clickable
 }
 .clickableSmall:active.imageFlip, .clickableSmall:target.imageFlip {
   transform: scale(-1.2, 1.2);
+}
+
+.animateFadeIn {
+  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 2s;
+  -moz-animation: fadeIn 2s;
+  -o-animation: fadeIn 2s;
+  -ms-animation: fadeIn 2s;
+
+  animation-iteration-count: 1;
+
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
 }

@@ -87,7 +87,7 @@ function Task(props) {
     setEditingMode(false);
     
     dispatch({type: 'DELETE_TASK', payload: task});
-    dispatch({ type: 'UPDATE_TASKS_COMPLETED', payload: {is_complete: false, user_id: store.user.id} });
+    dispatch({ type: 'UPDATE_TASKS_COMPLETED_COUNT', payload: {is_complete: false, user_id: store.user.id} });
 
   }
 

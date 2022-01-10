@@ -25,7 +25,7 @@ function LoginForm() {
   }; // end login
 
   return (
-    <form className="cardArea cardBlue cardFitContent" onSubmit={login}>
+    <form className="animate__animated animate__fadeIn cardArea cardBlue cardFitContent" onSubmit={login}>
       <h2>Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">

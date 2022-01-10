@@ -8,6 +8,8 @@ import Task from '../Task/Task';
 import { Button, Form, Modal } from 'react-bootstrap';
 import ProfileImageThumbnail from '../ProfileImageThumbnail/ProfileImageThumbnail';
 import { Link } from 'react-router-dom';
+import 'animate.css';
+
 
 function GoalPage(props) {
   //if we arrived here from clicking "new goal", this will be true and will trigger some conditional renders
@@ -26,6 +28,7 @@ function GoalPage(props) {
 
   const [showGoalAchievedModal, setShowGoalAchievedModal] = useState(true);
 
+  const [animateClass, setAnimateClass] = useState('');
   const [randomQuote, setRandomQuote] = useState('Congratulations!');
 
   let quotesArray = [
@@ -43,11 +46,24 @@ function GoalPage(props) {
     //floor rounds the number down, random privides a number between 0-1, 
   }
 
+  const delay = (n) => {
+    return new Promise(function(resolve){
+        setTimeout(resolve,n*1000);
+    });
+  }
+
   useEffect(() => {
     if (!isNew){ //don't try to fetch any tasks if we just opened up a new goal page,since there are none.
       dispatch({ type: 'FETCH_TASKS', payload: selectedGoal.id }); 
     }
+
+    //todo was trying to set the default of animateClass to animateFadeIn to,
+    // then shortly after the page loads (using timer), set it to '' 
+
   }, []);
+
+  
+
 
   const addTask = () => {
     setAddingTask(true);
@@ -73,7 +89,7 @@ function GoalPage(props) {
   }
 
   return (
-    <div className="container">
+    <div className='container'>
         {/* <p>Page's selected goal: {JSON.stringify(selectedGoal)}</p> */}
         <h2 className="pageSubTitle">Goal:</h2>
         { selectedGoal.is_accomplished 
@@ -108,7 +124,7 @@ function GoalPage(props) {
               onChange={toggleVisibility}
             />
 
-        <div className="cards">
+        <div className={`${animateClass} cards`}>
 
             <div className={  selectedGoal.is_accomplished
                               ? 'cardArea cardYellow cardParent cardParentTasks accomplishedGoalBackground ' 
@@ -147,28 +163,28 @@ function GoalPage(props) {
         {
           selectedGoal.is_accomplished
           ?
-            <Modal show={showGoalAchievedModal} onHide={handleAchieveGoalModalClose}>
-              <Modal.Header>
-                  <Modal.Title>GOAL ACHIEVED</Modal.Title>
-              </Modal.Header>
+            <Modal show={showGoalAchievedModal} onHide={handleAchieveGoalModalClose} className="achieveModal driveInTop">
+                <Modal.Header>
+                    <Modal.Title>GOAL ACHIEVED</Modal.Title>
+                </Modal.Header>
 
-              <Modal.Body>
-                <div className="modalBodyItem">
-                  <p>{selectedGoal.goal_name}: YOU DID IT!</p>
-                </div>  
+                <Modal.Body>
+                  <div className="modalBodyItem">
+                    <p>{selectedGoal.goal_name}: YOU DID IT!</p>
+                  </div>  
 
-                <div className="modalBodyItem">
-                  <img className="modalImage" src={selectedGoal.current_avatar_path}/>
-                </div>  
+                  <div className="modalBodyItem">
+                    <img className="modalImage" src={selectedGoal.current_avatar_path}/>
+                  </div>  
 
-                <div className="modalBodyItem">
-                  <p>{randomQuote}</p>
-                </div>  
-              </Modal.Body>
+                  <div className="modalBodyItem">
+                    <p>{randomQuote}</p>
+                  </div>  
+                </Modal.Body>
 
-              <Modal.Footer>
-                <Button className="buttonButton" variant="primary" onClick={handleAchieveGoalModalClose}>Yay!</Button>
-              </Modal.Footer>
+                <Modal.Footer>
+                  <Button className="buttonButton" variant="primary" onClick={handleAchieveGoalModalClose}>Yay!</Button>
+                </Modal.Footer>
             </Modal>
           : 
           <></>

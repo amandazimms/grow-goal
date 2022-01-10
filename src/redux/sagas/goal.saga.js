@@ -80,10 +80,15 @@ function* updateGoalProgress(action) {
     //we want to update the selected goal's progress and current_avatar_path columns
     const updatedGoal = yield axios.put(`/api/goal/progress/${ap.id}`, 
         { progress: ap.progress, current_image_path: ap.current_image_path, is_accomplished: isAccomplished });
-
+   
     yield put({ type: 'SET_SELECTED_GOAL_IMAGE', payload: {current_avatar_path: ap.current_image_path} });
     yield put({ type: 'SET_SELECTED_GOAL_PROGRESS_ACCOMPLISHED', payload: {progress: ap.progress, is_accomplished: isAccomplished} });
     
+    if (isAccomplished){
+      //todo make an update_goals_achieved_count put here, similar to this tasks disparch vv : yield put({ type:'UPDATE_GOALS_ACHIEVED_COUNT', payload:  })
+     //(todo delete this line - an example only) dispatch({ type: 'UPDATE_TASKS_COMPLETED_COUNT', payload: {is_complete: false, user_id: store.user.id} });
+    }
+
   } catch {
     console.log('update goal progresss error');
   } 

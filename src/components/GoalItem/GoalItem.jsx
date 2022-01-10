@@ -49,10 +49,10 @@ function GoalItem(props) {
       <div className={  addAccomplishedBackground 
                         ?   isFollowees 
                             ? `accomplishedGoalBackground cardArea cardAreaSmall` 
-                            : `accomplishedGoalBackground cardArea cardAreaSmall clickable`
+                            : `animate__animated animate__fadeIn accomplishedGoalBackground cardArea cardAreaSmall clickable`
                         :   isFollowees
-                            ? `cardArea cardAreaSmall`
-                            : `cardArea cardAreaSmall clickable` }> 
+                            ? `animate__animated animate__fadeIn cardArea cardAreaSmall`
+                            : `animate__animated animate__fadeIn cardArea cardAreaSmall clickable` }> 
             
           {/* "like" heart */}
           <div className={ isFollowees ? `centerFlexContainer like clickable` : `centerFlexContainer like` }>

@@ -33,8 +33,7 @@ function* updateTask(action){
           is_complete: ap.is_complete, 
           goal_id: ap.goal_id });
     
-    yield put({ type: 'UPDATE_TASKS_COMPLETED', payload: {is_complete: ap.is_complete, user_id: ap.user_id} });
-
+    yield put({ type: 'UPDATE_TASKS_COMPLETED_COUNT', payload: {is_complete: ap.is_complete, user_id: ap.user_id} });
     yield put({ type: 'FETCH_TASKS', payload: ap.goal_id });
 
   } catch {

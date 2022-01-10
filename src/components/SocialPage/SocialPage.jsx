@@ -66,7 +66,7 @@ function SocialPage() {
             {searchResults.map(foundUser => {
               
               return (
-                <div className="cardArea cardAreaSmall cardBlue clickable" style={{padding: "0 0 10px 0"}} key={foundUser.id}>  
+                <div className="animate__animated animate__fadeIn cardArea cardAreaSmall cardBlue clickable" style={{padding: "0 0 10px 0"}} key={foundUser.id}>  
                   <ProfileImageThumbnail userToDisplay={foundUser} containerWidth={"160px"}/>
 
                   <h3 className="thumbnailGoalTitle">{foundUser.username}</h3>
@@ -92,7 +92,7 @@ function SocialPage() {
               return (
                 <Link to="/followee-goals" key={followee.id}>
                   <div  onClick={() => setSelectedFollowee(followee)} 
-                        className="cardArea cardAreaSmall cardBlue clickable" style={{padding: "0 0 10px 0"}}>  
+                        className="animate__animated animate__fadeIn cardArea cardAreaSmall cardBlue clickable" style={{padding: "0 0 10px 0"}}>  
                     <ProfileImageThumbnail userToDisplay={followee} containerWidth={"160px"}/>
                     <h3 className="thumbnailGoalTitle">{followee.username}</h3>
                   </div>

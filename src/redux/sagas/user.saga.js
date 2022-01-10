@@ -34,7 +34,7 @@ function* fetchUser() {
   }
 }
 
-function* updateTasksCompleted(action) {
+function* updateTasksCompletedCount(action) {
   const ap = action.payload;
   //ap.is_complete is true or false, true representing an ++ to tasks_completed, and false a --
   //ap.user_id is user ID
@@ -52,7 +52,7 @@ function* updateTasksCompleted(action) {
 
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
-  yield takeLatest('UPDATE_TASKS_COMPLETED', updateTasksCompleted);
+  yield takeLatest('UPDATE_TASKS_COMPLETED_COUNT', updateTasksCompletedCount);
 }
 
 export default userSaga;

@@ -112,10 +112,10 @@ function ProfileImage() {
 
   return (
     <div onClick={clickImage} className={ editingMode
-                                          ?   `cardArea cardBlue cardParent cardParentProfileAvatar cardParentProfileAvatarEditMode`
+                                          ?   `animate__animated animate__fadeIn cardArea cardBlue cardParent cardParentProfileAvatar cardParentProfileAvatarEditMode`
                                           :   displayEditIcon 
-                                              ?   `cardArea cardBlue cardParent cardParentProfileAvatar`
-                                              :   `cardArea cardBlue cardParent cardParentProfileAvatar clickable` } > 
+                                              ?   `animate__animated animate__fadeIn cardArea cardBlue cardParent cardParentProfileAvatar`
+                                              :   `animate__animated animate__fadeIn cardArea cardBlue cardParent cardParentProfileAvatar clickable` } > 
                                                     
       {/* if user has clicked the image, display the edit icon. if not, don't display anything */}
       { displayEditIcon 

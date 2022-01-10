@@ -20,7 +20,7 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <form className="cardArea cardYellow cardFitContent" onSubmit={registerUser}>
+    <form className="animate__animated animate__fadeIn cardArea cardYellow cardFitContent" onSubmit={registerUser}>
       <h2>Register User</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
