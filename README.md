@@ -7,7 +7,7 @@ The to-do app that lets you visualize your goals as adorable growing plants! Add
 ## Features
 
 - Choose from many custom illustrated plant avatars
-- Customize your profile picture 
+- Customize your profile picture - *millions* of possible combinations
 - Add friends, and choose whether to keep each of your goals private or viewable to them
 - Visit friends' pages to view and like their goal progress
 
